@@ -22,7 +22,7 @@ Complete guide for deploying TouchBase to **touchbase.sujeto10.com** with Supaba
 ### 1. Apply Database Migrations
 
 ```bash
-cd plugin/touchbase_pack/deploy
+cd plugin/touchbase/deploy
 
 # Run migration script
 ./apply-migrations.sh
@@ -58,7 +58,7 @@ SELECT * FROM touchbase_tenants WHERE code = 'sujeto10';
 npm i -g vercel
 
 # Deploy
-cd plugin/touchbase_pack
+cd plugin/touchbase
 vercel --prod
 ```
 

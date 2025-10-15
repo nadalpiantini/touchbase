@@ -251,6 +251,15 @@ BEGIN
 END;
 $$ language 'plpgsql';
 
+-- Drop existing triggers if they exist
+DROP TRIGGER IF EXISTS update_clubs_updated_at ON touchbase_clubs CASCADE;
+DROP TRIGGER IF EXISTS update_seasons_updated_at ON touchbase_seasons CASCADE;
+DROP TRIGGER IF EXISTS update_teams_updated_at ON touchbase_teams CASCADE;
+DROP TRIGGER IF EXISTS update_roster_updated_at ON touchbase_roster CASCADE;
+DROP TRIGGER IF EXISTS update_schedule_updated_at ON touchbase_schedule CASCADE;
+DROP TRIGGER IF EXISTS update_attendance_updated_at ON touchbase_attendance CASCADE;
+
+-- Create triggers
 CREATE TRIGGER update_clubs_updated_at BEFORE UPDATE ON touchbase_clubs
     FOR EACH ROW EXECUTE FUNCTION update_updated_at_column();
 
@@ -531,6 +540,8 @@ COMMENT ON COLUMN touchbase_tenant_analytics.metric_name IS 'e.g., "page_views",
 -- Triggers for updated_at
 -- ============================================================
 
+DROP TRIGGER IF EXISTS update_tenants_updated_at ON touchbase_tenants CASCADE;
+
 CREATE TRIGGER update_tenants_updated_at BEFORE UPDATE ON touchbase_tenants
     FOR EACH ROW EXECUTE FUNCTION update_updated_at_column();
 
@@ -781,6 +792,9 @@ GROUP BY t.id, t.name, t.season_id, tour.id, tour.name;
 -- Triggers for updated_at
 -- ============================================================
 
+DROP TRIGGER IF EXISTS update_tournaments_updated_at ON touchbase_tournaments CASCADE;
+DROP TRIGGER IF EXISTS update_matches_updated_at ON touchbase_matches CASCADE;
+
 CREATE TRIGGER update_tournaments_updated_at BEFORE UPDATE ON touchbase_tournaments
     FOR EACH ROW EXECUTE FUNCTION update_updated_at_column();
 
@@ -861,6 +875,8 @@ COMMENT ON COLUMN touchbase_email_queue.last_error IS 'Last error message if fai
 COMMENT ON COLUMN touchbase_email_queue.sent_at IS 'When successfully sent';
 
 -- Trigger for updated_at
+DROP TRIGGER IF EXISTS update_email_queue_updated_at ON touchbase_email_queue CASCADE;
+
 CREATE TRIGGER update_email_queue_updated_at BEFORE UPDATE ON touchbase_email_queue
     FOR EACH ROW EXECUTE FUNCTION update_updated_at_column();
 
@@ -938,6 +954,9 @@ COMMENT ON COLUMN touchbase_billing_config.stripe_account_id IS 'Connected Strip
 COMMENT ON COLUMN touchbase_billing_config.payment_enabled IS 'Enable payment collection';
 
 -- Triggers for updated_at
+DROP TRIGGER IF EXISTS update_billing_transactions_updated_at ON touchbase_billing_transactions CASCADE;
+DROP TRIGGER IF EXISTS update_billing_config_updated_at ON touchbase_billing_config CASCADE;
+
 CREATE TRIGGER update_billing_transactions_updated_at BEFORE UPDATE ON touchbase_billing_transactions
     FOR EACH ROW EXECUTE FUNCTION update_updated_at_column();
 

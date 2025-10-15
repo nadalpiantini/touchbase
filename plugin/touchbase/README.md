@@ -23,7 +23,7 @@ TouchBase is a Chamilo plugin that adds comprehensive baseball club management f
 **One-command deployment:**
 
 ```bash
-cd plugin/touchbase_pack
+cd plugin/touchbase
 ./deploy.sh
 ```
 
@@ -40,8 +40,8 @@ This will:
 docker-compose up -d
 
 # 2. Run migrations
-docker exec -i pelota_db mysql -uchamilo -pchamilo chamilo < migrations/001_init.sql
-docker exec -i pelota_db mysql -uchamilo -pchamilo chamilo < migrations/002_sample_data.sql
+docker exec -i touchbase_db mysql -uchamilo -pchamilo chamilo < migrations/001_init.sql
+docker exec -i touchbase_db mysql -uchamilo -pchamilo chamilo < migrations/002_sample_data.sql
 
 # 3. Access
 open http://localhost/touchbase
@@ -60,15 +60,15 @@ open http://localhost/touchbase
 
 ```bash
 cd /path/to/chamilo/plugin
-git clone https://github.com/yourusername/touchbase_pack.git
+git clone https://github.com/nadalpiantini/touchbase.git
 # OR extract from zip
-unzip pelota_pack.zip -d pelota_pack
+unzip touchbase.zip -d touchbase
 ```
 
 ### 2. Configure Environment
 
 ```bash
-cd pelota_pack
+cd touchbase
 cp .env.example .env
 ```
 
@@ -90,7 +90,7 @@ SUPPORTED_LANGS=en,es
 
 ```bash
 # Using Docker
-docker compose exec db bash -c "mysql -u chamilo_user -p chamilo < /var/www/html/plugin/touchbase_pack/migrations/001_init.sql"
+docker compose exec db bash -c "mysql -u chamilo_user -p chamilo < /var/www/html/plugin/touchbase/migrations/001_init.sql"
 
 # Or directly
 mysql -u chamilo_user -p chamilo < migrations/001_init.sql
@@ -102,7 +102,7 @@ mysql -u chamilo_user -p chamilo < migrations/001_init.sql
 
 ```nginx
 location ^~ /touchbase {
-    alias /var/www/html/plugin/touchbase_pack/public;
+    alias /var/www/html/plugin/touchbase/public;
     index index.php;
 
     location ~ \.php$ {
@@ -272,13 +272,13 @@ SUPPORTED_LANGS=en,es,fr
 
 ## Database Schema
 
-- **pelota_clubs** - Baseball clubs/organizations
-- **pelota_seasons** - Time periods for organizing teams
-- **pelota_teams** - Teams by age category
-- **pelota_roster** - Players assigned to teams
-- **pelota_schedule** - Practices and games
-- **pelota_attendance** - Attendance records
-- **pelota_stats** - Player statistics
+- **touchbase_clubs** - Baseball clubs/organizations
+- **touchbase_seasons** - Time periods for organizing teams
+- **touchbase_teams** - Teams by age category
+- **touchbase_roster** - Players assigned to teams
+- **touchbase_schedule** - Practices and games
+- **touchbase_attendance** - Attendance records
+- **touchbase_stats** - Player statistics
 
 See `migrations/001_init.sql` for full schema details.
 
@@ -287,7 +287,7 @@ See `migrations/001_init.sql` for full schema details.
 ### File Structure
 
 ```
-pelota_pack/
+touchbase/
 ├── public/
 │   └── index.php          # Entry point
 ├── src/
@@ -321,8 +321,8 @@ TouchBase is free software. You can redistribute and/or modify it under the term
 
 ## Support
 
-- **Issues**: https://github.com/yourusername/touchbase_pack/issues
-- **Documentation**: https://github.com/yourusername/touchbase_pack/wiki
+- **Issues**: https://github.com/nadalpiantini/touchbase/issues
+- **Documentation**: https://github.com/nadalpiantini/touchbase/wiki
 - **Chamilo**: https://chamilo.org
 
 ## Testing

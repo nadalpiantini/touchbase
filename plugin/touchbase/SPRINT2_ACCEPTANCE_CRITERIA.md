@@ -36,7 +36,7 @@
 - ✅ Utilities (spacing, text alignment, sr-only)
 
 #### Layout ✅
-**File**: `plugin/touchbase_pack/views/app_layout.php`
+**File**: `plugin/touchbase/views/app_layout.php`
 - ✅ Unified layout with tenant branding
 - ✅ Navbar with all modules
 - ✅ Language switcher (EN/ES)

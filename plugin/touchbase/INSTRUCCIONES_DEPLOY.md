@@ -299,7 +299,7 @@ cd plugin/touchbase
 ### Error: "404 Not Found" en /touchbase
 
 **Causa**: Nginx config incorrecta
-**Fix**: Verificar que el `alias` apunta a `plugin/touchbase/public` (no pelota_pack)
+**Fix**: Verificar que el `alias` apunta a `plugin/touchbase/public` (no touchbase)
 
 ### Error: "Permission denied" en scripts
 

@@ -17,12 +17,12 @@ Guía rápida para deployar TouchBase Sprint 2 en ambiente local.
 
 ```bash
 # Verificar que todos los archivos están en su lugar
-ls -la plugin/touchbase_pack/src/Controllers/AIController.php
-ls -la plugin/touchbase_pack/src/Controllers/NotifyController.php
-ls -la plugin/touchbase_pack/src/Controllers/BillingController.php
-ls -la plugin/touchbase_pack/src/AI/CoachAssistant.php
+ls -la plugin/touchbase/src/Controllers/AIController.php
+ls -la plugin/touchbase/src/Controllers/NotifyController.php
+ls -la plugin/touchbase/src/Controllers/BillingController.php
+ls -la plugin/touchbase/src/AI/CoachAssistant.php
 ls -la main/css/themes/clubball/ui.css
-ls -la plugin/touchbase_pack/views/app_layout.php
+ls -la plugin/touchbase/views/app_layout.php
 ```
 
 **Resultado esperado**: Todos los archivos existen ✅
@@ -35,7 +35,7 @@ ls -la plugin/touchbase_pack/views/app_layout.php
 
 ```php
 <?php
-// Script temporal: run_migrations.php en plugin/touchbase_pack/
+// Script temporal: run_migrations.php en plugin/touchbase/
 
 require_once __DIR__ . '/src/bootstrap.php';
 
@@ -53,7 +53,7 @@ echo "✅ Migraciones completadas\n";
 
 Ejecutar:
 ```bash
-cd plugin/touchbase_pack
+cd plugin/touchbase
 php run_migrations.php
 ```
 
@@ -61,7 +61,7 @@ php run_migrations.php
 
 ```bash
 # Asegúrate de estar en el directorio correcto
-cd plugin/touchbase_pack/migrations
+cd plugin/touchbase/migrations
 
 # Ejecutar cada migración
 mysql -u root -p chamilo < 002_branding.sql
@@ -221,7 +221,7 @@ SMTP_PASS=SG...
 **Solución**: Ejecutar migración 002_branding.sql
 
 ### Error: "Class AIController not found"
-**Solución**: Ejecutar `composer dump-autoload` en plugin/touchbase_pack
+**Solución**: Ejecutar `composer dump-autoload` en plugin/touchbase
 
 ### Error: CSS no se aplica
 **Solución**: Limpiar cache del navegador (Cmd+Shift+R)

@@ -232,7 +232,7 @@ WHERE code = 'sujeto10';
 Una vez verificado que todo está OK:
 
 ```bash
-cd /Users/nadalpiantini/Dev/chamilo-lms/chamilo-lms/plugin/touchbase_pack
+cd /Users/nadalpiantini/Dev/chamilo-lms/chamilo-lms/plugin/touchbase
 
 # Deploy
 vercel --prod

@@ -68,7 +68,7 @@ SELECT code, name, website_url FROM touchbase_tenants WHERE code = 'sujeto10';
   PASO 5: DEPLOY A VERCEL
 ═══════════════════════════════════════════════════════════════
 
-cd /Users/nadalpiantini/Dev/chamilo-lms/chamilo-lms/plugin/pelota_pack
+cd /Users/nadalpiantini/Dev/chamilo-lms/chamilo-lms/plugin/touchbase
 vercel --prod
 
 Luego:

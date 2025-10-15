@@ -1,5 +1,5 @@
 -- ============================================================
--- PelotaPack Database Schema
+-- TouchBase Database Schema
 -- Baseball Club Management System
 -- ============================================================
 

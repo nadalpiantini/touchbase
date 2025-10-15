@@ -10,10 +10,10 @@ Guía completa de solución de problemas para TouchBase.
 
 ```bash
 # Ejecutar dentro del contenedor Docker
-docker compose exec app php /var/www/html/plugin/touchbase_pack/bin/diagnose.php
+docker compose exec app php /var/www/html/plugin/touchbase/bin/diagnose.php
 
 # O directamente si tienes PHP local
-php plugin/touchbase_pack/bin/diagnose.php
+php plugin/touchbase/bin/diagnose.php
 ```
 
 Este script verifica:
@@ -60,7 +60,7 @@ docker compose logs db
 #### C) Credenciales incorrectas
 ```bash
 # Verificar credenciales en .env
-cat plugin/touchbase_pack/.env | grep DB_
+cat plugin/touchbase/.env | grep DB_
 
 # Deben coincidir con docker-compose.yml
 ```
@@ -84,7 +84,7 @@ Si no existe, añadir a la configuración de Nginx:
 
 ```nginx
 location ^~ /touchbase {
-  alias /var/www/html/plugin/touchbase_pack/public;
+  alias /var/www/html/plugin/touchbase/public;
   index index.php;
 
   location ~ \.php$ {
@@ -107,7 +107,7 @@ docker compose logs web
 #### C) Ruta incorrecta en BASE_PATH
 ```bash
 # Verificar BASE_PATH en .env
-grep BASE_PATH plugin/touchbase_pack/.env
+grep BASE_PATH plugin/touchbase/.env
 
 # Debe ser:
 BASE_PATH=/touchbase
@@ -127,8 +127,8 @@ docker compose logs app | tail -50
 docker compose logs web | tail -50
 
 # Verificar permisos
-ls -la plugin/touchbase_pack/public/
-ls -la plugin/touchbase_pack/views/
+ls -la plugin/touchbase/public/
+ls -la plugin/touchbase/views/
 ```
 
 **Soluciones comunes**:
@@ -136,20 +136,20 @@ ls -la plugin/touchbase_pack/views/
 #### A) Error de sintaxis PHP
 ```bash
 # Verificar sintaxis de todos los archivos
-find plugin/touchbase_pack/src -name "*.php" -exec php -l {} \;
+find plugin/touchbase/src -name "*.php" -exec php -l {} \;
 ```
 
 #### B) Permisos incorrectos
 ```bash
 # Arreglar permisos (dentro del contenedor)
-docker compose exec app bash -c "chmod -R 755 /var/www/html/plugin/touchbase_pack"
-docker compose exec app bash -c "chmod -R 775 /var/www/html/plugin/touchbase_pack/public"
+docker compose exec app bash -c "chmod -R 755 /var/www/html/plugin/touchbase"
+docker compose exec app bash -c "chmod -R 775 /var/www/html/plugin/touchbase/public"
 ```
 
 #### C) Archivo faltante
 ```bash
 # Ejecutar diagnóstico
-php plugin/touchbase_pack/bin/diagnose.php
+php plugin/touchbase/bin/diagnose.php
 ```
 
 ### 4. Tablas de base de datos faltantes
@@ -160,16 +160,16 @@ php plugin/touchbase_pack/bin/diagnose.php
 
 ```bash
 # Opción 1: Usar script de setup
-docker compose exec app bash /var/www/html/plugin/touchbase_pack/bin/setup.sh
+docker compose exec app bash /var/www/html/plugin/touchbase/bin/setup.sh
 
 # Opción 2: Aplicar migraciones manualmente
-docker compose exec db bash -c "mysql -uchamilo -pchamilo chamilo < /var/www/html/plugin/touchbase_pack/migrations/001_init.sql"
-docker compose exec db bash -c "mysql -uchamilo -pchamilo chamilo < /var/www/html/plugin/touchbase_pack/migrations/002_sample_data.sql"
-docker compose exec db bash -c "mysql -uchamilo -pchamilo chamilo < /var/www/html/plugin/touchbase_pack/migrations/003_branding.sql"
-docker compose exec db bash -c "mysql -uchamilo -pchamilo chamilo < /var/www/html/plugin/touchbase_pack/migrations/004_tournaments.sql"
+docker compose exec db bash -c "mysql -uchamilo -pchamilo chamilo < /var/www/html/plugin/touchbase/migrations/001_init.sql"
+docker compose exec db bash -c "mysql -uchamilo -pchamilo chamilo < /var/www/html/plugin/touchbase/migrations/002_sample_data.sql"
+docker compose exec db bash -c "mysql -uchamilo -pchamilo chamilo < /var/www/html/plugin/touchbase/migrations/003_branding.sql"
+docker compose exec db bash -c "mysql -uchamilo -pchamilo chamilo < /var/www/html/plugin/touchbase/migrations/004_tournaments.sql"
 
 # Opción 3: Todas las migraciones de una vez
-for f in plugin/touchbase_pack/migrations/*.sql; do
+for f in plugin/touchbase/migrations/*.sql; do
   docker compose exec -T db mysql -uchamilo -pchamilo chamilo < "$f"
 done
 ```
@@ -190,10 +190,10 @@ docker compose exec db mysql -uchamilo -pchamilo -e "SHOW TABLES LIKE 'pelota_%'
 NEW_KEY=$(openssl rand -base64 32)
 
 # Actualizar .env
-sed -i.bak "s/APP_KEY=.*/APP_KEY=$NEW_KEY/" plugin/touchbase_pack/.env
+sed -i.bak "s/APP_KEY=.*/APP_KEY=$NEW_KEY/" plugin/touchbase/.env
 
 # Verificar
-grep APP_KEY plugin/touchbase_pack/.env
+grep APP_KEY plugin/touchbase/.env
 ```
 
 ### 6. Páginas en blanco (sin errores)
@@ -202,7 +202,7 @@ grep APP_KEY plugin/touchbase_pack/.env
 
 ```bash
 # Habilitar modo debug en .env
-echo "DEBUG=true" >> plugin/touchbase_pack/.env
+echo "DEBUG=true" >> plugin/touchbase/.env
 
 # Revisar logs de PHP
 docker compose logs app --follow
@@ -225,14 +225,14 @@ curl -v http://localhost/touchbase/api/teams
 
 ```bash
 # Verificar que existen los archivos CSS
-ls -la plugin/touchbase_pack/assets/css/
+ls -la plugin/touchbase/assets/css/
 
 # Verificar configuración de Nginx para assets
 docker compose exec web cat /etc/nginx/conf.d/default.conf | grep -A 5 "/touchbase"
 
 # Añadir regla para assets si falta:
 location ^~ /touchbase/assets {
-  alias /var/www/html/plugin/touchbase_pack/assets;
+  alias /var/www/html/plugin/touchbase/assets;
   expires 7d;
 }
 ```
@@ -299,7 +299,7 @@ docker compose exec db mysql -uchamilo -pchamilo chamilo -e "
 "
 
 # Luego reaplicar migraciones
-bash plugin/touchbase_pack/bin/setup.sh
+bash plugin/touchbase/bin/setup.sh
 ```
 
 ---
@@ -314,11 +314,11 @@ docker compose ps
 # Esperado: web, app, db todos "Up"
 
 # 2. Verificar archivos
-ls -la plugin/touchbase_pack/public/index.php
+ls -la plugin/touchbase/public/index.php
 # Esperado: archivo existe
 
 # 3. Verificar .env
-cat plugin/touchbase_pack/.env | grep -E "DB_|BASE_PATH"
+cat plugin/touchbase/.env | grep -E "DB_|BASE_PATH"
 # Esperado: todas las variables configuradas
 
 # 4. Verificar base de datos
@@ -357,11 +357,11 @@ docker compose exec db mysql -uchamilo -pchamilo chamilo -e "
 "
 
 # 3. Resetear configuración
-rm plugin/touchbase_pack/.env
-cp plugin/touchbase_pack/.env.example plugin/touchbase_pack/.env
+rm plugin/touchbase/.env
+cp plugin/touchbase/.env.example plugin/touchbase/.env
 
 # 4. Ejecutar setup completo
-docker compose exec app bash /var/www/html/plugin/touchbase_pack/bin/setup.sh
+docker compose exec app bash /var/www/html/plugin/touchbase/bin/setup.sh
 
 # 5. Reiniciar servicios
 docker compose restart
@@ -375,7 +375,7 @@ Si ninguna de estas soluciones funciona:
 
 1. **Ejecutar diagnóstico completo**:
    ```bash
-   docker compose exec app php /var/www/html/plugin/touchbase_pack/bin/diagnose.php --verbose
+   docker compose exec app php /var/www/html/plugin/touchbase/bin/diagnose.php --verbose
    ```
 
 2. **Recopilar información**:
@@ -427,7 +427,7 @@ echo 'Users: ' . \$stmt->fetchColumn() . '\n';
 docker compose exec web curl -I localhost:80/touchbase/
 
 # Test de resolución de archivos
-docker compose exec web ls -la /var/www/html/plugin/touchbase_pack/public/
+docker compose exec web ls -la /var/www/html/plugin/touchbase/public/
 ```
 
 ---

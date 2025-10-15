@@ -2,7 +2,7 @@ services:
   # Nginx web server
   web:
     image: nginx:stable
-    container_name: pelota_nginx
+    container_name: touchbase_nginx
     ports:
       - "80:80"
     volumes:
@@ -12,26 +12,26 @@ services:
       - app
       - db
     networks:
-      - pelota_network
+      - touchbase_network
 
   # PHP-FPM application server
   app:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: pelota_php
+    container_name: touchbase_php
     volumes:
       - ../../../:/var/www/html
     depends_on:
       - db
       - redis
     networks:
-      - pelota_network
+      - touchbase_network
 
   # MariaDB database
   db:
     image: mariadb:10.6
-    container_name: pelota_db
+    container_name: touchbase_db
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: chamilo
@@ -42,21 +42,21 @@ services:
     volumes:
       - db_data:/var/lib/mysql
     networks:
-      - pelota_network
+      - touchbase_network
 
   # Redis for session storage
   redis:
     image: redis:7-alpine
-    container_name: pelota_redis
+    container_name: touchbase_redis
     ports:
       - "6379:6379"
     networks:
-      - pelota_network
+      - touchbase_network
 
 volumes:
   db_data:
     driver: local
 
 networks:
-  pelota_network:
+  touchbase_network:
     driver: bridge

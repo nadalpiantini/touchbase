@@ -5,7 +5,7 @@
 TouchBase is a modular, self-contained Chamilo plugin with zero core modifications.
 
 ```
-plugin/touchbase_pack/                    # Plugin root
+plugin/touchbase/                    # Plugin root
 ├── .dockerignore                      # Docker ignore file
 ├── .env.example                       # Environment template
 ├── composer.json                      # PHP package definition
@@ -123,7 +123,7 @@ API Request → Router → Controller
 ## Key Design Decisions
 
 ### 1. Zero Core Modifications
-- Plugin is self-contained in `/plugin/touchbase_pack/`
+- Plugin is self-contained in `/plugin/touchbase/`
 - Uses Chamilo's `user` table via foreign keys
 - No modifications to Chamilo core files
 
@@ -272,6 +272,6 @@ docker-compose restart
 
 ## Support
 
-- Issues: https://github.com/yourusername/touchbase_pack/issues
+- Issues: https://github.com/yourusername/touchbase/issues
 - Docs: See README.md, INSTALL.md, QUICKSTART.md
 - Chamilo: https://chamilo.org/documentation

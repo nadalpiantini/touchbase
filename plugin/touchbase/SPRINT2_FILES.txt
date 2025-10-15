@@ -9,61 +9,61 @@ UI/CSS:
   ✅ main/css/themes/clubball/ui.css (9.4 KB)
 
 Views:
-  ✅ plugin/pelota_pack/views/app_layout.php (2.8 KB)
-  ✅ plugin/pelota_pack/views/assistant.php (3.2 KB)
+  ✅ plugin/touchbase/views/app_layout.php (2.8 KB)
+  ✅ plugin/touchbase/views/assistant.php (3.2 KB)
 
 Controllers:
-  ✅ plugin/pelota_pack/src/Controllers/AIController.php (3.8 KB)
-  ✅ plugin/pelota_pack/src/Controllers/NotifyController.php (4.5 KB)
-  ✅ plugin/pelota_pack/src/Controllers/BillingController.php (5.2 KB)
+  ✅ plugin/touchbase/src/Controllers/AIController.php (3.8 KB)
+  ✅ plugin/touchbase/src/Controllers/NotifyController.php (4.5 KB)
+  ✅ plugin/touchbase/src/Controllers/BillingController.php (5.2 KB)
 
 AI System:
-  ✅ plugin/pelota_pack/src/AI/LLMProvider.php (0.8 KB)
-  ✅ plugin/pelota_pack/src/AI/DeepSeekBedrock.php (4.1 KB)
-  ✅ plugin/pelota_pack/src/AI/CoachAssistant.php (3.5 KB)
+  ✅ plugin/touchbase/src/AI/LLMProvider.php (0.8 KB)
+  ✅ plugin/touchbase/src/AI/DeepSeekBedrock.php (4.1 KB)
+  ✅ plugin/touchbase/src/AI/CoachAssistant.php (3.5 KB)
 
 Database:
-  ✅ plugin/pelota_pack/migrations/002_branding.sql (1.9 KB)
-  ✅ plugin/pelota_pack/migrations/005_email_queue.sql (1.2 KB)
-  ✅ plugin/pelota_pack/migrations/006_billing.sql (2.1 KB)
+  ✅ plugin/touchbase/migrations/002_branding.sql (1.9 KB)
+  ✅ plugin/touchbase/migrations/005_email_queue.sql (1.2 KB)
+  ✅ plugin/touchbase/migrations/006_billing.sql (2.1 KB)
 
 Documentation:
-  ✅ plugin/pelota_pack/SPRINT2_SUMMARY.md (11 KB)
-  ✅ plugin/pelota_pack/SPRINT2_ACCEPTANCE_CRITERIA.md (9.2 KB)
-  ✅ plugin/pelota_pack/SPRINT2_CLOSURE.md (3.3 KB)
-  ✅ plugin/pelota_pack/DEPLOY_LOCAL.md (5.3 KB)
-  ✅ plugin/pelota_pack/TODO_SPRINT3.md (4.9 KB)
-  ✅ plugin/pelota_pack/RESEARCH/COMMUNITY_INSIGHTS.md (7.8 KB)
-  ✅ plugin/pelota_pack/RESEARCH/ROUNDTABLE_PLAN.md (5.2 KB)
-  ✅ plugin/pelota_pack/RESEARCH/ROUNDTABLE_NOTES.md (8.1 KB)
+  ✅ plugin/touchbase/SPRINT2_SUMMARY.md (11 KB)
+  ✅ plugin/touchbase/SPRINT2_ACCEPTANCE_CRITERIA.md (9.2 KB)
+  ✅ plugin/touchbase/SPRINT2_CLOSURE.md (3.3 KB)
+  ✅ plugin/touchbase/DEPLOY_LOCAL.md (5.3 KB)
+  ✅ plugin/touchbase/TODO_SPRINT3.md (4.9 KB)
+  ✅ plugin/touchbase/RESEARCH/COMMUNITY_INSIGHTS.md (7.8 KB)
+  ✅ plugin/touchbase/RESEARCH/ROUNDTABLE_PLAN.md (5.2 KB)
+  ✅ plugin/touchbase/RESEARCH/ROUNDTABLE_NOTES.md (8.1 KB)
 
 Utilities:
-  ✅ plugin/pelota_pack/run_migrations.php (2.3 KB)
-  ✅ plugin/pelota_pack/run_migrations_simple.sh (1.8 KB)
-  ✅ plugin/pelota_pack/SPRINT2_FILES.txt (este archivo)
+  ✅ plugin/touchbase/run_migrations.php (2.3 KB)
+  ✅ plugin/touchbase/run_migrations_simple.sh (1.8 KB)
+  ✅ plugin/touchbase/SPRINT2_FILES.txt (este archivo)
 
 ═══════════════════════════════════════════════════════════
 
 📝 ARCHIVOS MODIFICADOS (8):
 
-  ✅ plugin/pelota_pack/src/Utils/Tenant.php
+  ✅ plugin/touchbase/src/Utils/Tenant.php
      → Compatible con nueva estructura de branding
      → Mapeo de color1-4 a color_primary/secondary/etc
      → Hardcoded defaults actualizados (WCAG AA)
 
-  ✅ plugin/pelota_pack/public/index.php
+  ✅ plugin/touchbase/public/index.php
      → +12 rutas nuevas (AI, Notify, Billing)
      → Sección "Sprint 2" claramente marcada
 
-  ✅ plugin/pelota_pack/lang/en.php
+  ✅ plugin/touchbase/lang/en.php
      → +50 claves de traducción
      → AI Assistant, Notifications, Billing
 
-  ✅ plugin/pelota_pack/lang/es.php
+  ✅ plugin/touchbase/lang/es.php
      → +50 claves de traducción
      → AI Assistant, Notificaciones, Facturación
 
-  ✅ plugin/pelota_pack/views/app_layout.php
+  ✅ plugin/touchbase/views/app_layout.php
      → AI Assistant link en navbar
      → Estilo destacado (brand-3 background)
 
@@ -91,7 +91,7 @@ Utilities:
 🚀 DEPLOY:
 
   Para deployar localmente:
-    cd plugin/pelota_pack
+    cd plugin/touchbase
     ./run_migrations_simple.sh
 
   Para verificar:

@@ -75,7 +75,7 @@ Todos los criterios de aceptación pasaron:
 
 **Quick Start**:
 \`\`\`bash
-cd plugin/touchbase_pack
+cd plugin/touchbase
 ./run_migrations_simple.sh
 open http://localhost/touchbase/ai/assistant
 \`\`\`

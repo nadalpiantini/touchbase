@@ -76,7 +76,7 @@ sleep 5
 MAX_RETRIES=30
 RETRY_COUNT=0
 
-while ! docker exec pelota_db mysqladmin ping -h localhost -u root -proot --silent &> /dev/null; do
+while ! docker exec touchbase_db mysqladmin ping -h localhost -u root -proot --silent &> /dev/null; do
     RETRY_COUNT=$((RETRY_COUNT + 1))
     if [ $RETRY_COUNT -ge $MAX_RETRIES ]; then
         echo -e "${RED}❌ Database failed to start${NC}"
@@ -91,11 +91,11 @@ echo -e "${GREEN}✓ Database is ready${NC}"
 # 5) Run migrations
 echo -e "${YELLOW}[5/7]${NC} Running database migrations..."
 
-docker exec -i pelota_db mysql -uchamilo -pchamilo chamilo < "$PLUGIN_DIR/migrations/001_init.sql"
+docker exec -i touchbase_db mysql -uchamilo -pchamilo chamilo < "$PLUGIN_DIR/migrations/001_init.sql"
 echo -e "${GREEN}✓ Main schema created${NC}"
 
 if [ -f "$PLUGIN_DIR/migrations/002_sample_data.sql" ]; then
-    docker exec -i pelota_db mysql -uchamilo -pchamilo chamilo < "$PLUGIN_DIR/migrations/002_sample_data.sql"
+    docker exec -i touchbase_db mysql -uchamilo -pchamilo chamilo < "$PLUGIN_DIR/migrations/002_sample_data.sql"
     echo -e "${GREEN}✓ Sample data loaded${NC}"
 fi
 

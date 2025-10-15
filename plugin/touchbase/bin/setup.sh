@@ -104,7 +104,7 @@ else
     echo -e "${YELLOW}⚠${NC} Skipping migrations (no database connection)"
     echo ""
     echo -e "${YELLOW}To run migrations manually:${NC}"
-    echo -e "  docker compose exec db bash -c 'mysql -uchamilo -pchamilo chamilo < /var/www/html/plugin/pelota_pack/migrations/001_init.sql'"
+    echo -e "  docker compose exec db bash -c 'mysql -uchamilo -pchamilo chamilo < /var/www/html/plugin/touchbase/migrations/001_init.sql'"
 fi
 
 # Step 6: Run diagnostics
@@ -121,11 +121,11 @@ fi
 echo ""
 echo -e "${BLUE}━━━ Next Steps ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
 echo ""
-echo -e "${GREEN}1.${NC} Configure Nginx to serve /pelota from plugin/pelota_pack/public"
+echo -e "${GREEN}1.${NC} Configure Nginx to serve /pelota from plugin/touchbase/public"
 echo -e "   Add this to your nginx config:"
 echo ""
 echo -e "${YELLOW}   location ^~ /pelota {${NC}"
-echo -e "${YELLOW}     alias /var/www/html/plugin/pelota_pack/public;${NC}"
+echo -e "${YELLOW}     alias /var/www/html/plugin/touchbase/public;${NC}"
 echo -e "${YELLOW}     index index.php;${NC}"
 echo -e "${YELLOW}"
 echo -e "${YELLOW}     location ~ \.php$ {${NC}"

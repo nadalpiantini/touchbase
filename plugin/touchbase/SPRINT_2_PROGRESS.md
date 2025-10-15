@@ -164,7 +164,7 @@ Transform TouchBase from MVP to production-grade SaaS with:
 ### For Developers:
 ```bash
 # Apply new migrations
-cd plugin/touchbase_pack
+cd plugin/touchbase
 ./bin/migrate
 
 # Check migration status

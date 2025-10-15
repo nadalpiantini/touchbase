@@ -8,7 +8,7 @@ Complete testing guide for Sprint 1 validation.
 
 ```bash
 # Verify all core files exist
-cd plugin/touchbase_pack
+cd plugin/touchbase
 
 # Check PHP files
 ls -la src/*.php

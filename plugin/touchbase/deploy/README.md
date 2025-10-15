@@ -72,7 +72,7 @@ ssh user@your-server.com
 
 # Clone/pull code
 git clone [repo-url]
-cd plugin/touchbase_pack
+cd plugin/touchbase
 
 # Install dependencies (if any)
 composer install --no-dev

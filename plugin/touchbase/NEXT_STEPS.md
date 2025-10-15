@@ -15,7 +15,7 @@ https://supabase.com/dashboard/project/nqzhxukuvmdlpewqytpv/sql
 **Migración 1: Tracking Table**
 ```bash
 # Abre en tu editor de código:
-plugin/touchbase_pack/migrations/postgres/000_migrations_table.sql
+plugin/touchbase/migrations/postgres/000_migrations_table.sql
 
 # Copy todo el contenido
 # Pega en Supabase SQL Editor
@@ -24,32 +24,32 @@ plugin/touchbase_pack/migrations/postgres/000_migrations_table.sql
 
 **Migración 2: Core Tables**
 ```bash
-# Abre: plugin/touchbase_pack/migrations/postgres/001_init.sql
+# Abre: plugin/touchbase/migrations/postgres/001_init.sql
 # Copy todo, pega en SQL Editor, RUN
 ```
 
 **Migración 3: Tenants & Branding**
 ```bash
-# Abre: plugin/touchbase_pack/migrations/postgres/003_branding.sql
+# Abre: plugin/touchbase/migrations/postgres/003_branding.sql
 # Copy todo, pega en SQL Editor, RUN
 # ✅ Esto crea el tenant SUJETO10 automáticamente
 ```
 
 **Migración 4: Tournaments**
 ```bash
-# Abre: plugin/touchbase_pack/migrations/postgres/004_tournaments.sql
+# Abre: plugin/touchbase/migrations/postgres/004_tournaments.sql
 # Copy todo, pega en SQL Editor, RUN
 ```
 
 **Migración 5: Email Queue**
 ```bash
-# Abre: plugin/touchbase_pack/migrations/postgres/005_email_queue.sql
+# Abre: plugin/touchbase/migrations/postgres/005_email_queue.sql
 # Copy todo, pega en SQL Editor, RUN
 ```
 
 **Migración 6: Billing**
 ```bash
-# Abre: plugin/touchbase_pack/migrations/postgres/006_billing.sql
+# Abre: plugin/touchbase/migrations/postgres/006_billing.sql
 # Copy todo, pega en SQL Editor, RUN
 ```
 
@@ -103,7 +103,7 @@ features_enabled: {"tournaments": true, "payments": true, ...}
 npm i -g vercel
 
 # Navegar al plugin
-cd /Users/nadalpiantini/Dev/chamilo-lms/chamilo-lms/plugin/touchbase_pack
+cd /Users/nadalpiantini/Dev/chamilo-lms/chamilo-lms/plugin/touchbase
 
 # Deploy
 vercel --prod

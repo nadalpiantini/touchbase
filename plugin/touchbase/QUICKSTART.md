@@ -10,7 +10,7 @@ Get TouchBase running in 2 minutes.
 ## One-Command Deploy
 
 ```bash
-cd plugin/touchbase_pack
+cd plugin/touchbase
 ./deploy.sh
 ```
 
@@ -92,4 +92,4 @@ chmod +x deploy.sh
 
 - Full docs: `INSTALL.md`
 - API reference: `README.md#api-reference`
-- GitHub: https://github.com/yourusername/touchbase_pack/issues
+- GitHub: https://github.com/yourusername/touchbase/issues

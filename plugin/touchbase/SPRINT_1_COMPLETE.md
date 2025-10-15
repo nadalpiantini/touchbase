@@ -194,7 +194,7 @@ public/widgets.css (widget styling)
 ### Deployment (2 minutes)
 
 ```bash
-cd plugin/touchbase_pack
+cd plugin/touchbase
 ./deploy.sh
 ```
 
@@ -368,7 +368,7 @@ Before deploying to production:
 
 **Local (Development):**
 ```bash
-cd /Users/nadalpiantini/Dev/chamilo-lms/chamilo-lms/plugin/touchbase_pack
+cd /Users/nadalpiantini/Dev/chamilo-lms/chamilo-lms/plugin/touchbase
 ./deploy.sh
 ```
 

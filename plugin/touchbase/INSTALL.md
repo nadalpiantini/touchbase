@@ -57,10 +57,10 @@ unzip chamilo.zip -d chamilo
 
 ```bash
 cd chamilo/plugin
-git clone https://github.com/yourusername/touchbase_pack.git
+git clone https://github.com/yourusername/touchbase.git
 
 # OR from local development
-cp -r /path/to/touchbase_pack ./
+cp -r /path/to/touchbase ./
 ```
 
 ### Step 3: Create Docker Compose Setup
@@ -137,7 +137,7 @@ server {
     }
 
     location ^~ /touchbase {
-        alias /var/www/html/plugin/touchbase_pack/public;
+        alias /var/www/html/plugin/touchbase/public;
         index index.php;
 
         location ~ \.php$ {
@@ -158,7 +158,7 @@ server {
 ### Step 4: Configure Plugin
 
 ```bash
-cd chamilo/plugin/touchbase_pack
+cd chamilo/plugin/touchbase
 cp .env.example .env
 ```
 
@@ -197,7 +197,7 @@ Database settings:
 ### Step 7: Run Plugin Migration
 
 ```bash
-docker compose exec db bash -c "mysql -uchamilo -pchamilo chamilo < /var/www/html/plugin/touchbase_pack/migrations/001_init.sql"
+docker compose exec db bash -c "mysql -uchamilo -pchamilo chamilo < /var/www/html/plugin/touchbase/migrations/001_init.sql"
 ```
 
 ### Step 8: Test Plugin
@@ -246,10 +246,10 @@ EXIT;
 
 ```bash
 cd /var/www/chamilo/plugin
-sudo git clone https://github.com/yourusername/touchbase_pack.git
-sudo chown -R www-data:www-data pelota_pack
+sudo git clone https://github.com/yourusername/touchbase.git
+sudo chown -R www-data:www-data touchbase
 
-cd pelota_pack
+cd touchbase
 sudo -u www-data cp .env.example .env
 sudo -u www-data nano .env
 ```
@@ -302,7 +302,7 @@ server {
     }
 
     location ^~ /touchbase {
-        alias /var/www/chamilo/plugin/touchbase_pack/public;
+        alias /var/www/chamilo/plugin/touchbase/public;
         index index.php;
 
         location ~ \.php$ {
@@ -336,7 +336,7 @@ sudo systemctl reload nginx
 ### Step 6: Run Migration
 
 ```bash
-mysql -u chamilo_user -p chamilo < /var/www/chamilo/plugin/touchbase_pack/migrations/001_init.sql
+mysql -u chamilo_user -p chamilo < /var/www/chamilo/plugin/touchbase/migrations/001_init.sql
 ```
 
 ### Step 7: Set Permissions
@@ -410,7 +410,7 @@ sudo systemctl restart nginx
 **Solution**: Verify `.env` credentials
 
 ```bash
-cd /var/www/chamilo/plugin/touchbase_pack
+cd /var/www/chamilo/plugin/touchbase
 cat .env
 mysql -h DB_HOST -u DB_USER -p DB_NAME
 ```
@@ -446,8 +446,8 @@ sudo rm -rf /var/lib/php/sessions/*
 **Solution**: Fix ownership
 
 ```bash
-sudo chown -R www-data:www-data /var/www/chamilo/plugin/touchbase_pack
-sudo chmod -R 755 /var/www/chamilo/plugin/touchbase_pack
+sudo chown -R www-data:www-data /var/www/chamilo/plugin/touchbase
+sudo chmod -R 755 /var/www/chamilo/plugin/touchbase
 ```
 
 ---
@@ -459,4 +459,4 @@ sudo chmod -R 755 /var/www/chamilo/plugin/touchbase_pack
 - [Enable xAPI tracking](README.md#roadmap)
 - [Customize theme](README.md#development)
 
-For more help, visit: https://github.com/yourusername/touchbase_pack/issues
+For more help, visit: https://github.com/yourusername/touchbase/issues

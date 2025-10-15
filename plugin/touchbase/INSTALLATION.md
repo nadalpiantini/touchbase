@@ -22,7 +22,7 @@ Instalación paso a paso del plugin TouchBase para Chamilo LMS.
 docker compose exec app bash
 
 # 2. Navegar al plugin
-cd /var/www/html/plugin/touchbase_pack
+cd /var/www/html/plugin/touchbase
 
 # 3. Ejecutar script de instalación
 bash bin/setup.sh
@@ -32,7 +32,7 @@ bash bin/setup.sh
 
 ```bash
 # Ejecutar el script que manejará todo automáticamente
-docker compose exec app bash /var/www/html/plugin/touchbase_pack/bin/setup.sh
+docker compose exec app bash /var/www/html/plugin/touchbase/bin/setup.sh
 ```
 
 El script automáticamente:
@@ -52,7 +52,7 @@ Si prefieres hacerlo paso a paso:
 
 ```bash
 # Copiar archivo de ejemplo
-cd plugin/touchbase_pack
+cd plugin/touchbase
 cp .env.example .env
 
 # Generar APP_KEY segura
@@ -75,7 +75,7 @@ APP_KEY=<tu-key-generada>
 
 ```bash
 # Ejecutar todas las migraciones en orden
-cd /var/www/html/plugin/touchbase_pack
+cd /var/www/html/plugin/touchbase
 
 # Dentro del contenedor:
 for migration in migrations/*.sql; do
@@ -86,10 +86,10 @@ done
 
 O manualmente una por una:
 ```bash
-docker compose exec db mysql -uchamilo -pchamilo chamilo < plugin/touchbase_pack/migrations/001_init.sql
-docker compose exec db mysql -uchamilo -pchamilo chamilo < plugin/touchbase_pack/migrations/002_sample_data.sql
-docker compose exec db mysql -uchamilo -pchamilo chamilo < plugin/touchbase_pack/migrations/003_branding.sql
-docker compose exec db mysql -uchamilo -pchamilo chamilo < plugin/touchbase_pack/migrations/004_tournaments.sql
+docker compose exec db mysql -uchamilo -pchamilo chamilo < plugin/touchbase/migrations/001_init.sql
+docker compose exec db mysql -uchamilo -pchamilo chamilo < plugin/touchbase/migrations/002_sample_data.sql
+docker compose exec db mysql -uchamilo -pchamilo chamilo < plugin/touchbase/migrations/003_branding.sql
+docker compose exec db mysql -uchamilo -pchamilo chamilo < plugin/touchbase/migrations/004_tournaments.sql
 ```
 
 ### Paso 3: Configurar Nginx
@@ -99,7 +99,7 @@ Añadir esta configuración a tu archivo de configuración de Nginx (usualmente 
 ```nginx
 # TouchBase Plugin
 location ^~ /touchbase {
-  alias /var/www/html/plugin/touchbase_pack/public;
+  alias /var/www/html/plugin/touchbase/public;
   index index.php;
 
   # Handle PHP files
@@ -127,7 +127,7 @@ docker compose restart web
 
 ```bash
 # Ejecutar diagnóstico
-docker compose exec app php /var/www/html/plugin/touchbase_pack/bin/diagnose.php
+docker compose exec app php /var/www/html/plugin/touchbase/bin/diagnose.php
 ```
 
 Deberías ver:
@@ -191,7 +191,7 @@ O si ejecutaste las migraciones de datos de ejemplo:
 ```bash
 # Copiar tema a directorio de temas de Chamilo
 docker compose exec app bash -c "
-  cp -r /var/www/html/plugin/touchbase_pack/themes/clubball \
+  cp -r /var/www/html/plugin/touchbase/themes/clubball \
         /var/www/html/main/css/themes/clubball
 "
 ```
@@ -211,12 +211,12 @@ Si encuentras algún problema durante la instalación:
 
 1. **Ejecutar diagnóstico completo**:
    ```bash
-   docker compose exec app php /var/www/html/plugin/touchbase_pack/bin/diagnose.php
+   docker compose exec app php /var/www/html/plugin/touchbase/bin/diagnose.php
    ```
 
 2. **Consultar la guía de troubleshooting**:
    ```bash
-   cat plugin/touchbase_pack/TROUBLESHOOTING.md
+   cat plugin/touchbase/TROUBLESHOOTING.md
    ```
 
 3. **Verificar logs**:
@@ -245,7 +245,7 @@ Si encuentras algún problema durante la instalación:
 ## 📂 Estructura de Archivos
 
 ```
-plugin/touchbase_pack/
+plugin/touchbase/
 ├── bin/
 │   ├── setup.sh          # Script de instalación automática
 │   └── diagnose.php      # Script de diagnóstico

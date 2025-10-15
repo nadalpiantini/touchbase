@@ -104,7 +104,7 @@ final class Config
 }
 
 // Define global constants
-define('BASE_PATH', Config::env('BASE_PATH', '/pelota'));
+define('BASE_PATH', Config::env('BASE_PATH', '/touchbase'));
 define('DEFAULT_LANG', Config::env('DEFAULT_LANG', 'en'));
 
 // Supabase constants

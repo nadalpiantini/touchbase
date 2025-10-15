@@ -10,7 +10,7 @@
 
 Las migraciones **correctas** para PostgreSQL están en:
 ```
-plugin/touchbase_pack/migrations/postgres/
+plugin/touchbase/migrations/postgres/
 ```
 
 **NO uses** las de `migrations/` (esas son para MySQL/MariaDB local).
@@ -280,7 +280,7 @@ Una vez que las migraciones estén aplicadas:
 ### 1. Deploy a Vercel
 
 ```bash
-cd /Users/nadalpiantini/Dev/chamilo-lms/chamilo-lms/plugin/touchbase_pack
+cd /Users/nadalpiantini/Dev/chamilo-lms/chamilo-lms/plugin/touchbase
 vercel --prod
 ```
 

@@ -9,7 +9,7 @@
 
 ### 1. Directorio Renombrado ✅
 ```
-plugin/pelota_pack → plugin/touchbase
+plugin/touchbase → plugin/touchbase
 ```
 
 ### 2. Namespace PHP Refactorizado ✅
@@ -247,7 +247,7 @@ Deberías ver:
 
 | Categoría | Antes | Ahora | Referencias |
 |-----------|-------|-------|-------------|
-| **Directorio** | pelota_pack | touchbase | 1 |
+| **Directorio** | touchbase | touchbase | 1 |
 | **Namespace** | PelotaPack | TouchBase | 101 |
 | **Tablas DB** | pelota_* | touchbase_* | 66+ |
 | **Rutas Web** | /pelota | /touchbase | 278+ |

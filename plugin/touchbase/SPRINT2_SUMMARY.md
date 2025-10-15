@@ -31,7 +31,7 @@
 **Archivos Creados**:
 - ✅ `main/css/themes/clubball/tokens.css` (3.1 KB)
 - ✅ `main/css/themes/clubball/ui.css` (9.4 KB)
-- ✅ `plugin/touchbase_pack/views/app_layout.php` (2.8 KB)
+- ✅ `plugin/touchbase/views/app_layout.php` (2.8 KB)
 
 **Características Implementadas**:
 - Design tokens system (colores, tipografía, espaciado, sombras)
@@ -267,46 +267,46 @@
 2. `main/css/themes/clubball/ui.css`
 
 **Views**:
-3. `plugin/touchbase_pack/views/app_layout.php`
-4. `plugin/touchbase_pack/views/assistant.php`
+3. `plugin/touchbase/views/app_layout.php`
+4. `plugin/touchbase/views/assistant.php`
 
 **Controllers**:
-5. `plugin/touchbase_pack/src/Controllers/AIController.php`
-6. `plugin/touchbase_pack/src/Controllers/NotifyController.php`
-7. `plugin/touchbase_pack/src/Controllers/BillingController.php`
+5. `plugin/touchbase/src/Controllers/AIController.php`
+6. `plugin/touchbase/src/Controllers/NotifyController.php`
+7. `plugin/touchbase/src/Controllers/BillingController.php`
 
 **AI System**:
-8. `plugin/touchbase_pack/src/AI/LLMProvider.php`
-9. `plugin/touchbase_pack/src/AI/DeepSeekBedrock.php`
-10. `plugin/touchbase_pack/src/AI/CoachAssistant.php`
+8. `plugin/touchbase/src/AI/LLMProvider.php`
+9. `plugin/touchbase/src/AI/DeepSeekBedrock.php`
+10. `plugin/touchbase/src/AI/CoachAssistant.php`
 
 **Migrations**:
-11. `plugin/touchbase_pack/migrations/002_branding.sql`
-12. `plugin/touchbase_pack/migrations/005_email_queue.sql`
-13. `plugin/touchbase_pack/migrations/006_billing.sql`
+11. `plugin/touchbase/migrations/002_branding.sql`
+12. `plugin/touchbase/migrations/005_email_queue.sql`
+13. `plugin/touchbase/migrations/006_billing.sql`
 
 **Documentation**:
-14. `plugin/touchbase_pack/RESEARCH/COMMUNITY_INSIGHTS.md`
-15. `plugin/touchbase_pack/RESEARCH/ROUNDTABLE_PLAN.md`
-16. `plugin/touchbase_pack/RESEARCH/ROUNDTABLE_NOTES.md`
-17. `plugin/touchbase_pack/SPRINT2_ACCEPTANCE_CRITERIA.md`
-18. `plugin/touchbase_pack/TODO_SPRINT3.md`
-19. `plugin/touchbase_pack/DEPLOY_LOCAL.md`
-20. `plugin/touchbase_pack/SPRINT2_SUMMARY.md`
+14. `plugin/touchbase/RESEARCH/COMMUNITY_INSIGHTS.md`
+15. `plugin/touchbase/RESEARCH/ROUNDTABLE_PLAN.md`
+16. `plugin/touchbase/RESEARCH/ROUNDTABLE_NOTES.md`
+17. `plugin/touchbase/SPRINT2_ACCEPTANCE_CRITERIA.md`
+18. `plugin/touchbase/TODO_SPRINT3.md`
+19. `plugin/touchbase/DEPLOY_LOCAL.md`
+20. `plugin/touchbase/SPRINT2_SUMMARY.md`
 
 **Utilities**:
-21. `plugin/touchbase_pack/run_migrations.php`
-22. `plugin/touchbase_pack/run_migrations_simple.sh`
+21. `plugin/touchbase/run_migrations.php`
+22. `plugin/touchbase/run_migrations_simple.sh`
 
 ### Código Modificado (8 archivos)
 
-1. `plugin/touchbase_pack/src/Utils/Tenant.php` - Compatible con nueva estructura
-2. `plugin/touchbase_pack/public/index.php` - +12 rutas nuevas
-3. `plugin/touchbase_pack/lang/en.php` - +50 claves
-4. `plugin/touchbase_pack/lang/es.php` - +50 claves
+1. `plugin/touchbase/src/Utils/Tenant.php` - Compatible con nueva estructura
+2. `plugin/touchbase/public/index.php` - +12 rutas nuevas
+3. `plugin/touchbase/lang/en.php` - +50 claves
+4. `plugin/touchbase/lang/es.php` - +50 claves
 5. `main/css/themes/clubball/tokens.css` - Colores WCAG AA
-6. `plugin/touchbase_pack/views/app_layout.php` - AI Assistant en navbar
-7. `plugin/touchbase_pack/migrations/002_branding.sql` - Colores actualizados
+6. `plugin/touchbase/views/app_layout.php` - AI Assistant en navbar
+7. `plugin/touchbase/migrations/002_branding.sql` - Colores actualizados
 
 ---
 
@@ -318,7 +318,7 @@ Ver documentación completa en: **`DEPLOY_LOCAL.md`**
 
 ```bash
 # 1. Ejecutar migraciones
-cd plugin/touchbase_pack
+cd plugin/touchbase
 ./run_migrations_simple.sh
 
 # 2. Verificar UI

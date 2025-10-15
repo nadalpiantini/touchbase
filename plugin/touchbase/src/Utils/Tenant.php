@@ -65,7 +65,7 @@ final class Tenant
     public static function getById(int $id): ?array
     {
         $tenant = Database::fetchOne(
-            'SELECT * FROM pelota_tenants WHERE id = ?',
+            'SELECT * FROM touchbase_tenants WHERE id = ?',
             [$id]
         );
 
@@ -85,7 +85,7 @@ final class Tenant
     public static function getByCode(string $code): ?array
     {
         $tenant = Database::fetchOne(
-            'SELECT * FROM pelota_tenants WHERE code = ?',
+            'SELECT * FROM touchbase_tenants WHERE code = ?',
             [$code]
         );
 
@@ -105,13 +105,13 @@ final class Tenant
     {
         // Try to get default tenant first
         $tenant = Database::fetchOne(
-            "SELECT * FROM pelota_tenants WHERE code = 'default' ORDER BY id LIMIT 1"
+            "SELECT * FROM touchbase_tenants WHERE code = 'default' ORDER BY id LIMIT 1"
         );
 
         // If no default, get any tenant
         if (!$tenant) {
             $tenant = Database::fetchOne(
-                'SELECT * FROM pelota_tenants ORDER BY id LIMIT 1'
+                'SELECT * FROM touchbase_tenants ORDER BY id LIMIT 1'
             );
         }
 
@@ -137,7 +137,7 @@ final class Tenant
             return $tenant ? (int) $tenant['id'] : null;
         }
 
-        // Check subdomain (e.g., rddominicana.pelotapack.com)
+        // Check subdomain (e.g., rddominicana.touchbase.com)
         $host = $_SERVER['HTTP_HOST'] ?? '';
         if (preg_match('/^([a-z0-9-]+)\./', $host, $matches)) {
             $subdomain = $matches[1];
@@ -351,7 +351,7 @@ final class Tenant
         $userAgent = $_SERVER['HTTP_USER_AGENT'] ?? null;
 
         Database::execute(
-            'INSERT INTO pelota_tenant_sessions (tenant_id, user_id, session_key, ip_address, user_agent)
+            'INSERT INTO touchbase_tenant_sessions (tenant_id, user_id, session_key, ip_address, user_agent)
              VALUES (?, ?, ?, ?, ?)
              ON DUPLICATE KEY UPDATE 
                 last_accessed = CURRENT_TIMESTAMP,

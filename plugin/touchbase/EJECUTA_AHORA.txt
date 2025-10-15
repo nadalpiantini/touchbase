@@ -1,0 +1,89 @@
+╔═══════════════════════════════════════════════════════════════╗
+║              TOUCHBASE - EJECUTA ESTOS 2 ARCHIVOS             ║
+╚═══════════════════════════════════════════════════════════════╝
+
+⚠️  IMPORTANTE: Hay otras apps en tu Supabase
+✅ Estos scripts SOLO limpian/crean objetos con prefijo touchbase_
+✅ NO tocan otras tablas ni datos de otras aplicaciones
+
+═══════════════════════════════════════════════════════════════
+PASO 1: LIMPIAR (Solo touchbase_*)
+═══════════════════════════════════════════════════════════════
+
+Archivo: CLEANUP_FIRST.sql
+
+1. Abre CLEANUP_FIRST.sql
+2. Select All (Cmd+A)
+3. Copy (Cmd+C)
+4. Open: https://supabase.com/dashboard/project/nqzhxukuvmdlpewqytpv/sql
+5. Click "New query"
+6. Paste (Cmd+V)
+7. Click "RUN"
+
+✅ Esto SOLO elimina:
+   - Tablas touchbase_*
+   - Triggers touchbase_*
+   - Types touchbase_*
+   - Function update_updated_at_column()
+
+❌ NO toca ninguna otra tabla o dato
+
+═══════════════════════════════════════════════════════════════
+PASO 2: CREAR TODO (949 líneas)
+═══════════════════════════════════════════════════════════════
+
+Archivo: COPY_PASTE_THIS.sql
+
+1. Abre COPY_PASTE_THIS.sql
+2. Select All (Cmd+A)
+3. Copy (Cmd+C)
+4. En Supabase SQL Editor, click "New query" de nuevo
+5. Paste (Cmd+V)
+6. Click "RUN"
+7. Espera ~30 segundos
+
+✅ Crea:
+   - 17 tablas con prefijo touchbase_
+   - Tenant SUJETO10
+   - Triggers
+   - VIEW touchbase_standings
+
+═══════════════════════════════════════════════════════════════
+PASO 3: VERIFICAR
+═══════════════════════════════════════════════════════════════
+
+Ejecuta en SQL Editor:
+
+-- Ver tablas creadas
+SELECT table_name FROM information_schema.tables
+WHERE table_schema = 'public' AND table_name LIKE 'touchbase_%'
+ORDER BY table_name;
+
+-- Ver tenant SUJETO10
+SELECT code, name, website_url FROM touchbase_tenants
+WHERE code = 'sujeto10';
+
+Debe retornar:
+  code: sujeto10
+  name: SUJETO10
+  website_url: https://touchbase.sujeto10.com
+
+═══════════════════════════════════════════════════════════════
+PASO 4: DEPLOY A VERCEL
+═══════════════════════════════════════════════════════════════
+
+cd /Users/nadalpiantini/Dev/chamilo-lms/chamilo-lms/plugin/touchbase
+vercel --prod
+
+Luego configura env vars en Vercel (ver START_HERE.md)
+
+═══════════════════════════════════════════════════════════════
+
+✓ TODO LISTO PARA EJECUTAR
+
+Archivos:
+  1. CLEANUP_FIRST.sql     ← Ejecutar primero
+  2. COPY_PASTE_THIS.sql   ← Ejecutar segundo
+  3. START_HERE.md         ← Guía completa de deploy
+
+═══════════════════════════════════════════════════════════════

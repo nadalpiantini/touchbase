@@ -7,7 +7,7 @@ Guía ultra-rápida para deployar Sprint 2 localmente en menos de 5 minutos.
 ## ⚡ Quick Start (1 comando)
 
 ```bash
-cd plugin/touchbase_pack && ./deploy_local.sh
+cd plugin/touchbase && ./deploy_local.sh
 ```
 
 **Eso es todo.** El script valida pre-requisitos, ejecuta migraciones y te da instrucciones.
