@@ -56,30 +56,42 @@ echo "  Branch: $GIT_BRANCH"
 echo "  Commit: ${GIT_COMMIT:0:8}"
 echo ""
 
-# Create deployment payload
-PAYLOAD=$(cat <<EOF
+# First, update project settings to force rootDirectory
+echo -e "${YELLOW}🔧 Updating project settings...${NC}"
+
+SETTINGS_PAYLOAD=$(cat <<EOF
 {
-  "name": "touchbase",
-  "target": "production",
-  "projectSettings": {
-    "framework": "nextjs",
-    "rootDirectory": "web",
-    "installCommand": "npm ci",
-    "buildCommand": "npm run build",
-    "devCommand": "npm run dev",
-    "outputDirectory": ".next"
-  },
-  "gitSource": {
-    "type": "github",
-    "repoId": "$GIT_REPO",
-    "ref": "$GIT_BRANCH",
-    "sha": "$GIT_COMMIT"
-  }
+  "framework": "nextjs",
+  "rootDirectory": "web",
+  "installCommand": "npm ci",
+  "buildCommand": "npm run build",
+  "devCommand": "npm run dev"
 }
 EOF
 )
 
+SETTINGS_RESPONSE=$(curl -s -X PATCH "https://api.vercel.com/v9/projects/$PROJECT_ID" \
+  -H "Authorization: Bearer $VERCEL_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d "$SETTINGS_PAYLOAD")
+
+if echo "$SETTINGS_RESPONSE" | grep -q '"error"'; then
+  echo -e "${YELLOW}⚠️  Could not update settings (may not have permissions)${NC}"
+else
+  echo -e "${GREEN}✅ Project settings updated${NC}"
+fi
+
+echo ""
 echo -e "${YELLOW}🔄 Creating deployment...${NC}"
+
+# Create deployment using simpler payload (let Vercel use git integration)
+PAYLOAD=$(cat <<EOF
+{
+  "name": "touchbase",
+  "target": "production"
+}
+EOF
+)
 
 # Create deployment
 RESPONSE=$(curl -s -X POST "https://api.vercel.com/v13/deployments" \

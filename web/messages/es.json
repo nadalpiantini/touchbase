@@ -182,5 +182,10 @@
     "errors": {
       "generic": "Error"
     }
+  },
+  "notFound": {
+    "title": "404 — Página no encontrada",
+    "message": "La página que buscas no existe o ha sido movida.",
+    "backHome": "Volver al inicio"
   }
 }

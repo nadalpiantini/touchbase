@@ -1,310 +1,102 @@
-name: TouchBase Production Deployment
+name: Deploy to Vercel Production
 
 on:
   push:
-    branches: [main, master]
-  workflow_dispatch:
-    inputs:
-      skip_tests:
-        description: 'Skip tests'
-        required: false
-        default: 'false'
-        type: choice
-        options:
-          - 'false'
-          - 'true'
+    branches:
+      - master
 
 env:
-  NODE_VERSION: '18'
-  VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
-  VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+  VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
 
 jobs:
-  # =================================================================
-  # Validación Pre-Deploy
-  # =================================================================
-  validate:
-    name: 🔍 Pre-Deploy Validation
+  pre-checks:
+    name: Pre-deployment Checks
     runs-on: ubuntu-latest
-    outputs:
-      should_deploy: ${{ steps.check.outputs.should_deploy }}
-
-    steps:
-      - name: 📥 Checkout code
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 2  # Para comparar con commit anterior
-
-      - name: 🔍 Check for changes in web/
-        id: check
-        run: |
-          # Verificar si hay cambios en web/
-          if git diff --name-only HEAD^ HEAD | grep -q "^web/"; then
-            echo "Changes detected in web/"
-            echo "should_deploy=true" >> $GITHUB_OUTPUT
-          else
-            echo "No changes in web/, skipping deployment"
-            echo "should_deploy=false" >> $GITHUB_OUTPUT
-          fi
-
-      - name: 📊 Report validation result
-        run: |
-          if [[ "${{ steps.check.outputs.should_deploy }}" == "true" ]]; then
-            echo "✅ Deployment will proceed - changes detected in web/"
-          else
-            echo "⏭️ Deployment skipped - no changes in web/"
-          fi
-
-  # =================================================================
-  # Análisis de Código
-  # =================================================================
-  code_quality:
-    name: 🔧 Code Quality Check
-    runs-on: ubuntu-latest
-    needs: validate
-    if: needs.validate.outputs.should_deploy == 'true'
     defaults:
       run:
         working-directory: ./web
 
     steps:
-      - name: 📥 Checkout code
+      - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: 📦 Setup Node.js
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: ${{ env.NODE_VERSION }}
+          node-version: '20'
           cache: 'npm'
           cache-dependency-path: web/package-lock.json
 
-      - name: 📚 Install dependencies
+      - name: Install dependencies
         run: npm ci
 
-      - name: 🔍 Run ESLint
-        run: |
-          npm run lint -- --max-warnings=50 || {
-            echo "::warning::ESLint found issues"
-            exit 0  # No fallar el pipeline por warnings
-          }
+      - name: TypeScript check
+        run: npx tsc --noEmit
 
-      - name: 📘 TypeScript check
-        run: |
-          npx tsc --noEmit || {
-            echo "::error::TypeScript compilation failed"
-            exit 1
-          }
-
-      - name: 📊 Report quality results
-        if: always()
-        run: |
-          echo "### Code Quality Report" >> $GITHUB_STEP_SUMMARY
-          echo "- ESLint: ✅ Completed" >> $GITHUB_STEP_SUMMARY
-          echo "- TypeScript: ✅ Completed" >> $GITHUB_STEP_SUMMARY
-
-  # =================================================================
-  # Build de Verificación
-  # =================================================================
-  build_check:
-    name: 🔨 Build Verification
-    runs-on: ubuntu-latest
-    needs: [validate, code_quality]
-    if: needs.validate.outputs.should_deploy == 'true'
-    defaults:
-      run:
-        working-directory: ./web
-
-    steps:
-      - name: 📥 Checkout code
-        uses: actions/checkout@v4
-
-      - name: 📦 Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: ${{ env.NODE_VERSION }}
-          cache: 'npm'
-          cache-dependency-path: web/package-lock.json
-
-      - name: 📚 Install dependencies
-        run: npm ci
-
-      - name: 🏗️ Build application
+      - name: Build test
         run: npm run build
-        env:
-          NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL || 'https://placeholder.supabase.co' }}
-          NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY || 'placeholder-key' }}
 
-      - name: 📦 Upload build artifacts
-        uses: actions/upload-artifact@v3
-        with:
-          name: build-output
-          path: web/.next
-          retention-days: 1
-
-      - name: 📊 Build summary
-        run: |
-          echo "### Build Summary" >> $GITHUB_STEP_SUMMARY
-          echo "- Status: ✅ Success" >> $GITHUB_STEP_SUMMARY
-          echo "- Node Version: ${{ env.NODE_VERSION }}" >> $GITHUB_STEP_SUMMARY
-          echo "- Build Time: $(date)" >> $GITHUB_STEP_SUMMARY
-
-  # =================================================================
-  # Tests (Opcional)
-  # =================================================================
-  test:
-    name: 🧪 E2E Tests
-    runs-on: ubuntu-latest
-    needs: [validate, build_check]
-    if: |
-      needs.validate.outputs.should_deploy == 'true' &&
-      github.event.inputs.skip_tests != 'true'
-    defaults:
-      run:
-        working-directory: ./
-
-    steps:
-      - name: 📥 Checkout code
-        uses: actions/checkout@v4
-
-      - name: 📦 Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: ${{ env.NODE_VERSION }}
-
-      - name: 🎭 Install Playwright
-        run: |
-          if [ -f "package.json" ]; then
-            npm install
-            npx playwright install chromium
-          else
-            echo "No E2E tests configured"
-          fi
-
-      - name: 🧪 Run E2E tests
-        run: |
-          if [ -f "playwright.config.ts" ]; then
-            npm run test:e2e || {
-              echo "::warning::E2E tests failed"
-              exit 0  # No bloquear deployment por tests
-            }
-          else
-            echo "No E2E tests to run"
-          fi
-
-      - name: 📊 Test summary
-        if: always()
-        run: |
-          echo "### Test Summary" >> $GITHUB_STEP_SUMMARY
-          echo "- E2E Tests: Completed" >> $GITHUB_STEP_SUMMARY
-
-  # =================================================================
-  # Deployment a Producción
-  # =================================================================
   deploy:
-    name: 🚀 Deploy to Production
+    name: Deploy to Vercel
+    needs: pre-checks
     runs-on: ubuntu-latest
-    needs: [validate, code_quality, build_check]
-    if: |
-      needs.validate.outputs.should_deploy == 'true' &&
-      success()
-    environment:
-      name: production
-      url: https://touchbase.sujeto10.com
 
     steps:
-      - name: 📥 Checkout code
+      - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: 📦 Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: ${{ env.NODE_VERSION }}
+      - name: Install Vercel CLI
+        run: npm install -g vercel@latest
 
-      - name: 🔐 Install Vercel CLI
-        run: npm install -g vercel
-
-      - name: 🚀 Deploy to Vercel
-        id: deploy
+      - name: Deploy to Production
+        working-directory: ./web
         run: |
-          # Deploy usando Vercel CLI
-          DEPLOYMENT_URL=$(vercel --prod --yes --token=${{ secrets.VERCEL_TOKEN }} 2>&1 | tee deploy.log | grep -oE "https://[a-zA-Z0-9.-]+\.vercel\.app" | head -1)
+          vercel --prod --yes --token=${{ secrets.VERCEL_TOKEN }}
 
-          if [ -z "$DEPLOYMENT_URL" ]; then
-            echo "::error::Failed to capture deployment URL"
+      - name: Get deployment URL
+        id: deployment
+        run: echo "url=https://touchbase.sujeto10.com" >> $GITHUB_OUTPUT
+
+    outputs:
+      deployment_url: ${{ steps.deployment.outputs.url }}
+
+  validate:
+    name: Post-deployment Validation
+    needs: deploy
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Wait for deployment
+        run: sleep 10
+
+      - name: Check health endpoint
+        run: |
+          response=$(curl -s https://touchbase.sujeto10.com/api/health)
+          echo "Health check response: $response"
+          if ! echo "$response" | grep -q '"ok":true'; then
+            echo "Health check failed"
             exit 1
           fi
 
-          echo "deployment_url=$DEPLOYMENT_URL" >> $GITHUB_OUTPUT
-          echo "Deployed to: $DEPLOYMENT_URL"
-
-      - name: ✅ Verify deployment
+      - name: Validate ES locale
         run: |
-          DEPLOYMENT_URL="${{ steps.deploy.outputs.deployment_url }}"
-
-          echo "Waiting for deployment to be ready..."
-          sleep 10
-
-          # Verificar que el sitio responde
-          HTTP_STATUS=$(curl -s -o /dev/null -w "%{http_code}" "$DEPLOYMENT_URL")
-
-          if [ "$HTTP_STATUS" = "200" ] || [ "$HTTP_STATUS" = "304" ]; then
-            echo "✅ Deployment verified successfully (HTTP $HTTP_STATUS)"
-          else
-            echo "::warning::Deployment returned HTTP $HTTP_STATUS"
+          status=$(curl -s -o /dev/null -w "%{http_code}" https://touchbase.sujeto10.com/es)
+          if [ "$status" != "200" ]; then
+            echo "ES locale check failed with status $status"
+            exit 1
           fi
 
-      - name: 📊 Deployment summary
+      - name: Validate EN locale
         run: |
-          echo "### 🚀 Deployment Summary" >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY
-          echo "**Status:** ✅ Success" >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY
-          echo "**URLs:**" >> $GITHUB_STEP_SUMMARY
-          echo "- Preview: ${{ steps.deploy.outputs.deployment_url }}" >> $GITHUB_STEP_SUMMARY
-          echo "- Production: https://touchbase.sujeto10.com" >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY
-          echo "**Commit:** ${{ github.sha }}" >> $GITHUB_STEP_SUMMARY
-          echo "**Branch:** ${{ github.ref_name }}" >> $GITHUB_STEP_SUMMARY
-          echo "**Time:** $(date)" >> $GITHUB_STEP_SUMMARY
-
-  # =================================================================
-  # Notificación de Estado
-  # =================================================================
-  notify:
-    name: 📢 Status Notification
-    runs-on: ubuntu-latest
-    needs: [deploy]
-    if: always()
-
-    steps:
-      - name: 📊 Create final summary
-        run: |
-          if [[ "${{ needs.deploy.result }}" == "success" ]]; then
-            echo "# ✅ Deployment Successful!" >> $GITHUB_STEP_SUMMARY
-            echo "The deployment to production has been completed successfully." >> $GITHUB_STEP_SUMMARY
-          elif [[ "${{ needs.deploy.result }}" == "skipped" ]]; then
-            echo "# ⏭️ Deployment Skipped" >> $GITHUB_STEP_SUMMARY
-            echo "No changes detected in web/ directory." >> $GITHUB_STEP_SUMMARY
-          else
-            echo "# ❌ Deployment Failed" >> $GITHUB_STEP_SUMMARY
-            echo "The deployment encountered an error. Check the logs for details." >> $GITHUB_STEP_SUMMARY
+          status=$(curl -s -o /dev/null -w "%{http_code}" https://touchbase.sujeto10.com/en)
+          if [ "$status" != "200" ]; then
+            echo "EN locale check failed with status $status"
+            exit 1
           fi
 
-      - name: 💬 Create commit comment
-        if: needs.deploy.result == 'success'
-        uses: actions/github-script@v7
-        with:
-          script: |
-            github.rest.repos.createCommitComment({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              commit_sha: context.sha,
-              body: '✅ Successfully deployed to production! 🚀\n\nView deployment: https://touchbase.sujeto10.com'
-            })
-
-# =================================================================
-# Configuración de Concurrencia
-# =================================================================
-concurrency:
-  group: production-deployment
-  cancel-in-progress: false  # No cancelar deployments en progreso
+      - name: Deployment summary
+        run: |
+          echo "✅ Deployment successful!"
+          echo "🌐 Production URL: https://touchbase.sujeto10.com"
+          echo "🏥 Health check: passed"
+          echo "🌍 Locales: ES ✅ | EN ✅"
