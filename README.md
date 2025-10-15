@@ -381,3 +381,7 @@ Embed in Chamilo course HTML blocks:
 Developed for baseball clubs in the Dominican Republic and worldwide.
 
 Built on [Chamilo LMS](https://chamilo.org) - The leading open-source e-learning platform.
+
+---
+
+<!-- Deployment Flow Test: 2025-10-15 16:51 AST - Automated CI/CD Pipeline Active -->
