@@ -1,0 +1,165 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [ main, master, develop ]
+  pull_request:
+    branches: [ main, master, develop ]
+
+env:
+  PHP_VERSION: '8.2'
+  NODE_VERSION: '18'
+
+jobs:
+  # PHP Testing
+  php-tests:
+    name: PHP Tests
+    runs-on: ubuntu-latest
+
+    services:
+      mysql:
+        image: mysql:8.0
+        env:
+          MYSQL_ROOT_PASSWORD: password
+          MYSQL_DATABASE: touchbase_test
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd="mysqladmin ping"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=5
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: ${{ env.PHP_VERSION }}
+        extensions: mbstring, pdo, pdo_mysql, json
+        coverage: xdebug
+
+    - name: Validate composer.json
+      run: composer validate
+
+    - name: Install Composer dependencies
+      run: composer install --prefer-dist --no-progress --no-suggest
+
+    - name: Run PHP-CS-Fixer
+      run: composer cs
+
+    - name: Run PHPStan
+      run: composer stan
+
+    - name: Run PHPUnit tests
+      env:
+        DB_HOST: 127.0.0.1
+        DB_PORT: 3306
+        DB_NAME: touchbase_test
+        DB_USER: root
+        DB_PASS: password
+      run: composer test:coverage
+
+    - name: Upload coverage to Codecov
+      uses: codecov/codecov-action@v3
+      with:
+        file: ./coverage/coverage.xml
+
+  # E2E Testing
+  e2e-tests:
+    name: E2E Tests
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ env.NODE_VERSION }}
+
+    - name: Install dependencies
+      run: npm ci
+
+    - name: Install Playwright browsers
+      run: npx playwright install --with-deps
+
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: ${{ env.PHP_VERSION }}
+        extensions: mbstring, pdo, pdo_mysql, json
+
+    - name: Install Composer dependencies
+      run: composer install --prefer-dist --no-progress
+
+    - name: Start PHP server
+      run: |
+        php -S localhost:8000 -t public/ &
+        sleep 3
+      env:
+        DB_HOST: 127.0.0.1
+        DB_NAME: touchbase_test
+        DB_USER: root
+        DB_PASS: password
+
+    - name: Run Playwright tests
+      run: npm run test:e2e
+      env:
+        BASE_URL: http://localhost:8000
+
+    - name: Upload Playwright report
+      uses: actions/upload-artifact@v3
+      if: always()
+      with:
+        name: playwright-report
+        path: playwright-report/
+        retention-days: 30
+
+  # Security Scan
+  security:
+    name: Security Scan
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: ${{ env.PHP_VERSION }}
+
+    - name: Install Composer dependencies
+      run: composer install --prefer-dist --no-progress
+
+    - name: Security check for PHP dependencies
+      run: |
+        composer require --dev roave/security-advisories:dev-latest
+        composer audit
+
+  # Build and Deploy
+  deploy:
+    name: Deploy to Vercel
+    runs-on: ubuntu-latest
+    needs: [php-tests, e2e-tests, security]
+    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: ${{ env.PHP_VERSION }}
+
+    - name: Install Composer dependencies (production)
+      run: composer install --prefer-dist --no-progress --no-dev --optimize-autoloader
+
+    - name: Deploy to Vercel
+      uses: amondnet/vercel-action@v25
+      with:
+        vercel-token: ${{ secrets.VERCEL_TOKEN }}
+        vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
+        vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
+        vercel-args: '--prod'

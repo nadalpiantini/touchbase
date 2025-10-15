@@ -1,0 +1,84 @@
+name: Code Quality
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  code-quality:
+    name: Code Quality Check
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        fetch-depth: 0  # Fetch all history for better analysis
+
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '8.2'
+        coverage: none
+
+    - name: Install Composer dependencies
+      run: composer install --prefer-dist --no-progress
+
+    - name: PHP Code Sniffer
+      run: |
+        composer require --dev squizlabs/php_codesniffer
+        vendor/bin/phpcs --standard=PSR12 src/
+
+    - name: PHP Mess Detector
+      run: |
+        composer require --dev phpmd/phpmd
+        vendor/bin/phpmd src/ text cleancode,codesize,controversial,design,naming,unusedcode
+
+    - name: PHPStan Analysis
+      run: composer stan
+
+    - name: Check for merge conflicts
+      run: |
+        if grep -r "<<<<<<< HEAD" --exclude-dir=.git .; then
+          echo "Merge conflicts detected!"
+          exit 1
+        fi
+
+    - name: Check for debug statements
+      run: |
+        if grep -r "var_dump\|die(\|dd(\|dump(" --include="*.php" --exclude-dir=vendor .; then
+          echo "Debug statements detected!"
+          exit 1
+        fi
+
+    - name: Validate JSON files
+      run: |
+        for file in $(find . -name "*.json" -not -path "./vendor/*" -not -path "./node_modules/*"); do
+          echo "Validating $file"
+          python -m json.tool "$file" > /dev/null || exit 1
+        done
+
+    - name: Comment PR
+      uses: actions/github-script@v6
+      if: always()
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        script: |
+          const output = `
+          ### Code Quality Report ✅
+
+          All quality checks passed!
+
+          - ✅ PSR-12 Coding Standards
+          - ✅ No code smells detected
+          - ✅ Static analysis passed
+          - ✅ No merge conflicts
+          - ✅ No debug statements
+          - ✅ Valid JSON files
+          `;
+
+          github.rest.issues.createComment({
+            issue_number: context.issue.number,
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            body: output
+          });

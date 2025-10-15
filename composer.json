@@ -1,0 +1,47 @@
+{
+  "name": "touchbase/plugin",
+  "description": "Baseball Club Management System for Chamilo LMS",
+  "type": "chamilo-plugin",
+  "keywords": ["chamilo", "plugin", "baseball", "sports", "management", "lms", "touchbase"],
+  "license": "GPL-3.0-or-later",
+  "authors": [
+    {
+      "name": "TouchBase Contributors",
+      "email": "info@touchbase.sujeto10.com"
+    }
+  ],
+  "require": {
+    "php": ">=8.2"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^10.0",
+    "phpstan/phpstan": "^1.10",
+    "friendsofphp/php-cs-fixer": "^3.40"
+  },
+  "autoload": {
+    "psr-4": {
+      "TouchBase\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "TouchBase\\Tests\\": "tests/"
+    }
+  },
+  "scripts": {
+    "test": "phpunit",
+    "test:coverage": "phpunit --coverage-html coverage",
+    "test:unit": "phpunit --testsuite unit",
+    "test:feature": "phpunit --testsuite feature",
+    "stan": "phpstan analyse src --level 5",
+    "cs": "php-cs-fixer fix src --dry-run --diff",
+    "cs:fix": "php-cs-fixer fix src",
+    "qa": [
+      "@cs",
+      "@stan",
+      "@test"
+    ]
+  },
+  "minimum-stability": "stable",
+  "prefer-stable": true
+}

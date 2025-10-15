@@ -1,0 +1,105 @@
+# OS Files
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+.directory
+
+# IDE and Editor Files
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+.project
+.classpath
+.settings/
+nbproject/
+.buildpath
+.phpstorm.meta.php
+
+# Environment and Configuration
+.env
+.env.local
+.env.*.local
+*.env
+!.env.example
+
+# PHP Dependencies
+vendor/
+composer.phar
+
+# Build Files
+/build/
+/dist/
+*.log
+*.cache
+*.pid
+
+# Test Coverage
+coverage/
+.phpunit.result.cache
+.phpunit.cache/
+phpunit.xml
+.coverage
+*.coverage
+htmlcov/
+test-results/
+
+# Temporary Files
+tmp/
+temp/
+cache/
+logs/
+*.tmp
+*.bak
+*.backup
+*.orig
+
+# Git Pack Files
+.git/objects/pack/tmp_*
+
+# Session Files
+sessions/
+
+# Database
+*.sqlite
+*.sqlite3
+*.db
+migrations/*.lock
+
+# Node (if added later)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Documentation Build
+docs/_build/
+docs/.doctrees/
+
+# Deployment
+.vercel/
+.netlify/
+*.tar.gz
+*.zip
+
+# Security
+*.key
+*.pem
+*.crt
+*.p12
+
+# Claude/Serena
+.serena/memories/
+.claude/settings.local.json
+
+# Custom
+*.old
+EJECUTAR_*.txt
+EJECUTA_*.txt
+README_DEPLOY.txt
+README_FINAL.txt
