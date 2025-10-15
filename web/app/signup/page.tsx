@@ -4,6 +4,7 @@ import { useState } from "react";
 import { supabaseClient } from "@/lib/supabase/client";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 
 // Use the singleton client at module level
 const supabase = supabaseClient!;
@@ -60,8 +61,16 @@ export default function SignUpPage() {
   return (
     <main className="min-h-screen flex items-center justify-center bg-gray-50">
       <div className="max-w-md w-full space-y-8">
-        <div>
-          <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
+        <div className="flex flex-col items-center">
+          <Image
+            src="/touchbase-slogan-logo.png"
+            alt="TouchBase - Your dugout in the cloud"
+            width={300}
+            height={300}
+            priority
+            className="w-auto h-25 mb-4"
+          />
+          <h2 className="text-center text-3xl font-extrabold text-gray-900">
             Crear cuenta en TouchBase
           </h2>
           <p className="mt-2 text-center text-sm text-gray-600">

@@ -21,14 +21,14 @@ export default async function DashboardPage() {
   // 3) Si NO tiene org aún, mostrar onboarding
   if (!profile?.default_org_id) {
     return (
-      <main className="min-h-screen bg-gray-50">
+      <main className="min-h-screen bg-[--color-tb-bone]">
         <div className="max-w-4xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
-          <div className="bg-white overflow-hidden shadow rounded-lg">
+          <div className="bg-white overflow-hidden shadow-dugout rounded-2xl border border-[--color-tb-line]">
             <div className="px-4 py-5 sm:p-6">
-              <h1 className="text-2xl font-bold text-gray-900 mb-4">
+              <h1 className="text-2xl font-display font-bold text-[--color-tb-navy] mb-4">
                 ¡Bienvenido a TouchBase!
               </h1>
-              <p className="text-gray-600 mb-6">
+              <p className="text-[--color-tb-shadow] mb-6">
                 Vamos a configurar tu organización para comenzar.
               </p>
               {/* Kickoff auto-ejecutará la creación */}
@@ -55,16 +55,16 @@ export default async function DashboardPage() {
     .single();
 
   return (
-    <main className="min-h-screen bg-gray-50">
+    <main className="min-h-screen bg-[--color-tb-bone]">
       <div className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
         <div className="px-4 py-6 sm:px-0">
           {/* Header */}
-          <div className="bg-white overflow-hidden shadow rounded-lg mb-6">
+          <div className="bg-white overflow-hidden shadow-dugout rounded-2xl mb-6 border border-[--color-tb-line]">
             <div className="px-4 py-5 sm:p-6">
-              <h1 className="text-3xl font-bold text-gray-900">
+              <h1 className="text-3xl font-display font-bold text-[--color-tb-navy]">
                 Dashboard de {org?.name || "TouchBase"}
               </h1>
-              <p className="mt-1 text-sm text-gray-600">
+              <p className="mt-1 text-sm text-[--color-tb-shadow]">
                 Bienvenido, {profile?.full_name || user.email} • Rol: {membership?.role || "viewer"}
               </p>
             </div>
@@ -72,11 +72,11 @@ export default async function DashboardPage() {
 
           {/* Stats Grid */}
           <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
-            <div className="bg-white overflow-hidden shadow rounded-lg">
+            <div className="bg-white overflow-hidden shadow-dugout rounded-2xl border border-[--color-tb-line]">
               <div className="p-5">
                 <div className="flex items-center">
                   <div className="flex-shrink-0">
-                    <div className="rounded-md bg-blue-500 p-3">
+                    <div className="rounded-xl bg-[--color-tb-navy] p-3">
                       <svg className="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
                       </svg>
@@ -84,10 +84,10 @@ export default async function DashboardPage() {
                   </div>
                   <div className="ml-5 w-0 flex-1">
                     <dl>
-                      <dt className="text-sm font-medium text-gray-500 truncate">
+                      <dt className="text-sm font-medium text-[--color-tb-shadow] truncate">
                         Jugadores
                       </dt>
-                      <dd className="text-lg font-semibold text-gray-900">
+                      <dd className="text-lg font-display font-semibold text-[--color-tb-navy]">
                         0
                       </dd>
                     </dl>
@@ -96,11 +96,11 @@ export default async function DashboardPage() {
               </div>
             </div>
 
-            <div className="bg-white overflow-hidden shadow rounded-lg">
+            <div className="bg-white overflow-hidden shadow-dugout rounded-2xl border border-[--color-tb-line]">
               <div className="p-5">
                 <div className="flex items-center">
                   <div className="flex-shrink-0">
-                    <div className="rounded-md bg-green-500 p-3">
+                    <div className="rounded-xl bg-[--color-tb-stitch] p-3">
                       <svg className="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                       </svg>
@@ -108,10 +108,10 @@ export default async function DashboardPage() {
                   </div>
                   <div className="ml-5 w-0 flex-1">
                     <dl>
-                      <dt className="text-sm font-medium text-gray-500 truncate">
+                      <dt className="text-sm font-medium text-[--color-tb-shadow] truncate">
                         Partidos
                       </dt>
-                      <dd className="text-lg font-semibold text-gray-900">
+                      <dd className="text-lg font-display font-semibold text-[--color-tb-navy]">
                         0
                       </dd>
                     </dl>
@@ -120,11 +120,11 @@ export default async function DashboardPage() {
               </div>
             </div>
 
-            <div className="bg-white overflow-hidden shadow rounded-lg">
+            <div className="bg-white overflow-hidden shadow-dugout rounded-2xl border border-[--color-tb-line]">
               <div className="p-5">
                 <div className="flex items-center">
                   <div className="flex-shrink-0">
-                    <div className="rounded-md bg-indigo-500 p-3">
+                    <div className="rounded-xl bg-[--color-tb-red] p-3">
                       <svg className="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
                       </svg>
@@ -132,10 +132,10 @@ export default async function DashboardPage() {
                   </div>
                   <div className="ml-5 w-0 flex-1">
                     <dl>
-                      <dt className="text-sm font-medium text-gray-500 truncate">
+                      <dt className="text-sm font-medium text-[--color-tb-shadow] truncate">
                         Equipos
                       </dt>
-                      <dd className="text-lg font-semibold text-gray-900">
+                      <dd className="text-lg font-display font-semibold text-[--color-tb-navy]">
                         0
                       </dd>
                     </dl>
@@ -144,11 +144,11 @@ export default async function DashboardPage() {
               </div>
             </div>
 
-            <div className="bg-white overflow-hidden shadow rounded-lg">
+            <div className="bg-white overflow-hidden shadow-dugout rounded-2xl border border-[--color-tb-line]">
               <div className="p-5">
                 <div className="flex items-center">
                   <div className="flex-shrink-0">
-                    <div className="rounded-md bg-yellow-500 p-3">
+                    <div className="rounded-xl bg-[--color-tb-shadow] p-3">
                       <svg className="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                       </svg>
@@ -156,10 +156,10 @@ export default async function DashboardPage() {
                   </div>
                   <div className="ml-5 w-0 flex-1">
                     <dl>
-                      <dt className="text-sm font-medium text-gray-500 truncate">
+                      <dt className="text-sm font-medium text-[--color-tb-shadow] truncate">
                         Próximo Partido
                       </dt>
-                      <dd className="text-lg font-semibold text-gray-900">
+                      <dd className="text-lg font-display font-semibold text-[--color-tb-navy]">
                         --
                       </dd>
                     </dl>
@@ -171,41 +171,41 @@ export default async function DashboardPage() {
 
           {/* Quick Actions */}
           <div className="mt-8">
-            <h2 className="text-lg font-medium text-gray-900 mb-4">
+            <h2 className="text-lg font-display font-semibold text-[--color-tb-navy] mb-4">
               Acciones Rápidas
             </h2>
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-              <button className="relative rounded-lg border border-gray-300 bg-white px-6 py-5 shadow-sm flex items-center space-x-3 hover:border-gray-400 focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500">
+              <button className="relative rounded-2xl border border-[--color-tb-line] bg-white px-6 py-5 shadow-sm flex items-center space-x-3 hover:border-[--color-tb-red] hover:shadow-dugout focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-[--color-tb-stitch]/60 transition-all">
                 <div className="flex-1 min-w-0">
                   <span className="absolute inset-0" aria-hidden="true" />
-                  <p className="text-sm font-medium text-gray-900">
+                  <p className="text-sm font-semibold text-[--color-tb-navy]">
                     Agregar Jugador
                   </p>
-                  <p className="text-sm text-gray-500">
+                  <p className="text-sm text-[--color-tb-shadow]">
                     Registrar nuevo jugador en el equipo
                   </p>
                 </div>
               </button>
 
-              <button className="relative rounded-lg border border-gray-300 bg-white px-6 py-5 shadow-sm flex items-center space-x-3 hover:border-gray-400 focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500">
+              <button className="relative rounded-2xl border border-[--color-tb-line] bg-white px-6 py-5 shadow-sm flex items-center space-x-3 hover:border-[--color-tb-red] hover:shadow-dugout focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-[--color-tb-stitch]/60 transition-all">
                 <div className="flex-1 min-w-0">
                   <span className="absolute inset-0" aria-hidden="true" />
-                  <p className="text-sm font-medium text-gray-900">
+                  <p className="text-sm font-semibold text-[--color-tb-navy]">
                     Programar Partido
                   </p>
-                  <p className="text-sm text-gray-500">
+                  <p className="text-sm text-[--color-tb-shadow]">
                     Agendar próximo partido
                   </p>
                 </div>
               </button>
 
-              <button className="relative rounded-lg border border-gray-300 bg-white px-6 py-5 shadow-sm flex items-center space-x-3 hover:border-gray-400 focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500">
+              <button className="relative rounded-2xl border border-[--color-tb-line] bg-white px-6 py-5 shadow-sm flex items-center space-x-3 hover:border-[--color-tb-red] hover:shadow-dugout focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-[--color-tb-stitch]/60 transition-all">
                 <div className="flex-1 min-w-0">
                   <span className="absolute inset-0" aria-hidden="true" />
-                  <p className="text-sm font-medium text-gray-900">
+                  <p className="text-sm font-semibold text-[--color-tb-navy]">
                     Ver Estadísticas
                   </p>
-                  <p className="text-sm text-gray-500">
+                  <p className="text-sm text-[--color-tb-shadow]">
                     Analizar rendimiento del equipo
                   </p>
                 </div>
