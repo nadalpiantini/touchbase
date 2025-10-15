@@ -15,6 +15,9 @@
 --
 -- ═══════════════════════════════════════════════════════════════
 
+-- Drop views first (they depend on tables)
+DROP VIEW IF EXISTS touchbase_standings CASCADE;
+
 -- Clean and recreate function
 DROP FUNCTION IF EXISTS update_updated_at_column() CASCADE;
 

@@ -215,6 +215,30 @@ $router->get('/api/billing/history', [TouchBase\Controllers\BillingController::c
 $router->get('/api/billing/export', [TouchBase\Controllers\BillingController::class, 'export']);
 
 // ============================================================
+// Settings Routes (Sprint 2) - Admin only
+// ============================================================
+
+$router->get('/settings', [TouchBase\Controllers\SettingsController::class, 'page']);
+$router->post('/settings', [TouchBase\Controllers\SettingsController::class, 'save']);
+$router->post('/api/settings/upload-logo', [TouchBase\Controllers\SettingsController::class, 'uploadLogo']);
+
+// ============================================================
+// Analytics Routes (Sprint 2)
+// ============================================================
+
+$router->get('/analytics/team', [TouchBase\Controllers\AnalyticsController::class, 'team']);
+$router->get('/analytics/player', [TouchBase\Controllers\AnalyticsController::class, 'player']);
+$router->get('/api/analytics/team', [TouchBase\Controllers\AnalyticsController::class, 'teamData']);
+
+// ============================================================
+// Parent Dashboard Routes (Sprint 2)
+// ============================================================
+
+$router->get('/parent', [TouchBase\Controllers\ParentController::class, 'dashboard']);
+$router->get('/api/parent/children', [TouchBase\Controllers\ParentController::class, 'children']);
+$router->get('/api/parent/upcoming-events', [TouchBase\Controllers\ParentController::class, 'upcomingEvents']);
+
+// ============================================================
 // Health Check Endpoint
 // ============================================================
 
