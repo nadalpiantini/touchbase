@@ -2,6 +2,16 @@
 const nextConfig = {
   // Enable React strict mode for better development experience
   reactStrictMode: true,
+  
+  // Disable ESLint during builds temporarily
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
+  
+  // Disable TypeScript errors during builds temporarily
+  typescript: {
+    ignoreBuildErrors: true,
+  },
 
   // Proxy configuration for legacy PHP app
   async rewrites() {

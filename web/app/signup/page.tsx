@@ -23,7 +23,7 @@ export default function SignUpPage() {
       const { error } = await supabase.auth.signInWithOtp({
         email,
         options: {
-          emailRedirectTo: `${window.location.origin}/auth/callback`,
+          emailRedirectTo: `${process.env.NEXT_PUBLIC_SITE_URL || 'https://touchbase-74y4upr6i-nadalpiantini-fcbc2d66.vercel.app'}/auth/callback`,
         }
       });
 
