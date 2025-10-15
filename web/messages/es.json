@@ -61,5 +61,126 @@
       "hasAccount": "¿Ya tienes cuenta?",
       "loginLink": "Entra aquí"
     }
+  },
+  "dashboard": {
+    "onboarding": {
+      "title": "¡Bienvenido a TouchBase!",
+      "subtitle": "Vamos a configurar tu organización para comenzar.",
+      "creating": "Creando organización y permisos…",
+      "success": "¡Listo! Redirigiendo…",
+      "error": "Error inesperado"
+    },
+    "header": {
+      "title": "Dashboard de {orgName}",
+      "welcome": "Bienvenido, {userName}",
+      "role": "Rol: {role}"
+    },
+    "stats": {
+      "players": "Jugadores",
+      "games": "Partidos",
+      "teams": "Equipos",
+      "nextGame": "Próximo Partido",
+      "noData": "--"
+    },
+    "quickActions": {
+      "title": "Acciones Rápidas",
+      "addPlayer": {
+        "title": "Agregar Jugador",
+        "description": "Registrar nuevo jugador en el equipo"
+      },
+      "scheduleGame": {
+        "title": "Programar Partido",
+        "description": "Agendar próximo partido"
+      },
+      "viewStats": {
+        "title": "Ver Estadísticas",
+        "description": "Analizar rendimiento del equipo"
+      }
+    }
+  },
+  "teams": {
+    "loading": "Cargando…",
+    "error": "⚠",
+    "empty": "Sin equipos aún.",
+    "table": {
+      "name": "Nombre",
+      "created": "Creado",
+      "actions": "Acciones"
+    },
+    "actions": {
+      "save": "Guardar",
+      "cancel": "Cancelar",
+      "edit": "Editar",
+      "delete": "Borrar"
+    },
+    "confirmDelete": "¿Borrar equipo? (soft delete)",
+    "errors": {
+      "loadFailed": "No se pudo cargar",
+      "saveFailed": "No se pudo guardar",
+      "deleteFailed": "No se pudo borrar",
+      "generic": "Error"
+    }
+  },
+  "players": {
+    "loading": "Cargando…",
+    "error": "⚠",
+    "empty": "Sin jugadores.",
+    "filter": {
+      "label": "Filtrar por equipo:",
+      "all": "Todos los equipos"
+    },
+    "table": {
+      "player": "Jugador",
+      "team": "Equipo",
+      "created": "Creado",
+      "actions": "Acciones"
+    },
+    "noTeam": "Sin equipo",
+    "actions": {
+      "save": "Guardar",
+      "cancel": "Cancelar",
+      "edit": "Editar",
+      "delete": "Borrar"
+    },
+    "confirmDelete": "¿Borrar jugador? (soft delete)",
+    "errors": {
+      "saveFailed": "No se pudo guardar",
+      "deleteFailed": "No se pudo borrar",
+      "generic": "Error"
+    }
+  },
+  "games": {
+    "filter": {
+      "label": "Filtrar por estado:",
+      "all": "Todos",
+      "scheduled": "Programados",
+      "live": "En Vivo",
+      "final": "Finalizados",
+      "canceled": "Cancelados"
+    },
+    "status": {
+      "scheduled": "Programado",
+      "live": "En Vivo",
+      "final": "Finalizado",
+      "canceled": "Cancelado"
+    },
+    "table": {
+      "date": "Fecha",
+      "match": "Partido",
+      "venue": "Lugar",
+      "status": "Estado",
+      "score": "Score",
+      "actions": "Acciones"
+    },
+    "vs": "vs",
+    "noVenue": "—",
+    "empty": "No hay partidos para mostrar",
+    "confirmDelete": "¿Mover este partido a la papelera?",
+    "actions": {
+      "delete": "Eliminar"
+    },
+    "errors": {
+      "generic": "Error"
+    }
   }
 }

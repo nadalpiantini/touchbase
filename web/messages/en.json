@@ -61,5 +61,126 @@
       "hasAccount": "Already have an account?",
       "loginLink": "Sign in here"
     }
+  },
+  "dashboard": {
+    "onboarding": {
+      "title": "Welcome to TouchBase!",
+      "subtitle": "Let's set up your organization to get started.",
+      "creating": "Creating organization and permissions…",
+      "success": "Done! Redirecting…",
+      "error": "Unexpected error"
+    },
+    "header": {
+      "title": "{orgName} Dashboard",
+      "welcome": "Welcome, {userName}",
+      "role": "Role: {role}"
+    },
+    "stats": {
+      "players": "Players",
+      "games": "Games",
+      "teams": "Teams",
+      "nextGame": "Next Game",
+      "noData": "--"
+    },
+    "quickActions": {
+      "title": "Quick Actions",
+      "addPlayer": {
+        "title": "Add Player",
+        "description": "Register new player on the team"
+      },
+      "scheduleGame": {
+        "title": "Schedule Game",
+        "description": "Schedule next game"
+      },
+      "viewStats": {
+        "title": "View Statistics",
+        "description": "Analyze team performance"
+      }
+    }
+  },
+  "teams": {
+    "loading": "Loading…",
+    "error": "⚠",
+    "empty": "No teams yet.",
+    "table": {
+      "name": "Name",
+      "created": "Created",
+      "actions": "Actions"
+    },
+    "actions": {
+      "save": "Save",
+      "cancel": "Cancel",
+      "edit": "Edit",
+      "delete": "Delete"
+    },
+    "confirmDelete": "Delete team? (soft delete)",
+    "errors": {
+      "loadFailed": "Could not load",
+      "saveFailed": "Could not save",
+      "deleteFailed": "Could not delete",
+      "generic": "Error"
+    }
+  },
+  "players": {
+    "loading": "Loading…",
+    "error": "⚠",
+    "empty": "No players.",
+    "filter": {
+      "label": "Filter by team:",
+      "all": "All teams"
+    },
+    "table": {
+      "player": "Player",
+      "team": "Team",
+      "created": "Created",
+      "actions": "Actions"
+    },
+    "noTeam": "No team",
+    "actions": {
+      "save": "Save",
+      "cancel": "Cancel",
+      "edit": "Edit",
+      "delete": "Delete"
+    },
+    "confirmDelete": "Delete player? (soft delete)",
+    "errors": {
+      "saveFailed": "Could not save",
+      "deleteFailed": "Could not delete",
+      "generic": "Error"
+    }
+  },
+  "games": {
+    "filter": {
+      "label": "Filter by status:",
+      "all": "All",
+      "scheduled": "Scheduled",
+      "live": "Live",
+      "final": "Final",
+      "canceled": "Canceled"
+    },
+    "status": {
+      "scheduled": "Scheduled",
+      "live": "Live",
+      "final": "Final",
+      "canceled": "Canceled"
+    },
+    "table": {
+      "date": "Date",
+      "match": "Match",
+      "venue": "Venue",
+      "status": "Status",
+      "score": "Score",
+      "actions": "Actions"
+    },
+    "vs": "vs",
+    "noVenue": "—",
+    "empty": "No games to show",
+    "confirmDelete": "Move this game to trash?",
+    "actions": {
+      "delete": "Delete"
+    },
+    "errors": {
+      "generic": "Error"
+    }
   }
 }

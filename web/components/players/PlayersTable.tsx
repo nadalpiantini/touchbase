@@ -1,16 +1,18 @@
 "use client";
 import { useEffect, useState } from "react";
+import { useTranslations } from 'next-intl';
 
 type Player = { id: string; full_name: string; team_id: string | null; created_at: string };
 type Team = { id: string; name: string };
 
 export default function PlayersTable() {
+  const t = useTranslations('players');
   const [players, setPlayers] = useState<Player[]>([]);
   const [teams, setTeams] = useState<Team[]>([]);
   const [teamFilter, setTeamFilter] = useState<string>("");
   const [loading, setLoading] = useState(true);
   const [err, setErr] = useState<string | null>(null);
-  
+
   const [editId, setEditId] = useState<string | null>(null);
   const [editName, setEditName] = useState("");
   const [editTeam, setEditTeam] = useState<string>("");
@@ -26,7 +28,7 @@ export default function PlayersTable() {
       setPlayers(plist.players ?? []);
       setTeams(tlist.teams ?? []);
     } catch (e: unknown) {
-      setErr(e instanceof Error ? e.message : "Error");
+      setErr(e instanceof Error ? e.message : t('errors.generic'));
     } finally {
       setLoading(false);
     }
@@ -59,7 +61,7 @@ export default function PlayersTable() {
     });
     if (!res.ok) {
       const json = await res.json();
-      alert(json.error || "No se pudo guardar");
+      alert(json.error || t('errors.saveFailed'));
       return;
     }
     cancelEdit();
@@ -67,7 +69,7 @@ export default function PlayersTable() {
   };
 
   const softDelete = async (id: string) => {
-    if (!confirm("¿Borrar jugador? (soft delete)")) return;
+    if (!confirm(t('confirmDelete'))) return;
     const res = await fetch("/api/players/soft-delete", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -75,29 +77,29 @@ export default function PlayersTable() {
     });
     if (!res.ok) {
       const json = await res.json();
-      alert(json.error || "No se pudo borrar");
+      alert(json.error || t('errors.deleteFailed'));
       return;
     }
     load(teamFilter || undefined);
   };
 
-  if (loading) return <p className="text-gray-500">Cargando…</p>;
-  if (err) return <p className="text-red-600">⚠ {err}</p>;
-  if (!players.length) return <p className="text-gray-500">Sin jugadores.</p>;
+  if (loading) return <p className="text-gray-500">{t('loading')}</p>;
+  if (err) return <p className="text-red-600">{t('error')} {err}</p>;
+  if (!players.length) return <p className="text-gray-500">{t('empty')}</p>;
 
   const mapTeam = new Map(teams.map(t => [t.id, t.name]));
 
   return (
     <div className="space-y-3">
       <div className="flex items-center gap-2">
-        <label className="text-sm font-medium text-gray-700">Filtrar por equipo:</label>
-        <select 
-          className="border border-gray-300 p-2 rounded bg-white" 
-          value={teamFilter} 
+        <label className="text-sm font-medium text-gray-700">{t('filter.label')}</label>
+        <select
+          className="border border-gray-300 p-2 rounded bg-white"
+          value={teamFilter}
           onChange={e => setTeamFilter(e.target.value)}
         >
-          <option value="">Todos los equipos</option>
-          {teams.map(t => <option key={t.id} value={t.id}>{t.name}</option>)}
+          <option value="">{t('filter.all')}</option>
+          {teams.map(team => <option key={team.id} value={team.id}>{team.name}</option>)}
         </select>
       </div>
 
@@ -105,10 +107,10 @@ export default function PlayersTable() {
         <table className="w-full text-sm">
           <thead className="bg-gray-50 border-b border-gray-200">
             <tr>
-              <th className="text-left p-3 font-medium text-gray-700">Jugador</th>
-              <th className="text-left p-3 font-medium text-gray-700">Equipo</th>
-              <th className="text-left p-3 font-medium text-gray-700">Creado</th>
-              <th className="text-right p-3 font-medium text-gray-700">Acciones</th>
+              <th className="text-left p-3 font-medium text-gray-700">{t('table.player')}</th>
+              <th className="text-left p-3 font-medium text-gray-700">{t('table.team')}</th>
+              <th className="text-left p-3 font-medium text-gray-700">{t('table.created')}</th>
+              <th className="text-right p-3 font-medium text-gray-700">{t('table.actions')}</th>
             </tr>
           </thead>
           <tbody>
@@ -131,13 +133,13 @@ export default function PlayersTable() {
                 </td>
                 <td className="p-3">
                   {editId === p.id ? (
-                    <select 
+                    <select
                       className="border border-gray-300 p-1 rounded bg-white"
                       value={editTeam}
                       onChange={e => setEditTeam(e.target.value)}
                     >
-                      <option value="">Sin equipo</option>
-                      {teams.map(t => <option key={t.id} value={t.id}>{t.name}</option>)}
+                      <option value="">{t('noTeam')}</option>
+                      {teams.map(team => <option key={team.id} value={team.id}>{team.name}</option>)}
                     </select>
                   ) : (
                     <span className="text-gray-600">
@@ -151,32 +153,32 @@ export default function PlayersTable() {
                 <td className="p-3 text-right space-x-2">
                   {editId === p.id ? (
                     <>
-                      <button 
+                      <button
                         className="text-sm border border-gray-300 px-3 py-1 rounded hover:bg-gray-50"
                         onClick={saveEdit}
                       >
-                        Guardar
+                        {t('actions.save')}
                       </button>
-                      <button 
+                      <button
                         className="text-sm border border-gray-300 px-3 py-1 rounded hover:bg-gray-50"
                         onClick={cancelEdit}
                       >
-                        Cancelar
+                        {t('actions.cancel')}
                       </button>
                     </>
                   ) : (
                     <>
-                      <button 
+                      <button
                         className="text-sm text-blue-600 hover:text-blue-800"
                         onClick={() => startEdit(p)}
                       >
-                        Editar
+                        {t('actions.edit')}
                       </button>
-                      <button 
+                      <button
                         className="text-sm text-red-600 hover:text-red-800"
                         onClick={() => softDelete(p.id)}
                       >
-                        Borrar
+                        {t('actions.delete')}
                       </button>
                     </>
                   )}

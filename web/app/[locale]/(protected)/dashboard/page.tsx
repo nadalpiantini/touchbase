@@ -1,8 +1,10 @@
 import { supabaseServer } from "@/lib/supabase/server";
 import { redirect } from "next/navigation";
 import OnboardingKickoff from "@/components/onboarding/OnboardingKickoff";
+import { getTranslations } from 'next-intl/server';
 
 export default async function DashboardPage() {
+  const t = await getTranslations('dashboard');
   const s = supabaseServer();
 
   // 1) Obtener usuario autenticado
@@ -26,10 +28,10 @@ export default async function DashboardPage() {
           <div className="bg-white overflow-hidden shadow-dugout rounded-2xl border border-[--color-tb-line]">
             <div className="px-4 py-5 sm:p-6">
               <h1 className="text-2xl font-display font-bold text-[--color-tb-navy] mb-4">
-                ¡Bienvenido a TouchBase!
+                {t('onboarding.title')}
               </h1>
               <p className="text-[--color-tb-shadow] mb-6">
-                Vamos a configurar tu organización para comenzar.
+                {t('onboarding.subtitle')}
               </p>
               {/* Kickoff auto-ejecutará la creación */}
               <OnboardingKickoff suggestedName="Mi Academia" />
@@ -62,10 +64,10 @@ export default async function DashboardPage() {
           <div className="bg-white overflow-hidden shadow-dugout rounded-2xl mb-6 border border-[--color-tb-line]">
             <div className="px-4 py-5 sm:p-6">
               <h1 className="text-3xl font-display font-bold text-[--color-tb-navy]">
-                Dashboard de {org?.name || "TouchBase"}
+                {t('header.title', { orgName: org?.name || "TouchBase" })}
               </h1>
               <p className="mt-1 text-sm text-[--color-tb-shadow]">
-                Bienvenido, {profile?.full_name || user.email} • Rol: {membership?.role || "viewer"}
+                {t('header.welcome', { userName: profile?.full_name || user.email })} • {t('header.role', { role: membership?.role || "viewer" })}
               </p>
             </div>
           </div>
@@ -85,7 +87,7 @@ export default async function DashboardPage() {
                   <div className="ml-5 w-0 flex-1">
                     <dl>
                       <dt className="text-sm font-medium text-[--color-tb-shadow] truncate">
-                        Jugadores
+                        {t('stats.players')}
                       </dt>
                       <dd className="text-lg font-display font-semibold text-[--color-tb-navy]">
                         0
@@ -109,7 +111,7 @@ export default async function DashboardPage() {
                   <div className="ml-5 w-0 flex-1">
                     <dl>
                       <dt className="text-sm font-medium text-[--color-tb-shadow] truncate">
-                        Partidos
+                        {t('stats.games')}
                       </dt>
                       <dd className="text-lg font-display font-semibold text-[--color-tb-navy]">
                         0
@@ -133,7 +135,7 @@ export default async function DashboardPage() {
                   <div className="ml-5 w-0 flex-1">
                     <dl>
                       <dt className="text-sm font-medium text-[--color-tb-shadow] truncate">
-                        Equipos
+                        {t('stats.teams')}
                       </dt>
                       <dd className="text-lg font-display font-semibold text-[--color-tb-navy]">
                         0
@@ -157,10 +159,10 @@ export default async function DashboardPage() {
                   <div className="ml-5 w-0 flex-1">
                     <dl>
                       <dt className="text-sm font-medium text-[--color-tb-shadow] truncate">
-                        Próximo Partido
+                        {t('stats.nextGame')}
                       </dt>
                       <dd className="text-lg font-display font-semibold text-[--color-tb-navy]">
-                        --
+                        {t('stats.noData')}
                       </dd>
                     </dl>
                   </div>
@@ -172,17 +174,17 @@ export default async function DashboardPage() {
           {/* Quick Actions */}
           <div className="mt-8">
             <h2 className="text-lg font-display font-semibold text-[--color-tb-navy] mb-4">
-              Acciones Rápidas
+              {t('quickActions.title')}
             </h2>
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
               <button className="relative rounded-2xl border border-[--color-tb-line] bg-white px-6 py-5 shadow-sm flex items-center space-x-3 hover:border-[--color-tb-red] hover:shadow-dugout focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-[--color-tb-stitch]/60 transition-all">
                 <div className="flex-1 min-w-0">
                   <span className="absolute inset-0" aria-hidden="true" />
                   <p className="text-sm font-semibold text-[--color-tb-navy]">
-                    Agregar Jugador
+                    {t('quickActions.addPlayer.title')}
                   </p>
                   <p className="text-sm text-[--color-tb-shadow]">
-                    Registrar nuevo jugador en el equipo
+                    {t('quickActions.addPlayer.description')}
                   </p>
                 </div>
               </button>
@@ -191,10 +193,10 @@ export default async function DashboardPage() {
                 <div className="flex-1 min-w-0">
                   <span className="absolute inset-0" aria-hidden="true" />
                   <p className="text-sm font-semibold text-[--color-tb-navy]">
-                    Programar Partido
+                    {t('quickActions.scheduleGame.title')}
                   </p>
                   <p className="text-sm text-[--color-tb-shadow]">
-                    Agendar próximo partido
+                    {t('quickActions.scheduleGame.description')}
                   </p>
                 </div>
               </button>
@@ -203,10 +205,10 @@ export default async function DashboardPage() {
                 <div className="flex-1 min-w-0">
                   <span className="absolute inset-0" aria-hidden="true" />
                   <p className="text-sm font-semibold text-[--color-tb-navy]">
-                    Ver Estadísticas
+                    {t('quickActions.viewStats.title')}
                   </p>
                   <p className="text-sm text-[--color-tb-shadow]">
-                    Analizar rendimiento del equipo
+                    {t('quickActions.viewStats.description')}
                   </p>
                 </div>
               </button>
