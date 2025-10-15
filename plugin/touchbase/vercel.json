@@ -1,0 +1,35 @@
+{
+  "version": 2,
+  "name": "touchbase-sujeto10",
+  "builds": [
+    {
+      "src": "public/index.php",
+      "use": "vercel-php@0.6.0"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "/public/index.php"
+    },
+    {
+      "src": "/assets/(.*)",
+      "dest": "/assets/$1"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/public/index.php"
+    }
+  ],
+  "env": {
+    "APP_ENV": "production",
+    "APP_URL": "https://touchbase.sujeto10.com",
+    "BASE_PATH": "/"
+  },
+  "functions": {
+    "public/index.php": {
+      "runtime": "vercel-php@0.6.0",
+      "maxDuration": 10
+    }
+  }
+}

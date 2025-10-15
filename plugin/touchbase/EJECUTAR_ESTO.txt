@@ -1,0 +1,82 @@
+═══════════════════════════════════════════════════════════════
+  TOUCHBASE - INSTRUCCIONES RÁPIDAS DE DEPLOY
+═══════════════════════════════════════════════════════════════
+
+⚠️  IMPORTANTE: Ejecutaste las migraciones INCORRECTAS
+
+❌ NO uses: migrations/*.sql (esas son MySQL)
+✅ USA: migrations/postgres/*.sql (PostgreSQL para Supabase)
+
+═══════════════════════════════════════════════════════════════
+  PASO 1: IR A SUPABASE SQL EDITOR
+═══════════════════════════════════════════════════════════════
+
+URL: https://supabase.com/dashboard/project/nqzhxukuvmdlpewqytpv/sql/new
+
+═══════════════════════════════════════════════════════════════
+  PASO 2: LIMPIAR TABLAS (copy-paste y RUN)
+═══════════════════════════════════════════════════════════════
+
+DROP TABLE IF EXISTS touchbase_billing_config CASCADE;
+DROP TABLE IF EXISTS touchbase_billing_transactions CASCADE;
+DROP TABLE IF EXISTS touchbase_email_queue CASCADE;
+DROP TABLE IF EXISTS touchbase_stats CASCADE;
+DROP TABLE IF EXISTS touchbase_attendance CASCADE;
+DROP TABLE IF EXISTS touchbase_schedule CASCADE;
+DROP TABLE IF EXISTS touchbase_roster CASCADE;
+DROP TABLE IF EXISTS touchbase_matches CASCADE;
+DROP TABLE IF EXISTS touchbase_tournament_teams CASCADE;
+DROP TABLE IF EXISTS touchbase_tournaments CASCADE;
+DROP TABLE IF EXISTS touchbase_teams CASCADE;
+DROP TABLE IF EXISTS touchbase_seasons CASCADE;
+DROP TABLE IF EXISTS touchbase_clubs CASCADE;
+DROP TABLE IF EXISTS touchbase_tenants CASCADE;
+DROP TABLE IF EXISTS touchbase_migrations CASCADE;
+
+═══════════════════════════════════════════════════════════════
+  PASO 3: EJECUTAR 6 MIGRACIONES EN ORDEN
+═══════════════════════════════════════════════════════════════
+
+Para CADA archivo:
+1. Abre el archivo en tu editor
+2. Copy TODO el contenido
+3. Pega en Supabase SQL Editor (nueva query)
+4. Click RUN
+
+Orden de ejecución:
+
+[ ] 1. migrations/postgres/000_migrations_table.sql
+[ ] 2. migrations/postgres/001_init.sql
+[ ] 3. migrations/postgres/003_branding.sql  ← Crea SUJETO10
+[ ] 4. migrations/postgres/004_tournaments.sql
+[ ] 5. migrations/postgres/005_email_queue.sql
+[ ] 6. migrations/postgres/006_billing.sql
+
+═══════════════════════════════════════════════════════════════
+  PASO 4: VERIFICAR (copy-paste y RUN)
+═══════════════════════════════════════════════════════════════
+
+-- Ver tablas creadas
+SELECT table_name FROM information_schema.tables
+WHERE table_schema = 'public' AND table_name LIKE 'touchbase_%'
+ORDER BY table_name;
+
+-- Ver tenant SUJETO10
+SELECT code, name, website_url FROM touchbase_tenants WHERE code = 'sujeto10';
+
+═══════════════════════════════════════════════════════════════
+  PASO 5: DEPLOY A VERCEL
+═══════════════════════════════════════════════════════════════
+
+cd /Users/nadalpiantini/Dev/chamilo-lms/chamilo-lms/plugin/pelota_pack
+vercel --prod
+
+Luego:
+- Configurar env vars en Vercel (ver APPLY_MIGRATIONS.md)
+- Añadir dominio touchbase.sujeto10.com
+- Test: curl https://touchbase.sujeto10.com/api/health
+
+═══════════════════════════════════════════════════════════════
+
+Ver APPLY_MIGRATIONS.md para instrucciones detalladas.
+

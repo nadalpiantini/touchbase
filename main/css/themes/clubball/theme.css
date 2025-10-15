@@ -1,0 +1,208 @@
+/**
+ * ClubBall Theme for Chamilo
+ * Baseball club management branding
+ */
+
+@import url('./variables.css');
+
+/* Global styles */
+body {
+    background: var(--club-dark);
+    color: var(--club-light);
+    font-family: var(--club-font-family);
+}
+
+/* Header and navigation */
+.header,
+.navbar,
+.subnav {
+    background: linear-gradient(135deg, var(--club-primary) 0%, var(--club-secondary) 100%);
+    box-shadow: var(--club-shadow-md);
+}
+
+.navbar a,
+.subnav a {
+    color: rgba(255, 255, 255, 0.95);
+    transition: background 0.2s ease;
+}
+
+.navbar a:hover,
+.subnav a:hover {
+    background: rgba(255, 255, 255, 0.15);
+    color: #fff;
+}
+
+/* Links */
+a {
+    color: var(--club-primary);
+    transition: color 0.2s ease;
+}
+
+a:hover {
+    color: var(--club-primary-light);
+}
+
+/* Buttons */
+.btn-primary {
+    background: var(--club-primary);
+    border-color: var(--club-primary);
+    color: #fff;
+    transition: all 0.2s ease;
+}
+
+.btn-primary:hover {
+    background: var(--club-primary-dark);
+    border-color: var(--club-primary-dark);
+    transform: translateY(-1px);
+    box-shadow: var(--club-shadow-lg);
+}
+
+.btn-success {
+    background: var(--club-success);
+    border-color: var(--club-success);
+}
+
+.btn-warning {
+    background: var(--club-warning);
+    border-color: var(--club-warning);
+}
+
+.btn-danger {
+    background: var(--club-danger);
+    border-color: var(--club-danger);
+}
+
+/* Cards and panels */
+.card,
+.panel {
+    background: var(--club-dark-elevated);
+    border: 1px solid #1f2937;
+    border-radius: var(--club-radius-xl);
+    box-shadow: var(--club-shadow-lg);
+}
+
+.panel-heading {
+    background: linear-gradient(135deg, var(--club-primary-dark) 0%, var(--club-primary) 100%);
+    border-bottom: 2px solid var(--club-primary-light);
+}
+
+/* Tables */
+table {
+    background: var(--club-dark-elevated);
+    border-radius: var(--club-radius-md);
+    overflow: hidden;
+}
+
+thead {
+    background: #1f2937;
+    color: var(--club-primary-light);
+}
+
+tbody tr:hover {
+    background: rgba(14, 165, 233, 0.05);
+}
+
+/* Forms */
+.form-control,
+input[type="text"],
+input[type="email"],
+input[type="password"],
+select,
+textarea {
+    background: var(--club-dark);
+    border: 1px solid #374151;
+    color: var(--club-light);
+    border-radius: var(--club-radius-md);
+    transition: border-color 0.2s ease;
+}
+
+.form-control:focus,
+input:focus,
+select:focus,
+textarea:focus {
+    border-color: var(--club-primary);
+    box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.1);
+}
+
+/* Alerts */
+.alert-success {
+    background: rgba(16, 185, 129, 0.1);
+    border-color: var(--club-success);
+    color: #6ee7b7;
+}
+
+.alert-warning {
+    background: rgba(245, 158, 11, 0.1);
+    border-color: var(--club-warning);
+    color: #fcd34d;
+}
+
+.alert-danger {
+    background: rgba(239, 68, 68, 0.1);
+    border-color: var(--club-danger);
+    color: #fca5a5;
+}
+
+.alert-info {
+    background: rgba(59, 130, 246, 0.1);
+    border-color: var(--club-info);
+    color: #93c5fd;
+}
+
+/* Sidebar */
+.sidebar {
+    background: var(--club-dark-elevated);
+    border-right: 1px solid #1f2937;
+}
+
+/* Footer */
+.footer {
+    background: var(--club-dark-elevated);
+    border-top: 1px solid #1f2937;
+    color: #9ca3af;
+}
+
+/* Course items */
+.course-box {
+    background: var(--club-dark-elevated);
+    border: 1px solid #1f2937;
+    border-radius: var(--club-radius-lg);
+    transition: all 0.2s ease;
+}
+
+.course-box:hover {
+    border-color: var(--club-primary);
+    transform: translateY(-2px);
+    box-shadow: var(--club-shadow-lg);
+}
+
+/* Badges */
+.badge {
+    border-radius: var(--club-radius-sm);
+    padding: 0.25rem 0.5rem;
+    font-weight: 600;
+}
+
+.badge-primary {
+    background: var(--club-primary);
+    color: #fff;
+}
+
+.badge-success {
+    background: var(--club-success);
+    color: #fff;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .header-content,
+    .navbar {
+        padding: 0.75rem;
+    }
+
+    .card,
+    .panel {
+        border-radius: var(--club-radius-md);
+        margin: var(--club-spacing-sm);
+    }
+}

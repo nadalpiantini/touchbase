@@ -1,0 +1,49 @@
+/**
+ * ClubBall Theme - CSS Variables
+ * Baseball club branding for Chamilo
+ */
+
+:root {
+    /* Primary colors - Caribbean sky and baseball field green */
+    --club-primary: #0ea5e9;      /* Sky blue */
+    --club-primary-dark: #0284c7;
+    --club-primary-light: #38bdf8;
+
+    --club-secondary: #22c55e;     /* Field green */
+    --club-secondary-dark: #16a34a;
+    --club-secondary-light: #4ade80;
+
+    /* Neutral colors */
+    --club-dark: #0b1220;          /* Deep navy */
+    --club-dark-elevated: #111827;  /* Card background */
+    --club-light: #eaf4ff;         /* Chalk white */
+
+    /* Semantic colors */
+    --club-success: #10b981;
+    --club-warning: #f59e0b;
+    --club-danger: #ef4444;
+    --club-info: #3b82f6;
+
+    /* Typography */
+    --club-font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --club-font-size-base: 16px;
+    --club-line-height: 1.5;
+
+    /* Spacing */
+    --club-spacing-xs: 0.25rem;
+    --club-spacing-sm: 0.5rem;
+    --club-spacing-md: 1rem;
+    --club-spacing-lg: 1.5rem;
+    --club-spacing-xl: 2rem;
+
+    /* Border radius */
+    --club-radius-sm: 0.375rem;
+    --club-radius-md: 0.5rem;
+    --club-radius-lg: 0.75rem;
+    --club-radius-xl: 1rem;
+
+    /* Shadows */
+    --club-shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.12);
+    --club-shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --club-shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.15);
+}

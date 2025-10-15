@@ -1,0 +1,124 @@
+/**
+ * ClubBall Design System - Design Tokens
+ * Production-ready tokens for accessible, branded UI
+ */
+
+:root {
+  /* Typography - Sans-serif system stack */
+  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+  --font-mono: ui-monospace, "SF Mono", Monaco, "Cascadia Code", "Roboto Mono", Consolas, monospace;
+
+  /* Font Sizes - Accessible base (≥16px) */
+  --text-xs: 12px;
+  --text-sm: 14px;
+  --text-base: 16px;
+  --text-lg: 18px;
+  --text-xl: 20px;
+  --text-2xl: 24px;
+  --text-3xl: 30px;
+  --text-4xl: 36px;
+
+  /* Line Heights - Comfortable reading */
+  --leading-tight: 1.25;
+  --leading-normal: 1.45;
+  --leading-relaxed: 1.625;
+
+  /* Spacing Scale */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+
+  /* Border Radius */
+  --radius-sm: 6px;
+  --radius: 12px;
+  --radius-lg: 16px;
+  --radius-full: 9999px;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+
+  /* Tenant Brand Colors (override per league/club) */
+  --brand-1: #0284c7; /* Primary - Sky Blue (WCAG AA compliant) */
+  --brand-2: #16a34a; /* Success - Green (WCAG AA compliant) */
+  --brand-3: #ea580c; /* Warning - Orange (WCAG AA compliant) */
+  --brand-4: #dc2626; /* Danger - Red (WCAG AA compliant) */
+
+  /* Semantic Colors - Dark Theme (default) */
+  --bg: #0b1220;
+  --bg-elevated: #111827;
+  --panel: #111827;
+  --panel-hover: #1f2937;
+  --border: #1f2937;
+  --border-strong: #374151;
+  --muted: #9ca3af;
+  --text: #e5e7eb;
+  --text-strong: #f9fafb;
+  --link: var(--brand-1);
+
+  /* Interactive States */
+  --hover-overlay: rgba(255, 255, 255, 0.05);
+  --active-overlay: rgba(255, 255, 255, 0.1);
+  --focus-ring: 0 0 0 3px rgba(14, 165, 233, 0.3);
+
+  /* Z-Index Scale */
+  --z-base: 0;
+  --z-dropdown: 10;
+  --z-sticky: 20;
+  --z-modal-backdrop: 40;
+  --z-modal: 50;
+  --z-toast: 60;
+  --z-tooltip: 70;
+}
+
+/* Light Theme Override */
+:root.theme-light {
+  --bg: #f7fafc;
+  --bg-elevated: #ffffff;
+  --panel: #ffffff;
+  --panel-hover: #f3f4f6;
+  --border: #e5e7eb;
+  --border-strong: #d1d5db;
+  --muted: #6b7280;
+  --text: #0f172a;
+  --text-strong: #020617;
+  --hover-overlay: rgba(0, 0, 0, 0.02);
+  --active-overlay: rgba(0, 0, 0, 0.05);
+}
+
+/* High Contrast Mode (for accessibility) */
+@media (prefers-contrast: high) {
+  :root {
+    --border: #374151;
+    --text: #ffffff;
+  }
+
+  :root.theme-light {
+    --border: #9ca3af;
+    --text: #000000;
+  }
+}
+
+/* Reduced Motion (for accessibility) */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --transition-duration: 0.01ms !important;
+  }
+}
+
+/* Transition Durations */
+:root {
+  --transition-fast: 150ms;
+  --transition-base: 250ms;
+  --transition-slow: 350ms;
+  --transition-timing: cubic-bezier(0.4, 0, 0.2, 1);
+}

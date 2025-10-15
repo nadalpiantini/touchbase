@@ -1,0 +1,138 @@
+/**
+ * PelotaPack Embeddable Widgets Stylesheet
+ * Minimal, self-contained styles for iframe embedding
+ */
+
+.pp-widget {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: #fff;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    color: #1f2937;
+}
+
+.pp-widget h3 {
+    margin: 0 0 0.75rem 0;
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #111827;
+    border-bottom: 2px solid #3b82f6;
+    padding-bottom: 0.5rem;
+}
+
+/* Schedule Widget */
+.pp-event-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.pp-event-list li {
+    padding: 0.75rem;
+    border-bottom: 1px solid #e5e7eb;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.pp-event-list li:last-child {
+    border-bottom: none;
+}
+
+.pp-event-type {
+    display: inline-block;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.pp-type-game {
+    background: #dbeafe;
+    color: #1e40af;
+}
+
+.pp-type-practice {
+    background: #f3f4f6;
+    color: #374151;
+}
+
+.pp-event-detail {
+    font-size: 0.875rem;
+    color: #6b7280;
+}
+
+/* Roster Widget */
+.pp-roster-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.875rem;
+}
+
+.pp-roster-table thead {
+    background: #f9fafb;
+}
+
+.pp-roster-table th,
+.pp-roster-table td {
+    padding: 0.5rem 0.75rem;
+    text-align: left;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.pp-roster-table th {
+    font-weight: 600;
+    color: #374151;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+}
+
+.pp-roster-table tr:hover {
+    background: #f9fafb;
+}
+
+/* Attendance Widget */
+.pp-attendance-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.pp-attendance-list li {
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #e5e7eb;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.pp-attendance-list li:last-child {
+    border-bottom: none;
+}
+
+.pp-attendance-stat {
+    display: flex;
+    gap: 0.75rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+    .pp-widget {
+        padding: 0.75rem;
+    }
+
+    .pp-event-list li,
+    .pp-attendance-list li {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .pp-attendance-stat {
+        margin-top: 0.25rem;
+    }
+}

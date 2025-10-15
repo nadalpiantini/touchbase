@@ -1,0 +1,153 @@
+#!/usr/bin/env php
+<?php
+declare(strict_types=1);
+
+/**
+ * PelotaPack Migration CLI Tool
+ * 
+ * Usage:
+ *   ./bin/migrate          - Run all pending migrations
+ *   ./bin/migrate status   - Show migration status
+ *   ./bin/migrate rollback - Rollback last batch
+ *   ./bin/migrate reset    - Reset all migrations (DANGEROUS)
+ */
+
+// Bootstrap the application
+require_once __DIR__ . '/../src/bootstrap.php';
+require_once __DIR__ . '/../src/Database/Migrator.php';
+
+use PelotaPack\Database\Migrator;
+
+// Parse command line arguments
+$command = $argv[1] ?? 'migrate';
+$dryRun = in_array('--dry-run', $argv) || in_array('-d', $argv);
+
+// Initialize migrator
+try {
+    $migrator = new Migrator();
+} catch (\Exception $e) {
+    echo "❌ Failed to initialize migrator: {$e->getMessage()}\n";
+    exit(1);
+}
+
+// Execute command
+try {
+    switch ($command) {
+        case 'migrate':
+        case 'up':
+            echo "🚀 Running migrations" . ($dryRun ? " (dry run)" : "") . "...\n\n";
+            $result = $migrator->migrate($dryRun);
+            
+            if ($result['status'] === 'success' && empty($result['migrated'])) {
+                echo "✅ {$result['message']}\n";
+            } elseif ($result['status'] === 'dry_run') {
+                echo "📋 Pending migrations:\n";
+                foreach ($result['pending'] as $migration) {
+                    echo "  - {$migration}\n";
+                }
+            } else {
+                if (!empty($result['migrated'])) {
+                    echo "✅ Migrated:\n";
+                    foreach ($result['migrated'] as $m) {
+                        echo "  ✓ {$m['migration']} ({$m['execution_time_ms']}ms)\n";
+                    }
+                }
+                
+                if (!empty($result['errors'])) {
+                    echo "\n❌ Errors:\n";
+                    foreach ($result['errors'] as $error) {
+                        echo "  ✗ {$error['migration']}: {$error['error']}\n";
+                    }
+                    exit(1);
+                }
+                
+                echo "\n✅ Migration completed (batch {$result['batch']})\n";
+            }
+            break;
+
+        case 'status':
+            echo "📊 Migration Status\n\n";
+            $status = $migrator->status();
+            
+            echo "Total: {$status['total']} | Applied: {$status['applied']} | Pending: {$status['pending']}\n\n";
+            
+            foreach ($status['migrations'] as $m) {
+                $icon = $m['status'] === 'applied' ? '✓' : '○';
+                echo "  {$icon} {$m['name']} [{$m['status']}]\n";
+            }
+            break;
+
+        case 'rollback':
+        case 'down':
+            echo "🔄 Rolling back last migration batch...\n\n";
+            $result = $migrator->rollback();
+            
+            if (empty($result['rolled_back'])) {
+                echo "✅ {$result['message']}\n";
+            } else {
+                echo "✅ Rolled back batch {$result['batch']}:\n";
+                foreach ($result['rolled_back'] as $migration) {
+                    echo "  ✓ {$migration}\n";
+                }
+            }
+            break;
+
+        case 'reset':
+            echo "⚠️  WARNING: This will reset ALL migrations!\n";
+            echo "Are you sure? (yes/no): ";
+            
+            $handle = fopen("php://stdin", "r");
+            $line = trim(fgets($handle));
+            fclose($handle);
+            
+            if ($line === 'yes') {
+                echo "\n🔄 Resetting all migrations...\n";
+                $migrator->reset();
+                echo "✅ All migrations reset\n";
+            } else {
+                echo "❌ Reset cancelled\n";
+            }
+            break;
+
+        case 'help':
+        case '--help':
+        case '-h':
+            echo <<<HELP
+PelotaPack Migration CLI Tool
+
+Usage:
+  ./bin/migrate [command] [options]
+
+Commands:
+  migrate, up    Run all pending migrations (default)
+  status         Show migration status
+  rollback, down Rollback last migration batch
+  reset          Reset all migrations (DANGEROUS)
+  help           Show this help message
+
+Options:
+  --dry-run, -d  Show what would be migrated without executing
+
+Examples:
+  ./bin/migrate                 # Run pending migrations
+  ./bin/migrate status          # Check migration status
+  ./bin/migrate --dry-run       # Preview migrations
+  ./bin/migrate rollback        # Undo last batch
+  ./bin/migrate reset           # Reset all (use with caution!)
+
+HELP;
+            break;
+
+        default:
+            echo "❌ Unknown command: {$command}\n";
+            echo "Run './bin/migrate help' for usage information\n";
+            exit(1);
+    }
+
+    exit(0);
+
+} catch (\Exception $e) {
+    echo "❌ Migration error: {$e->getMessage()}\n";
+    echo "Stack trace:\n{$e->getTraceAsString()}\n";
+    exit(1);
+}

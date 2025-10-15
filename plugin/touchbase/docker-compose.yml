@@ -1,0 +1,62 @@
+services:
+  # Nginx web server
+  web:
+    image: nginx:stable
+    container_name: pelota_nginx
+    ports:
+      - "80:80"
+    volumes:
+      - ../../../:/var/www/html
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
+    depends_on:
+      - app
+      - db
+    networks:
+      - pelota_network
+
+  # PHP-FPM application server
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: pelota_php
+    volumes:
+      - ../../../:/var/www/html
+    depends_on:
+      - db
+      - redis
+    networks:
+      - pelota_network
+
+  # MariaDB database
+  db:
+    image: mariadb:10.6
+    container_name: pelota_db
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: chamilo
+      MYSQL_USER: chamilo
+      MYSQL_PASSWORD: chamilo
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+    networks:
+      - pelota_network
+
+  # Redis for session storage
+  redis:
+    image: redis:7-alpine
+    container_name: pelota_redis
+    ports:
+      - "6379:6379"
+    networks:
+      - pelota_network
+
+volumes:
+  db_data:
+    driver: local
+
+networks:
+  pelota_network:
+    driver: bridge
