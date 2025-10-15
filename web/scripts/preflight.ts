@@ -1,3 +1,5 @@
+require('dotenv').config({ path: '.env.local' });
+
 const keys = [
   "NEXT_PUBLIC_SUPABASE_URL",
   "NEXT_PUBLIC_SUPABASE_ANON_KEY",
