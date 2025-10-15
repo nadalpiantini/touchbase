@@ -48,7 +48,7 @@ export default function SignUpPage() {
       setSuccess(true);
       // Redirigir al dashboard después de 2 segundos
       setTimeout(() => {
-        router.push("/(protected)/dashboard");
+        router.push("/dashboard");
       }, 2000);
     } catch (err: any) {
       setError(err.message || "Error al crear la cuenta");

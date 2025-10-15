@@ -28,7 +28,7 @@ export default function LoginPage() {
       if (error) throw error;
 
       // Redirigir al dashboard después del login exitoso
-      router.push("/(protected)/dashboard");
+      router.push("/dashboard");
     } catch (err: any) {
       setError(err.message || "Error al iniciar sesión");
     } finally {
