@@ -1,6 +1,9 @@
 "use client";
 import { useEffect, useState } from "react";
-import { supabaseBrowser } from "@/lib/supabase/client";
+import { supabaseClient } from "@/lib/supabase/client";
+
+// Use the singleton client at module level
+const supabase = supabaseClient!;
 
 export default function AuthCallbackPage() {
   const [msg, setMsg] = useState("Autenticando…");
@@ -9,8 +12,7 @@ export default function AuthCallbackPage() {
     const run = async () => {
       try {
         // Para OAuth con PKCE (cuando se usa code)
-        const s = supabaseBrowser();
-        const { data, error } = await s.auth.getSession();
+        const { data, error } = await supabase.auth.getSession();
         // detectSessionInUrl ya gestiona magic links (#access_token)
         if (error) throw error;
 

@@ -1,15 +1,17 @@
 "use client";
 
 import { useState } from "react";
-import { supabaseBrowser } from "@/lib/supabase/client";
+import { supabaseClient } from "@/lib/supabase/client";
 import { useRouter } from "next/navigation";
+
+// Use the singleton client at module level
+const supabase = supabaseClient!;
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const supabase = supabaseBrowser();
   const router = useRouter();
 
   const handleLogin = async (e: React.FormEvent) => {
@@ -26,7 +28,7 @@ export default function LoginPage() {
       if (error) throw error;
 
       // Redirigir al dashboard después del login exitoso
-      router.push("/dashboard");
+      router.push("/(protected)/dashboard");
     } catch (err: any) {
       setError(err.message || "Error al iniciar sesión");
     } finally {

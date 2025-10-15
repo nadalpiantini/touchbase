@@ -1,9 +1,12 @@
 "use client";
 
 import { useState } from "react";
-import { supabaseBrowser } from "@/lib/supabase/client";
+import { supabaseClient } from "@/lib/supabase/client";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+
+// Use the singleton client at module level
+const supabase = supabaseClient!;
 
 export default function SignUpPage() {
   const [email, setEmail] = useState("");
@@ -12,7 +15,6 @@ export default function SignUpPage() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState(false);
-  const supabase = supabaseBrowser();
   const router = useRouter();
 
   const handleSignUp = async (e: React.FormEvent) => {
@@ -46,7 +48,7 @@ export default function SignUpPage() {
       setSuccess(true);
       // Redirigir al dashboard después de 2 segundos
       setTimeout(() => {
-        router.push("/dashboard");
+        router.push("/(protected)/dashboard");
       }, 2000);
     } catch (err: any) {
       setError(err.message || "Error al crear la cuenta");
