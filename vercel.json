@@ -1,62 +1,19 @@
 {
   "version": 2,
   "name": "touchbase-sujeto10",
-  "builds": [
+  "buildCommand": "cd web && npm run build",
+  "outputDirectory": "web/.next",
+  "installCommand": "cd web && npm install",
+  "framework": "nextjs",
+  "rewrites": [
     {
-      "src": "public/index.php",
-      "use": "vercel-php@0.6.0"
-    },
-    {
-      "src": "public/**",
-      "use": "@vercel/static"
-    }
-  ],
-  "routes": [
-    {
-      "src": "/api/(.*)",
-      "dest": "/public/index.php"
-    },
-    {
-      "src": "/assets/(.*)",
-      "dest": "/assets/$1"
-    },
-    {
-      "src": "/(css|js|images|fonts)/(.*)",
-      "dest": "/public/$1/$2"
-    },
-    {
-      "src": "/favicon.ico",
-      "dest": "/public/favicon.ico"
-    },
-    {
-      "src": "/robots.txt",
-      "dest": "/public/robots.txt"
-    },
-    {
-      "src": "/sw.js",
-      "dest": "/public/sw.js"
-    },
-    {
-      "src": "/manifest.webmanifest",
-      "dest": "/public/manifest.webmanifest"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/public/index.php"
+      "source": "/legacy/:path*",
+      "destination": "https://legacy.sujeto10.com/:path*"
     }
   ],
   "env": {
-    "APP_ENV": "production",
-    "APP_URL": "https://touchbase.sujeto10.com",
-    "BASE_PATH": "/",
-    "DEBUG": "false"
-  },
-  "functions": {
-    "public/index.php": {
-      "runtime": "vercel-php@0.6.0",
-      "maxDuration": 30,
-      "memory": 512
-    }
+    "NEXT_PUBLIC_APP_ENV": "production",
+    "NEXT_PUBLIC_APP_URL": "https://touchbase.sujeto10.com"
   },
   "headers": [
     {
