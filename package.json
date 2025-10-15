@@ -1,16 +1,9 @@
 {
-  "name": "touchbase-e2e",
-  "version": "1.0.0",
-  "description": "E2E tests for TouchBase application",
+  "private": true,
   "scripts": {
-    "test:e2e": "playwright test",
-    "test:e2e:ui": "playwright test --ui",
-    "test:e2e:debug": "playwright test --debug",
-    "test:e2e:headed": "playwright test --headed",
-    "playwright:install": "playwright install"
-  },
-  "devDependencies": {
-    "@playwright/test": "^1.40.0"
-  },
-  "private": true
+    "install": "cd web && (npm ci || npm install)",
+    "build": "cd web && npm run build",
+    "start": "cd web && npm start",
+    "dev": "cd web && npm run dev"
+  }
 }
