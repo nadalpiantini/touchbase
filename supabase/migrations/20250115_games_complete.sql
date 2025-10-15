@@ -99,21 +99,48 @@ CREATE POLICY "touchbase_gp_write" ON public.touchbase_game_players
 -- 6. ACTUALIZAR AUDIT LOG PARA GAMES
 -- ============================================================
 
--- Actualizar check constraint para incluir 'game'
-DO $$ 
+-- Crear tabla de auditoría si no existe, o actualizar constraint si ya existe
+DO $$
 BEGIN
-  IF EXISTS (
-    SELECT 1 FROM pg_constraint 
-    WHERE conname = 'touchbase_audit_log_entity_check' 
-    AND conrelid = 'public.touchbase_audit_log'::regclass
+  -- Verificar si la tabla existe
+  IF NOT EXISTS (
+    SELECT 1 FROM information_schema.tables
+    WHERE table_schema = 'public'
+    AND table_name = 'touchbase_audit_log'
   ) THEN
-    ALTER TABLE public.touchbase_audit_log 
-    DROP CONSTRAINT touchbase_audit_log_entity_check;
+    -- Crear la tabla si no existe
+    CREATE TABLE public.touchbase_audit_log (
+      id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+      org_id uuid NOT NULL REFERENCES public.touchbase_organizations(id) ON DELETE CASCADE,
+      entity text NOT NULL CHECK (entity IN ('team','player','game')),
+      entity_id uuid NOT NULL,
+      action text NOT NULL CHECK (action IN ('create','update','soft_delete','restore','purge')),
+      actor uuid,
+      meta jsonb DEFAULT '{}'::jsonb,
+      created_at timestamptz DEFAULT now()
+    );
+
+    -- Habilitar RLS
+    ALTER TABLE public.touchbase_audit_log ENABLE ROW LEVEL SECURITY;
+
+    -- Crear política de lectura
+    CREATE POLICY "touchbase_audit_select_members" ON public.touchbase_audit_log
+    FOR SELECT USING (public.touchbase_is_org_member(org_id));
+  ELSE
+    -- Si la tabla ya existe, actualizar el constraint para incluir 'game'
+    IF EXISTS (
+      SELECT 1 FROM pg_constraint
+      WHERE conname = 'touchbase_audit_log_entity_check'
+      AND conrelid = 'public.touchbase_audit_log'::regclass
+    ) THEN
+      ALTER TABLE public.touchbase_audit_log
+      DROP CONSTRAINT touchbase_audit_log_entity_check;
+    END IF;
+
+    ALTER TABLE public.touchbase_audit_log
+    ADD CONSTRAINT touchbase_audit_log_entity_check
+    CHECK (entity IN ('team','player','game'));
   END IF;
-  
-  ALTER TABLE public.touchbase_audit_log 
-  ADD CONSTRAINT touchbase_audit_log_entity_check 
-  CHECK (entity IN ('team','player','game'));
 END $$;
 
 -- ============================================================
