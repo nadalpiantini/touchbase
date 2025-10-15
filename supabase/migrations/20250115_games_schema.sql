@@ -2,8 +2,12 @@
 -- SPRINT 4: GAMES/MATCHES + SCOREBOARD
 -- =====================================================
 
+-- DROP existing tables to ensure clean schema
+drop table if exists public.touchbase_game_players cascade;
+drop table if exists public.touchbase_games cascade;
+
 -- GAMES TABLE
-create table if not exists public.touchbase_games (
+create table public.touchbase_games (
   id uuid primary key default gen_random_uuid(),
   org_id uuid not null references public.touchbase_organizations(id) on delete cascade,
   home_team_id uuid not null references public.touchbase_teams(id) on delete restrict,
@@ -18,7 +22,7 @@ create table if not exists public.touchbase_games (
 );
 
 -- GAME ROSTER / STATS
-create table if not exists public.touchbase_game_players (
+create table public.touchbase_game_players (
   id uuid primary key default gen_random_uuid(),
   org_id uuid not null references public.touchbase_organizations(id) on delete cascade,
   game_id uuid not null references public.touchbase_games(id) on delete cascade,
