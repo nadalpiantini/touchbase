@@ -2,7 +2,6 @@
   "version": 2,
   "name": "touchbase-sujeto10",
   "framework": "nextjs",
-  "rootDirectory": "web",
   "functions": {
     "api/**/*.ts": {
       "runtime": "nodejs20.x"
