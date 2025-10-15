@@ -1,14 +1,58 @@
 import { supabaseServer } from "@/lib/supabase/server";
 import { redirect } from "next/navigation";
+import OnboardingKickoff from "@/components/onboarding/OnboardingKickoff";
 
 export default async function DashboardPage() {
-  const supabase = supabaseServer();
+  const s = supabaseServer();
 
-  const { data: { user }, error } = await supabase.auth.getUser();
-
-  if (error || !user) {
+  // 1) Obtener usuario autenticado
+  const { data: { user }, error: userError } = await s.auth.getUser();
+  if (userError || !user) {
     redirect("/login");
   }
+
+  // 2) Obtener profile para ver si tiene default_org_id
+  const { data: profile } = await s
+    .from("touchbase_profiles")
+    .select("id, full_name, default_org_id")
+    .eq("id", user.id)
+    .single();
+
+  // 3) Si NO tiene org aún, mostrar onboarding
+  if (!profile?.default_org_id) {
+    return (
+      <main className="min-h-screen bg-gray-50">
+        <div className="max-w-4xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+          <div className="bg-white overflow-hidden shadow rounded-lg">
+            <div className="px-4 py-5 sm:p-6">
+              <h1 className="text-2xl font-bold text-gray-900 mb-4">
+                ¡Bienvenido a TouchBase!
+              </h1>
+              <p className="text-gray-600 mb-6">
+                Vamos a configurar tu organización para comenzar.
+              </p>
+              {/* Kickoff auto-ejecutará la creación */}
+              <OnboardingKickoff suggestedName="Mi Academia" />
+            </div>
+          </div>
+        </div>
+      </main>
+    );
+  }
+
+  // 4) Si tiene org, obtener datos y mostrar dashboard normal
+  const { data: org } = await s
+    .from("touchbase_organizations")
+    .select("id, name, slug")
+    .eq("id", profile.default_org_id)
+    .single();
+
+  const { data: membership } = await s
+    .from("touchbase_memberships")
+    .select("role")
+    .eq("org_id", profile.default_org_id)
+    .eq("user_id", user.id)
+    .single();
 
   return (
     <main className="min-h-screen bg-gray-50">
@@ -18,10 +62,10 @@ export default async function DashboardPage() {
           <div className="bg-white overflow-hidden shadow rounded-lg mb-6">
             <div className="px-4 py-5 sm:p-6">
               <h1 className="text-3xl font-bold text-gray-900">
-                Dashboard de TouchBase
+                Dashboard de {org?.name || "TouchBase"}
               </h1>
               <p className="mt-1 text-sm text-gray-600">
-                Bienvenido, {user.email}
+                Bienvenido, {profile?.full_name || user.email} • Rol: {membership?.role || "viewer"}
               </p>
             </div>
           </div>

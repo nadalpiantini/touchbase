@@ -9,16 +9,21 @@ export function supabaseServer() {
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
     {
       cookies: {
-        get(name: string) {
-          return cookieStore.get(name)?.value;
+        async get(name: string) {
+          const store = await cookieStore;
+          return store.get(name)?.value;
         },
-        set(name: string, value: string, options: any) {
+        async set(name: string, value: string, options: any) {
           // Server components cannot set cookies directly
           // This will be handled by middleware/route handlers
+          const store = await cookieStore;
+          store.set(name, value, options);
         },
-        remove(name: string, options: any) {
+        async remove(name: string, options: any) {
           // Server components cannot remove cookies directly
           // This will be handled by middleware/route handlers
+          const store = await cookieStore;
+          store.delete(name);
         },
       },
     }
