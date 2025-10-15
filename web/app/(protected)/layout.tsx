@@ -35,6 +35,12 @@ export default async function ProtectedLayout({
                 <Link href="/dashboard/players" className="text-sm text-gray-700 hover:text-gray-900">
                   Jugadores
                 </Link>
+                <Link href="/dashboard/recycle" className="text-sm text-gray-700 hover:text-gray-900">
+                  Papelera
+                </Link>
+                <Link href="/dashboard/audit" className="text-sm text-gray-700 hover:text-gray-900">
+                  Auditoría
+                </Link>
               </nav>
             </div>
 
