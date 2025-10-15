@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import { useTranslations } from 'next-intl';
+import { LanguageSelector } from '@/components/LanguageSelector';
 
 const supabase = supabaseClient!;
 
@@ -39,7 +40,12 @@ export default function LoginPage() {
   };
 
   return (
-    <main className="min-h-screen flex items-center justify-center bg-[--color-tb-beige]/20">
+    <main className="min-h-screen flex items-center justify-center bg-[--color-tb-beige]/20 relative">
+      {/* Language Selector */}
+      <div className="absolute top-4 right-4 z-10">
+        <LanguageSelector />
+      </div>
+
       <div className="max-w-md w-full space-y-8">
         <div className="flex flex-col items-center">
           <Image

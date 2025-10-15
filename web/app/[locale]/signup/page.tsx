@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import { useTranslations } from 'next-intl';
+import { LanguageSelector } from '@/components/LanguageSelector';
 
 // Use the singleton client at module level
 const supabase = supabaseClient!;
@@ -61,7 +62,12 @@ export default function SignUpPage() {
   };
 
   return (
-    <main className="min-h-screen flex items-center justify-center bg-gray-50">
+    <main className="min-h-screen flex items-center justify-center bg-gray-50 relative">
+      {/* Language Selector */}
+      <div className="absolute top-4 right-4 z-10">
+        <LanguageSelector />
+      </div>
+
       <div className="max-w-md w-full space-y-8">
         <div className="flex flex-col items-center">
           <Image

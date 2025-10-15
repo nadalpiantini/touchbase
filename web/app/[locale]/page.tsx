@@ -1,12 +1,18 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useTranslations } from 'next-intl';
+import { LanguageSelector } from '@/components/LanguageSelector';
 
 export default function HomePage() {
   const t = useTranslations('landing');
 
   return (
-    <main className="min-h-screen flex items-center justify-center bg-[radial-gradient(circle_at_20%_20%,#F8EBD0,transparent_60%),linear-gradient(180deg,#14213D,#0E0E0E)]">
+    <main className="min-h-screen flex items-center justify-center bg-[radial-gradient(circle_at_20%_20%,#F8EBD0,transparent_60%),linear-gradient(180deg,#14213D,#0E0E0E)] relative">
+      {/* Language Selector */}
+      <div className="absolute top-4 right-4 z-10">
+        <LanguageSelector />
+      </div>
+
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="text-center">
           {/* Logo with Slogan */}
