@@ -9,12 +9,20 @@ export default function HomePage() {
           {/* Logo with Slogan */}
           <div className="flex justify-center mb-8">
             <Image
+              src="/touchbase-logo.png"
+              alt="TouchBase - Your dugout in the cloud"
+              width={400}
+              height={400}
+              priority
+              className="w-auto h-40 drop-shadow-2xl hidden md:block"
+            />
+            <Image
               src="/touchbase-slogan-logo.png"
               alt="TouchBase - Your dugout in the cloud"
               width={400}
               height={400}
               priority
-              className="w-auto h-40 drop-shadow-2xl"
+              className="w-auto h-40 drop-shadow-2xl block md:hidden"
             />
           </div>
           <p className="text-xl text-[--color-tb-bone] mb-12 font-medium">
@@ -64,7 +72,7 @@ export default function HomePage() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               href="/login"
-              className="inline-flex items-center justify-center px-8 py-3 border border-transparent font-display tracking-wide rounded-xl text-white bg-[--color-tb-navy] hover:bg-[--color-tb-ink] shadow-dugout transition-all md:py-4 md:text-lg md:px-10 active:translate-y-[1px]"
+              className="inline-flex items-center justify-center px-6 py-2 border border-transparent font-display tracking-wide rounded-xl text-white bg-[--color-tb-navy] hover:bg-[--color-tb-ink] shadow-dugout transition-all active:translate-y-[1px]"
             >
               Iniciar Sesión
             </Link>
