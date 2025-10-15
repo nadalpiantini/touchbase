@@ -2,14 +2,18 @@
 
 import { useState } from "react";
 import { supabaseBrowser } from "@/lib/supabase/client";
+import { useRouter } from "next/navigation";
 import Link from "next/link";
 
 export default function SignUpPage() {
   const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState(false);
   const supabase = supabaseBrowser();
+  const router = useRouter();
 
   const handleSignUp = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -17,21 +21,35 @@ export default function SignUpPage() {
     setError(null);
     setSuccess(false);
 
+    // Validar que las contraseñas coincidan
+    if (password !== confirmPassword) {
+      setError("Las contraseñas no coinciden");
+      setLoading(false);
+      return;
+    }
+
+    // Validar longitud mínima de contraseña
+    if (password.length < 6) {
+      setError("La contraseña debe tener al menos 6 caracteres");
+      setLoading(false);
+      return;
+    }
+
     try {
-      // Use signInWithOtp for both login and signup
-      // Supabase will automatically create an account if it doesn't exist
-      const { error } = await supabase.auth.signInWithOtp({
+      const { error } = await supabase.auth.signUp({
         email,
-        options: {
-          emailRedirectTo: `https://touchbase-74y4upr6i-nadalpiantini-fcbc2d66.vercel.app/auth/callback`,
-        }
+        password,
       });
 
       if (error) throw error;
 
       setSuccess(true);
+      // Redirigir al dashboard después de 2 segundos
+      setTimeout(() => {
+        router.push("/dashboard");
+      }, 2000);
     } catch (err: any) {
-      setError(err.message || "An error occurred sending the magic link");
+      setError(err.message || "Error al crear la cuenta");
     } finally {
       setLoading(false);
     }
@@ -59,14 +77,11 @@ export default function SignUpPage() {
               </div>
               <div className="ml-3">
                 <h3 className="text-sm font-medium text-green-800">
-                  ¡Magic Link enviado!
+                  ¡Cuenta creada exitosamente!
                 </h3>
                 <div className="mt-2 text-sm text-green-700">
                   <p>
-                    Revisa tu email ({email}) y haz clic en el link para crear tu cuenta y entrar.
-                  </p>
-                  <p className="mt-1">
-                    El link expira en 1 hora.
+                    Tu cuenta ha sido creada. Redirigiendo al dashboard...
                   </p>
                 </div>
               </div>
@@ -74,10 +89,10 @@ export default function SignUpPage() {
           </div>
         ) : (
           <form className="mt-8 space-y-6" onSubmit={handleSignUp}>
-            <div className="rounded-md shadow-sm">
+            <div className="space-y-4">
               <div>
                 <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
-                  Email address
+                  Email
                 </label>
                 <input
                   id="email"
@@ -89,6 +104,38 @@ export default function SignUpPage() {
                   placeholder="tu@email.com"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
+                />
+              </div>
+              <div>
+                <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-2">
+                  Contraseña
+                </label>
+                <input
+                  id="password"
+                  name="password"
+                  type="password"
+                  autoComplete="new-password"
+                  required
+                  className="appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                  placeholder="Mínimo 6 caracteres"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+              </div>
+              <div>
+                <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-700 mb-2">
+                  Confirmar Contraseña
+                </label>
+                <input
+                  id="confirmPassword"
+                  name="confirmPassword"
+                  type="password"
+                  autoComplete="new-password"
+                  required
+                  className="appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                  placeholder="Repite tu contraseña"
+                  value={confirmPassword}
+                  onChange={(e) => setConfirmPassword(e.target.value)}
                 />
               </div>
             </div>
@@ -105,7 +152,7 @@ export default function SignUpPage() {
                 disabled={loading}
                 className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                {loading ? "Enviando..." : "Crear cuenta con Magic Link"}
+                {loading ? "Creando cuenta..." : "Crear Cuenta"}
               </button>
             </div>
 
@@ -117,18 +164,6 @@ export default function SignUpPage() {
               </div>
             </div>
 
-            <div className="mt-6">
-              <div className="relative">
-                <div className="absolute inset-0 flex items-center">
-                  <div className="w-full border-t border-gray-300" />
-                </div>
-                <div className="relative flex justify-center text-sm">
-                  <span className="px-2 bg-gray-50 text-gray-500">
-                    Sin contraseñas, solo Magic Links
-                  </span>
-                </div>
-              </div>
-            </div>
           </form>
         )}
       </div>
