@@ -1,4 +1,5 @@
-require('dotenv').config({ path: '.env.local' });
+import { config } from 'dotenv';
+config({ path: '.env.local' });
 
 const keys = [
   "NEXT_PUBLIC_SUPABASE_URL",

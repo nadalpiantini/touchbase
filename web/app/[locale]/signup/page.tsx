@@ -5,11 +5,13 @@ import { supabaseClient } from "@/lib/supabase/client";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
+import { useTranslations } from 'next-intl';
 
 // Use the singleton client at module level
 const supabase = supabaseClient!;
 
 export default function SignUpPage() {
+  const t = useTranslations('signup');
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -26,14 +28,14 @@ export default function SignUpPage() {
 
     // Validar que las contraseñas coincidan
     if (password !== confirmPassword) {
-      setError("Las contraseñas no coinciden");
+      setError(t('errors.passwordMismatch'));
       setLoading(false);
       return;
     }
 
     // Validar longitud mínima de contraseña
     if (password.length < 6) {
-      setError("La contraseña debe tener al menos 6 caracteres");
+      setError(t('errors.passwordTooShort'));
       setLoading(false);
       return;
     }
@@ -51,8 +53,8 @@ export default function SignUpPage() {
       setTimeout(() => {
         router.push("/dashboard");
       }, 2000);
-    } catch (err: any) {
-      setError(err.message || "Error al crear la cuenta");
+    } catch (err: unknown) {
+      setError(err instanceof Error ? err.message : t('errors.genericError'));
     } finally {
       setLoading(false);
     }
@@ -71,10 +73,10 @@ export default function SignUpPage() {
             className="w-auto h-25 mb-4"
           />
           <h2 className="text-center text-3xl font-extrabold text-gray-900">
-            Crear cuenta en TouchBase
+            {t('title')}
           </h2>
           <p className="mt-2 text-center text-sm text-gray-600">
-            Sistema de gestión deportiva
+            {t('subtitle')}
           </p>
         </div>
 
@@ -88,11 +90,11 @@ export default function SignUpPage() {
               </div>
               <div className="ml-3">
                 <h3 className="text-sm font-medium text-green-800">
-                  ¡Cuenta creada exitosamente!
+                  {t('success.title')}
                 </h3>
                 <div className="mt-2 text-sm text-green-700">
                   <p>
-                    Tu cuenta ha sido creada. Redirigiendo al dashboard...
+                    {t('success.message')}
                   </p>
                 </div>
               </div>
@@ -103,7 +105,7 @@ export default function SignUpPage() {
             <div className="space-y-4">
               <div>
                 <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
-                  Email
+                  {t('form.emailPlaceholder')}
                 </label>
                 <input
                   id="email"
@@ -112,14 +114,14 @@ export default function SignUpPage() {
                   autoComplete="email"
                   required
                   className="appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                  placeholder="tu@email.com"
+                  placeholder={t('form.emailPlaceholder')}
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                 />
               </div>
               <div>
                 <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-2">
-                  Contraseña
+                  {t('form.passwordPlaceholder')}
                 </label>
                 <input
                   id="password"
@@ -128,14 +130,14 @@ export default function SignUpPage() {
                   autoComplete="new-password"
                   required
                   className="appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                  placeholder="Mínimo 6 caracteres"
+                  placeholder={t('form.passwordPlaceholder')}
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                 />
               </div>
               <div>
                 <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-700 mb-2">
-                  Confirmar Contraseña
+                  {t('form.confirmPasswordPlaceholder')}
                 </label>
                 <input
                   id="confirmPassword"
@@ -144,7 +146,7 @@ export default function SignUpPage() {
                   autoComplete="new-password"
                   required
                   className="appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                  placeholder="Repite tu contraseña"
+                  placeholder={t('form.confirmPasswordPlaceholder')}
                   value={confirmPassword}
                   onChange={(e) => setConfirmPassword(e.target.value)}
                 />
@@ -163,14 +165,14 @@ export default function SignUpPage() {
                 disabled={loading}
                 className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                {loading ? "Creando cuenta..." : "Crear Cuenta"}
+                {loading ? t('form.submittingButton') : t('form.submitButton')}
               </button>
             </div>
 
             <div className="flex items-center justify-between">
               <div className="text-sm">
                 <Link href="/login" className="font-medium text-indigo-600 hover:text-indigo-500">
-                  ¿Ya tienes cuenta? Entra aquí
+                  {t('footer.hasAccount')} {t('footer.loginLink')}
                 </Link>
               </div>
             </div>

@@ -24,7 +24,7 @@ export async function POST(req: Request) {
   }
 
   // Preparar payload (team_id es opcional)
-  const payload: any = { 
+  const payload: { org_id: string; full_name: string; team_id?: string } = { 
     org_id: current.org_id, 
     full_name: full_name.trim() 
   };
