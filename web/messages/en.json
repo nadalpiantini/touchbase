@@ -1,0 +1,65 @@
+{
+  "common": {
+    "email": "Email",
+    "password": "Password",
+    "confirmPassword": "Confirm Password"
+  },
+  "landing": {
+    "tagline": "Modern Sports Club Management System",
+    "cta": {
+      "login": "Sign In"
+    },
+    "features": {
+      "players": {
+        "title": "Player Management",
+        "description": "Manage rosters, statistics and performance"
+      },
+      "analytics": {
+        "title": "Real-Time Analytics",
+        "description": "Up-to-the-minute statistics and metrics"
+      },
+      "mobile": {
+        "title": "Mobile Access",
+        "description": "Manage your team from any device"
+      }
+    }
+  },
+  "login": {
+    "title": "TouchBase Login",
+    "subtitle": "Access your sports management system",
+    "form": {
+      "emailPlaceholder": "your@email.com",
+      "passwordPlaceholder": "Your password",
+      "submitButton": "Sign In",
+      "submittingButton": "Signing in..."
+    },
+    "footer": {
+      "firstTime": "First time?",
+      "createAccount": "Create an account"
+    }
+  },
+  "signup": {
+    "title": "Create TouchBase Account",
+    "subtitle": "Sports management system",
+    "form": {
+      "emailPlaceholder": "your@email.com",
+      "passwordPlaceholder": "Minimum 6 characters",
+      "confirmPasswordPlaceholder": "Repeat your password",
+      "submitButton": "Create Account",
+      "submittingButton": "Creating account..."
+    },
+    "success": {
+      "title": "Account created successfully!",
+      "message": "Your account has been created. Redirecting to dashboard..."
+    },
+    "errors": {
+      "passwordMismatch": "Passwords do not match",
+      "passwordTooShort": "Password must be at least 6 characters",
+      "genericError": "Error creating account"
+    },
+    "footer": {
+      "hasAccount": "Already have an account?",
+      "loginLink": "Sign in here"
+    }
+  }
+}

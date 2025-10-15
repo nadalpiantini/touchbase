@@ -1,0 +1,65 @@
+{
+  "common": {
+    "email": "Email",
+    "password": "Contraseña",
+    "confirmPassword": "Confirmar Contraseña"
+  },
+  "landing": {
+    "tagline": "Sistema Moderno de Gestión de Clubes Deportivos",
+    "cta": {
+      "login": "Iniciar Sesión"
+    },
+    "features": {
+      "players": {
+        "title": "Gestión de Jugadores",
+        "description": "Administra rosters, estadísticas y rendimiento"
+      },
+      "analytics": {
+        "title": "Análisis en Tiempo Real",
+        "description": "Estadísticas y métricas actualizadas al instante"
+      },
+      "mobile": {
+        "title": "Acceso Móvil",
+        "description": "Gestiona tu equipo desde cualquier dispositivo"
+      }
+    }
+  },
+  "login": {
+    "title": "TouchBase Login",
+    "subtitle": "Accede a tu sistema de gestión deportiva",
+    "form": {
+      "emailPlaceholder": "tu@email.com",
+      "passwordPlaceholder": "Tu contraseña",
+      "submitButton": "Iniciar Sesión",
+      "submittingButton": "Iniciando sesión..."
+    },
+    "footer": {
+      "firstTime": "¿Primera vez?",
+      "createAccount": "Crea una cuenta"
+    }
+  },
+  "signup": {
+    "title": "Crear cuenta en TouchBase",
+    "subtitle": "Sistema de gestión deportiva",
+    "form": {
+      "emailPlaceholder": "tu@email.com",
+      "passwordPlaceholder": "Mínimo 6 caracteres",
+      "confirmPasswordPlaceholder": "Repite tu contraseña",
+      "submitButton": "Crear Cuenta",
+      "submittingButton": "Creando cuenta..."
+    },
+    "success": {
+      "title": "¡Cuenta creada exitosamente!",
+      "message": "Tu cuenta ha sido creada. Redirigiendo al dashboard..."
+    },
+    "errors": {
+      "passwordMismatch": "Las contraseñas no coinciden",
+      "passwordTooShort": "La contraseña debe tener al menos 6 caracteres",
+      "genericError": "Error al crear la cuenta"
+    },
+    "footer": {
+      "hasAccount": "¿Ya tienes cuenta?",
+      "loginLink": "Entra aquí"
+    }
+  }
+}

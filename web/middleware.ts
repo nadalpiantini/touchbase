@@ -1,20 +1,38 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 import { createServerClient, type CookieOptions } from "@supabase/ssr";
+import createIntlMiddleware from 'next-intl/middleware';
+import { locales, defaultLocale } from './i18n/config';
+
+// Create the i18n middleware
+const intlMiddleware = createIntlMiddleware({
+  locales,
+  defaultLocale,
+  localePrefix: 'as-needed' // Don't add locale prefix for default locale
+});
 
 export async function middleware(request: NextRequest) {
-  const response = NextResponse.next();
   const url = new URL(request.url);
+  const pathname = url.pathname;
 
-  // Skip middleware for public routes
-  const publicRoutes = ["/", "/login", "/register", "/api/auth"];
-  const isPublicRoute = publicRoutes.some((route) =>
-    url.pathname === route || url.pathname.startsWith("/api/auth/")
+  // Handle locale detection first
+  const intlResponse = intlMiddleware(request);
+
+  // Skip auth middleware for public routes
+  const publicPaths = ["/", "/login", "/signup", "/api/auth"];
+  const isPublicRoute = publicPaths.some((route) =>
+    pathname === route ||
+    pathname.startsWith("/en" + route) ||
+    pathname.startsWith("/es" + route) ||
+    pathname.startsWith("/api/auth/")
   );
 
   if (isPublicRoute) {
-    return response;
+    return intlResponse;
   }
+
+  // Create response based on intl middleware
+  const response = intlResponse || NextResponse.next();
 
   // Create Supabase client for middleware
   const supabase = createServerClient(
@@ -45,19 +63,24 @@ export async function middleware(request: NextRequest) {
   const { data: { user }, error } = await supabase.auth.getUser();
 
   // Protected routes check
-  const protectedRoutes = ["/dashboard"];
-  const isProtectedRoute = protectedRoutes.some((route) =>
-    url.pathname.startsWith(route)
+  const protectedPaths = ["/dashboard"];
+  const isProtectedRoute = protectedPaths.some((route) =>
+    pathname.startsWith(route) ||
+    pathname.startsWith("/en" + route) ||
+    pathname.startsWith("/es" + route)
   );
 
   if (isProtectedRoute && (!user || error)) {
-    // Redirect to login if not authenticated
-    return NextResponse.redirect(new URL("/login", request.url));
+    // Redirect to login if not authenticated, preserving locale
+    const locale = pathname.startsWith("/en") ? "/en" : pathname.startsWith("/es") ? "/es" : "";
+    return NextResponse.redirect(new URL(`${locale}/login`, request.url));
   }
 
   // Redirect to dashboard if authenticated and on login page
-  if (user && url.pathname === "/login") {
-    return NextResponse.redirect(new URL("/dashboard", request.url));
+  const loginPaths = ["/login", "/en/login", "/es/login"];
+  if (user && loginPaths.includes(pathname)) {
+    const locale = pathname.startsWith("/en") ? "/en" : pathname.startsWith("/es") ? "/es" : "";
+    return NextResponse.redirect(new URL(`${locale}/dashboard`, request.url));
   }
 
   return response;

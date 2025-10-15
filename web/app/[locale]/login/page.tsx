@@ -4,11 +4,12 @@ import { useState } from "react";
 import { supabaseClient } from "@/lib/supabase/client";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
+import { useTranslations } from 'next-intl';
 
-// Use the singleton client at module level
 const supabase = supabaseClient!;
 
 export default function LoginPage() {
+  const t = useTranslations('login');
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
@@ -28,7 +29,6 @@ export default function LoginPage() {
 
       if (error) throw error;
 
-      // Redirigir al dashboard después del login exitoso
       router.push("/dashboard");
     } catch (err: any) {
       setError(err.message || "Error al iniciar sesión");
@@ -50,10 +50,10 @@ export default function LoginPage() {
             className="w-auto h-50 mb-6"
           />
           <h2 className="text-center text-3xl font-display font-bold text-[--color-tb-navy]">
-            TouchBase Login
+            {t('title')}
           </h2>
           <p className="mt-2 text-center text-sm text-[--color-tb-shadow]">
-            Accede a tu sistema de gestión deportiva
+            {t('subtitle')}
           </p>
         </div>
 
@@ -61,7 +61,7 @@ export default function LoginPage() {
           <div className="space-y-4">
             <div>
               <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
-                Email
+                {t('form.emailPlaceholder')}
               </label>
               <input
                 id="email"
@@ -70,14 +70,14 @@ export default function LoginPage() {
                 autoComplete="email"
                 required
                 className="appearance-none relative block w-full px-3 py-2 border border-[--color-tb-line] placeholder-[--color-tb-shadow]/50 text-[--color-tb-ink] rounded-lg focus:outline-none focus:ring-2 focus:ring-[--color-tb-stitch]/60 focus:border-[--color-tb-stitch] transition sm:text-sm"
-                placeholder="tu@email.com"
+                placeholder={t('form.emailPlaceholder')}
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
               />
             </div>
             <div>
               <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-2">
-                Contraseña
+                {t('form.passwordPlaceholder')}
               </label>
               <input
                 id="password"
@@ -86,7 +86,7 @@ export default function LoginPage() {
                 autoComplete="current-password"
                 required
                 className="appearance-none relative block w-full px-3 py-2 border border-[--color-tb-line] placeholder-[--color-tb-shadow]/50 text-[--color-tb-ink] rounded-lg focus:outline-none focus:ring-2 focus:ring-[--color-tb-stitch]/60 focus:border-[--color-tb-stitch] transition sm:text-sm"
-                placeholder="Tu contraseña"
+                placeholder={t('form.passwordPlaceholder')}
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
@@ -105,13 +105,13 @@ export default function LoginPage() {
               disabled={loading}
               className="group relative w-full flex justify-center py-3 px-4 border border-transparent font-display tracking-wide rounded-xl text-white bg-[--color-tb-red] hover:bg-[--color-tb-stitch] shadow-dugout focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[--color-tb-red]/50 disabled:opacity-50 disabled:cursor-not-allowed transition-all active:translate-y-[1px]"
             >
-              {loading ? "Iniciando sesión..." : "Iniciar Sesión"}
+              {loading ? t('form.submittingButton') : t('form.submitButton')}
             </button>
           </div>
 
           <div className="text-center">
             <p className="text-sm text-gray-600">
-              ¿Primera vez? <a href="/signup" className="font-medium text-[--color-tb-navy] hover:text-[--color-tb-stitch] transition">Crea una cuenta</a>
+              {t('footer.firstTime')} <a href="/signup" className="font-medium text-[--color-tb-navy] hover:text-[--color-tb-stitch] transition">{t('footer.createAccount')}</a>
             </p>
           </div>
         </form>
