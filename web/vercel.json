@@ -1,31 +1,10 @@
 {
   "version": 2,
-  "name": "touchbase-sujeto10",
   "framework": "nextjs",
   "buildCommand": "npm run build",
-  "outputDirectory": ".next",
   "installCommand": "npm ci",
   "devCommand": "npm run dev",
-  "ignoreCommand": "git diff HEAD^ HEAD --quiet .",
-  "functions": {
-    "api/**/*.ts": {
-      "runtime": "nodejs20.x",
-      "maxDuration": 10
-    }
-  },
   "regions": ["iad1"],
-  "git": {
-    "deploymentEnabled": {
-      "main": true,
-      "master": true
-    }
-  },
-  "rewrites": [
-    {
-      "source": "/legacy/:path*",
-      "destination": "https://legacy.sujeto10.com/:path*"
-    }
-  ],
   "env": {
     "NEXT_PUBLIC_APP_ENV": "production",
     "NEXT_PUBLIC_APP_URL": "https://touchbase.sujeto10.com"
