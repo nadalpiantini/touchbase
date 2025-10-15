@@ -150,7 +150,7 @@ GRANT EXECUTE ON FUNCTION public.touchbase_list_teams_current_org() TO authentic
 
 -- RPC: Listar jugadores de la org actual (opcional: filtrar por team)
 CREATE OR REPLACE FUNCTION public.touchbase_list_players_current_org(p_team_id UUID DEFAULT NULL)
-RETURNS TABLE(id UUID, full_name TEXT, team_id UUID, jersey_number INTEGER, position TEXT, created_at TIMESTAMPTZ)
+RETURNS TABLE(id UUID, full_name TEXT, team_id UUID, jersey_number INTEGER, "position" TEXT, created_at TIMESTAMPTZ)
 LANGUAGE SQL
 SECURITY DEFINER
 SET search_path = public

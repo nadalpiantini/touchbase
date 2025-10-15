@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { supabaseServer } from "@/lib/supabase/server";
 
-export async function GET() {
+export async function POST(req: Request) {
   const s = supabaseServer();
   const { data: { user } } = await s.auth.getUser();
   
@@ -9,16 +9,18 @@ export async function GET() {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
-  // Usar query directa con filtro de deleted_at
-  const { data, error } = await s
-    .from("touchbase_teams")
-    .select("id, name, category, created_at, updated_at")
-    .is("deleted_at", null)
-    .order("created_at", { ascending: false });
+  const { id } = await req.json().catch(() => ({}));
+  
+  if (!id) {
+    return NextResponse.json({ error: "Missing id" }, { status: 400 });
+  }
+
+  // Usar RPC que respeta roles
+  const { error } = await s.rpc("touchbase_restore_player", { p_player: id });
   
   if (error) {
     return NextResponse.json({ error: error.message }, { status: 400 });
   }
 
-  return NextResponse.json({ teams: data ?? [] });
+  return NextResponse.json({ ok: true });
 }

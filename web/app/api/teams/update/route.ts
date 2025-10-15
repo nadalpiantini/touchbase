@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { supabaseServer } from "@/lib/supabase/server";
 
-export async function GET() {
+export async function PATCH(req: Request) {
   const s = supabaseServer();
   const { data: { user } } = await s.auth.getUser();
   
@@ -9,16 +9,23 @@ export async function GET() {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
-  // Usar query directa con filtro de deleted_at
+  const { id, name } = await req.json().catch(() => ({}));
+  
+  if (!id || !name || String(name).trim().length < 2) {
+    return NextResponse.json({ error: "Datos inválidos" }, { status: 400 });
+  }
+
   const { data, error } = await s
     .from("touchbase_teams")
-    .select("id, name, category, created_at, updated_at")
+    .update({ name: String(name).trim(), updated_at: new Date().toISOString() })
+    .eq("id", id)
     .is("deleted_at", null)
-    .order("created_at", { ascending: false });
-  
+    .select("id")
+    .maybeSingle();
+
   if (error) {
     return NextResponse.json({ error: error.message }, { status: 400 });
   }
 
-  return NextResponse.json({ teams: data ?? [] });
+  return NextResponse.json({ ok: true, id: data?.id });
 }
