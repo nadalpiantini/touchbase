@@ -25,8 +25,8 @@ export default function PlayersTable() {
       if (plist.error) throw new Error(plist.error);
       setPlayers(plist.players ?? []);
       setTeams(tlist.teams ?? []);
-    } catch (e: any) {
-      setErr(e?.message || "Error");
+    } catch (e: unknown) {
+      setErr(e instanceof Error ? e.message : "Error");
     } finally {
       setLoading(false);
     }

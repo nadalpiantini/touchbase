@@ -25,8 +25,8 @@ export default function OrgDropdown() {
         const cur = curJson.org?.[0] ?? null;
         setCurrent(cur);
         setOrgs(listJson.orgs ?? []);
-      } catch (e: any) {
-        setMsg(e?.message || "Error");
+      } catch (e: unknown) {
+        setMsg(e instanceof Error ? e.message : "Error");
       } finally {
         setLoading(false);
       }

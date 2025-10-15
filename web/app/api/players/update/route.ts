@@ -15,11 +15,15 @@ export async function PATCH(req: Request) {
     return NextResponse.json({ error: "Datos inválidos" }, { status: 400 });
   }
 
-  const payload: any = { 
+  const payload: {
+    full_name: string;
+    updated_at: string;
+    team_id?: string | null
+  } = {
     full_name: String(full_name).trim(),
     updated_at: new Date().toISOString()
   };
-  
+
   if (team_id !== undefined) {
     payload.team_id = team_id || null;
   }

@@ -1,5 +1,5 @@
-import { config } from 'dotenv';
-config({ path: '.env.local' });
+import * as dotenv from 'dotenv';
+dotenv.config({ path: '.env.local' });
 
 const keys = [
   "NEXT_PUBLIC_SUPABASE_URL",

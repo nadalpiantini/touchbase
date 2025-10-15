@@ -11,8 +11,8 @@ async function main() {
       const res = await fetch(url, { method: "GET" });
       console.log(`${res.ok ? "✅" : "❌"} ${res.status} ${url}`);
       if (!res.ok) ok = false;
-    } catch (e:any) {
-      console.log(`❌ ERR ${url} → ${e?.message}`);
+    } catch (e: unknown) {
+      console.log(`❌ ERR ${url} → ${e instanceof Error ? e.message : String(e)}`);
       ok = false;
     }
   }

@@ -23,8 +23,8 @@ export async function POST(req: Request) {
     }
 
     return NextResponse.json({ ok: true, org_id });
-  } catch (e: any) {
+  } catch (e: unknown) {
     console.error("Unexpected onboarding error:", e);
-    return NextResponse.json({ error: e?.message || "Unexpected error" }, { status: 500 });
+    return NextResponse.json({ error: e instanceof Error ? e.message : "Unexpected error" }, { status: 500 });
   }
 }

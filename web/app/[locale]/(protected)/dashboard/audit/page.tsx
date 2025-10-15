@@ -7,7 +7,7 @@ type Log = {
   entity_id: string;
   action: "create"|"update"|"soft_delete"|"restore"|"purge";
   actor: string | null;
-  meta: any;
+  meta: Record<string, unknown> | null;
   created_at: string;
 };
 
@@ -29,8 +29,8 @@ export default function AuditPage() {
       const json = await res.json();
       if (!res.ok) throw new Error(json?.error || "No se pudo cargar");
       setLogs(json.logs ?? []);
-    } catch (e:any) {
-      setErr(e?.message || "Error");
+    } catch (e: unknown) {
+      setErr(e instanceof Error ? e.message : "Error");
     } finally {
       setLoading(false);
     }

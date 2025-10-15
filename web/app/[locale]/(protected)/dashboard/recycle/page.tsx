@@ -24,7 +24,7 @@ export default function RecyclePage() {
     setTeams(tres.teams ?? []);
     setPlayers(pres.players ?? []);
     setGames(gres.games ?? []);
-    setTeamMap(new Map((allTeams.teams ?? []).map((t: any) => [t.id, t.name])));
+    setTeamMap(new Map((allTeams.teams ?? []).map((t: Team) => [t.id, t.name])));
   };
 
   useEffect(()=>{ load(); }, []);

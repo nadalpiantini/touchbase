@@ -20,9 +20,9 @@ export default function OnboardingKickoff({ suggestedName }: { suggestedName?: s
         setMsg("¡Listo! Redirigiendo…");
         // refresca para que el server ya vea default_org_id
         setTimeout(() => location.reload(), 800);
-      } catch (e: any) {
+      } catch (e: unknown) {
         setStatus("error");
-        setMsg(e?.message || "Error inesperado");
+        setMsg(e instanceof Error ? e.message : "Error inesperado");
       }
     };
 

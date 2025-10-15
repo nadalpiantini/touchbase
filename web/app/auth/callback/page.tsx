@@ -18,8 +18,8 @@ export default function AuthCallbackPage() {
 
         setMsg("¡Sesión iniciada! Redirigiendo…");
         window.location.replace("/dashboard");
-      } catch (e: any) {
-        setMsg(`Error: ${e?.message || "No se pudo iniciar sesión"}`);
+      } catch (e: unknown) {
+        setMsg(`Error: ${e instanceof Error ? e.message : "No se pudo iniciar sesión"}`);
       }
     };
     run();

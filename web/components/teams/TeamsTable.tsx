@@ -16,9 +16,9 @@ export default function TeamsTable() {
       const json = await res.json();
       if (!res.ok) throw new Error(json?.error || "No se pudo cargar");
       setTeams(json.teams ?? []);
-    } catch (e: any) {
-      setErr(e?.message || "Error");
-    } finally {
+    } catch (e: unknown) {
+      setErr(e instanceof Error ? e.message : "Error");
+    } finally{
       setLoading(false);
     }
   };
