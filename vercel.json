@@ -2,10 +2,7 @@
   "version": 2,
   "name": "touchbase-sujeto10",
   "framework": "nextjs",
-  "buildCommand": "npm run build",
-  "devCommand": "npm run dev",
-  "installCommand": "npm install",
-  "outputDirectory": ".next",
+  "rootDirectory": "web",
   "functions": {
     "api/**/*.ts": {
       "runtime": "nodejs20.x"
