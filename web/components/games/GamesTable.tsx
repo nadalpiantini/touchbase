@@ -1,24 +1,18 @@
 "use client";
 import { useEffect, useMemo, useState } from "react";
+import { useTranslations } from 'next-intl';
 
 type Game = {
-  id: string; 
-  starts_at: string; 
-  status: string; 
-  home_team_id: string; 
+  id: string;
+  starts_at: string;
+  status: string;
+  home_team_id: string;
   away_team_id: string;
-  home_score: number; 
-  away_score: number; 
+  home_score: number;
+  away_score: number;
   venue: string|null;
 };
 type Team = { id: string; name: string };
-
-const STATUS_LABELS: Record<string, string> = {
-  scheduled: "Programado",
-  live: "En Vivo",
-  final: "Finalizado",
-  canceled: "Cancelado"
-};
 
 const STATUS_COLORS: Record<string, string> = {
   scheduled: "bg-blue-100 text-blue-800",
@@ -28,10 +22,11 @@ const STATUS_COLORS: Record<string, string> = {
 };
 
 export default function GamesTable() {
+  const t = useTranslations('games');
   const [games, setGames] = useState<Game[]>([]);
   const [teams, setTeams] = useState<Team[]>([]);
   const [status, setStatus] = useState("");
-  const mapTeam = useMemo(()=>new Map(teams.map(t=>[t.id,t.name])),[teams]);
+  const mapTeam = useMemo(()=>new Map(teams.map(team=>[team.id,team.name])),[teams]);
 
   const load = async () => {
     const qs = status ? `?status=${status}` : "";
@@ -48,49 +43,49 @@ export default function GamesTable() {
 
   const saveScore = async (id:string, hs:number, as:number) => {
     const r = await fetch("/api/games/update-score", {
-      method:"PATCH", 
+      method:"PATCH",
       headers:{"Content-Type":"application/json"},
       body: JSON.stringify({ id, home_score: hs, away_score: as })
     });
-    if (!r.ok) alert((await r.json()).error||"Error"); 
+    if (!r.ok) alert((await r.json()).error||t('errors.generic'));
     else load();
   };
 
   const changeStatus = async (id:string, st:string) => {
     const r = await fetch("/api/games/status", {
-      method:"PATCH", 
+      method:"PATCH",
       headers:{"Content-Type":"application/json"},
       body: JSON.stringify({ id, status: st })
     });
-    if (!r.ok) alert((await r.json()).error||"Error"); 
+    if (!r.ok) alert((await r.json()).error||t('errors.generic'));
     else load();
   };
 
   const deleteGame = async (id: string) => {
-    if (!confirm("¿Mover este partido a la papelera?")) return;
+    if (!confirm(t('confirmDelete'))) return;
     const r = await fetch("/api/games/soft-delete", {
       method: "POST",
       headers: {"Content-Type":"application/json"},
       body: JSON.stringify({ id })
     });
-    if (!r.ok) alert((await r.json()).error||"Error");
+    if (!r.ok) alert((await r.json()).error||t('errors.generic'));
     else load();
   };
 
   return (
     <div className="space-y-4">
       <div className="flex items-center gap-2">
-        <label className="text-sm font-medium text-gray-700">Filtrar por estado:</label>
-        <select 
-          className="border border-gray-300 rounded-md p-2 focus:ring-2 focus:ring-blue-500" 
-          value={status} 
+        <label className="text-sm font-medium text-gray-700">{t('filter.label')}</label>
+        <select
+          className="border border-gray-300 rounded-md p-2 focus:ring-2 focus:ring-blue-500"
+          value={status}
           onChange={e=>setStatus(e.target.value)}
         >
-          <option value="">Todos</option>
-          <option value="scheduled">Programados</option>
-          <option value="live">En Vivo</option>
-          <option value="final">Finalizados</option>
-          <option value="canceled">Cancelados</option>
+          <option value="">{t('filter.all')}</option>
+          <option value="scheduled">{t('filter.scheduled')}</option>
+          <option value="live">{t('filter.live')}</option>
+          <option value="final">{t('filter.final')}</option>
+          <option value="canceled">{t('filter.canceled')}</option>
         </select>
       </div>
 
@@ -98,12 +93,12 @@ export default function GamesTable() {
         <table className="w-full text-sm">
           <thead className="bg-gray-50 border-b">
             <tr>
-              <th className="p-3 text-left font-medium text-gray-700">Fecha</th>
-              <th className="p-3 text-left font-medium text-gray-700">Partido</th>
-              <th className="p-3 text-left font-medium text-gray-700">Lugar</th>
-              <th className="p-3 text-left font-medium text-gray-700">Estado</th>
-              <th className="p-3 text-left font-medium text-gray-700">Score</th>
-              <th className="p-3 text-left font-medium text-gray-700">Acciones</th>
+              <th className="p-3 text-left font-medium text-gray-700">{t('table.date')}</th>
+              <th className="p-3 text-left font-medium text-gray-700">{t('table.match')}</th>
+              <th className="p-3 text-left font-medium text-gray-700">{t('table.venue')}</th>
+              <th className="p-3 text-left font-medium text-gray-700">{t('table.status')}</th>
+              <th className="p-3 text-left font-medium text-gray-700">{t('table.score')}</th>
+              <th className="p-3 text-left font-medium text-gray-700">{t('table.actions')}</th>
             </tr>
           </thead>
           <tbody>
@@ -117,24 +112,24 @@ export default function GamesTable() {
                 </td>
                 <td className="p-3">
                   <div className="font-medium text-gray-900">
-                    {mapTeam.get(g.home_team_id) || "—"}
+                    {mapTeam.get(g.home_team_id) || t('noVenue')}
                   </div>
-                  <div className="text-gray-500 text-xs">vs</div>
+                  <div className="text-gray-500 text-xs">{t('vs')}</div>
                   <div className="font-medium text-gray-900">
-                    {mapTeam.get(g.away_team_id) || "—"}
+                    {mapTeam.get(g.away_team_id) || t('noVenue')}
                   </div>
                 </td>
-                <td className="p-3 text-gray-600">{g.venue ?? "—"}</td>
+                <td className="p-3 text-gray-600">{g.venue ?? t('noVenue')}</td>
                 <td className="p-3">
-                  <select 
+                  <select
                     className={`text-xs px-2 py-1 rounded-full border-0 font-medium ${STATUS_COLORS[g.status] || 'bg-gray-100 text-gray-800'}`}
-                    value={g.status} 
+                    value={g.status}
                     onChange={e=>changeStatus(g.id, e.target.value)}
                   >
-                    <option value="scheduled">Programado</option>
-                    <option value="live">En Vivo</option>
-                    <option value="final">Finalizado</option>
-                    <option value="canceled">Cancelado</option>
+                    <option value="scheduled">{t('status.scheduled')}</option>
+                    <option value="live">{t('status.live')}</option>
+                    <option value="final">{t('status.final')}</option>
+                    <option value="canceled">{t('status.canceled')}</option>
                   </select>
                 </td>
                 <td className="p-3">
@@ -149,7 +144,7 @@ export default function GamesTable() {
                     onClick={() => deleteGame(g.id)}
                     className="text-red-600 hover:text-red-800 text-xs font-medium"
                   >
-                    Eliminar
+                    {t('actions.delete')}
                   </button>
                 </td>
               </tr>
@@ -157,7 +152,7 @@ export default function GamesTable() {
             {games.length===0 && (
               <tr>
                 <td className="p-8 text-center text-gray-500" colSpan={6}>
-                  No hay partidos para mostrar
+                  {t('empty')}
                 </td>
               </tr>
             )}

@@ -2,13 +2,13 @@
   "version": 2,
   "name": "touchbase-sujeto10",
   "framework": "nextjs",
-  "buildCommand": "cd web && npm run build",
-  "outputDirectory": "web/.next",
-  "installCommand": "cd web && npm ci",
-  "devCommand": "cd web && npm run dev",
+  "buildCommand": "npm run build",
+  "outputDirectory": ".next",
+  "installCommand": "npm ci",
+  "devCommand": "npm run dev",
   "ignoreCommand": "git diff HEAD^ HEAD --quiet .",
   "functions": {
-    "web/api/**/*.ts": {
+    "api/**/*.ts": {
       "runtime": "nodejs20.x",
       "maxDuration": 10
     }
