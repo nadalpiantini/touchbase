@@ -35,6 +35,10 @@ export const metadata: Metadata = {
   description: "Sistema moderno de gestión de clubes deportivos. Your dugout in the cloud.",
 };
 
+export function generateStaticParams() {
+  return locales.map((locale) => ({ locale }));
+}
+
 export default async function LocaleLayout({
   children,
   params
