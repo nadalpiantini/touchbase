@@ -15,6 +15,11 @@ export async function middleware(request: NextRequest) {
   const url = new URL(request.url);
   const pathname = url.pathname;
 
+  // Skip i18n middleware for API routes
+  if (pathname.startsWith('/api/')) {
+    return NextResponse.next();
+  }
+
   // Handle locale detection first
   const intlResponse = intlMiddleware(request);
 
