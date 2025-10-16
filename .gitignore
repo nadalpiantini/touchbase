@@ -83,6 +83,7 @@ docs/.doctrees/
 
 # Deployment
 .vercel/
+!web/.vercel/project.json
 .netlify/
 *.tar.gz
 *.zip
