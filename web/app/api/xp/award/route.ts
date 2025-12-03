@@ -24,7 +24,6 @@ export async function POST(req: Request) {
 
     return NextResponse.json({ success: true, ...result });
   } catch (error: unknown) {
-    console.error("Award XP error:", error);
     return NextResponse.json(
       { error: error instanceof Error ? error.message : "Failed to award XP" },
       { status: 400 }

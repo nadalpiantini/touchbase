@@ -15,7 +15,6 @@ export async function GET(req: Request) {
 
     return NextResponse.json({ badges });
   } catch (error: unknown) {
-    console.error("Get badges error:", error);
     return NextResponse.json(
       { error: error instanceof Error ? error.message : "Failed to get badges" },
       { status: 400 }
