@@ -4,19 +4,24 @@ import { useState, useEffect } from "react";
 import { useParams, useRouter } from "next/navigation";
 import { useTranslations, useLocale } from "next-intl";
 import { Card, CardContent, CardHeader, CardTitle, Button, Input } from "@/components/ui";
-import { StepType, ContentStepData, QuizStepData, ScenarioStepData } from "@/lib/types/education";
+import { StepType, ContentStepData, QuizStepData, ScenarioStepData, ModuleStep } from "@/lib/types/education";
 
-export default function CreateStepPage() {
-  const t = useTranslations("teacher.modules.steps.create");
+export default function EditStepPage() {
+  const t = useTranslations("teacher.modules.steps.edit");
   const locale = useLocale();
   const params = useParams();
   const router = useRouter();
   const moduleId = params.id as string;
+  const stepId = params.stepId as string;
 
+  const [loading, setLoading] = useState(true);
+  const [saving, setSaving] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [step, setStep] = useState<ModuleStep | null>(null);
+
+  // Form fields
   const [stepType, setStepType] = useState<StepType>("content");
   const [orderIndex, setOrderIndex] = useState(1);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
 
   // Content step fields
   const [contentText, setContentText] = useState("");
@@ -35,23 +40,49 @@ export default function CreateStepPage() {
   ]);
 
   useEffect(() => {
-    // Fetch existing steps to determine next order_index
-    const fetchSteps = async () => {
-      try {
-        const res = await fetch(`/api/modules/${moduleId}`);
-        const json = await res.json();
-        if (res.ok && json.steps) {
-          const maxOrder = json.steps.length > 0
-            ? Math.max(...json.steps.map((s: any) => s.order_index))
-            : 0;
-          setOrderIndex(maxOrder + 1);
+    loadStep();
+  }, [moduleId, stepId]);
+
+  const loadStep = async () => {
+    try {
+      const res = await fetch(`/api/modules/${moduleId}`);
+      const json = await res.json();
+      if (res.ok && json.steps) {
+        const foundStep = json.steps.find((s: ModuleStep) => s.id === stepId);
+        if (!foundStep) {
+          setError(t('errors.stepNotFound'));
+          return;
         }
-      } catch (e) {
-        // Ignore errors, default to 1
+        setStep(foundStep);
+        setStepType(foundStep.step_type);
+        setOrderIndex(foundStep.order_index);
+
+        // Populate fields based on step type
+        if (foundStep.step_type === "content") {
+          const data = foundStep.content_data as ContentStepData;
+          setContentText(data.text || "");
+          setMediaUrl(data.mediaUrl || "");
+          setMediaType(data.mediaType || "image");
+        } else if (foundStep.step_type === "quiz") {
+          const data = foundStep.content_data as QuizStepData;
+          setQuestion(data.question || "");
+          setOptions(data.options || [""]);
+          setCorrectIndex(data.correctIndex || 0);
+        } else {
+          // scenario
+          const data = foundStep.content_data as ScenarioStepData;
+          setPrompt(data.prompt || "");
+          setScenarioOptions(data.options || [{ text: "", consequence: "" }]);
+        }
+      } else {
+        setError(json.error || t('errors.loadFailed'));
       }
-    };
-    fetchSteps();
-  }, [moduleId]);
+    } catch (e: any) {
+      setError(e.message || t('errors.loadFailed'));
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const handleAddOption = () => {
     if (stepType === "quiz") {
@@ -88,7 +119,7 @@ export default function CreateStepPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setLoading(true);
+    setSaving(true);
     setError(null);
 
     try {
@@ -134,11 +165,11 @@ export default function CreateStepPage() {
       }
 
       const res = await fetch(`/api/modules/${moduleId}/steps`, {
-        method: "POST",
+        method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
+          stepId,
           order_index: orderIndex,
-          step_type: stepType,
           content_data,
         }),
       });
@@ -146,16 +177,47 @@ export default function CreateStepPage() {
       const json = await res.json();
 
       if (!res.ok) {
-        throw new Error(json.error || t('errors.createFailed'));
+        throw new Error(json.error || t('errors.updateFailed'));
       }
 
       router.push(`/${locale}/teacher/modules/${moduleId}`);
     } catch (e: any) {
-      setError(e.message || t('errors.createFailed'));
+      setError(e.message || t('errors.updateFailed'));
     } finally {
-      setLoading(false);
+      setSaving(false);
     }
   };
+
+  if (loading) {
+    return (
+      <div className="max-w-3xl mx-auto">
+        <Card>
+          <CardContent className="text-center py-12">
+            <p className="text-[--color-tb-shadow]">{t('loading')}</p>
+          </CardContent>
+        </Card>
+      </div>
+    );
+  }
+
+  if (error && !step) {
+    return (
+      <div className="max-w-3xl mx-auto">
+        <Card>
+          <CardContent className="text-center py-12">
+            <p className="text-red-600">{error}</p>
+            <Button
+              variant="ghost"
+              onClick={() => router.push(`/${locale}/teacher/modules/${moduleId}`)}
+              className="mt-4"
+            >
+              {t('backToModule')}
+            </Button>
+          </CardContent>
+        </Card>
+      </div>
+    );
+  }
 
   return (
     <div className="max-w-3xl mx-auto">
@@ -165,21 +227,15 @@ export default function CreateStepPage() {
         </CardHeader>
         <CardContent>
           <form onSubmit={handleSubmit} className="space-y-6">
-            {/* Step Type Selection */}
+            {/* Step Type (read-only in edit mode) */}
             <div>
               <label className="block text-sm font-medium text-[--color-tb-navy] mb-2">
                 {t('stepTypeLabel')}
               </label>
-              <select
-                className="flex h-10 w-full rounded-md border border-[--color-tb-line] bg-white px-3 py-2 text-sm text-[--color-tb-navy] focus:outline-none focus:ring-2 focus:ring-[--color-tb-red] disabled:cursor-not-allowed disabled:opacity-50"
-                value={stepType}
-                onChange={(e) => setStepType(e.target.value as StepType)}
-                disabled={loading}
-              >
-                <option value="content">{t('stepTypeContent')}</option>
-                <option value="quiz">{t('stepTypeQuiz')}</option>
-                <option value="scenario">{t('stepTypeScenario')}</option>
-              </select>
+              <div className="flex h-10 w-full rounded-md border border-[--color-tb-line] bg-[--color-tb-beige]/50 px-3 py-2 text-sm text-[--color-tb-navy] items-center">
+                {stepType === "content" ? t('stepTypeContent') : stepType === "quiz" ? t('stepTypeQuiz') : t('stepTypeScenario')}
+              </div>
+              <p className="text-xs text-[--color-tb-shadow] mt-1">{t('stepTypeReadOnly')}</p>
             </div>
 
             {/* Order Index */}
@@ -188,7 +244,7 @@ export default function CreateStepPage() {
               type="number"
               value={orderIndex}
               onChange={(e) => setOrderIndex(parseInt(e.target.value) || 1)}
-              disabled={loading}
+              disabled={saving}
               min={1}
             />
 
@@ -206,7 +262,7 @@ export default function CreateStepPage() {
                     placeholder={t('contentTextPlaceholder')}
                     value={contentText}
                     onChange={(e) => setContentText(e.target.value)}
-                    disabled={loading}
+                    disabled={saving}
                     required
                   />
                 </div>
@@ -220,7 +276,7 @@ export default function CreateStepPage() {
                     placeholder={t('mediaUrlPlaceholder')}
                     value={mediaUrl}
                     onChange={(e) => setMediaUrl(e.target.value)}
-                    disabled={loading}
+                    disabled={saving}
                   />
                 </div>
                 {mediaUrl && (
@@ -233,7 +289,7 @@ export default function CreateStepPage() {
                       className="flex h-10 w-full rounded-md border border-[--color-tb-line] bg-white px-3 py-2 text-sm text-[--color-tb-navy] focus:outline-none focus:ring-2 focus:ring-[--color-tb-red] disabled:cursor-not-allowed disabled:opacity-50"
                       value={mediaType}
                       onChange={(e) => setMediaType(e.target.value as "image" | "video" | "audio")}
-                      disabled={loading}
+                      disabled={saving}
                     >
                       <option value="image">{t('mediaTypeImage')}</option>
                       <option value="video">{t('mediaTypeVideo')}</option>
@@ -258,7 +314,7 @@ export default function CreateStepPage() {
                     placeholder={t('questionPlaceholder')}
                     value={question}
                     onChange={(e) => setQuestion(e.target.value)}
-                    disabled={loading}
+                    disabled={saving}
                     required
                   />
                 </div>
@@ -274,14 +330,14 @@ export default function CreateStepPage() {
                           name="correctOption"
                           checked={correctIndex === index}
                           onChange={() => setCorrectIndex(index)}
-                          disabled={loading}
+                          disabled={saving}
                           className="w-4 h-4"
                         />
                         <Input
                           placeholder={t('optionPlaceholder', { num: index + 1 })}
                           value={option}
                           onChange={(e) => handleOptionChange(index, e.target.value)}
-                          disabled={loading}
+                          disabled={saving}
                           required
                         />
                       </div>
@@ -291,7 +347,7 @@ export default function CreateStepPage() {
                           variant="ghost"
                           size="sm"
                           onClick={() => handleRemoveOption(index)}
-                          disabled={loading}
+                          disabled={saving}
                         >
                           {t('remove')}
                         </Button>
@@ -302,7 +358,7 @@ export default function CreateStepPage() {
                     type="button"
                     variant="outline"
                     onClick={handleAddOption}
-                    disabled={loading}
+                    disabled={saving}
                   >
                     {t('addOption')}
                   </Button>
@@ -324,7 +380,7 @@ export default function CreateStepPage() {
                     placeholder={t('promptPlaceholder')}
                     value={prompt}
                     onChange={(e) => setPrompt(e.target.value)}
-                    disabled={loading}
+                    disabled={saving}
                     required
                   />
                 </div>
@@ -342,7 +398,7 @@ export default function CreateStepPage() {
                           placeholder={t('optionTextPlaceholder')}
                           value={option.text}
                           onChange={(e) => handleScenarioOptionChange(index, "text", e.target.value)}
-                          disabled={loading}
+                          disabled={saving}
                           required
                         />
                       </div>
@@ -356,7 +412,7 @@ export default function CreateStepPage() {
                           placeholder={t('consequencePlaceholder')}
                           value={option.consequence}
                           onChange={(e) => handleScenarioOptionChange(index, "consequence", e.target.value)}
-                          disabled={loading}
+                          disabled={saving}
                           required
                         />
                       </div>
@@ -366,7 +422,7 @@ export default function CreateStepPage() {
                           variant="ghost"
                           size="sm"
                           onClick={() => handleRemoveOption(index)}
-                          disabled={loading}
+                          disabled={saving}
                           className="mt-2"
                         >
                           {t('remove')}
@@ -378,7 +434,7 @@ export default function CreateStepPage() {
                     type="button"
                     variant="outline"
                     onClick={handleAddOption}
-                    disabled={loading}
+                    disabled={saving}
                   >
                     {t('addOption')}
                   </Button>
@@ -393,14 +449,14 @@ export default function CreateStepPage() {
             )}
 
             <div className="flex gap-4">
-              <Button type="submit" loading={loading} disabled={loading}>
-                {loading ? t('creating') : t('create')}
+              <Button type="submit" loading={saving} disabled={saving}>
+                {saving ? t('saving') : t('save')}
               </Button>
               <Button
                 type="button"
                 variant="ghost"
                 onClick={() => router.push(`/${locale}/teacher/modules/${moduleId}`)}
-                disabled={loading}
+                disabled={saving}
               >
                 {t('cancel')}
               </Button>
@@ -411,3 +467,4 @@ export default function CreateStepPage() {
     </div>
   );
 }
+
