@@ -18,7 +18,8 @@ export type XPAction =
   | "daily_streak" 
   | "assignment_ontime"
   | "scenario_complete"
-  | "step_complete";
+  | "step_complete"
+  | "attendance_perfect"; // Perfect attendance bonus
 
 export const XP_VALUES: Record<XPAction, number> = {
   module_complete: 100,
@@ -28,6 +29,7 @@ export const XP_VALUES: Record<XPAction, number> = {
   assignment_ontime: 50,
   scenario_complete: 25,
   step_complete: 5,
+  attendance_perfect: 15, // Bonus for perfect attendance
 };
 
 export type LevelThreshold = {
