@@ -119,14 +119,15 @@
         "id": "9",
         "title": "AI Integration: Player Coach, Teacher Assistant & Adaptive Learning",
         "description": "Build AI Gateway via Cloud Functions, player AI coach chat, teacher AI assistant for lesson planning, and adaptive learning engine with safety filters",
-        "status": "pending",
+        "status": "done",
         "dependencies": [
           "7"
         ],
         "priority": "low",
         "details": "1. Create AI Gateway Cloud Function (OpenAI/Gemini integration)\n2. Build player AI coach chat interface (contextual hints, explanations, reflection prompts)\n3. Implement teacher AI assistant (generate discussion prompts, lesson plans, adaptations)\n4. Create adaptive learning engine (personalized content recommendations)\n5. Add safety filters (content moderation, age-appropriate tone)\n6. Implement opt-out controls for AI features\n7. Add rate limiting and usage tracking\n\nAPI Routes: /api/ai/coach, /api/ai/explanation, /api/ai/hint\nCloud Functions: ai-gateway (with guardrails, rate limiting)\nSafety: Content filters, moderation API integration",
         "testStrategy": "Test AI responses, verify safety filters, test rate limiting, validate adaptive recommendations, and check opt-out functionality",
-        "subtasks": []
+        "subtasks": [],
+        "updatedAt": "2025-12-03T23:35:57.887Z"
       },
       {
         "id": "10",
@@ -146,9 +147,9 @@
     ],
     "metadata": {
       "version": "1.0.0",
-      "lastModified": "2025-12-03T23:35:33.035Z",
+      "lastModified": "2025-12-03T23:35:57.888Z",
       "taskCount": 10,
-      "completedCount": 8,
+      "completedCount": 9,
       "tags": [
         "master"
       ]
