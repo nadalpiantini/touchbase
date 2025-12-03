@@ -367,6 +367,25 @@
       }
     }
   },
+  "student": {
+    "skills": {
+      "title": "Mis Habilidades",
+      "loading": "Cargando habilidades...",
+      "overallLevel": "Nivel General",
+      "level": "Nivel",
+      "totalXp": "XP Total",
+      "xpToNextLevel": "XP para el siguiente nivel",
+      "nextLevel": "Siguiente Nivel",
+      "xp": "XP",
+      "skillDescription": "Rastrea tu progreso en habilidades de {skill}",
+      "recentAchievements": "Logros Recientes",
+      "noAchievementsYet": "Aún no hay logros. ¡Completa módulos para ganar logros!",
+      "errors": {
+        "notAuthenticated": "No autenticado",
+        "loadFailed": "Error al cargar datos de habilidades"
+      }
+    }
+  },
   "notFound": {
     "title": "404 — Página no encontrada",
     "message": "La página que buscas no existe o ha sido movida.",
