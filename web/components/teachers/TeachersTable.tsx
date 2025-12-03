@@ -43,14 +43,18 @@ export default function TeachersTable() {
   };
 
   if (loading) {
-    return <div className="text-center py-8 font-sans text-[--color-tb-shadow]">Cargando profesores...</div>;
+    return (
+      <div className="flex justify-center py-12">
+        <LoadingSpinner size="lg" text="Cargando profesores..." />
+      </div>
+    );
   }
 
   if (error) {
     return (
-      <div className="text-center py-8 font-sans text-[--color-tb-stitch]">
-        Error: {error}
-      </div>
+      <Alert variant="error" title="Error">
+        {error}
+      </Alert>
     );
   }
 
