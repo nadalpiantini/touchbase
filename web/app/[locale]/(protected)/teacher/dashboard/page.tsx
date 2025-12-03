@@ -62,7 +62,7 @@ export default async function TeacherDashboardPage({
             <CardTitle className="text-lg">{t('stats.classes')}</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-4xl font-bold text-[--color-tb-red] mb-2">
+            <div className="text-4xl font-display font-bold text-[--color-tb-red] mb-2">
               {classes.length}
             </div>
             <div className="text-sm font-sans text-[--color-tb-shadow]">
@@ -76,7 +76,7 @@ export default async function TeacherDashboardPage({
             <CardTitle className="text-lg">{t('stats.students')}</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-4xl font-bold text-[--color-tb-navy] mb-2">
+            <div className="text-4xl font-display font-bold text-[--color-tb-navy] mb-2">
               {classStats.reduce((sum, c) => sum + c.studentCount, 0)}
             </div>
             <div className="text-sm font-sans text-[--color-tb-shadow]">
@@ -90,7 +90,7 @@ export default async function TeacherDashboardPage({
             <CardTitle className="text-lg">{t('stats.modules')}</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-4xl font-bold text-[--color-tb-red] mb-2">
+            <div className="text-4xl font-display font-bold text-[--color-tb-red] mb-2">
               {classStats[0]?.moduleCount || 0}
             </div>
             <div className="text-sm font-sans text-[--color-tb-shadow]">
@@ -122,7 +122,7 @@ export default async function TeacherDashboardPage({
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {classStats.map((classItem) => (
-              <Card key={classItem.id} className="hover:shadow-lg transition-shadow">
+              <Card key={classItem.id} className="hover:shadow-dugout transition-shadow">
                 <CardHeader>
                   <CardTitle className="text-lg">{classItem.name}</CardTitle>
                   {classItem.grade_level && (
@@ -154,7 +154,7 @@ export default async function TeacherDashboardPage({
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           <Link href={`/${locale}/teacher/modules`}>
-            <Card className="hover:shadow-lg transition-shadow cursor-pointer">
+            <Card className="hover:shadow-dugout transition-shadow cursor-pointer">
               <CardContent className="pt-6">
                 <h3 className="font-display font-semibold text-[--color-tb-navy] mb-2">
                   {t('manageModules')}
@@ -166,7 +166,7 @@ export default async function TeacherDashboardPage({
             </Card>
           </Link>
           <Link href={`/${locale}/teacher/analytics`}>
-            <Card className="hover:shadow-lg transition-shadow cursor-pointer">
+            <Card className="hover:shadow-dugout transition-shadow cursor-pointer">
               <CardContent className="pt-6">
                 <h3 className="font-display font-semibold text-[--color-tb-navy] mb-2">
                   {t('viewAnalytics')}
@@ -178,7 +178,7 @@ export default async function TeacherDashboardPage({
             </Card>
           </Link>
           <Link href={`/${locale}/teacher/modules/create`}>
-            <Card className="hover:shadow-lg transition-shadow cursor-pointer">
+            <Card className="hover:shadow-dugout transition-shadow cursor-pointer">
               <CardContent className="pt-6">
                 <h3 className="font-display font-semibold text-[--color-tb-navy] mb-2">
                   {t('createModule')}

@@ -31,28 +31,28 @@ export default async function StudentLayout({
                 <span className="text-xl font-display font-bold tracking-wide">TOUCHBASE</span>
               </Link>
               <nav className="flex items-center gap-4">
-                <Link href="/student/dashboard" className="text-sm hover:text-[--color-tb-beige] transition">
+                <Link href="/student/dashboard" className="text-sm font-sans hover:text-[--color-tb-beige] transition">
                   Dashboard
                 </Link>
-                <Link href="/student/classes" className="text-sm hover:text-[--color-tb-beige] transition">
+                <Link href="/student/classes" className="text-sm font-sans hover:text-[--color-tb-beige] transition">
                   Classes
                 </Link>
-                <Link href="/student/modules" className="text-sm hover:text-[--color-tb-beige] transition">
+                <Link href="/student/modules" className="text-sm font-sans hover:text-[--color-tb-beige] transition">
                   Modules
                 </Link>
-                <Link href="/student/assignments" className="text-sm hover:text-[--color-tb-beige] transition">
+                <Link href="/student/assignments" className="text-sm font-sans hover:text-[--color-tb-beige] transition">
                   Assignments
                 </Link>
-                <Link href="/student/progress" className="text-sm hover:text-[--color-tb-beige] transition">
+                <Link href="/student/progress" className="text-sm font-sans hover:text-[--color-tb-beige] transition">
                   Progress
                 </Link>
-                <Link href="/student/skills" className="text-sm hover:text-[--color-tb-beige] transition">
+                <Link href="/student/skills" className="text-sm font-sans hover:text-[--color-tb-beige] transition">
                   Skills
                 </Link>
-                <Link href="/student/badges" className="text-sm hover:text-[--color-tb-beige] transition">
+                <Link href="/student/badges" className="text-sm font-sans hover:text-[--color-tb-beige] transition">
                   Badges
                 </Link>
-                <Link href="/student/leaderboard" className="text-sm hover:text-[--color-tb-beige] transition">
+                <Link href="/student/leaderboard" className="text-sm font-sans hover:text-[--color-tb-beige] transition">
                   Leaderboard
                 </Link>
               </nav>
@@ -60,11 +60,11 @@ export default async function StudentLayout({
 
             <div className="flex items-center gap-4">
               <OrgDropdown />
-              <span className="text-sm text-[--color-tb-bone]">{user.email}</span>
+              <span className="text-sm font-sans text-[--color-tb-bone]">{user.email}</span>
               <form action="/api/auth/signout" method="POST">
                 <button
                   type="submit"
-                  className="text-sm hover:bg-white/20 border border-white/20 px-3 py-2 rounded-lg transition"
+                  className="text-sm font-sans hover:bg-white/20 border border-white/20 px-3 py-2 rounded-lg transition"
                 >
                   Sign Out
                 </button>

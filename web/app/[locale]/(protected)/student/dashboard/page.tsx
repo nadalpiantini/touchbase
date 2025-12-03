@@ -74,7 +74,7 @@ export default async function StudentDashboardPage({
             <CardTitle className="text-lg">{t('stats.level')}</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-4xl font-bold text-[--color-tb-red] mb-2">
+            <div className="text-4xl font-display font-bold text-[--color-tb-red] mb-2">
               {xpSummary.level}
             </div>
             <div className="text-sm font-sans text-[--color-tb-shadow]">
@@ -88,7 +88,7 @@ export default async function StudentDashboardPage({
             <CardTitle className="text-lg">{t('stats.inProgress')}</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-4xl font-bold text-[--color-tb-navy] mb-2">
+            <div className="text-4xl font-display font-bold text-[--color-tb-navy] mb-2">
               {inProgress.length}
             </div>
             <div className="text-sm font-sans text-[--color-tb-shadow]">
@@ -102,7 +102,7 @@ export default async function StudentDashboardPage({
             <CardTitle className="text-lg">{t('stats.completed')}</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-4xl font-bold text-[--color-tb-red] mb-2">
+            <div className="text-4xl font-display font-bold text-[--color-tb-red] mb-2">
               {completed.length}
             </div>
             <div className="text-sm font-sans text-[--color-tb-shadow]">
@@ -120,7 +120,7 @@ export default async function StudentDashboardPage({
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {classes.map((classItem: Class) => (
-              <Card key={classItem.id} className="hover:shadow-lg transition-shadow">
+              <Card key={classItem.id} className="hover:shadow-dugout transition-shadow">
                 <CardHeader>
                   <CardTitle className="text-lg">{classItem.name}</CardTitle>
                   {classItem.grade_level && (
@@ -178,7 +178,7 @@ export default async function StudentDashboardPage({
       {/* Assignments Alert */}
       {(overdueAssignments.length > 0 || dueSoonAssignments.length > 0) && (
         <div className="mb-8">
-          <Card className={overdueAssignments.length > 0 ? "border-[--color-tb-stitch]" : "border-yellow-500"}>
+          <Card className={overdueAssignments.length > 0 ? "border-[--color-tb-stitch]" : "border-[--color-tb-stitch]/50"}>
             <CardContent className="pt-6">
               <div className="flex items-center justify-between">
                 <div>
@@ -211,7 +211,7 @@ export default async function StudentDashboardPage({
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <Link href={`/${locale}/student/assignments`}>
-            <Card className="hover:shadow-lg transition-shadow cursor-pointer">
+            <Card className="hover:shadow-dugout transition-shadow cursor-pointer">
               <CardContent className="pt-6">
                 <h3 className="font-display font-semibold text-[--color-tb-navy] mb-2">
                   {t('viewAssignments')}
@@ -223,7 +223,7 @@ export default async function StudentDashboardPage({
             </Card>
           </Link>
           <Link href={`/${locale}/student/modules`}>
-            <Card className="hover:shadow-lg transition-shadow cursor-pointer">
+            <Card className="hover:shadow-dugout transition-shadow cursor-pointer">
               <CardContent className="pt-6">
                 <h3 className="font-display font-semibold text-[--color-tb-navy] mb-2">
                   {t('browseModules')}
@@ -235,7 +235,7 @@ export default async function StudentDashboardPage({
             </Card>
           </Link>
           <Link href={`/${locale}/student/skills`}>
-            <Card className="hover:shadow-lg transition-shadow cursor-pointer">
+            <Card className="hover:shadow-dugout transition-shadow cursor-pointer">
               <CardContent className="pt-6">
                 <h3 className="font-display font-semibold text-[--color-tb-navy] mb-2">
                   {t('viewSkills')}

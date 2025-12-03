@@ -154,13 +154,13 @@ export default function PlayersTable() {
                   {editId === p.id ? (
                     <>
                       <button
-                        className="text-sm border border-gray-300 px-3 py-1 rounded hover:bg-gray-50"
+                        className="text-sm font-sans border border-[--color-tb-line] px-3 py-1 rounded-lg hover:bg-[--color-tb-beige] transition"
                         onClick={saveEdit}
                       >
                         {t('actions.save')}
                       </button>
                       <button
-                        className="text-sm border border-gray-300 px-3 py-1 rounded hover:bg-gray-50"
+                        className="text-sm font-sans border border-[--color-tb-line] px-3 py-1 rounded-lg hover:bg-[--color-tb-beige] transition"
                         onClick={cancelEdit}
                       >
                         {t('actions.cancel')}
@@ -169,13 +169,13 @@ export default function PlayersTable() {
                   ) : (
                     <>
                       <button
-                        className="text-sm text-blue-600 hover:text-blue-800"
+                        className="text-sm font-sans text-[--color-tb-navy] hover:text-[--color-tb-stitch] transition"
                         onClick={() => startEdit(p)}
                       >
                         {t('actions.edit')}
                       </button>
                       <button
-                        className="text-sm text-red-600 hover:text-red-800"
+                        className="text-sm font-sans text-[--color-tb-stitch] hover:text-[--color-tb-red] transition"
                         onClick={() => softDelete(p.id)}
                       >
                         {t('actions.delete')}

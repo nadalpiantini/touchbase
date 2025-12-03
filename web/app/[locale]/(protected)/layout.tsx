@@ -37,40 +37,40 @@ export default async function ProtectedLayout({
                 <span className="text-xl font-display font-bold tracking-wide">TOUCHBASE</span>
               </Link>
               <nav className="flex items-center gap-4">
-                <Link href={`/${locale}/dashboard`} className="text-sm hover:text-[--color-tb-beige] transition">
+                <Link href={`/${locale}/dashboard`} className="text-sm font-sans hover:text-[--color-tb-beige] transition">
                   Dashboard
                 </Link>
-                <Link href={`/${locale}/dashboard/players`} className="text-sm hover:text-[--color-tb-beige] transition">
+                <Link href={`/${locale}/dashboard/players`} className="text-sm font-sans hover:text-[--color-tb-beige] transition">
                   Jugadores
                 </Link>
-                <Link href={`/${locale}/dashboard/teachers`} className="text-sm hover:text-[--color-tb-beige] transition">
+                <Link href={`/${locale}/dashboard/teachers`} className="text-sm font-sans hover:text-[--color-tb-beige] transition">
                   Profesores
                 </Link>
-                <Link href={`/${locale}/dashboard/schedules`} className="text-sm hover:text-[--color-tb-beige] transition">
+                <Link href={`/${locale}/dashboard/schedules`} className="text-sm font-sans hover:text-[--color-tb-beige] transition">
                   Horarios
                 </Link>
-                <Link href={`/${locale}/dashboard/placement-tests`} className="text-sm hover:text-[--color-tb-beige] transition">
+                <Link href={`/${locale}/dashboard/placement-tests`} className="text-sm font-sans hover:text-[--color-tb-beige] transition">
                   Pruebas
                 </Link>
-                <Link href={`/${locale}/dashboard/budgeting`} className="text-sm hover:text-[--color-tb-beige] transition">
+                <Link href={`/${locale}/dashboard/budgeting`} className="text-sm font-sans hover:text-[--color-tb-beige] transition">
                   Presupuesto
                 </Link>
-                <Link href={`/${locale}/dashboard/reports`} className="text-sm hover:text-[--color-tb-beige] transition">
+                <Link href={`/${locale}/dashboard/reports`} className="text-sm font-sans hover:text-[--color-tb-beige] transition">
                   Reportes
                 </Link>
-                <Link href={`/${locale}/dashboard/student-life`} className="text-sm hover:text-[--color-tb-beige] transition">
+                <Link href={`/${locale}/dashboard/student-life`} className="text-sm font-sans hover:text-[--color-tb-beige] transition">
                   Vida Estudiantil
                 </Link>
-                <Link href={`/${locale}/dashboard/teams`} className="text-sm hover:text-[--color-tb-beige] transition">
+                <Link href={`/${locale}/dashboard/teams`} className="text-sm font-sans hover:text-[--color-tb-beige] transition">
                   Equipos
                 </Link>
-                <Link href={`/${locale}/dashboard/games`} className="text-sm hover:text-[--color-tb-beige] transition">
+                <Link href={`/${locale}/dashboard/games`} className="text-sm font-sans hover:text-[--color-tb-beige] transition">
                   Partidos
                 </Link>
-                <Link href={`/${locale}/dashboard/recycle`} className="text-sm hover:text-[--color-tb-beige] transition">
+                <Link href={`/${locale}/dashboard/recycle`} className="text-sm font-sans hover:text-[--color-tb-beige] transition">
                   Papelera
                 </Link>
-                <Link href={`/${locale}/dashboard/audit`} className="text-sm hover:text-[--color-tb-beige] transition">
+                <Link href={`/${locale}/dashboard/audit`} className="text-sm font-sans hover:text-[--color-tb-beige] transition">
                   Auditoría
                 </Link>
               </nav>
@@ -78,11 +78,11 @@ export default async function ProtectedLayout({
 
             <div className="flex items-center gap-4">
               <OrgDropdown />
-              <span className="text-sm text-[--color-tb-bone]">{user.email}</span>
+              <span className="text-sm font-sans text-[--color-tb-bone]">{user.email}</span>
               <form action="/api/auth/signout" method="POST">
                 <button
                   type="submit"
-                  className="text-sm hover:bg-white/20 border border-white/20 px-3 py-2 rounded-lg transition"
+                  className="text-sm font-sans hover:bg-white/20 border border-white/20 px-3 py-2 rounded-lg transition"
                 >
                   Cerrar sesión
                 </button>

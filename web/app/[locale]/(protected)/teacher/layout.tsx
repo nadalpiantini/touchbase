@@ -31,16 +31,16 @@ export default async function TeacherLayout({
                 <span className="text-xl font-display font-bold tracking-wide">TOUCHBASE</span>
               </Link>
               <nav className="flex items-center gap-4">
-                <Link href="/teacher/dashboard" className="text-sm hover:text-[--color-tb-beige] transition">
+                <Link href="/teacher/dashboard" className="text-sm font-sans hover:text-[--color-tb-beige] transition">
                   Dashboard
                 </Link>
-                <Link href="/teacher/classes" className="text-sm hover:text-[--color-tb-beige] transition">
+                <Link href="/teacher/classes" className="text-sm font-sans hover:text-[--color-tb-beige] transition">
                   Classes
                 </Link>
-                <Link href="/teacher/modules" className="text-sm hover:text-[--color-tb-beige] transition">
+                <Link href="/teacher/modules" className="text-sm font-sans hover:text-[--color-tb-beige] transition">
                   Modules
                 </Link>
-                <Link href="/teacher/analytics" className="text-sm hover:text-[--color-tb-beige] transition">
+                <Link href="/teacher/analytics" className="text-sm font-sans hover:text-[--color-tb-beige] transition">
                   Analytics
                 </Link>
               </nav>
@@ -48,11 +48,11 @@ export default async function TeacherLayout({
 
             <div className="flex items-center gap-4">
               <OrgDropdown />
-              <span className="text-sm text-[--color-tb-bone]">{user.email}</span>
+              <span className="text-sm font-sans text-[--color-tb-bone]">{user.email}</span>
               <form action="/api/auth/signout" method="POST">
                 <button
                   type="submit"
-                  className="text-sm hover:bg-white/20 border border-white/20 px-3 py-2 rounded-lg transition"
+                  className="text-sm font-sans hover:bg-white/20 border border-white/20 px-3 py-2 rounded-lg transition"
                 >
                   Sign Out
                 </button>

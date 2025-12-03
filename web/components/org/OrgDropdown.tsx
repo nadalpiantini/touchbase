@@ -47,13 +47,13 @@ export default function OrgDropdown() {
     else location.reload();
   };
 
-  if (loading) return <span className="text-sm text-gray-500">Cargando…</span>;
-  if (!orgs.length) return <span className="text-sm text-gray-500">Sin organizaciones</span>;
+  if (loading) return <span className="text-sm font-sans text-[--color-tb-shadow]">Cargando…</span>;
+  if (!orgs.length) return <span className="text-sm font-sans text-[--color-tb-shadow]">Sin organizaciones</span>;
 
   return (
     <div className="flex items-center gap-2">
       <select
-        className="border border-gray-300 rounded px-2 py-1 text-sm bg-white"
+        className="border border-[--color-tb-line] rounded-lg px-2 py-1 text-sm font-sans bg-white text-[--color-tb-navy] focus:outline-none focus:ring-2 focus:ring-[--color-tb-stitch]/60 focus:border-[--color-tb-stitch] transition"
         value={current?.org_id ?? ""}
         onChange={(e) => onSwitch(e.target.value)}
       >
@@ -63,7 +63,7 @@ export default function OrgDropdown() {
           </option>
         ))}
       </select>
-      {msg && <span className="text-xs text-red-600">{msg}</span>}
+      {msg && <span className="text-xs font-sans text-[--color-tb-stitch]">{msg}</span>}
     </div>
   );
 }
