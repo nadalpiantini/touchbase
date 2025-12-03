@@ -116,6 +116,7 @@ export async function updateStepProgress(
 
   // Update status
   let status: ProgressStatus = progress.status;
+  const wasCompleted = status === "completed";
   if (completionPercentage === 100) {
     status = "completed";
   } else if (completionPercentage > 0) {
@@ -136,6 +137,34 @@ export async function updateStepProgress(
     .eq("module_id", moduleId);
 
   if (error) throw error;
+
+  // Award XP if module was just completed (not already completed)
+  if (status === "completed" && !wasCompleted) {
+    try {
+      const { awardModuleCompletionXP } = await import("./xp");
+      await awardModuleCompletionXP(supabase, userId, moduleId, progress.score);
+    } catch (xpError) {
+      // Don't fail the progress update if XP award fails
+      console.error("Failed to award module complete XP:", xpError);
+    }
+  }
+
+  // Award XP for quiz correct answers
+  const updatedStep = updatedSteps[stepIndex];
+  if (
+    updatedStep &&
+    updatedStep.completed &&
+    updatedStep.type === "quiz" &&
+    updatedStep.quizScore !== undefined &&
+    updatedStep.quizScore > 0
+  ) {
+    try {
+      const { awardQuizXP } = await import("./xp");
+      await awardQuizXP(supabase, userId, true, updatedStep.quizScore === 100);
+    } catch (xpError) {
+      console.error("Failed to award quiz correct XP:", xpError);
+    }
+  }
 }
 
 /**
@@ -160,5 +189,16 @@ export async function updateTimeSpent(
     .eq("module_id", moduleId);
 
   if (error) throw error;
+
+  // Award XP if module completed
+  if (status === "completed" && !progress.completed_at) {
+    try {
+      const { awardModuleCompletionXP } = await import("./xp");
+      await awardModuleCompletionXP(supabase, userId, moduleId, progress.score);
+    } catch (xpError) {
+      // Log but don't fail the progress update
+      console.error("Failed to award XP:", xpError);
+    }
+  }
 }
 

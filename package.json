@@ -1,7 +1,7 @@
 {
   "private": true,
   "scripts": {
-    "install": "cd web && (npm ci || npm install)",
+    "install": "cd web && npm install",
     "build": "cd web && npm run build",
     "start": "cd web && npm start",
     "dev": "cd web && npm run dev"
