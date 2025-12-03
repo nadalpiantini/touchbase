@@ -31,14 +31,15 @@
         "id": "3",
         "title": "Authentication & User Management System",
         "description": "Implement Firebase Authentication with multi-role support (player/teacher/admin), profile management with photo upload, and role-based access control",
-        "status": "pending",
+        "status": "done",
         "dependencies": [
           "1"
         ],
         "priority": "high",
         "details": "1. Integrate Firebase Auth with email/password and OAuth providers\n2. Create user profile schema in Firestore (roles, default_org_id, photo_url)\n3. Build profile management UI with image upload to Firebase Storage\n4. Implement role-based routing middleware (Next.js middleware.ts)\n5. Create Firestore security rules for role-based access\n6. Build signup/login flows for each role type\n\nAPI Routes: /api/auth/signup, /api/auth/login, /api/auth/signout\nSecurity: Firestore rules based on user.role and org_id",
         "testStrategy": "Test authentication flows, verify role-based access control, test image upload, and validate security rules",
-        "subtasks": []
+        "subtasks": [],
+        "updatedAt": "2025-12-03T23:24:28.840Z"
       },
       {
         "id": "4",
@@ -140,9 +141,9 @@
     ],
     "metadata": {
       "version": "1.0.0",
-      "lastModified": "2025-12-03T23:19:00.486Z",
+      "lastModified": "2025-12-03T23:24:28.841Z",
       "taskCount": 10,
-      "completedCount": 2,
+      "completedCount": 3,
       "tags": [
         "master"
       ]
