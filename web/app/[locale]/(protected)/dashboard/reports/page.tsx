@@ -39,6 +39,18 @@ export default function ReportsPage() {
         a.click();
         window.URL.revokeObjectURL(url);
         document.body.removeChild(a);
+      } else if (format === "pdf") {
+        // For PDF, open in new window for printing
+        const blob = await res.blob();
+        const url = window.URL.createObjectURL(blob);
+        const newWindow = window.open(url, "_blank");
+        if (newWindow) {
+          newWindow.onload = () => {
+            newWindow.print();
+          };
+        }
+        // Clean up after a delay
+        setTimeout(() => window.URL.revokeObjectURL(url), 1000);
       }
     } catch (error: unknown) {
       alert(error instanceof Error ? error.message : "Error al exportar reporte");
