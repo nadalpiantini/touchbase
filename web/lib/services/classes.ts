@@ -3,7 +3,7 @@
 // ============================================================
 
 import { SupabaseClient } from "@supabase/supabase-js";
-import { Class, ClassEnrollment } from "@/lib/types/education";
+import { Class, ClassEnrollment, ClassSchedule } from "@/lib/types/education";
 
 /**
  * Create a new class
@@ -17,7 +17,7 @@ export async function createClass(
     code: string;
     gradeLevel?: string;
     description?: string;
-    schedule?: any;
+    schedule?: ClassSchedule;
   }
 ): Promise<Class> {
   const { data: newClass, error } = await supabase
