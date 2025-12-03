@@ -1,28 +1,26 @@
-# 🎨 TOUCHBASE ACADEMY - Identidad Visual Principal
+# 🎨 TOUCHBASE ACADEMY — Guía de Línea Gráfica
 
 **Versión Oficial 1.0**  
-*MLB 90s + Tech Clean + Nostalgia Pro*
+*Basado en el Brand Guide Oficial*
 
 > 📄 **Brand Guide Oficial:** `/items/touchbase_academy_brand_guide.pdf`  
 > 🎨 **Logos disponibles:** `/items/LOGO/`
 
 ---
 
-## 1. Identidad Visual Principal
+## 1) Paleta de Colores
 
-### 1.1. Paleta Oficial
+Colores oficiales según el Brand Guide:
 
-Colores únicos y reconocibles, calibrados para UI/UX, impresos y marketing.
-
-| Nombre | HEX | Uso |
-|--------|-----|-----|
+| Nombre | HEX | Uso Recomendado |
+|--------|-----|-----------------|
 | **TB Red** | `#B21E2A` | Títulos, acentos, botones primarios |
 | **TB Navy** | `#14213D` | Fondos, encabezados, navbar, sombras fuertes |
 | **TB Cream** | `#F8EBD0` | Fondos suaves, tarjetas, secciones cálidas |
 | **TB Stitch** | `#C82E3C` | Detalles, notificaciones, highlights |
 | **TB Shadow** | `#3E3E3E` | Texto secundario, líneas, bloques oscuros |
-| **TB Bone White** | `#FAF7F0` | BG alternativas, secciones claras |
-| **TB Ink Black** | `#0E0E0E` | Texto principal sobre fondos claros |
+| **TB Bone** | `#FAF7F0` | BG alternativas, secciones claras |
+| **TB Ink** | `#0E0E0E` | Texto principal sobre fondos claros |
 
 #### Regla visual:
 
@@ -32,25 +30,16 @@ Colores únicos y reconocibles, calibrados para UI/UX, impresos y marketing.
 
 ---
 
-## 2. Tipografía Oficial
+## 2) Tipografía
 
-### 2.1. Títulos / Marca
+### Títulos
+**Oswald** — Fuerte, deportiva, seria.
 
-**Oswald** (o Bebas Neue como alt)
+### Texto
+**Inter** — Moderna, limpia, perfecta para apps.
 
-→ Fuerte, deportiva, seria.
-
-### 2.2. Texto UI / contenido
-
-**Inter**
-
-→ Moderna, limpia, perfecta para apps.
-
-### 2.3. Tagline / Human Touch
-
-**Lobster Two**
-
-→ Script amigable, retro y distintivo.
+### Script
+**Lobster Two** — Script amigable, retro y distintivo.
 
 ### Snippet Google Fonts:
 
@@ -60,7 +49,9 @@ Colores únicos y reconocibles, calibrados para UI/UX, impresos y marketing.
 
 ---
 
-## 3. Iconografía y Estilo Visual
+## 3) Componentes UI Base y Reglas de Uso de Logo
+
+### 3.1. Iconografía y Estilo Visual
 
 ### 3.1. Línea gráfica de íconos
 
@@ -82,7 +73,7 @@ box-shadow: 0 10px 24px rgba(20,33,61,.25);
 
 ---
 
-## 4. UI Components Standard
+### 3.2. UI Components Standard
 
 ### 4.1. Botón Primario
 
@@ -122,7 +113,7 @@ box-shadow: 0 10px 24px rgba(20,33,61,.25);
 
 ---
 
-## 5. Brand Motion
+### 3.3. Brand Motion
 
 Si haces animación (y tú haces 👑):
 
@@ -156,42 +147,53 @@ Si haces animación (y tú haces 👑):
 
 ---
 
-## 6. Reglas de Uso del Logo
+### 3.4. Reglas de Uso del Logo
 
-### 6.1. Archivos de Logo Disponibles
+#### Logos Principales
 
-Los logos oficiales se encuentran en `/items/LOGO/`:
+Los logos oficiales se encuentran en `/items/LOGO/`. Hay **dos logos principales** que mantienen la misma línea de color:
 
-- `touchbase_logo.png` - Logo principal
-- `touchbase_slogan_logo.png` - Logo con slogan
-- `LOGO_0000.png` - Variante 0
-- `LOGO_0001.png` - Variante 1
-- `LOGO_0002.png` - Variante 2
-- `LOGO_0003.png` - Variante 3
+1. **LOGO_TBAS02.png** — Logo **moderno** (principal)
+2. **LOGO_TBASR02.png** — Logo **retro** (principal)
+
+**Estrategia de uso:**
+- ✅ Pueden usarse **aleatoriamente** para sorprender al usuario
+- ✅ Pueden permitir al usuario **elegir en el onboarding**
+- ✅ Ambos mantienen la misma línea de color y son intercambiables
+
+#### Variantes Adicionales
+
+- `LOGO_TBASR0b.png` - Variante retro alternativa
+- `LOGO_TB01.png` - Variante TB01
+- `LOGO_TB01b.png` - Variante TB01b
+- `LOGO_TBS01.png` - Variante TBS01
+- `LOGO_TBS01b.png` - Variante TBS01b
 
 **Referencia completa:** Ver `/items/touchbase_academy_brand_guide.pdf` para especificaciones detalladas.
 
-### 6.2. Fondos permitidos
+#### Fondos permitidos
 
 ✔ **TB Cream**  
 ✔ **TB Navy**  
 ✔ **Blanco absoluto**  
 ✔ **Foto con 40–60% blur ligero**
 
-### 6.3. No permitido
+#### No permitido
 
 ❌ Sombra glow  
 ❌ Cambiar inclinación del texto  
 ❌ Colores fuera de la paleta  
 ❌ Sobre fondos muy saturados
 
-### 6.4. Espacio libre
+#### Espacio libre
 
 Deja siempre un margen igual al alto de la "T" alrededor del logo.
 
 ---
 
-## 7. Tailwind Config Ready-To-Paste
+## 4. Implementación Técnica
+
+### 4.1. Tailwind Config Ready-To-Paste
 
 ### Para Tailwind v3 (config tradicional):
 
@@ -252,7 +254,7 @@ El proyecto ya usa Tailwind v4 con `@theme inline`. Los colores están definidos
 
 ---
 
-## 8. Resumen rápido (para recordar)
+## 5. Resumen Rápido (Para Recordar)
 
 🔥 **TOUCHBASE ACADEMY = MLB 90s + Tech Clean + Nostalgia Pro**
 
@@ -264,7 +266,7 @@ El proyecto ya usa Tailwind v4 con `@theme inline`. Los colores están definidos
 
 ---
 
-## 9. Implementación en el Proyecto
+## 6. Referencias y Archivos del Proyecto
 
 ### Archivos relacionados:
 
@@ -290,6 +292,123 @@ export function GameCard({ title, players }: { title: string; players: number })
     </div>
   );
 }
+```
+
+### Implementación de Logos (Moderno/Retro)
+
+#### Opción 1: Selección Aleatoria
+
+```tsx
+'use client';
+
+import Image from 'next/image';
+import { useState, useEffect } from 'react';
+
+const LOGOS = {
+  modern: '/items/LOGO/LOGO_TBAS02.png',
+  retro: '/items/LOGO/LOGO_TBASR02.png',
+};
+
+export function TouchBaseLogo({ className }: { className?: string }) {
+  const [logo, setLogo] = useState<string>(LOGOS.modern);
+
+  useEffect(() => {
+    // Selección aleatoria al montar
+    const randomLogo = Math.random() > 0.5 ? LOGOS.modern : LOGOS.retro;
+    setLogo(randomLogo);
+  }, []);
+
+  return (
+    <Image
+      src={logo}
+      alt="TouchBase Academy"
+      width={200}
+      height={200}
+      className={className}
+      priority
+    />
+  );
+}
+```
+
+#### Opción 2: Selección en Onboarding
+
+```tsx
+'use client';
+
+import Image from 'next/image';
+import { useState } from 'react';
+
+const LOGOS = {
+  modern: '/items/LOGO/LOGO_TBAS02.png',
+  retro: '/items/LOGO/LOGO_TBASR02.png',
+};
+
+export function LogoSelector({ onSelect }: { onSelect: (logo: string) => void }) {
+  const [selected, setSelected] = useState<string | null>(null);
+
+  return (
+    <div className="flex gap-4 justify-center">
+      <button
+        onClick={() => {
+          setSelected('modern');
+          onSelect(LOGOS.modern);
+        }}
+        className={`p-4 rounded-xl border-2 transition ${
+          selected === 'modern'
+            ? 'border-tb-red bg-tb-cream'
+            : 'border-tb-line hover:border-tb-navy'
+        }`}
+      >
+        <Image
+          src={LOGOS.modern}
+          alt="Logo Moderno"
+          width={120}
+          height={120}
+          className="object-contain"
+        />
+        <p className="mt-2 text-sm font-display text-tb-navy">Moderno</p>
+      </button>
+      
+      <button
+        onClick={() => {
+          setSelected('retro');
+          onSelect(LOGOS.retro);
+        }}
+        className={`p-4 rounded-xl border-2 transition ${
+          selected === 'retro'
+            ? 'border-tb-red bg-tb-cream'
+            : 'border-tb-line hover:border-tb-navy'
+        }`}
+      >
+        <Image
+          src={LOGOS.retro}
+          alt="Logo Retro"
+          width={120}
+          height={120}
+          className="object-contain"
+        />
+        <p className="mt-2 text-sm font-display text-tb-navy">Retro</p>
+      </button>
+    </div>
+  );
+}
+```
+
+#### Opción 3: Usar Logo Guardado en Perfil
+
+```tsx
+// Guardar preferencia del usuario
+const saveLogoPreference = (logoType: 'modern' | 'retro') => {
+  localStorage.setItem('touchbase_logo_preference', logoType);
+};
+
+// Cargar logo preferido
+const getLogoPreference = (): string => {
+  const preference = localStorage.getItem('touchbase_logo_preference');
+  if (preference === 'retro') return LOGOS.retro;
+  return LOGOS.modern; // default
+};
 ```
 
 ---
