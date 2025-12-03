@@ -6,6 +6,7 @@ import { requireTeacher } from '@/lib/auth/middleware-helpers';
 import { notFound } from 'next/navigation';
 import { Card, CardContent, CardHeader, CardTitle, Badge, Button } from '@/components/ui';
 import { CopyCodeButton } from '@/components/teacher/CopyCodeButton';
+import { AttendanceMarking } from '@/components/attendance/AttendanceMarking';
 import Link from 'next/link';
 
 export default async function ClassDetailPage({
@@ -123,6 +124,20 @@ export default async function ClassDetailPage({
           </CardContent>
         </Card>
       </div>
+
+      {/* Attendance Marking */}
+      {students.length > 0 && (
+        <div className="mb-6">
+          <AttendanceMarking
+            classId={id}
+            students={students.map(({ student }) => ({
+              id: student.id,
+              full_name: student.full_name || student.email,
+              email: student.email || '',
+            }))}
+          />
+        </div>
+      )}
 
       {/* Students */}
       <Card>
