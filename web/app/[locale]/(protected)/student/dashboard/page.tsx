@@ -6,6 +6,7 @@ import { getUserProgress } from '@/lib/services/progress';
 import { getUserXPSummary } from '@/lib/services/xp';
 import { getStudentAssignments, type Assignment } from '@/lib/services/assignments';
 import { Card, CardContent, CardHeader, CardTitle, ProgressBar, Badge, Button } from '@/components/ui';
+import { WeeklyAgenda } from '@/components/schedules/WeeklyAgenda';
 import Link from 'next/link';
 
 export default async function StudentDashboardPage({
@@ -110,6 +111,11 @@ export default async function StudentDashboardPage({
             </div>
           </CardContent>
         </Card>
+      </div>
+
+      {/* Weekly Agenda */}
+      <div className="mb-8">
+        <WeeklyAgenda />
       </div>
 
       {/* Classes */}
