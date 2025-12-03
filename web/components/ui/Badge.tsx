@@ -1,11 +1,11 @@
-import { HTMLAttributes, forwardRef } from 'react';
+import { HTMLAttributes, forwardRef, memo } from 'react';
 import { cn } from '@/lib/utils';
 
 export interface BadgeProps extends HTMLAttributes<HTMLSpanElement> {
   variant?: 'live' | 'status' | 'info' | 'success' | 'warning' | 'error';
 }
 
-const Badge = forwardRef<HTMLSpanElement, BadgeProps>(
+const Badge = memo(forwardRef<HTMLSpanElement, BadgeProps>(
   ({ className, variant = 'info', children, ...props }, ref) => {
     const variants = {
       live: 'bg-[--color-tb-stitch]/10 text-[--color-tb-stitch] ring-1 ring-[--color-tb-stitch]/30',
@@ -30,7 +30,7 @@ const Badge = forwardRef<HTMLSpanElement, BadgeProps>(
       </span>
     );
   }
-);
+));
 
 Badge.displayName = 'Badge';
 

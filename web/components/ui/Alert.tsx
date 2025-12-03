@@ -1,4 +1,4 @@
-import { HTMLAttributes, forwardRef } from 'react';
+import { HTMLAttributes, forwardRef, memo } from 'react';
 import { cn } from '@/lib/utils';
 
 export interface AlertProps extends HTMLAttributes<HTMLDivElement> {
@@ -6,7 +6,7 @@ export interface AlertProps extends HTMLAttributes<HTMLDivElement> {
   title?: string;
 }
 
-const Alert = forwardRef<HTMLDivElement, AlertProps>(
+const Alert = memo(forwardRef<HTMLDivElement, AlertProps>(
   ({ className, variant = 'info', title, children, ...props }, ref) => {
     const variants = {
       success: 'bg-green-50 border-green-200 text-green-800',
@@ -33,7 +33,7 @@ const Alert = forwardRef<HTMLDivElement, AlertProps>(
       </div>
     );
   }
-);
+));
 
 Alert.displayName = 'Alert';
 
