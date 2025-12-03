@@ -104,7 +104,7 @@
         "id": "8",
         "title": "Gamification System: XP, Levels, Badges & Challenges",
         "description": "Implement XP calculation system, multi-level progression (global + per-skill), badge awards, streak system, and class challenges with leaderboards",
-        "status": "pending",
+        "status": "done",
         "dependencies": [
           "5",
           "7"
@@ -112,7 +112,8 @@
         "priority": "medium",
         "details": "1. Design XP calculation rules (per action type: lesson completion, quiz score, attendance)\n2. Implement level system (global level + per-skill levels)\n3. Create badge system (event-triggered + teacher-awarded)\n4. Build streak system integration with attendance\n5. Create challenge system (class/global challenges)\n6. Implement optional leaderboards (class/global)\n7. Build skill tree visualization\n\nAPI Routes: /api/xp/award, /api/badges/list, /api/badges/user, /api/challenges/create, /api/leaderboards/class\nCloud Functions: XP calculation triggers, badge award automation",
         "testStrategy": "Test XP calculations, verify level progression, test badge awards, validate challenge system, and check leaderboard accuracy",
-        "subtasks": []
+        "subtasks": [],
+        "updatedAt": "2025-12-03T23:35:33.034Z"
       },
       {
         "id": "9",
@@ -145,9 +146,9 @@
     ],
     "metadata": {
       "version": "1.0.0",
-      "lastModified": "2025-12-03T23:34:53.676Z",
+      "lastModified": "2025-12-03T23:35:33.035Z",
       "taskCount": 10,
-      "completedCount": 7,
+      "completedCount": 8,
       "tags": [
         "master"
       ]
