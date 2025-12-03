@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
+import { LoadingSpinner, Alert } from '@/components/ui';
 
 type Org = { org_id: string; org_name: string; role: string | null };
 
@@ -47,8 +48,28 @@ export default function OrgDropdown() {
     else location.reload();
   };
 
-  if (loading) return <span className="text-sm font-sans text-[--color-tb-shadow]">Cargando…</span>;
-  if (!orgs.length) return <span className="text-sm font-sans text-[--color-tb-shadow]">Sin organizaciones</span>;
+  if (loading) {
+    return (
+      <div className="flex items-center gap-2">
+        <LoadingSpinner size="sm" />
+        <span className="text-sm font-sans text-[--color-tb-shadow]">Cargando…</span>
+      </div>
+    );
+  }
+
+  if (msg) {
+    return (
+      <div className="flex items-center gap-2">
+        <Alert variant="warning" className="py-1 px-2 text-xs">
+          {msg}
+        </Alert>
+      </div>
+    );
+  }
+
+  if (!orgs.length) {
+    return <span className="text-sm font-sans text-[--color-tb-shadow]">Sin organizaciones</span>;
+  }
 
   return (
     <div className="flex items-center gap-2">

@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
+import { Alert } from '@/components/ui';
 
 type Team = { id: string; name: string };
 
@@ -63,7 +64,14 @@ export default function NewPlayerForm() {
       >
         {loading ? "Creando..." : "Crear jugador"}
       </button>
-      {msg && <span className="text-sm font-sans">{msg}</span>}
+      {msg && (
+        <Alert 
+          variant={msg.startsWith("✅") ? "success" : "error"} 
+          className="text-sm py-2 px-3"
+        >
+          {msg}
+        </Alert>
+      )}
     </form>
   );
 }
