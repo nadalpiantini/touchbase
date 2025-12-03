@@ -26,7 +26,6 @@ export async function GET(req: Request) {
 
     return NextResponse.json({ leaderboard });
   } catch (error: unknown) {
-    console.error("Get leaderboard error:", error);
     return NextResponse.json(
       { error: error instanceof Error ? error.message : "Failed to get leaderboard" },
       { status: 400 }
