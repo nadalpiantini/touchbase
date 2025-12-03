@@ -53,8 +53,8 @@ export default function StudentLifePage() {
       setWellnessPrograms(json.wellnessPrograms || []);
       setActivities(json.activities || []);
       setLogs(json.logs || []);
-    } catch (error) {
-      console.error("Error loading student life data:", error);
+    } catch (err: unknown) {
+      // Error handled by UI state
     } finally {
       setLoading(false);
     }

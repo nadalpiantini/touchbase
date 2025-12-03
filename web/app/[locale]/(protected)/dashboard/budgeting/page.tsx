@@ -48,8 +48,9 @@ export default function BudgetingPage() {
 
       setBudgets(data.budgets || []);
       setExpenses(data.expenses || []);
-    } catch (error) {
+    } catch (err: unknown) {
       // Error loading budget data - will be handled by UI state
+      console.error("Error loading budget:", err);
     } finally {
       setLoading(false);
     }
