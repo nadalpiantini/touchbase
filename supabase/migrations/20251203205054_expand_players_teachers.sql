@@ -283,7 +283,7 @@ CREATE TABLE IF NOT EXISTS public.touchbase_activity_participants (
   student_id UUID NOT NULL REFERENCES auth.users(id),
   player_id UUID REFERENCES public.touchbase_players(id) ON DELETE SET NULL,
   registered_at TIMESTAMPTZ DEFAULT NOW(),
-  PRIMARY KEY (activity_id, student_id)
+  UNIQUE (activity_id, student_id)
 );
 
 CREATE TABLE IF NOT EXISTS public.touchbase_personal_development_logs (
