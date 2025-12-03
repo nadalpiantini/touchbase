@@ -263,6 +263,28 @@
           "loadFailed": "Error al cargar detalles de la clase"
         }
       },
+      "modules": {
+        "title": "Módulos de Clase",
+        "loading": "Cargando módulos...",
+        "backToClass": "Volver a Clase",
+        "assignedModules": "Módulos Asignados",
+        "availableModules": "Módulos Disponibles",
+        "noAssignedModules": "Aún no hay módulos asignados a esta clase.",
+        "noAvailableModules": "No hay módulos disponibles para asignar.",
+        "assign": "Asignar",
+        "assigning": "Asignando...",
+        "unassign": "Desasignar",
+        "unassigning": "Desasignando...",
+        "unassignConfirm": "¿Estás seguro de que quieres desasignar este módulo de la clase?",
+        "viewModule": "Ver Módulo",
+        "minutes": "min",
+        "skills": "habilidades",
+        "errors": {
+          "loadFailed": "Error al cargar módulos",
+          "assignFailed": "Error al asignar módulo",
+          "unassignFailed": "Error al desasignar módulo"
+        }
+      },
       "assignments": {
         "title": "Asignaciones de Clase",
         "loading": "Cargando asignaciones...",

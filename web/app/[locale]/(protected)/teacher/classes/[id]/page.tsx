@@ -93,6 +93,9 @@ export default async function ClassDetailPage({
         <Link href={`/teacher/classes/${classItem.id}/assignments`}>
           <Button>{t('manageAssignments')}</Button>
         </Link>
+        <Link href={`/teacher/classes/${classItem.id}/modules`}>
+          <Button variant="outline">{t('manageModules')}</Button>
+        </Link>
       </div>
 
       {/* Stats */}

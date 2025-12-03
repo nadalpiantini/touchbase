@@ -287,6 +287,28 @@
           "loadFailed": "Failed to load class details"
         }
       },
+      "modules": {
+        "title": "Class Modules",
+        "loading": "Loading modules...",
+        "backToClass": "Back to Class",
+        "assignedModules": "Assigned Modules",
+        "availableModules": "Available Modules",
+        "noAssignedModules": "No modules assigned to this class yet.",
+        "noAvailableModules": "No available modules to assign.",
+        "assign": "Assign",
+        "assigning": "Assigning...",
+        "unassign": "Unassign",
+        "unassigning": "Unassigning...",
+        "unassignConfirm": "Are you sure you want to unassign this module from the class?",
+        "viewModule": "View Module",
+        "minutes": "min",
+        "skills": "skills",
+        "errors": {
+          "loadFailed": "Failed to load modules",
+          "assignFailed": "Failed to assign module",
+          "unassignFailed": "Failed to unassign module"
+        }
+      },
       "assignments": {
         "title": "Class Assignments",
         "loading": "Loading assignments...",
