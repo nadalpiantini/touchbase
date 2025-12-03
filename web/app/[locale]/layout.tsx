@@ -4,6 +4,7 @@ import { NextIntlClientProvider } from 'next-intl';
 import { getMessages, setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { locales } from '@/i18n/config';
+import { AnalyticsProvider } from '@/components/providers/AnalyticsProvider';
 import '../globals.css';
 
 const oswald = Oswald({
@@ -59,9 +60,11 @@ export default async function LocaleLayout({
   return (
     <html lang={locale}>
       <body className={`${oswald.variable} ${inter.variable} ${lobsterTwo.variable} ${geistMono.variable} antialiased font-sans`}>
-        <NextIntlClientProvider messages={messages}>
-          {children}
-        </NextIntlClientProvider>
+        <AnalyticsProvider>
+          <NextIntlClientProvider messages={messages}>
+            {children}
+          </NextIntlClientProvider>
+        </AnalyticsProvider>
       </body>
     </html>
   );
