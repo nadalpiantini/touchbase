@@ -104,7 +104,7 @@ export async function addModuleStep(
   data: {
     order_index: number;
     step_type: StepType;
-    content_data: any;
+    content_data: Record<string, unknown>;
   }
 ): Promise<ModuleStep> {
   const { data: step, error } = await supabase
@@ -128,7 +128,10 @@ export async function addModuleStep(
 export async function updateModuleStep(
   supabase: SupabaseClient,
   stepId: string,
-  updates: Partial<Pick<ModuleStep, "content_data" | "order_index">>
+  updates: {
+    content_data?: Record<string, unknown>;
+    order_index?: number;
+  }
 ): Promise<ModuleStep> {
   const { data, error } = await supabase
     .from("touchbase_module_steps")

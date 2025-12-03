@@ -252,6 +252,49 @@
         "errors": {
           "fetchFailed": "Error al cargar módulo"
         }
+      },
+      "steps": {
+        "create": {
+          "title": "Crear Paso",
+          "form": {
+            "stepTypeLabel": "Tipo de Paso",
+            "stepTypeContent": "Contenido",
+            "stepTypeQuiz": "Quiz",
+            "stepTypeScenario": "Escenario",
+            "orderLabel": "Orden",
+            "contentTextLabel": "Texto del Contenido",
+            "contentTextPlaceholder": "Ingresa el texto del contenido...",
+            "mediaTypeLabel": "Tipo de Media",
+            "mediaTypeImage": "Imagen",
+            "mediaTypeVideo": "Video",
+            "mediaTypeAudio": "Audio",
+            "mediaUrlLabel": "URL de Media (opcional)",
+            "mediaUrlPlaceholder": "https://ejemplo.com/imagen.jpg",
+            "questionLabel": "Pregunta",
+            "questionPlaceholder": "Ingresa la pregunta del quiz...",
+            "optionsLabel": "Opciones de Respuesta",
+            "optionPlaceholder": "Opción {num}",
+            "correct": "Correcta",
+            "addOption": "Agregar Opción",
+            "promptLabel": "Prompt del Escenario",
+            "promptPlaceholder": "Describe la situación del escenario...",
+            "choicesLabel": "Opciones",
+            "choiceTextLabel": "Texto de Opción {num}",
+            "choiceTextPlaceholder": "¿Qué harías?",
+            "consequenceLabel": "Consecuencia {num}",
+            "consequencePlaceholder": "¿Qué sucede como resultado?",
+            "addChoice": "Agregar Opción",
+            "removeChoice": "Eliminar Opción",
+            "creating": "Creando...",
+            "create": "Crear Paso",
+            "cancel": "Cancelar"
+          },
+          "errors": {
+            "invalidQuiz": "El quiz debe tener una pregunta y al menos 2 opciones",
+            "invalidScenario": "El escenario debe tener un prompt y al menos 2 opciones",
+            "createFailed": "Error al crear paso"
+          }
+        }
       }
     }
   },

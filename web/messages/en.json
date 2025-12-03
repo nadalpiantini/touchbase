@@ -252,6 +252,49 @@
         "errors": {
           "fetchFailed": "Failed to load module"
         }
+      },
+      "steps": {
+        "create": {
+          "title": "Create Step",
+          "form": {
+            "stepTypeLabel": "Step Type",
+            "stepTypeContent": "Content",
+            "stepTypeQuiz": "Quiz",
+            "stepTypeScenario": "Scenario",
+            "orderLabel": "Order",
+            "contentTextLabel": "Content Text",
+            "contentTextPlaceholder": "Enter the content text...",
+            "mediaTypeLabel": "Media Type",
+            "mediaTypeImage": "Image",
+            "mediaTypeVideo": "Video",
+            "mediaTypeAudio": "Audio",
+            "mediaUrlLabel": "Media URL (optional)",
+            "mediaUrlPlaceholder": "https://example.com/image.jpg",
+            "questionLabel": "Question",
+            "questionPlaceholder": "Enter the quiz question...",
+            "optionsLabel": "Answer Options",
+            "optionPlaceholder": "Option {num}",
+            "correct": "Correct",
+            "addOption": "Add Option",
+            "promptLabel": "Scenario Prompt",
+            "promptPlaceholder": "Describe the scenario situation...",
+            "choicesLabel": "Choices",
+            "choiceTextLabel": "Choice {num} Text",
+            "choiceTextPlaceholder": "What would you do?",
+            "consequenceLabel": "Consequence {num}",
+            "consequencePlaceholder": "What happens as a result?",
+            "addChoice": "Add Choice",
+            "removeChoice": "Remove Choice",
+            "creating": "Creating...",
+            "create": "Create Step",
+            "cancel": "Cancel"
+          },
+          "errors": {
+            "invalidQuiz": "Quiz must have a question and at least 2 options",
+            "invalidScenario": "Scenario must have a prompt and at least 2 choices",
+            "createFailed": "Failed to create step"
+          }
+        }
       }
     }
   },
