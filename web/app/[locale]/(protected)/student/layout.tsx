@@ -40,6 +40,9 @@ export default async function StudentLayout({
                 <Link href="/student/progress" className="text-sm hover:text-[--color-tb-beige] transition">
                   Progreso
                 </Link>
+                <Link href="/student/skills" className="text-sm hover:text-[--color-tb-beige] transition">
+                  Habilidades
+                </Link>
               </nav>
             </div>
 
