@@ -133,7 +133,7 @@
         "id": "10",
         "title": "Analytics & Insights: Teacher Dashboard, Admin Analytics & Experiments",
         "description": "Build teacher analytics dashboard (skill heatmaps, at-risk indicators), admin analytics (adoption, engagement), early warning system, and A/B testing framework",
-        "status": "pending",
+        "status": "done",
         "dependencies": [
           "5",
           "7",
@@ -142,14 +142,15 @@
         "priority": "low",
         "details": "1. Create teacher analytics dashboard (skill heatmaps, time-series performance, at-risk student indicators)\n2. Build admin analytics dashboard (adoption metrics, engagement rates, impact metrics)\n3. Implement early warning system (rule-based student risk detection)\n4. Create feature flags system (Firestore: featureFlags collection)\n5. Build A/B testing framework (experiment configuration, variant assignment, results tracking)\n6. Integrate PostHog for product analytics\n7. Create custom event tracking system\n\nAPI Routes: /api/analytics/students, /api/analytics/classes, /api/admin/analytics\nCollections: touchbase_feature_flags, touchbase_experiments\nAnalytics: PostHog integration, custom event tracking",
         "testStrategy": "Test analytics calculations, verify heatmap rendering, test early warning triggers, validate A/B test framework, and check PostHog integration",
-        "subtasks": []
+        "subtasks": [],
+        "updatedAt": "2025-12-03T23:41:18.796Z"
       }
     ],
     "metadata": {
       "version": "1.0.0",
-      "lastModified": "2025-12-03T23:35:57.888Z",
+      "lastModified": "2025-12-03T23:41:18.797Z",
       "taskCount": 10,
-      "completedCount": 9,
+      "completedCount": 10,
       "tags": [
         "master"
       ]
