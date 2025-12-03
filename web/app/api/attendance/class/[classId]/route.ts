@@ -19,7 +19,6 @@ export async function GET(
 
     return NextResponse.json({ attendance });
   } catch (error: unknown) {
-    console.error("Get attendance error:", error);
     return NextResponse.json(
       { error: error instanceof Error ? error.message : "Failed to get attendance" },
       { status: 400 }
@@ -60,7 +59,6 @@ export async function POST(
 
     return NextResponse.json({ success: true, attendance });
   } catch (error: unknown) {
-    console.error("Mark attendance error:", error);
     return NextResponse.json(
       { error: error instanceof Error ? error.message : "Failed to mark attendance" },
       { status: 400 }
