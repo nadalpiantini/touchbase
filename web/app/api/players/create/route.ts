@@ -9,7 +9,7 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
-  const data = await req.json().catch(() => ({}));
+  const requestData = await req.json().catch(() => ({}));
   const {
     full_name,
     team_id,
@@ -29,7 +29,7 @@ export async function POST(req: Request) {
     math_level,
     science_level,
     notes,
-  } = data;
+  } = requestData;
   
   if (!full_name || typeof full_name !== "string" || full_name.trim().length < 2) {
     return NextResponse.json({ error: "Nombre de jugador inválido" }, { status: 400 });

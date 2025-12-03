@@ -27,10 +27,10 @@ export function LanguageSelector() {
         <button
           key={loc}
           onClick={() => switchLocale(loc)}
-          className={`px-3 py-1 rounded-lg text-sm font-medium transition-all ${
+          className={`px-3 py-1 rounded-lg text-sm font-sans font-medium transition-all ${
             locale === loc
               ? 'bg-[--color-tb-navy] text-white shadow-sm'
-              : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+              : 'bg-[--color-tb-bone] text-[--color-tb-shadow] hover:bg-[--color-tb-beige] border border-[--color-tb-line]'
           }`}
           aria-label={`Switch to ${loc === 'es' ? 'Spanish' : 'English'}`}
         >

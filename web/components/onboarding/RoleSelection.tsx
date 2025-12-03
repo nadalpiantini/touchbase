@@ -123,7 +123,7 @@ export default function RoleSelection() {
 
           {/* Organization Name */}
           <div>
-            <label htmlFor="orgName" className="block text-sm font-medium text-[--color-tb-navy] mb-2">
+            <label htmlFor="orgName" className="block text-sm font-sans font-medium text-[--color-tb-navy] mb-2">
               {t('orgName')}
             </label>
             <input
@@ -132,13 +132,13 @@ export default function RoleSelection() {
               value={orgName}
               onChange={(e) => setOrgName(e.target.value)}
               placeholder={t('orgNamePlaceholder')}
-              className="w-full px-4 py-2.5 rounded-xl border-2 border-[--color-tb-line] focus:border-[--color-tb-red] focus:outline-none"
+              className="w-full px-4 py-2.5 rounded-xl border-2 border-[--color-tb-line] focus:border-[--color-tb-red] focus:outline-none font-sans"
               required
             />
           </div>
 
           {error && (
-            <div className="p-3 bg-red-50 border border-red-200 rounded-lg text-red-600 text-sm">
+            <div className="p-3 bg-red-50 border border-red-200 rounded-lg text-red-800 text-sm font-sans">
               {error}
             </div>
           )}

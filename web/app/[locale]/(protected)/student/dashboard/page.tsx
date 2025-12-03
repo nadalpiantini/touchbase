@@ -77,7 +77,7 @@ export default async function StudentDashboardPage({
             <div className="text-4xl font-bold text-[--color-tb-red] mb-2">
               {xpSummary.level}
             </div>
-            <div className="text-sm text-[--color-tb-shadow]">
+            <div className="text-sm font-sans text-[--color-tb-shadow]">
               {xpSummary.totalXp} XP
             </div>
           </CardContent>
@@ -91,7 +91,7 @@ export default async function StudentDashboardPage({
             <div className="text-4xl font-bold text-[--color-tb-navy] mb-2">
               {inProgress.length}
             </div>
-            <div className="text-sm text-[--color-tb-shadow]">
+            <div className="text-sm font-sans text-[--color-tb-shadow]">
               {t('stats.modules')}
             </div>
           </CardContent>
@@ -105,7 +105,7 @@ export default async function StudentDashboardPage({
             <div className="text-4xl font-bold text-[--color-tb-red] mb-2">
               {completed.length}
             </div>
-            <div className="text-sm text-[--color-tb-shadow]">
+            <div className="text-sm font-sans text-[--color-tb-shadow]">
               {t('stats.modules')}
             </div>
           </CardContent>
@@ -115,7 +115,7 @@ export default async function StudentDashboardPage({
       {/* Classes */}
       {classes.length > 0 && (
         <div className="mb-8">
-          <h2 className="text-2xl font-semibold text-[--color-tb-navy] mb-4">
+          <h2 className="text-2xl font-display font-semibold text-[--color-tb-navy] mb-4">
             {t('myClasses')}
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -124,7 +124,7 @@ export default async function StudentDashboardPage({
                 <CardHeader>
                   <CardTitle className="text-lg">{classItem.name}</CardTitle>
                   {classItem.grade_level && (
-                    <p className="text-sm text-[--color-tb-shadow]">{classItem.grade_level}</p>
+                    <p className="text-sm font-sans text-[--color-tb-shadow]">{classItem.grade_level}</p>
                   )}
                 </CardHeader>
                 <CardContent>
@@ -143,7 +143,7 @@ export default async function StudentDashboardPage({
       {/* In Progress Modules */}
       {inProgress.length > 0 && (
         <div className="mb-8">
-          <h2 className="text-2xl font-semibold text-[--color-tb-navy] mb-4">
+          <h2 className="text-2xl font-display font-semibold text-[--color-tb-navy] mb-4">
             {t('continueLearning')}
           </h2>
           <div className="space-y-4">
@@ -151,7 +151,7 @@ export default async function StudentDashboardPage({
               <Card key={prog.id}>
                 <CardContent className="pt-6">
                   <div className="flex items-center justify-between mb-2">
-                    <h3 className="font-semibold text-[--color-tb-navy]">
+                    <h3 className="font-display font-semibold text-[--color-tb-navy]">
                       Module {prog.module_id.slice(0, 8)}...
                     </h3>
                     <Badge variant="info">
@@ -178,16 +178,16 @@ export default async function StudentDashboardPage({
       {/* Assignments Alert */}
       {(overdueAssignments.length > 0 || dueSoonAssignments.length > 0) && (
         <div className="mb-8">
-          <Card className={overdueAssignments.length > 0 ? "border-red-500" : "border-orange-500"}>
+          <Card className={overdueAssignments.length > 0 ? "border-[--color-tb-stitch]" : "border-yellow-500"}>
             <CardContent className="pt-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <h3 className="font-semibold text-[--color-tb-navy] mb-2">
+                  <h3 className="font-display font-semibold text-[--color-tb-navy] mb-2">
                     {overdueAssignments.length > 0
                       ? t('assignmentsAlert.overdue')
                       : t('assignmentsAlert.dueSoon')}
                   </h3>
-                  <p className="text-sm text-[--color-tb-shadow]">
+                  <p className="text-sm font-sans text-[--color-tb-shadow]">
                     {overdueAssignments.length > 0
                       ? t('assignmentsAlert.overdueCount', { count: overdueAssignments.length })
                       : t('assignmentsAlert.dueSoonCount', { count: dueSoonAssignments.length })}
@@ -206,17 +206,17 @@ export default async function StudentDashboardPage({
 
       {/* Quick Actions */}
       <div>
-        <h2 className="text-2xl font-semibold text-[--color-tb-navy] mb-4">
+        <h2 className="text-2xl font-display font-semibold text-[--color-tb-navy] mb-4">
           {t('quickActions')}
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <Link href={`/${locale}/student/assignments`}>
             <Card className="hover:shadow-lg transition-shadow cursor-pointer">
               <CardContent className="pt-6">
-                <h3 className="font-semibold text-[--color-tb-navy] mb-2">
+                <h3 className="font-display font-semibold text-[--color-tb-navy] mb-2">
                   {t('viewAssignments')}
                 </h3>
-                <p className="text-sm text-[--color-tb-shadow]">
+                <p className="text-sm font-sans text-[--color-tb-shadow]">
                   {t('viewAssignmentsDesc')}
                 </p>
               </CardContent>
@@ -225,10 +225,10 @@ export default async function StudentDashboardPage({
           <Link href={`/${locale}/student/modules`}>
             <Card className="hover:shadow-lg transition-shadow cursor-pointer">
               <CardContent className="pt-6">
-                <h3 className="font-semibold text-[--color-tb-navy] mb-2">
+                <h3 className="font-display font-semibold text-[--color-tb-navy] mb-2">
                   {t('browseModules')}
                 </h3>
-                <p className="text-sm text-[--color-tb-shadow]">
+                <p className="text-sm font-sans text-[--color-tb-shadow]">
                   {t('browseModulesDesc')}
                 </p>
               </CardContent>
@@ -237,10 +237,10 @@ export default async function StudentDashboardPage({
           <Link href={`/${locale}/student/skills`}>
             <Card className="hover:shadow-lg transition-shadow cursor-pointer">
               <CardContent className="pt-6">
-                <h3 className="font-semibold text-[--color-tb-navy] mb-2">
+                <h3 className="font-display font-semibold text-[--color-tb-navy] mb-2">
                   {t('viewSkills')}
                 </h3>
-                <p className="text-sm text-[--color-tb-shadow]">
+                <p className="text-sm font-sans text-[--color-tb-shadow]">
                   {t('viewSkillsDesc')}
                 </p>
               </CardContent>

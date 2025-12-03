@@ -65,7 +65,7 @@ export default async function TeacherDashboardPage({
             <div className="text-4xl font-bold text-[--color-tb-red] mb-2">
               {classes.length}
             </div>
-            <div className="text-sm text-[--color-tb-shadow]">
+            <div className="text-sm font-sans text-[--color-tb-shadow]">
               {t('stats.activeClasses')}
             </div>
           </CardContent>
@@ -79,7 +79,7 @@ export default async function TeacherDashboardPage({
             <div className="text-4xl font-bold text-[--color-tb-navy] mb-2">
               {classStats.reduce((sum, c) => sum + c.studentCount, 0)}
             </div>
-            <div className="text-sm text-[--color-tb-shadow]">
+            <div className="text-sm font-sans text-[--color-tb-shadow]">
               {t('stats.totalStudents')}
             </div>
           </CardContent>
@@ -93,7 +93,7 @@ export default async function TeacherDashboardPage({
             <div className="text-4xl font-bold text-[--color-tb-red] mb-2">
               {classStats[0]?.moduleCount || 0}
             </div>
-            <div className="text-sm text-[--color-tb-shadow]">
+            <div className="text-sm font-sans text-[--color-tb-shadow]">
               {t('stats.availableModules')}
             </div>
           </CardContent>
@@ -103,7 +103,7 @@ export default async function TeacherDashboardPage({
       {/* Classes */}
       <div className="mb-8">
         <div className="flex items-center justify-between mb-4">
-          <h2 className="text-2xl font-semibold text-[--color-tb-navy]">
+          <h2 className="text-2xl font-display font-semibold text-[--color-tb-navy]">
             {t('myClasses')}
           </h2>
           <Link href={`/${locale}/teacher/classes/create`}>
@@ -113,7 +113,7 @@ export default async function TeacherDashboardPage({
         {classes.length === 0 ? (
           <Card>
             <CardContent className="text-center py-12">
-              <p className="text-[--color-tb-shadow] mb-4">{t('noClasses')}</p>
+              <p className="text-sm font-sans text-[--color-tb-shadow] mb-4">{t('noClasses')}</p>
               <Link href={`/${locale}/teacher/classes/create`}>
                 <Button>{t('createFirstClass')}</Button>
               </Link>
@@ -126,7 +126,7 @@ export default async function TeacherDashboardPage({
                 <CardHeader>
                   <CardTitle className="text-lg">{classItem.name}</CardTitle>
                   {classItem.grade_level && (
-                    <p className="text-sm text-[--color-tb-shadow]">{classItem.grade_level}</p>
+                    <p className="text-sm font-sans text-[--color-tb-shadow]">{classItem.grade_level}</p>
                   )}
                 </CardHeader>
                 <CardContent>
@@ -149,17 +149,17 @@ export default async function TeacherDashboardPage({
 
       {/* Quick Actions */}
       <div>
-        <h2 className="text-2xl font-semibold text-[--color-tb-navy] mb-4">
+        <h2 className="text-2xl font-display font-semibold text-[--color-tb-navy] mb-4">
           {t('quickActions')}
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           <Link href={`/${locale}/teacher/modules`}>
             <Card className="hover:shadow-lg transition-shadow cursor-pointer">
               <CardContent className="pt-6">
-                <h3 className="font-semibold text-[--color-tb-navy] mb-2">
+                <h3 className="font-display font-semibold text-[--color-tb-navy] mb-2">
                   {t('manageModules')}
                 </h3>
-                <p className="text-sm text-[--color-tb-shadow]">
+                <p className="text-sm font-sans text-[--color-tb-shadow]">
                   {t('manageModulesDesc')}
                 </p>
               </CardContent>
@@ -168,10 +168,10 @@ export default async function TeacherDashboardPage({
           <Link href={`/${locale}/teacher/analytics`}>
             <Card className="hover:shadow-lg transition-shadow cursor-pointer">
               <CardContent className="pt-6">
-                <h3 className="font-semibold text-[--color-tb-navy] mb-2">
+                <h3 className="font-display font-semibold text-[--color-tb-navy] mb-2">
                   {t('viewAnalytics')}
                 </h3>
-                <p className="text-sm text-[--color-tb-shadow]">
+                <p className="text-sm font-sans text-[--color-tb-shadow]">
                   {t('viewAnalyticsDesc')}
                 </p>
               </CardContent>
@@ -180,10 +180,10 @@ export default async function TeacherDashboardPage({
           <Link href={`/${locale}/teacher/modules/create`}>
             <Card className="hover:shadow-lg transition-shadow cursor-pointer">
               <CardContent className="pt-6">
-                <h3 className="font-semibold text-[--color-tb-navy] mb-2">
+                <h3 className="font-display font-semibold text-[--color-tb-navy] mb-2">
                   {t('createModule')}
                 </h3>
-                <p className="text-sm text-[--color-tb-shadow]">
+                <p className="text-sm font-sans text-[--color-tb-shadow]">
                   {t('createModuleDesc')}
                 </p>
               </CardContent>

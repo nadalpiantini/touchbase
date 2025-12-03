@@ -29,8 +29,8 @@ const ProgressBar = forwardRef<HTMLDivElement, ProgressBarProps>(
       <div ref={ref} className={cn('w-full', className)} {...props}>
         {showLabel && (
           <div className="flex justify-between items-center mb-1">
-            <span className="text-sm font-medium text-[--color-tb-shadow]">Progress</span>
-            <span className="text-sm font-semibold text-[--color-tb-navy]">{Math.round(clampedValue)}%</span>
+            <span className="text-sm font-sans font-medium text-[--color-tb-shadow]">Progress</span>
+            <span className="text-sm font-display font-semibold text-[--color-tb-navy]">{Math.round(clampedValue)}%</span>
           </div>
         )}
         <div className={cn('w-full bg-[--color-tb-line] rounded-full overflow-hidden', sizeClasses[size])}>

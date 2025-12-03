@@ -55,6 +55,12 @@ export default async function ProtectedLayout({
                 <Link href={`/${locale}/dashboard/budgeting`} className="text-sm hover:text-[--color-tb-beige] transition">
                   Presupuesto
                 </Link>
+                <Link href={`/${locale}/dashboard/reports`} className="text-sm hover:text-[--color-tb-beige] transition">
+                  Reportes
+                </Link>
+                <Link href={`/${locale}/dashboard/student-life`} className="text-sm hover:text-[--color-tb-beige] transition">
+                  Vida Estudiantil
+                </Link>
                 <Link href={`/${locale}/dashboard/teams`} className="text-sm hover:text-[--color-tb-beige] transition">
                   Equipos
                 </Link>
