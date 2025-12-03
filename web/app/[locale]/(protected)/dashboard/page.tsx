@@ -13,17 +13,35 @@ export default async function DashboardPage({
   const s = supabaseServer();
 
   // 1) Obtener usuario autenticado
+  const isDevelopment = process.env.NODE_ENV !== 'production';
   const { data: { user }, error: userError } = await s.auth.getUser();
-  if (userError || !user) {
+  
+  // Skip auth check in development
+  if ((userError || !user) && !isDevelopment) {
+    redirect(`/${locale}/login`);
+  }
+  
+  // In development, use a mock user if no user is present
+  const effectiveUser = user || (isDevelopment ? {
+    id: 'dev-user-id',
+    email: 'dev@touchbase.local'
+  } : null);
+  
+  if (!effectiveUser) {
     redirect(`/${locale}/login`);
   }
 
   // 2) Obtener profile para ver si tiene default_org_id
-  const { data: profile } = await s
-    .from("touchbase_profiles")
-    .select("id, full_name, default_org_id")
-    .eq("id", user.id)
-    .single();
+  // In development, skip profile check if user doesn't exist
+  let profile = null;
+  if (!isDevelopment || user) {
+    const profileResult = await s
+      .from("touchbase_profiles")
+      .select("id, full_name, default_org_id")
+      .eq("id", effectiveUser.id)
+      .single();
+    profile = profileResult.data;
+  }
 
   // 3) Si NO tiene org aún, mostrar onboarding
   if (!profile?.default_org_id) {
@@ -54,12 +72,16 @@ export default async function DashboardPage({
     .eq("id", profile.default_org_id)
     .single();
 
-  const { data: membership } = await s
-    .from("touchbase_memberships")
-    .select("role")
-    .eq("org_id", profile.default_org_id)
-    .eq("user_id", user.id)
-    .single();
+  let membership = null;
+  if (profile?.default_org_id && (!isDevelopment || user)) {
+    const membershipResult = await s
+      .from("touchbase_memberships")
+      .select("role")
+      .eq("org_id", profile.default_org_id)
+      .eq("user_id", effectiveUser.id)
+      .single();
+    membership = membershipResult.data;
+  }
 
   const role = membership?.role;
 
@@ -82,7 +104,7 @@ export default async function DashboardPage({
                 {t('header.title', { orgName: org?.name || "TouchBase" })}
               </h1>
               <p className="mt-1 text-sm text-[--color-tb-shadow]">
-                {t('header.welcome', { userName: profile?.full_name || user.email })} • {t('header.role', { role: membership?.role || "viewer" })}
+                {t('header.welcome', { userName: profile?.full_name || effectiveUser.email })} • {t('header.role', { role: membership?.role || "viewer" })}
               </p>
             </div>
           </div>

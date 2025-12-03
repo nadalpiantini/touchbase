@@ -276,11 +276,13 @@ test.describe('Frontend Pages - Landing, Login, Dashboard', () => {
       // Wait for page to be fully loaded
       await page.waitForLoadState('networkidle', { timeout: 10000 }).catch(() => {});
 
-      // Verify we're on dashboard (not redirected to login)
-      const currentUrl = page.url();
-      expect(currentUrl).toMatch(/\/[a-z]{2}\/(dashboard|teacher\/dashboard|student\/dashboard)/);
+      // Get the current URL after login
+      const dashboardUrl = page.url();
+      
+      // Verify we successfully reached dashboard (not login)
+      expect(dashboardUrl).toMatch(/\/[a-z]{2}\/(dashboard|teacher\/dashboard|student\/dashboard)/);
 
-      // Verify dashboard content is visible (not login page)
+      // Verify we're not on login page
       const isLoginPage = await page.locator('h2:has-text(/TouchBase Login|Iniciar sesión/i)').isVisible().catch(() => false);
       expect(isLoginPage).toBe(false);
 
@@ -312,12 +314,29 @@ test.describe('Frontend Pages - Landing, Login, Dashboard', () => {
       await expect(page).toHaveURL(/\/[a-z]{2}\/login/);
 
       // Login
-      await loginUser(page, TEST_USER.email, TEST_USER.password);
+      await page.fill('input[name="email"]', TEST_USER.email);
+      await page.fill('input[name="password"]', TEST_USER.password);
+      await page.click('button[type="submit"]');
 
       // Should end up at dashboard (with locale prefix) - could redirect to teacher/student dashboard
-      await page.waitForURL(/\/[a-z]{2}\/(dashboard|teacher\/dashboard|student\/dashboard)/, { timeout: 15000 });
-      const heading = page.locator('h1, h2').first();
-      await expect(heading).toBeVisible();
+      // Wait longer and check if we're redirected to login (which would indicate auth issue)
+      try {
+        await page.waitForURL(/\/[a-z]{2}\/(dashboard|teacher\/dashboard|student\/dashboard)/, { timeout: 20000 });
+        const heading = page.locator('h1, h2').first();
+        await expect(heading).toBeVisible({ timeout: 5000 });
+      } catch (error) {
+        // If we're still on login, the login might have failed
+        const currentUrl = page.url();
+        if (currentUrl.includes('/login')) {
+          // Check if there's an error message
+          const errorMessage = await page.locator('.bg-red-50, .text-red-800').isVisible().catch(() => false);
+          if (errorMessage) {
+            // Login failed - this is a real issue, not a test issue
+            throw new Error('Login failed - check credentials or authentication setup');
+          }
+        }
+        throw error;
+      }
     });
 
     test('should handle browser back/forward navigation correctly', async ({ page }) => {

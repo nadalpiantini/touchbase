@@ -17,10 +17,6 @@ export default function ModuleDetailPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  useEffect(() => {
-    loadModule();
-  }, [moduleId]);
-
   const loadModule = async () => {
     try {
       const res = await fetch(`/api/modules/${moduleId}`);
@@ -31,12 +27,18 @@ export default function ModuleDetailPage() {
       } else {
         setError(json.error || t('errors.fetchFailed'));
       }
-    } catch (e: any) {
-      setError(e.message || t('errors.fetchFailed'));
+    } catch (e: unknown) {
+      const errorMessage = e instanceof Error ? e.message : String(e);
+      setError(errorMessage || t('errors.fetchFailed'));
     } finally {
       setLoading(false);
     }
   };
+
+  useEffect(() => {
+    loadModule();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [moduleId]);
 
   const handleAddStep = () => {
     router.push(`/teacher/modules/${moduleId}/steps/create`);

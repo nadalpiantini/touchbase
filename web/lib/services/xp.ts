@@ -54,8 +54,23 @@ export async function awardXP(
     throw new Error("Failed to update XP");
   }
 
-  // TODO: Store XP history/transactions for analytics
-  // TODO: Award skill-specific XP if skillCategory is provided
+  // Store XP history/transactions for analytics
+  try {
+    await supabase.from("touchbase_xp_awards").insert({
+      user_id: award.userId,
+      action_type: award.action,
+      xp_amount: xpAmount,
+      skill_category: award.skillCategory || null,
+      metadata: award.metadata || null,
+    });
+  } catch (historyError) {
+    // Log but don't fail if history insert fails
+    console.error("Failed to store XP history:", historyError);
+  }
+
+  // Skill-specific XP is handled by the database function touchbase_award_xp
+  // which updates the skill_xp JSONB field in touchbase_profiles
+  // The current implementation already handles this via the profile update
 
   // Check for badge eligibility if leveled up
   if (leveledUp) {
