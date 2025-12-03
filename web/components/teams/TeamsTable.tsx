@@ -110,6 +110,7 @@ export default function TeamsTable() {
               <td className="p-3">
                 {editId === team.id ? (
                   <input
+                    type="text"
                     className="border border-[--color-tb-line] p-1 rounded-lg w-full font-sans text-[--color-tb-navy] focus:ring-2 focus:ring-[--color-tb-stitch]/60 focus:border-[--color-tb-stitch] transition"
                     value={editName}
                     onChange={e => setEditName(e.target.value)}
@@ -117,6 +118,7 @@ export default function TeamsTable() {
                       if (e.key === "Enter") saveEdit();
                       if (e.key === "Escape") cancelEdit();
                     }}
+                    aria-label={`Editar nombre del equipo ${team.name}`}
                   />
                 ) : (
                   <span className="font-sans text-[--color-tb-ink]">{team.name}</span>
@@ -129,14 +131,18 @@ export default function TeamsTable() {
                 {editId === team.id ? (
                   <>
                     <button
+                      type="button"
                       className="text-sm font-sans border border-[--color-tb-line] px-3 py-1 rounded-lg hover:bg-[--color-tb-beige] transition"
                       onClick={saveEdit}
+                      aria-label={`Guardar cambios para ${team.name}`}
                     >
                       {t('actions.save')}
                     </button>
                     <button
+                      type="button"
                       className="text-sm font-sans border border-[--color-tb-line] px-3 py-1 rounded-lg hover:bg-[--color-tb-beige] transition"
                       onClick={cancelEdit}
+                      aria-label={`Cancelar edición de ${team.name}`}
                     >
                       {t('actions.cancel')}
                     </button>
@@ -144,14 +150,18 @@ export default function TeamsTable() {
                 ) : (
                   <>
                     <button
+                      type="button"
                       className="text-sm font-sans text-[--color-tb-navy] hover:text-[--color-tb-stitch] transition"
                       onClick={() => startEdit(team)}
+                      aria-label={`Editar ${team.name}`}
                     >
                       {t('actions.edit')}
                     </button>
                     <button
+                      type="button"
                       className="text-sm font-sans text-[--color-tb-stitch] hover:text-[--color-tb-red] transition"
                       onClick={() => softDelete(team.id)}
+                      aria-label={`Eliminar ${team.name}`}
                     >
                       {t('actions.delete')}
                     </button>
