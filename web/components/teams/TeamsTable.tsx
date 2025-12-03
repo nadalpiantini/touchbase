@@ -69,27 +69,27 @@ export default function TeamsTable() {
     load();
   };
 
-  if (loading) return <p className="text-gray-500">{t('loading')}</p>;
-  if (err) return <p className="text-red-600">{t('error')} {err}</p>;
-  if (!teams.length) return <p className="text-gray-500">{t('empty')}</p>;
+  if (loading) return <p className="font-sans text-[--color-tb-shadow]">{t('loading')}</p>;
+  if (err) return <p className="font-sans text-[--color-tb-stitch]">{t('error')} {err}</p>;
+  if (!teams.length) return <p className="font-sans text-[--color-tb-shadow]">{t('empty')}</p>;
 
   return (
-    <div className="border border-gray-200 rounded-lg overflow-hidden bg-white">
-      <table className="w-full text-sm">
-        <thead className="bg-gray-50 border-b border-gray-200">
+    <div className="border border-[--color-tb-line] rounded-xl overflow-hidden bg-white shadow-sm">
+      <table className="w-full text-sm font-sans">
+        <thead className="bg-[--color-tb-beige] border-b border-[--color-tb-line]">
           <tr>
-            <th className="text-left p-3 font-medium text-gray-700">{t('table.name')}</th>
-            <th className="text-left p-3 font-medium text-gray-700">{t('table.created')}</th>
-            <th className="text-right p-3 font-medium text-gray-700">{t('table.actions')}</th>
+            <th className="text-left p-3 font-display font-semibold text-[--color-tb-navy]">{t('table.name')}</th>
+            <th className="text-left p-3 font-display font-semibold text-[--color-tb-navy]">{t('table.created')}</th>
+            <th className="text-right p-3 font-display font-semibold text-[--color-tb-navy]">{t('table.actions')}</th>
           </tr>
         </thead>
         <tbody>
           {teams.map(team => (
-            <tr key={team.id} className="border-b border-gray-100 hover:bg-gray-50">
+            <tr key={team.id} className="border-b border-[--color-tb-line] hover:bg-[--color-tb-bone] transition">
               <td className="p-3">
                 {editId === team.id ? (
                   <input
-                    className="border border-gray-300 p-1 rounded w-full"
+                    className="border border-[--color-tb-line] p-1 rounded-lg w-full font-sans text-[--color-tb-navy] focus:ring-2 focus:ring-[--color-tb-stitch]/60 focus:border-[--color-tb-stitch] transition"
                     value={editName}
                     onChange={e => setEditName(e.target.value)}
                     onKeyDown={e => {
@@ -98,23 +98,23 @@ export default function TeamsTable() {
                     }}
                   />
                 ) : (
-                  team.name
+                  <span className="font-sans text-[--color-tb-ink]">{team.name}</span>
                 )}
               </td>
-              <td className="p-3 text-gray-600">
+              <td className="p-3 font-sans text-[--color-tb-shadow]">
                 {new Date(team.created_at).toLocaleString()}
               </td>
               <td className="p-3 text-right space-x-2">
                 {editId === team.id ? (
                   <>
                     <button
-                      className="text-sm border border-gray-300 px-3 py-1 rounded hover:bg-gray-50"
+                      className="text-sm font-sans border border-[--color-tb-line] px-3 py-1 rounded-lg hover:bg-[--color-tb-beige] transition"
                       onClick={saveEdit}
                     >
                       {t('actions.save')}
                     </button>
                     <button
-                      className="text-sm border border-gray-300 px-3 py-1 rounded hover:bg-gray-50"
+                      className="text-sm font-sans border border-[--color-tb-line] px-3 py-1 rounded-lg hover:bg-[--color-tb-beige] transition"
                       onClick={cancelEdit}
                     >
                       {t('actions.cancel')}
@@ -123,13 +123,13 @@ export default function TeamsTable() {
                 ) : (
                   <>
                     <button
-                      className="text-sm text-blue-600 hover:text-blue-800"
+                      className="text-sm font-sans text-[--color-tb-navy] hover:text-[--color-tb-stitch] transition"
                       onClick={() => startEdit(team)}
                     >
                       {t('actions.edit')}
                     </button>
                     <button
-                      className="text-sm text-red-600 hover:text-red-800"
+                      className="text-sm font-sans text-[--color-tb-stitch] hover:text-[--color-tb-red] transition"
                       onClick={() => softDelete(team.id)}
                     >
                       {t('actions.delete')}

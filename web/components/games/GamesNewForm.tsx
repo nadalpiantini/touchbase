@@ -36,15 +36,15 @@ export default function GamesNewForm() {
   };
 
   return (
-    <form onSubmit={submit} className="bg-white p-6 rounded-lg border space-y-4">
-      <h2 className="text-lg font-semibold">Nuevo Partido</h2>
+    <form onSubmit={submit} className="bg-white p-6 rounded-xl border border-[--color-tb-line] space-y-4 shadow-sm">
+      <h2 className="text-lg font-display font-semibold text-[--color-tb-navy]">Nuevo Partido</h2>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">
+          <label className="block text-sm font-sans font-medium text-[--color-tb-navy] mb-1">
             Equipo Local
           </label>
           <select 
-            className="w-full border border-gray-300 rounded-md p-2 focus:ring-2 focus:ring-blue-500" 
+            className="w-full border border-[--color-tb-line] rounded-lg p-2 font-sans text-[--color-tb-navy] bg-white focus:ring-2 focus:ring-[--color-tb-stitch]/60 focus:border-[--color-tb-stitch] transition" 
             value={home} 
             onChange={e=>setHome(e.target.value)}
             required
@@ -54,11 +54,11 @@ export default function GamesNewForm() {
           </select>
         </div>
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">
+          <label className="block text-sm font-sans font-medium text-[--color-tb-navy] mb-1">
             Equipo Visitante
           </label>
           <select 
-            className="w-full border border-gray-300 rounded-md p-2 focus:ring-2 focus:ring-blue-500" 
+            className="w-full border border-[--color-tb-line] rounded-lg p-2 font-sans text-[--color-tb-navy] bg-white focus:ring-2 focus:ring-[--color-tb-stitch]/60 focus:border-[--color-tb-stitch] transition" 
             value={away} 
             onChange={e=>setAway(e.target.value)}
             required
@@ -70,11 +70,11 @@ export default function GamesNewForm() {
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">
+          <label className="block text-sm font-sans font-medium text-[--color-tb-navy] mb-1">
             Fecha y Hora
           </label>
           <input 
-            className="w-full border border-gray-300 rounded-md p-2 focus:ring-2 focus:ring-blue-500" 
+            className="w-full border border-[--color-tb-line] rounded-lg p-2 font-sans text-[--color-tb-navy] focus:ring-2 focus:ring-[--color-tb-stitch]/60 focus:border-[--color-tb-stitch] transition" 
             type="datetime-local" 
             value={startsAt} 
             onChange={e=>setStartsAt(e.target.value)}
@@ -82,11 +82,11 @@ export default function GamesNewForm() {
           />
         </div>
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">
+          <label className="block text-sm font-sans font-medium text-[--color-tb-navy] mb-1">
             Lugar (opcional)
           </label>
           <input 
-            className="w-full border border-gray-300 rounded-md p-2 focus:ring-2 focus:ring-blue-500" 
+            className="w-full border border-[--color-tb-line] rounded-lg p-2 font-sans text-[--color-tb-navy] placeholder:text-[--color-tb-shadow]/50 focus:ring-2 focus:ring-[--color-tb-stitch]/60 focus:border-[--color-tb-stitch] transition" 
             placeholder="Estadio, campo, etc." 
             value={venue} 
             onChange={e=>setVenue(e.target.value)}
@@ -96,11 +96,11 @@ export default function GamesNewForm() {
       <div className="flex items-center gap-3">
         <button 
           type="submit"
-          className="bg-black text-white px-4 py-2 rounded-md hover:bg-gray-800 transition-colors"
+          className="bg-[--color-tb-red] text-white px-4 py-2 rounded-xl font-display hover:bg-[--color-tb-stitch] shadow-dugout transition-all active:translate-y-[1px]"
         >
           Crear Partido
         </button>
-        {msg && <span className="text-sm">{msg}</span>}
+        {msg && <span className="text-sm font-sans">{msg}</span>}
       </div>
     </form>
   );

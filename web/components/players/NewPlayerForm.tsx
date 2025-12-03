@@ -43,14 +43,14 @@ export default function NewPlayerForm() {
   return (
     <form onSubmit={onSubmit} className="flex flex-wrap gap-2 items-center">
       <input
-        className="border border-gray-300 p-2 rounded w-64"
+        className="border border-[--color-tb-line] p-2 rounded-lg w-64 font-sans text-[--color-tb-navy] placeholder:text-[--color-tb-shadow]/50 focus:ring-2 focus:ring-[--color-tb-stitch]/60 focus:border-[--color-tb-stitch] transition"
         placeholder="Nombre completo"
         value={fullName}
         onChange={(e) => setFullName(e.target.value)}
         required
       />
       <select
-        className="border border-gray-300 p-2 rounded bg-white"
+        className="border border-[--color-tb-line] p-2 rounded-lg bg-white font-sans text-[--color-tb-navy] focus:ring-2 focus:ring-[--color-tb-stitch]/60 focus:border-[--color-tb-stitch] transition"
         value={teamId}
         onChange={(e) => setTeamId(e.target.value)}
       >
@@ -59,11 +59,11 @@ export default function NewPlayerForm() {
       </select>
       <button 
         disabled={loading} 
-        className="bg-black text-white px-4 py-2 rounded hover:bg-gray-800 disabled:opacity-50"
+        className="bg-[--color-tb-red] text-white px-4 py-2 rounded-xl font-display hover:bg-[--color-tb-stitch] shadow-dugout disabled:opacity-50 transition-all active:translate-y-[1px]"
       >
         {loading ? "Creando..." : "Crear jugador"}
       </button>
-      {msg && <span className="text-sm">{msg}</span>}
+      {msg && <span className="text-sm font-sans">{msg}</span>}
     </form>
   );
 }

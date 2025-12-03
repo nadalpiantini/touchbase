@@ -30,7 +30,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
             'bg-white text-[--color-tb-navy]',
             'border-[--color-tb-line] focus:border-[--color-tb-red] focus:outline-none',
             'placeholder:text-[--color-tb-shadow]/60',
-            error && 'border-red-500 focus:border-red-500',
+            error && 'border-[--color-tb-stitch] focus:border-[--color-tb-stitch]',
             className
           )}
           aria-invalid={error ? 'true' : undefined}
@@ -43,7 +43,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
             role={error ? 'alert' : undefined}
             className={cn(
               'mt-1.5 text-sm',
-              error ? 'text-red-600' : 'text-[--color-tb-shadow]/70'
+              error ? 'text-[--color-tb-stitch]' : 'text-[--color-tb-shadow]/70'
             )}
           >
             {error || helperText}

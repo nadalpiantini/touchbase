@@ -195,7 +195,7 @@ export default function AIAssistant({ context }: AIAssistantProps) {
             onChange={(e) => setInput(e.target.value)}
             onKeyPress={(e) => e.key === "Enter" && handleSend()}
             placeholder={t('typeMessage')}
-            className="flex-1 px-4 py-2 border border-[--color-tb-line] rounded-lg focus:outline-none focus:ring-2 focus:ring-[--color-tb-navy]"
+            className="flex-1 px-4 py-2 border border-[--color-tb-line] rounded-lg focus:outline-none focus:ring-2 focus:ring-[--color-tb-stitch]/60 focus:border-[--color-tb-stitch] font-sans transition"
             disabled={loading}
           />
           <Button
