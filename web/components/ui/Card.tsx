@@ -1,11 +1,11 @@
-import { HTMLAttributes, forwardRef } from 'react';
+import { HTMLAttributes, forwardRef, memo } from 'react';
 import { cn } from '@/lib/utils';
 
 export interface CardProps extends HTMLAttributes<HTMLDivElement> {
   elevated?: boolean;
 }
 
-const Card = forwardRef<HTMLDivElement, CardProps>(
+const Card = memo(forwardRef<HTMLDivElement, CardProps>(
   ({ className, elevated, children, ...props }, ref) => {
     return (
       <div
@@ -21,7 +21,7 @@ const Card = forwardRef<HTMLDivElement, CardProps>(
       </div>
     );
   }
-);
+));
 
 Card.displayName = 'Card';
 
