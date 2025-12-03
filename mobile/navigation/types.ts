@@ -16,5 +16,6 @@ export type MainTabParamList = {
   Modules: undefined;
   Progress: undefined;
   Profile: undefined;
+  ModulePlayer: { moduleId: string };
 };
 
