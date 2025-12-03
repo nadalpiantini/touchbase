@@ -42,7 +42,7 @@ export default function StudentModulesPage() {
 
         if (progressRes.ok) {
           const progressMap: Record<string, { completion_percentage: number; status: string }> = {};
-          (progressJson.progress || []).forEach((p: any) => {
+          (progressJson.progress || []).forEach((p: { module_id: string; completion_percentage?: number; status: string }) => {
             progressMap[p.module_id] = {
               completion_percentage: p.completion_percentage || 0,
               status: p.status,
@@ -53,19 +53,29 @@ export default function StudentModulesPage() {
       } else {
         setError(modulesJson.error || t('errors.loadFailed'));
       }
-    } catch (e: any) {
-      setError(e.message || t('errors.loadFailed'));
+    } catch (e: unknown) {
+      setError((e instanceof Error ? e.message : String(e)) || t('errors.loadFailed'));
     } finally {
       setLoading(false);
     }
   };
 
   if (loading) {
-    return <div className="text-center py-12">{t('loading')}</div>;
+    return (
+      <div className="flex justify-center py-12">
+        <LoadingSpinner size="lg" text={t('loading')} />
+      </div>
+    );
   }
 
   if (error) {
-    return <div className="text-center py-12 text-red-600">{error}</div>;
+    return (
+      <div className="max-w-2xl mx-auto py-12">
+        <Alert variant="error" title={t('errors.loadFailed')}>
+          {error}
+        </Alert>
+      </div>
+    );
   }
 
   return (

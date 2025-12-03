@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Card, CardContent, CardHeader, CardTitle, Button, Badge } from "@/components/ui";
+import { Card, CardContent, CardHeader, CardTitle, Button, Badge, LoadingSpinner, Alert } from "@/components/ui";
 
 type PlacementTest = {
   id: string;
@@ -55,7 +55,11 @@ export default function PlacementTestsPage() {
   };
 
   if (loading) {
-    return <div className="text-center py-12">Cargando pruebas de colocación...</div>;
+    return (
+      <div className="flex justify-center py-12">
+        <LoadingSpinner size="lg" text="Cargando pruebas de colocación..." />
+      </div>
+    );
   }
 
   return (

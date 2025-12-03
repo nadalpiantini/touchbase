@@ -42,8 +42,6 @@ export default function StudentClassDetailPage() {
 
       if (modulesRes.ok) {
         setModules(modulesJson.modules || []);
-      } else {
-        console.error("Failed to load modules:", modulesJson.error);
       }
 
       // Load progress
@@ -52,7 +50,7 @@ export default function StudentClassDetailPage() {
 
       if (progressRes.ok) {
         const progressMap: Record<string, { completion_percentage: number; status: string }> = {};
-        (progressJson.progress || []).forEach((p: any) => {
+        (progressJson.progress || []).forEach((p: { module_id: string; completion_percentage?: number; status: string }) => {
           progressMap[p.module_id] = {
             completion_percentage: p.completion_percentage || 0,
             status: p.status,
@@ -68,16 +66,24 @@ export default function StudentClassDetailPage() {
   };
 
   if (loading) {
-    return <div className="text-center py-12">{t('loading')}</div>;
+    return (
+      <div className="flex justify-center py-12">
+        <LoadingSpinner size="lg" text={t('loading')} />
+      </div>
+    );
   }
 
   if (error || !classItem) {
     return (
-      <div className="text-center py-12">
-        <p className="text-[--color-tb-stitch] mb-4">{error || t('errors.notFound')}</p>;
-        <Button onClick={() => router.push("/student/classes")}>
-          {t('backToClasses')}
-        </Button>
+      <div className="max-w-2xl mx-auto py-12">
+        <Alert variant="error" title={t('errors.notFound')}>
+          {error || t('errors.notFound')}
+        </Alert>
+        <div className="mt-4 text-center">
+          <Button onClick={() => router.push("/student/classes")}>
+            {t('backToClasses')}
+          </Button>
+        </div>
       </div>
     );
   }
