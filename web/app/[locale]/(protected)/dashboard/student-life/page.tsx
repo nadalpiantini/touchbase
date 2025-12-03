@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Card, CardContent, CardHeader, CardTitle, Button, Badge } from "@/components/ui";
+import { Card, CardContent, CardHeader, CardTitle, Button, Badge, LoadingSpinner, Alert } from "@/components/ui";
 import WellnessProgramForm from "@/components/student-life/WellnessProgramForm";
 
 type WellnessProgram = {
@@ -36,6 +36,7 @@ export default function StudentLifePage() {
   const [activities, setActivities] = useState<ExtracurricularActivity[]>([]);
   const [logs, setLogs] = useState<PersonalDevelopmentLog[]>([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
   const [activeTab, setActiveTab] = useState<"wellness" | "activities" | "logs">("wellness");
   const [showWellnessForm, setShowWellnessForm] = useState(false);
 
@@ -45,6 +46,8 @@ export default function StudentLifePage() {
 
   const loadData = async () => {
     try {
+      setLoading(true);
+      setError(null);
       const res = await fetch("/api/student-life?type=all");
       const json = await res.json();
       
@@ -56,7 +59,7 @@ export default function StudentLifePage() {
       setActivities(json.activities || []);
       setLogs(json.logs || []);
     } catch (err: unknown) {
-      // Error handled by UI state
+      setError(err instanceof Error ? err.message : "Error desconocido al cargar datos");
     } finally {
       setLoading(false);
     }
@@ -83,7 +86,18 @@ export default function StudentLifePage() {
   };
 
   if (loading) {
-    return <div className="text-center py-12">Cargando...</div>;
+    return <LoadingSpinner text="Cargando datos de vida estudiantil..." />;
+  }
+
+  if (error) {
+    return (
+      <Alert variant="error" title="Error">
+        {error}
+        <Button onClick={loadData} className="mt-4">
+          Reintentar
+        </Button>
+      </Alert>
+    );
   }
 
   return (

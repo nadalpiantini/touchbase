@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Card, CardContent, CardHeader, CardTitle, Button, Badge } from "@/components/ui";
+import { Card, CardContent, CardHeader, CardTitle, Button, Badge, LoadingSpinner, Alert } from "@/components/ui";
 
 type Budget = {
   id: string;
@@ -24,6 +24,7 @@ export default function BudgetingPage() {
   const [budgets, setBudgets] = useState<Budget[]>([]);
   const [expenses, setExpenses] = useState<Expense[]>([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
   const [showAddBudget, setShowAddBudget] = useState(false);
   const [showAddExpense, setShowAddExpense] = useState(false);
   
@@ -39,6 +40,7 @@ export default function BudgetingPage() {
   const loadData = async () => {
     try {
       setLoading(true);
+      setError(null);
       const response = await fetch("/api/budgeting");
       const data = await response.json();
 
@@ -49,8 +51,7 @@ export default function BudgetingPage() {
       setBudgets(data.budgets || []);
       setExpenses(data.expenses || []);
     } catch (err: unknown) {
-      // Error loading budget data - will be handled by UI state
-      console.error("Error loading budget:", err);
+      setError(err instanceof Error ? err.message : "Error al cargar datos de presupuesto");
     } finally {
       setLoading(false);
     }
@@ -113,7 +114,18 @@ export default function BudgetingPage() {
   const remaining = totalAllocated - totalSpent;
 
   if (loading) {
-    return <div className="text-center py-12">Cargando presupuesto...</div>;
+    return <LoadingSpinner text="Cargando presupuesto..." />;
+  }
+
+  if (error) {
+    return (
+      <Alert variant="error" title="Error">
+        {error}
+        <Button onClick={loadData} className="mt-4">
+          Reintentar
+        </Button>
+      </Alert>
+    );
   }
 
   return (

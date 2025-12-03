@@ -3,7 +3,7 @@
 import { useState, useEffect, useMemo } from "react";
 import CalendarView from "@/components/schedules/CalendarView";
 import { schedulesToCalendarEvents, type CalendarEvent } from "@/lib/services/calendar";
-import { Button, Card, CardContent } from "@/components/ui";
+import { Button, Card, CardContent, LoadingSpinner, Alert } from "@/components/ui";
 
 type ScheduleData = {
   id: string;
@@ -75,22 +75,17 @@ export default function SchedulesPage() {
   };
 
   if (loading) {
-    return (
-      <div className="flex items-center justify-center min-h-[400px]">
-        <div className="text-center">
-          <div className="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-[--color-tb-navy] mb-4"></div>
-          <p className="text-[--color-tb-shadow]">Cargando horarios...</p>
-        </div>
-      </div>
-    );
+    return <LoadingSpinner text="Cargando horarios..." />;
   }
 
   if (error) {
     return (
-      <div className="bg-red-50 border border-red-200 rounded-lg p-6 text-center">
-        <p className="text-red-800 mb-4">Error: {error}</p>
-        <Button onClick={loadSchedules}>Reintentar</Button>
-      </div>
+      <Alert variant="error" title="Error">
+        {error}
+        <Button onClick={loadSchedules} className="mt-4">
+          Reintentar
+        </Button>
+      </Alert>
     );
   }
 
