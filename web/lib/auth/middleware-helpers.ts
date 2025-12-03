@@ -8,9 +8,23 @@ import { getUserDefaultRole, isTeacher, isStudent, UserRole } from "./roles";
 
 /**
  * Require authentication - redirects to login if not authenticated
+ * In development mode, returns a mock user instead
  */
 export async function requireAuth(supabase: SupabaseClient) {
+  const isDevelopment = process.env.NODE_ENV !== 'production';
+  
   const { data: { user } } = await supabase.auth.getUser();
+  
+  // In development, return mock user if no real user
+  if (!user && isDevelopment) {
+    return {
+      id: 'dev-user-id',
+      email: 'dev@touchbase.local',
+      user_metadata: {},
+      app_metadata: {}
+    } as any;
+  }
+  
   if (!user) {
     redirect("/login");
   }

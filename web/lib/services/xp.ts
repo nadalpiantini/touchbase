@@ -97,8 +97,17 @@ export async function awardXP(
           
           if (challenges && challenges.length > 0) {
             for (const participant of challenges) {
-              const challenge = (participant as any).challenge;
-              if (challenge?.challenge_type === "xp_earn" && challenge.is_active) {
+              type ChallengeParticipant = {
+                challenge_id: string;
+                challenge?: {
+                  challenge_type?: string;
+                  is_active?: boolean;
+                  id?: string;
+                } | null;
+              };
+              const typedParticipant = participant as ChallengeParticipant;
+              const challenge = typedParticipant.challenge;
+              if (challenge?.challenge_type === "xp_earn" && challenge.is_active && challenge.id) {
                 await updateChallengeProgress(supabase, challenge.id, award.userId, award.amount);
               }
             }

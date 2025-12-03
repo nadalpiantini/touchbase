@@ -29,7 +29,7 @@ export default async function ProtectedLayout({
     email: 'dev@touchbase.local',
     user_metadata: {},
     app_metadata: {}
-  } : null);
+  } as typeof user : null);
 
   return (
     <div className="min-h-screen bg-[--color-tb-bone]">

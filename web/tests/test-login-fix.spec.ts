@@ -2,29 +2,36 @@ import { test, expect } from '@playwright/test';
 
 test.describe('Login Fix Testing', () => {
   test('test login with real credentials', async ({ page }) => {
-    // Enable console logging
-    page.on('console', msg => {
-      console.log(`[CONSOLE ${msg.type()}]:`, msg.text());
-    });
-
-    // Log network requests
-    page.on('request', request => {
-      if (request.url().includes('supabase') || request.url().includes('auth')) {
-        console.log(`[REQUEST]: ${request.method()} ${request.url()}`);
-      }
-    });
-
-    // Log network responses
-    page.on('response', response => {
-      if (response.url().includes('supabase') || response.url().includes('auth')) {
-        console.log(`[RESPONSE]: ${response.status()} ${response.url()}`);
-        if (response.status() >= 400) {
-          response.text().then(text => {
-            console.log(`[ERROR BODY]:`, text);
-          }).catch(() => {});
+    // Enable console logging only in debug mode
+    const DEBUG = process.env.DEBUG_TESTS === 'true';
+    
+    if (DEBUG) {
+      page.on('console', msg => {
+        // Only log errors in production tests
+        if (msg.type() === 'error') {
+          console.error(`[CONSOLE ${msg.type()}]:`, msg.text());
         }
-      }
-    });
+      });
+
+      // Log network requests only in debug mode
+      page.on('request', request => {
+        if (request.url().includes('supabase') || request.url().includes('auth')) {
+          console.log(`[REQUEST]: ${request.method()} ${request.url()}`);
+        }
+      });
+
+      // Log network responses only in debug mode
+      page.on('response', response => {
+        if (response.url().includes('supabase') || response.url().includes('auth')) {
+          console.log(`[RESPONSE]: ${response.status()} ${response.url()}`);
+          if (response.status() >= 400) {
+            response.text().then(text => {
+              console.log(`[ERROR BODY]:`, text);
+            }).catch(() => {});
+          }
+        }
+      });
+    }
 
     // Go to login page
     await page.goto('/login');
@@ -58,31 +65,44 @@ test.describe('Login Fix Testing', () => {
     
     if (errorCount > 0) {
       const errorText = await errorDiv.first().textContent();
-      console.log('[ERROR FOUND]:', errorText);
+      if (DEBUG) {
+        console.log('[ERROR FOUND]:', errorText);
+      }
       await page.screenshot({ path: 'test-results/login-error.png', fullPage: true });
+      throw new Error(`Login failed: ${errorText}`);
     }
 
     // Check if redirected
     const currentUrl = page.url();
-    console.log('[CURRENT URL]:', currentUrl);
+    if (DEBUG) {
+      console.log('[CURRENT URL]:', currentUrl);
+    }
 
     // Wait a bit more to see if redirect happens
     await page.waitForTimeout(3000);
     
     const finalUrl = page.url();
-    console.log('[FINAL URL]:', finalUrl);
+    if (DEBUG) {
+      console.log('[FINAL URL]:', finalUrl);
+    }
 
     // Take final screenshot
     await page.screenshot({ path: 'test-results/login-after.png', fullPage: true });
 
     // Check if we're on dashboard or still on login
     if (finalUrl.includes('/login')) {
-      console.log('[FAILED]: Still on login page');
-      // Check for any error messages
-      const bodyText = await page.textContent('body');
-      console.log('[BODY TEXT]:', bodyText?.substring(0, 500));
+      if (DEBUG) {
+        console.log('[FAILED]: Still on login page');
+        const bodyText = await page.textContent('body');
+        console.log('[BODY TEXT]:', bodyText?.substring(0, 500));
+      }
+      throw new Error('Login failed: Still on login page');
     } else if (finalUrl.includes('/dashboard')) {
-      console.log('[SUCCESS]: Redirected to dashboard');
+      if (DEBUG) {
+        console.log('[SUCCESS]: Redirected to dashboard');
+      }
+      // Test passed
+      expect(finalUrl).toContain('/dashboard');
     }
   });
 });

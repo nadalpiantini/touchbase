@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { supabaseBrowser } from "@/lib/supabase/client";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
@@ -16,6 +16,18 @@ export default function LoginPage() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const router = useRouter();
+  
+  // In development, auto-redirect to dashboard
+  useEffect(() => {
+    const isDevelopment = process.env.NODE_ENV !== 'production';
+    if (isDevelopment) {
+      // Auto-redirect after a short delay to show the page briefly
+      const timer = setTimeout(() => {
+        window.location.href = `/${locale}/dashboard`;
+      }, 500);
+      return () => clearTimeout(timer);
+    }
+  }, [locale]);
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -23,6 +35,15 @@ export default function LoginPage() {
     setError(null);
 
     try {
+      // In development, skip auth and redirect directly
+      const isDevelopment = process.env.NODE_ENV !== 'production';
+      
+      if (isDevelopment) {
+        // In dev mode, just redirect to dashboard without auth
+        window.location.href = `/${locale}/dashboard`;
+        return;
+      }
+
       // Get Supabase client dynamically (will throw if env vars are missing)
       const supabase = supabaseBrowser();
 
@@ -55,12 +76,21 @@ export default function LoginPage() {
     }
   };
 
+  const isDevelopment = process.env.NODE_ENV !== 'production';
+
   return (
     <main className="min-h-screen flex items-center justify-center bg-[--color-tb-beige]/20 relative">
       {/* Language Selector */}
       <div className="absolute top-4 right-4 z-10">
         <LanguageSelector />
       </div>
+      
+      {/* Development Mode Banner */}
+      {isDevelopment && (
+        <div className="absolute top-20 left-1/2 transform -translate-x-1/2 z-10 bg-yellow-500 text-yellow-900 px-4 py-2 rounded-lg text-sm font-semibold">
+          🚧 DEV MODE: Auth disabled - Redirecting to dashboard...
+        </div>
+      )}
 
       <div className="max-w-md w-full space-y-8">
         <div className="flex flex-col items-center">
