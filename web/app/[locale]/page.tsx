@@ -1,10 +1,10 @@
 import Link from "next/link";
 import Image from "next/image";
-import { useTranslations } from 'next-intl';
+import { getTranslations } from 'next-intl/server';
 import { LanguageSelector } from '@/components/LanguageSelector';
 
-export default function HomePage() {
-  const t = useTranslations('landing');
+export default async function HomePage() {
+  const t = await getTranslations('landing');
 
   return (
     <main className="min-h-screen flex items-center justify-center bg-[radial-gradient(circle_at_20%_20%,#F8EBD0,transparent_60%),linear-gradient(180deg,#14213D,#0E0E0E)] relative">
