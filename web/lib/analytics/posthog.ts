@@ -3,6 +3,7 @@
 // ============================================================
 
 import posthog from "posthog-js";
+import { AnalyticsEvents, AnalyticsEventProperties, AnalyticsEventName } from "./events";
 
 let initialized = false;
 
@@ -31,6 +32,69 @@ export function initPosthog() {
   });
 
   initialized = true;
+}
+
+/**
+ * Track an analytics event
+ */
+export function trackEvent(
+  eventName: AnalyticsEventName,
+  properties?: AnalyticsEventProperties
+): void {
+  if (typeof window === "undefined") return;
+
+  const posthog = (window as any).posthog;
+  if (!posthog) {
+    console.warn("PostHog not initialized");
+    return;
+  }
+
+  posthog.capture(eventName, properties);
+}
+
+/**
+ * Identify a user
+ */
+export function identifyUser(userId: string, properties?: Record<string, any>): void {
+  if (typeof window === "undefined") return;
+
+  const posthog = (window as any).posthog;
+  if (!posthog) {
+    console.warn("PostHog not initialized");
+    return;
+  }
+
+  posthog.identify(userId, properties);
+}
+
+/**
+ * Set user properties
+ */
+export function setUserProperties(properties: Record<string, any>): void {
+  if (typeof window === "undefined") return;
+
+  const posthog = (window as any).posthog;
+  if (!posthog) {
+    console.warn("PostHog not initialized");
+    return;
+  }
+
+  posthog.setPersonProperties(properties);
+}
+
+/**
+ * Reset user session (on logout)
+ */
+export function resetUser(): void {
+  if (typeof window === "undefined") return;
+
+  const posthog = (window as any).posthog;
+  if (!posthog) {
+    console.warn("PostHog not initialized");
+    return;
+  }
+
+  posthog.reset();
 }
 
 export { posthog };
