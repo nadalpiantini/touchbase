@@ -16,7 +16,6 @@ export async function GET(
 
     return NextResponse.json({ schedules });
   } catch (error: unknown) {
-    console.error("Get schedules error:", error);
     return NextResponse.json(
       { error: error instanceof Error ? error.message : "Failed to get schedules" },
       { status: 400 }
@@ -50,7 +49,6 @@ export async function POST(
 
     return NextResponse.json({ schedule });
   } catch (error: unknown) {
-    console.error("Create schedule error:", error);
     return NextResponse.json(
       { error: error instanceof Error ? error.message : "Failed to create schedule" },
       { status: 400 }
