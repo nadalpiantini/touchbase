@@ -22,13 +22,14 @@ export async function GET(req: Request) {
     .from("touchbase_class_schedules")
     .select(`
       *,
-      touchbase_classes!inner (
+      touchbase_classes (
         id,
         name,
         description
       )
     `)
     .eq("org_id", current.org_id)
+    .order("day_of_week", { ascending: true })
     .order("start_time", { ascending: true });
 
   if (error) {

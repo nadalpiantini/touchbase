@@ -2,15 +2,9 @@
 
 import { useState, useMemo } from "react";
 import { Card, CardContent, CardHeader, CardTitle, Button, Badge } from "@/components/ui";
+import type { CalendarEvent } from "@/lib/services/calendar";
 
-type ScheduleEvent = {
-  id: string;
-  title: string;
-  start: Date;
-  end: Date;
-  type: "class" | "game" | "practice" | "event";
-  location?: string;
-};
+type ScheduleEvent = CalendarEvent;
 
 type CalendarViewProps = {
   events: ScheduleEvent[];
