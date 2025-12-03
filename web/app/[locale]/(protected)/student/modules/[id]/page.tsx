@@ -17,6 +17,8 @@ export default function ModulePlayerPage() {
   const [progress, setProgress] = useState<ModuleProgress | null>(null);
   const [currentStepIndex, setCurrentStepIndex] = useState(0);
   const [loading, setLoading] = useState(true);
+  const [quizAnswers, setQuizAnswers] = useState<Record<number, number>>({});
+  const [showQuizResult, setShowQuizResult] = useState(false);
 
   useEffect(() => {
     loadModule();
@@ -67,15 +69,45 @@ export default function ModulePlayerPage() {
   const handleStepComplete = async () => {
     if (!progress) return;
 
+    const currentStep = steps[currentStepIndex];
+    let stepData: any = { completed: true };
+
+    // For quiz steps, include the answer and score
+    if (currentStep.step_type === "quiz") {
+      const quizData = currentStep.content_data as any;
+      const selectedAnswer = quizAnswers[currentStepIndex];
+      const isCorrect = selectedAnswer === quizData?.correctAnswer;
+      const quizScore = isCorrect ? 100 : 0;
+
+      stepData = {
+        completed: true,
+        quizScore,
+        selectedAnswer,
+        isCorrect,
+      };
+    }
+
+    // For scenario steps, include the choice
+    if (currentStep.step_type === "scenario") {
+      const selectedChoice = quizAnswers[currentStepIndex];
+      stepData = {
+        completed: true,
+        scenarioChoice: selectedChoice,
+      };
+    }
+
     await fetch("/api/progress/update", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         moduleId,
         stepIndex: currentStepIndex,
-        stepData: { completed: true },
+        stepData,
       }),
     });
+
+    // Reset quiz result state
+    setShowQuizResult(false);
 
     // Move to next step
     if (currentStepIndex < steps.length - 1) {
@@ -155,21 +187,43 @@ export default function ModulePlayerPage() {
               <p className="font-semibold text-[--color-tb-navy] mb-4">
                 {(currentStep.content_data as any)?.question}
               </p>
+              {showQuizResult && (
+                <div className="mb-4 p-4 bg-[--color-tb-beige] rounded-lg">
+                  <p className="text-sm text-[--color-tb-navy]">
+                    {quizAnswers[currentStepIndex] === (currentStep.content_data as any)?.correctAnswer
+                      ? t('quiz.correct')
+                      : t('quiz.incorrect')}
+                  </p>
+                </div>
+              )}
               <div className="space-y-2">
                 {((currentStep.content_data as any)?.options || []).map(
-                  (option: string, idx: number) => (
-                    <Button
-                      key={idx}
-                      variant="outline"
-                      className="w-full text-left"
-                      onClick={() => {
-                        // TODO: Check answer and update progress
-                        handleStepComplete();
-                      }}
-                    >
-                      {option}
-                    </Button>
-                  )
+                  (option: string, idx: number) => {
+                    const isSelected = quizAnswers[currentStepIndex] === idx;
+                    const isCorrect = idx === (currentStep.content_data as any)?.correctAnswer;
+                    const showResult = showQuizResult;
+
+                    return (
+                      <Button
+                        key={idx}
+                        variant={isSelected ? "primary" : "outline"}
+                        className={`w-full text-left ${
+                          showResult && isCorrect ? "bg-green-100 border-green-500" : ""
+                        } ${
+                          showResult && isSelected && !isCorrect ? "bg-red-100 border-red-500" : ""
+                        }`}
+                        onClick={() => {
+                          if (!showResult) {
+                            setQuizAnswers({ ...quizAnswers, [currentStepIndex]: idx });
+                            setShowQuizResult(true);
+                          }
+                        }}
+                        disabled={showResult}
+                      >
+                        {option}
+                      </Button>
+                    );
+                  }
                 )}
               </div>
             </div>
@@ -182,19 +236,28 @@ export default function ModulePlayerPage() {
               </p>
               <div className="space-y-2">
                 {((currentStep.content_data as any)?.options || []).map(
-                  (option: any, idx: number) => (
-                    <Button
-                      key={idx}
-                      variant="outline"
-                      className="w-full text-left"
-                      onClick={() => {
-                        // TODO: Handle scenario choice
-                        handleStepComplete();
-                      }}
-                    >
-                      {option.text}
-                    </Button>
-                  )
+                  (option: any, idx: number) => {
+                    const isSelected = quizAnswers[currentStepIndex] === idx;
+                    return (
+                      <Button
+                        key={idx}
+                        variant={isSelected ? "primary" : "outline"}
+                        className="w-full text-left"
+                        onClick={() => {
+                          setQuizAnswers({ ...quizAnswers, [currentStepIndex]: idx });
+                        }}
+                      >
+                        <div>
+                          <div className="font-medium">{option.text}</div>
+                          {option.consequence && (
+                            <div className="text-xs text-[--color-tb-shadow] mt-1">
+                              {option.consequence}
+                            </div>
+                          )}
+                        </div>
+                      </Button>
+                    );
+                  }
                 )}
               </div>
             </div>
@@ -211,12 +274,26 @@ export default function ModulePlayerPage() {
             )}
             <div className="flex-1" />
             {!isLastStep && (
-              <Button onClick={handleStepComplete}>
+              <Button
+                onClick={handleStepComplete}
+                disabled={
+                  currentStep.step_type === "quiz" &&
+                  !showQuizResult &&
+                  quizAnswers[currentStepIndex] === undefined
+                }
+              >
                 {t('next')}
               </Button>
             )}
             {isLastStep && (
-              <Button onClick={handleStepComplete}>
+              <Button
+                onClick={handleStepComplete}
+                disabled={
+                  currentStep.step_type === "quiz" &&
+                  !showQuizResult &&
+                  quizAnswers[currentStepIndex] === undefined
+                }
+              >
                 {t('complete')}
               </Button>
             )}
