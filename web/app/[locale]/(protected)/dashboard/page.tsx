@@ -56,6 +56,16 @@ export default async function DashboardPage() {
     .eq("user_id", user.id)
     .single();
 
+  const role = membership?.role;
+
+  // Redirect based on role
+  if (role === 'teacher') {
+    redirect('/teacher/dashboard');
+  }
+  if (role === 'student') {
+    redirect('/student/dashboard');
+  }
+
   return (
     <main className="min-h-screen bg-[--color-tb-bone]">
       <div className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
