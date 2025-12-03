@@ -57,6 +57,24 @@ export async function awardXP(
   // TODO: Store XP history/transactions for analytics
   // TODO: Award skill-specific XP if skillCategory is provided
 
+  // Check for badge eligibility if leveled up
+  if (leveledUp) {
+    try {
+      const { checkAndAwardBadges } = await import("./badges");
+      const { data: profile } = await supabase
+        .from("touchbase_profiles")
+        .select("default_org_id")
+        .eq("id", award.userId)
+        .single();
+      
+      if (profile?.default_org_id) {
+        await checkAndAwardBadges(supabase, award.userId, profile.default_org_id, "level_up");
+      }
+    } catch (badgeError) {
+      console.error("Failed to check badges on level up:", badgeError);
+    }
+  }
+
   return {
     newXp,
     newLevel,

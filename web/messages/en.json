@@ -384,6 +384,23 @@
         "notAuthenticated": "Not authenticated",
         "loadFailed": "Failed to load skills data"
       }
+    },
+    "badges": {
+      "title": "My Badges",
+      "loading": "Loading badges...",
+      "noBadges": "You haven't earned any badges yet.",
+      "earnBadgesHint": "Complete modules, answer quizzes correctly, and reach milestones to earn badges!",
+      "earnedOn": "Earned on",
+      "categories": {
+        "achievement": "Achievements",
+        "milestone": "Milestones",
+        "skill": "Skills",
+        "streak": "Streaks",
+        "special": "Special"
+      },
+      "errors": {
+        "loadFailed": "Failed to load badges"
+      }
     }
   },
   "notFound": {

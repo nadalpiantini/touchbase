@@ -384,6 +384,23 @@
         "notAuthenticated": "No autenticado",
         "loadFailed": "Error al cargar datos de habilidades"
       }
+    },
+    "badges": {
+      "title": "Mis Insignias",
+      "loading": "Cargando insignias...",
+      "noBadges": "Aún no has ganado ninguna insignia.",
+      "earnBadgesHint": "¡Completa módulos, responde quizzes correctamente y alcanza hitos para ganar insignias!",
+      "earnedOn": "Ganada el",
+      "categories": {
+        "achievement": "Logros",
+        "milestone": "Hitos",
+        "skill": "Habilidades",
+        "streak": "Rachas",
+        "special": "Especiales"
+      },
+      "errors": {
+        "loadFailed": "Error al cargar insignias"
+      }
     }
   },
   "notFound": {

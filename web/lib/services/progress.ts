@@ -143,6 +143,18 @@ export async function updateStepProgress(
     try {
       const { awardModuleCompletionXP } = await import("./xp");
       await awardModuleCompletionXP(supabase, userId, moduleId, progress.score);
+      
+      // Check for badge eligibility
+      const { checkAndAwardBadges } = await import("./badges");
+      const { data: profile } = await supabase
+        .from("touchbase_profiles")
+        .select("default_org_id")
+        .eq("id", userId)
+        .single();
+      
+      if (profile?.default_org_id) {
+        await checkAndAwardBadges(supabase, userId, profile.default_org_id, "module_complete");
+      }
     } catch (xpError) {
       // Don't fail the progress update if XP award fails
       console.error("Failed to award module complete XP:", xpError);
