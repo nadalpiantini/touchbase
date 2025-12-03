@@ -5,7 +5,7 @@ import { supabaseClient } from "@/lib/supabase/client";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 import { LanguageSelector } from '@/components/LanguageSelector';
 
 // Use the singleton client at module level
@@ -13,6 +13,7 @@ const supabase = supabaseClient!;
 
 export default function SignUpPage() {
   const t = useTranslations('signup');
+  const locale = useLocale();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -42,9 +43,17 @@ export default function SignUpPage() {
     }
 
     try {
+      // En desarrollo, podemos desactivar confirmación de email
+      // pero la mejor solución es configurar SMTP personalizado en Supabase
       const { error } = await supabase.auth.signUp({
         email,
         password,
+        options: {
+          // Solo en producción usar redirect de email
+          emailRedirectTo: process.env.NODE_ENV === 'production' 
+            ? `${window.location.origin}/auth/callback`
+            : undefined,
+        }
       });
 
       if (error) throw error;
@@ -52,7 +61,7 @@ export default function SignUpPage() {
       setSuccess(true);
       // Redirigir al dashboard después de 2 segundos
       setTimeout(() => {
-        router.push("/dashboard");
+        router.push(`/${locale}/dashboard`);
       }, 2000);
     } catch (err: unknown) {
       setError(err instanceof Error ? err.message : t('errors.genericError'));

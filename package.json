@@ -5,5 +5,8 @@
     "build": "cd web && npm run build",
     "start": "cd web && npm start",
     "dev": "cd web && npm run dev"
+  },
+  "dependencies": {
+    "task-master-ai": "^0.37.0"
   }
 }

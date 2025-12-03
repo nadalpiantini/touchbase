@@ -76,7 +76,16 @@ test.describe('Authentication Flow', () => {
   });
 
   test.describe('Signup', () => {
-    test('should successfully create a new account', async ({ page }) => {
+    test.skip('should successfully create a new account', async ({ page }) => {
+      // ⚠️ SKIPPED: Este test crea usuarios reales y envía emails de confirmación
+      // que causan bounces. Desactivar hasta configurar SMTP personalizado o
+      // usar un servicio de testing de emails.
+      // 
+      // Para reactivar:
+      // 1. Configurar SMTP personalizado en Supabase
+      // 2. O usar un servicio como Mailtrap para testing
+      // 3. O desactivar confirmación de email en Supabase Dashboard
+      
       // Generate unique email for this test
       const uniqueEmail = `test.${Date.now()}@touchbase.com`;
 
