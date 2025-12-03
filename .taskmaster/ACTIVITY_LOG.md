@@ -711,6 +711,63 @@
 
 ---
 
+## 📋 TAREA #6: Scheduling System: Class Schedule Builder & Weekly Agenda
+
+**Estado:** 🔄 IN PROGRESS  
+**Prioridad:** MEDIUM  
+**Dependencias:** Tarea #4 (✅ DONE)
+
+### Mini Sprint 6.1: Schedule Builder UI ✅
+
+**Fecha:** 2025-12-03  
+**Duración:** ~20 min
+
+**Cambios Realizados:**
+- ✅ Creado componente ScheduleBuilder para crear horarios de clase
+- ✅ Soporte para day of week, time selection, recurring patterns
+- ✅ Date range support para schedules no recurrentes
+- ✅ Integrado en página de detalle de clase del teacher
+
+**Commit:** `05a3b21169`
+
+---
+
+### Mini Sprint 6.2: Weekly Agenda View ✅
+
+**Fecha:** 2025-12-03  
+**Duración:** ~15 min
+
+**Cambios Realizados:**
+- ✅ Creado componente WeeklyAgenda para estudiantes
+- ✅ Navegación de semana (prev/next/today)
+- ✅ Muestra horarios de clases en grid semanal
+- ✅ Integrado en dashboard del estudiante
+
+**Commit:** `[pending]`
+
+---
+
+## ✅ TAREA #6 COMPLETADA
+
+**Estado Final:** ✅ DONE  
+**Commits:** 2  
+**Duración Total:** ~35 minutos
+
+### Resumen Ejecutivo:
+
+**✅ Scheduling System Implementado:**
+- Schedule builder UI para teachers
+- Weekly agenda view para students
+- Schedule service y API routes existentes y funcionales
+
+**Nota:** Push notifications se implementarán en fase móvil (Expo Notifications).
+
+**✅ Próxima Tarea:**
+- **Tarea #7:** Curriculum & Module Engine: Lesson Player & Progress Tracking
+- **Estado:** Pending
+
+---
+
 ### Mini Sprint 3.5-3.6: Middleware y Validación RLS ✅
 
 **Fecha:** 2025-12-03  

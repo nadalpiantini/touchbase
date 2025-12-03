@@ -75,14 +75,15 @@
         "id": "6",
         "title": "Scheduling System: Class Schedule Builder & Weekly Agenda",
         "description": "Create class schedule builder for teachers, weekly agenda view for students, and push notification system for schedule reminders",
-        "status": "pending",
+        "status": "done",
         "dependencies": [
           "4"
         ],
         "priority": "medium",
         "details": "1. Build schedule builder UI (day/time selection, recurring patterns)\n2. Create Firestore schema: schedules collection (class_id, day_of_week, time, location)\n3. Implement weekly agenda view for students (upcoming classes)\n4. Set up push notification service (Firebase Cloud Messaging)\n5. Create notification triggers for schedule reminders\n6. Build schedule editing and deletion functionality\n\nAPI Routes: /api/schedules/create, /api/schedules/class/[classId], /api/schedules/update\nMobile: Expo Notifications for push alerts",
         "testStrategy": "Test schedule creation, verify weekly agenda display, test push notifications, and validate recurring pattern logic",
-        "subtasks": []
+        "subtasks": [],
+        "updatedAt": "2025-12-03T23:33:34.734Z"
       },
       {
         "id": "7",
@@ -143,9 +144,9 @@
     ],
     "metadata": {
       "version": "1.0.0",
-      "lastModified": "2025-12-03T23:31:22.251Z",
+      "lastModified": "2025-12-03T23:33:34.735Z",
       "taskCount": 10,
-      "completedCount": 5,
+      "completedCount": 6,
       "tags": [
         "master"
       ]
