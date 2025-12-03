@@ -556,6 +556,20 @@
       }
     }
   },
+  "profile": {
+    "title": "Mi Perfil",
+    "editProfile": "Editar Perfil",
+    "photo": "Foto de Perfil",
+    "photoHint": "JPEG, PNG, WebP o GIF. Máx. 5MB.",
+    "fullName": "Nombre Completo",
+    "email": "Correo Electrónico",
+    "emailHint": "El correo no puede cambiarse. Contacta soporte si es necesario.",
+    "phone": "Teléfono",
+    "save": "Guardar Cambios",
+    "saving": "Guardando...",
+    "cancel": "Cancelar",
+    "saveSuccess": "¡Perfil actualizado exitosamente!"
+  },
   "notFound": {
     "title": "404 — Página no encontrada",
     "message": "La página que buscas no existe o ha sido movida.",

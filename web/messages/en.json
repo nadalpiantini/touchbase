@@ -583,6 +583,20 @@
       }
     }
   },
+  "profile": {
+    "title": "My Profile",
+    "editProfile": "Edit Profile",
+    "photo": "Profile Photo",
+    "photoHint": "JPEG, PNG, WebP or GIF. Max 5MB.",
+    "fullName": "Full Name",
+    "email": "Email",
+    "emailHint": "Email cannot be changed. Contact support if needed.",
+    "phone": "Phone",
+    "save": "Save Changes",
+    "saving": "Saving...",
+    "cancel": "Cancel",
+    "saveSuccess": "Profile updated successfully!"
+  },
   "notFound": {
     "title": "404 — Page not found",
     "message": "The page you're looking for doesn't exist or has been moved.",
