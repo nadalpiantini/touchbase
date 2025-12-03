@@ -1,14 +1,12 @@
 "use client";
 
 import { useState } from "react";
-import { supabaseClient } from "@/lib/supabase/client";
+import { supabaseBrowser } from "@/lib/supabase/client";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import { useTranslations, useLocale } from 'next-intl';
 import { LanguageSelector } from '@/components/LanguageSelector';
-
-const supabase = supabaseClient!;
 
 export default function LoginPage() {
   const t = useTranslations('login');
@@ -25,24 +23,34 @@ export default function LoginPage() {
     setError(null);
 
     try {
-      const { data, error } = await supabase.auth.signInWithPassword({
+      // Get Supabase client dynamically (will throw if env vars are missing)
+      const supabase = supabaseBrowser();
+
+      const { data, error: authError } = await supabase.auth.signInWithPassword({
         email,
         password,
       });
 
-      if (error) throw error;
-
-      // Wait a moment for session to be established
-      if (data.session) {
-        // Use window.location for a full page reload to ensure session is set
-        window.location.href = `/${locale}/dashboard`;
-      } else {
-        // Fallback to router if no session data
-        router.push(`/${locale}/dashboard`);
-        router.refresh();
+      if (authError) {
+        console.error("Login error:", authError);
+        throw authError;
       }
+
+      if (!data.session) {
+        throw new Error("No se pudo establecer la sesión. Intenta nuevamente.");
+      }
+
+      // Wait a moment for session to be established in storage
+      await new Promise(resolve => setTimeout(resolve, 500));
+
+      // Use window.location for a full page reload to ensure session is set
+      window.location.href = `/${locale}/dashboard`;
     } catch (err: unknown) {
-      setError(err instanceof Error ? err.message : "Error al iniciar sesión");
+      console.error("Login error details:", err);
+      const errorMessage = err instanceof Error 
+        ? err.message 
+        : "Error al iniciar sesión. Verifica tus credenciales.";
+      setError(errorMessage);
       setLoading(false);
     }
   };

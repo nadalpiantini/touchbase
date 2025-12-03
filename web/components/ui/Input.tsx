@@ -33,10 +33,14 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
             error && 'border-red-500 focus:border-red-500',
             className
           )}
+          aria-invalid={error ? 'true' : undefined}
+          aria-describedby={error || helperText ? `${inputId}-help` : undefined}
           {...props}
         />
         {(error || helperText) && (
           <p
+            id={`${inputId}-help`}
+            role={error ? 'alert' : undefined}
             className={cn(
               'mt-1.5 text-sm',
               error ? 'text-red-600' : 'text-[--color-tb-shadow]/70'
