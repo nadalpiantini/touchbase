@@ -49,7 +49,6 @@ export async function GET(req: Request) {
         );
         return response;
   } catch (error: unknown) {
-    console.error("List modules error:", error);
     const errorMessage = error instanceof Error ? error.message : "Failed to list modules";
     return NextResponse.json(
       { error: errorMessage },
