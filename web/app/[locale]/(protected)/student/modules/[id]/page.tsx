@@ -5,6 +5,7 @@ import { useParams } from "next/navigation";
 import { useTranslations } from 'next-intl';
 import { Card, CardContent, CardHeader, CardTitle, Button, ProgressBar } from '@/components/ui';
 import { Module, ModuleStep, ModuleProgress } from '@/lib/types/education';
+import AICoach from '@/components/student/AICoach';
 
 export default function ModulePlayerPage() {
   const t = useTranslations('student.modules');
@@ -222,6 +223,19 @@ export default function ModulePlayerPage() {
           </div>
         </CardContent>
       </Card>
+
+      {/* AI Coach */}
+      {module && steps[currentStepIndex] && (
+        <AICoach
+          moduleTitle={module.title}
+          stepContent={JSON.stringify(steps[currentStepIndex].content_data)}
+          question={
+            steps[currentStepIndex].step_type === "quiz"
+              ? (steps[currentStepIndex].content_data as any)?.question
+              : undefined
+          }
+        />
+      )}
     </div>
   );
 }

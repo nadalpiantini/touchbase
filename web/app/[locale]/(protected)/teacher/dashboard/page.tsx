@@ -15,6 +15,9 @@ export default async function TeacherDashboardPage() {
       <p className="text-[--color-tb-shadow]">
         Teacher dashboard - Coming soon
       </p>
+
+      {/* AI Assistant */}
+      <AIAssistant />
     </div>
   );
 }

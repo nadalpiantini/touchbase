@@ -3,6 +3,9 @@
 **Versión Oficial 1.0**  
 *MLB 90s + Tech Clean + Nostalgia Pro*
 
+> 📄 **Brand Guide Oficial:** `/items/touchbase_academy_brand_guide.pdf`  
+> 🎨 **Logos disponibles:** `/items/LOGO/`
+
 ---
 
 ## 1. Identidad Visual Principal
@@ -155,21 +158,34 @@ Si haces animación (y tú haces 👑):
 
 ## 6. Reglas de Uso del Logo
 
-### 6.1. Fondos permitidos
+### 6.1. Archivos de Logo Disponibles
+
+Los logos oficiales se encuentran en `/items/LOGO/`:
+
+- `touchbase_logo.png` - Logo principal
+- `touchbase_slogan_logo.png` - Logo con slogan
+- `LOGO_0000.png` - Variante 0
+- `LOGO_0001.png` - Variante 1
+- `LOGO_0002.png` - Variante 2
+- `LOGO_0003.png` - Variante 3
+
+**Referencia completa:** Ver `/items/touchbase_academy_brand_guide.pdf` para especificaciones detalladas.
+
+### 6.2. Fondos permitidos
 
 ✔ **TB Cream**  
 ✔ **TB Navy**  
 ✔ **Blanco absoluto**  
 ✔ **Foto con 40–60% blur ligero**
 
-### 6.2. No permitido
+### 6.3. No permitido
 
 ❌ Sombra glow  
 ❌ Cambiar inclinación del texto  
 ❌ Colores fuera de la paleta  
 ❌ Sobre fondos muy saturados
 
-### 6.3. Espacio libre
+### 6.4. Espacio libre
 
 Deja siempre un margen igual al alto de la "T" alrededor del logo.
 
@@ -255,6 +271,8 @@ El proyecto ya usa Tailwind v4 con `@theme inline`. Los colores están definidos
 - `web/app/globals.css` - Variables CSS y configuración de tema
 - `web/TOUCHBASE_STYLE_GUIDE.md` - Guía de estilo detallada
 - `web/DESIGN_TOKENS.md` - Sistema de tokens para whitelabel
+- `/items/touchbase_academy_brand_guide.pdf` - **Brand Guide Oficial (PDF)**
+- `/items/LOGO/` - **Archivos de logo oficiales**
 
 ### Uso en componentes:
 
