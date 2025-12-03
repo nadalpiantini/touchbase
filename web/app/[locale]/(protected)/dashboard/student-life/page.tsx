@@ -147,35 +147,35 @@ export default function StudentLifePage() {
               <div className="flex justify-end mb-4">
                 <Button onClick={() => setShowWellnessForm(true)}>+ Nuevo Programa</Button>
               </div>
-          {wellnessPrograms.length === 0 ? (
-            <Card>
-              <CardContent className="text-center py-12">
-                <p className="text-[--color-tb-shadow]">No hay programas de bienestar configurados.</p>
-              </CardContent>
-            </Card>
-          ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {wellnessPrograms.map(program => (
-                <Card key={program.id}>
-                  <CardHeader>
-                    <CardTitle>{program.name}</CardTitle>
-                    <Badge variant="info">{program.program_type}</Badge>
-                  </CardHeader>
-                  <CardContent>
-                    {program.description && (
-                      <p className="text-sm text-[--color-tb-shadow] mb-4">{program.description}</p>
-                    )}
-                    <div className="text-sm text-[--color-tb-shadow]">
-                      <p>Inicio: {new Date(program.start_date).toLocaleDateString("es-ES")}</p>
-                      {program.end_date && (
-                        <p>Fin: {new Date(program.end_date).toLocaleDateString("es-ES")}</p>
-                      )}
-                    </div>
+              {wellnessPrograms.length === 0 ? (
+                <Card>
+                  <CardContent className="text-center py-12">
+                    <p className="text-[--color-tb-shadow]">No hay programas de bienestar configurados.</p>
                   </CardContent>
                 </Card>
-              ))}
-            </div>
-          )}
+              ) : (
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {wellnessPrograms.map(program => (
+                    <Card key={program.id}>
+                      <CardHeader>
+                        <CardTitle>{program.name}</CardTitle>
+                        <Badge variant="info">{program.program_type}</Badge>
+                      </CardHeader>
+                      <CardContent>
+                        {program.description && (
+                          <p className="text-sm text-[--color-tb-shadow] mb-4">{program.description}</p>
+                        )}
+                        <div className="text-sm text-[--color-tb-shadow]">
+                          <p>Inicio: {new Date(program.start_date).toLocaleDateString("es-ES")}</p>
+                          {program.end_date && (
+                            <p>Fin: {new Date(program.end_date).toLocaleDateString("es-ES")}</p>
+                          )}
+                        </div>
+                      </CardContent>
+                    </Card>
+                  ))}
+                </div>
+              )}
             </>
           )}
         </div>
