@@ -35,7 +35,7 @@ export default async function StudentLayout({
                   Dashboard
                 </Link>
                 <Link href="/student/modules" className="text-sm hover:text-[--color-tb-beige] transition">
-                  Módulos
+                  Modules
                 </Link>
                 <Link href="/student/progress" className="text-sm hover:text-[--color-tb-beige] transition">
                   Progreso

@@ -443,6 +443,21 @@
       "errors": {
         "loadFailed": "Failed to load leaderboard"
       }
+    },
+    "modules": {
+      "title": "Modules",
+      "loading": "Loading modules...",
+      "noModules": "No modules available",
+      "noModulesDesc": "Check back later or ask your teacher to assign modules.",
+      "progress": "Progress",
+      "minutes": "min",
+      "skills": "skills",
+      "start": "Start",
+      "continue": "Continue",
+      "review": "Review",
+      "errors": {
+        "loadFailed": "Failed to load modules"
+      }
     }
   },
   "notFound": {
