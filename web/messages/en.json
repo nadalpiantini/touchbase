@@ -202,6 +202,59 @@
       "generic": "Error"
     }
   },
+  "teacher": {
+    "modules": {
+      "title": "Modules",
+      "createModule": "Create Module",
+      "noModules": "No modules yet. Create your first module to get started.",
+      "createFirstModule": "Create First Module",
+      "loading": "Loading modules...",
+      "minutes": "min",
+      "errors": {
+        "fetchFailed": "Failed to load modules"
+      },
+      "create": {
+        "title": "Create New Module",
+        "form": {
+          "titleLabel": "Module Title",
+          "titlePlaceholder": "e.g., Introduction to Communication",
+          "descriptionLabel": "Description",
+          "descriptionPlaceholder": "Brief description of the module",
+          "difficultyLabel": "Difficulty",
+          "difficultyBeginner": "Beginner",
+          "difficultyIntermediate": "Intermediate",
+          "difficultyAdvanced": "Advanced",
+          "durationLabel": "Duration (minutes)",
+          "skillsLabel": "Skills",
+          "skillPlaceholder": "Add a skill",
+          "addSkill": "Add",
+          "creating": "Creating...",
+          "create": "Create Module",
+          "cancel": "Cancel"
+        },
+        "errors": {
+          "createFailed": "Failed to create module"
+        }
+      },
+      "detail": {
+        "loading": "Loading module...",
+        "notFound": "Module not found",
+        "minutes": "min",
+        "stepsTitle": "Steps",
+        "addStep": "Add Step",
+        "noSteps": "No steps yet. Add your first step to start building the module.",
+        "addFirstStep": "Add First Step",
+        "stepTypeContent": "Content",
+        "stepTypeQuiz": "Quiz",
+        "stepTypeScenario": "Scenario",
+        "order": "Order",
+        "edit": "Edit",
+        "errors": {
+          "fetchFailed": "Failed to load module"
+        }
+      }
+    }
+  },
   "notFound": {
     "title": "404 — Page not found",
     "message": "The page you're looking for doesn't exist or has been moved.",

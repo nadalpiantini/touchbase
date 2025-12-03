@@ -202,6 +202,59 @@
       "generic": "Error"
     }
   },
+  "teacher": {
+    "modules": {
+      "title": "Módulos",
+      "createModule": "Crear Módulo",
+      "noModules": "Aún no hay módulos. Crea tu primer módulo para comenzar.",
+      "createFirstModule": "Crear Primer Módulo",
+      "loading": "Cargando módulos...",
+      "minutes": "min",
+      "errors": {
+        "fetchFailed": "Error al cargar módulos"
+      },
+      "create": {
+        "title": "Crear Nuevo Módulo",
+        "form": {
+          "titleLabel": "Título del Módulo",
+          "titlePlaceholder": "ej., Introducción a la Comunicación",
+          "descriptionLabel": "Descripción",
+          "descriptionPlaceholder": "Breve descripción del módulo",
+          "difficultyLabel": "Dificultad",
+          "difficultyBeginner": "Principiante",
+          "difficultyIntermediate": "Intermedio",
+          "difficultyAdvanced": "Avanzado",
+          "durationLabel": "Duración (minutos)",
+          "skillsLabel": "Habilidades",
+          "skillPlaceholder": "Agregar habilidad",
+          "addSkill": "Agregar",
+          "creating": "Creando...",
+          "create": "Crear Módulo",
+          "cancel": "Cancelar"
+        },
+        "errors": {
+          "createFailed": "Error al crear módulo"
+        }
+      },
+      "detail": {
+        "loading": "Cargando módulo...",
+        "notFound": "Módulo no encontrado",
+        "minutes": "min",
+        "stepsTitle": "Pasos",
+        "addStep": "Agregar Paso",
+        "noSteps": "Aún no hay pasos. Agrega tu primer paso para comenzar a construir el módulo.",
+        "addFirstStep": "Agregar Primer Paso",
+        "stepTypeContent": "Contenido",
+        "stepTypeQuiz": "Quiz",
+        "stepTypeScenario": "Escenario",
+        "order": "Orden",
+        "edit": "Editar",
+        "errors": {
+          "fetchFailed": "Error al cargar módulo"
+        }
+      }
+    }
+  },
   "notFound": {
     "title": "404 — Página no encontrada",
     "message": "La página que buscas no existe o ha sido movida.",

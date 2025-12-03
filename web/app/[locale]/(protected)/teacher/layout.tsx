@@ -37,6 +37,9 @@ export default async function TeacherLayout({
                 <Link href="/teacher/classes" className="text-sm hover:text-[--color-tb-beige] transition">
                   Mis Clases
                 </Link>
+                <Link href="/teacher/modules" className="text-sm hover:text-[--color-tb-beige] transition">
+                  Módulos
+                </Link>
               </nav>
             </div>
 
