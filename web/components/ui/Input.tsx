@@ -1,4 +1,4 @@
-import { InputHTMLAttributes, forwardRef, useId } from 'react';
+import { InputHTMLAttributes, forwardRef, useId, memo } from 'react';
 import { cn } from '@/lib/utils';
 
 export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
@@ -7,7 +7,7 @@ export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   helperText?: string;
 }
 
-const Input = forwardRef<HTMLInputElement, InputProps>(
+const Input = memo(forwardRef<HTMLInputElement, InputProps>(
   ({ className, label, error, helperText, id, ...props }, ref) => {
     const generatedId = useId();
     const inputId = id || generatedId;
@@ -52,7 +52,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
       </div>
     );
   }
-);
+));
 
 Input.displayName = 'Input';
 
