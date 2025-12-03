@@ -458,6 +458,32 @@
       "errors": {
         "loadFailed": "Failed to load modules"
       }
+    },
+    "quiz": {
+      "correct": "Correct!",
+      "incorrect": "Incorrect. Try again next time!"
+    },
+    "progress": {
+      "title": "My Progress",
+      "loading": "Loading progress...",
+      "stats": {
+        "inProgress": "In Progress",
+        "completed": "Completed",
+        "total": "Total Modules"
+      },
+      "sections": {
+        "inProgress": "In Progress",
+        "completed": "Completed",
+        "notStarted": "Not Started"
+      },
+      "score": "Score",
+      "completedOn": "Completed on",
+      "notStarted": "Not Started",
+      "noProgress": "No progress yet. Start a module to begin tracking your progress!",
+      "errors": {
+        "notAuthenticated": "Not authenticated",
+        "loadFailed": "Failed to load progress"
+      }
     }
   },
   "notFound": {
