@@ -1,3 +1,6 @@
 {
-  "outputDirectory": "web/.next"
+  "buildCommand": "npm run build",
+  "installCommand": "npm ci",
+  "rootDirectory": "web",
+  "outputDirectory": ".next"
 }
