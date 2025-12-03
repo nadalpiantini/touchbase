@@ -37,7 +37,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html>
+    <html lang="es">
       <body className={`${oswald.variable} ${inter.variable} ${lobsterTwo.variable} ${geistMono.variable} antialiased font-sans`}>
         {children}
       </body>
