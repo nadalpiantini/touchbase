@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { Card, CardContent, CardHeader, CardTitle, Button, Badge } from "@/components/ui";
+import WellnessProgramForm from "@/components/student-life/WellnessProgramForm";
 
 type WellnessProgram = {
   id: string;
@@ -36,6 +37,7 @@ export default function StudentLifePage() {
   const [logs, setLogs] = useState<PersonalDevelopmentLog[]>([]);
   const [loading, setLoading] = useState(true);
   const [activeTab, setActiveTab] = useState<"wellness" | "activities" | "logs">("wellness");
+  const [showWellnessForm, setShowWellnessForm] = useState(false);
 
   useEffect(() => {
     loadData();
@@ -58,6 +60,26 @@ export default function StudentLifePage() {
     } finally {
       setLoading(false);
     }
+  };
+
+  const handleCreateWellness = async (data: {
+    name: string;
+    description?: string;
+    program_type: string;
+    start_date: string;
+    end_date?: string;
+  }) => {
+    const res = await fetch("/api/student-life", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ type: "wellness", ...data }),
+    });
+    const json = await res.json();
+    if (!res.ok) {
+      throw new Error(json?.error || "Error al crear programa");
+    }
+    setShowWellnessForm(false);
+    loadData();
   };
 
   if (loading) {
@@ -108,9 +130,23 @@ export default function StudentLifePage() {
       {/* Wellness Programs */}
       {activeTab === "wellness" && (
         <div>
-          <div className="flex justify-end mb-4">
-            <Button>+ Nuevo Programa</Button>
-          </div>
+          {showWellnessForm ? (
+            <Card>
+              <CardHeader>
+                <CardTitle>Nuevo Programa de Bienestar</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <WellnessProgramForm
+                  onSubmit={handleCreateWellness}
+                  onCancel={() => setShowWellnessForm(false)}
+                />
+              </CardContent>
+            </Card>
+          ) : (
+            <>
+              <div className="flex justify-end mb-4">
+                <Button onClick={() => setShowWellnessForm(true)}>+ Nuevo Programa</Button>
+              </div>
           {wellnessPrograms.length === 0 ? (
             <Card>
               <CardContent className="text-center py-12">
