@@ -54,8 +54,8 @@ export default function CreateModulePage() {
       }
 
       router.push(`/teacher/modules/${json.module.id}`);
-    } catch (e: any) {
-      setError(e.message || t('errors.createFailed'));
+    } catch (e: unknown) {
+      setError(e instanceof Error ? e.message : t('errors.createFailed'));
     } finally {
       setLoading(false);
     }

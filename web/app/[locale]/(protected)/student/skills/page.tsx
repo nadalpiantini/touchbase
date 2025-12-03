@@ -61,8 +61,8 @@ export default function StudentSkillsPage() {
           longest_streak: streakData.longest_streak,
         });
       }
-    } catch (e: any) {
-      setError(e.message || t('errors.loadFailed'));
+    } catch (e: unknown) {
+      setError(e instanceof Error ? e.message : t('errors.loadFailed'));
     } finally {
       setLoading(false);
     }

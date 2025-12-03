@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { useParams, useRouter } from "next/navigation";
 import { useTranslations, useLocale } from "next-intl";
 import { Card, CardContent, CardHeader, CardTitle, Button, Input } from "@/components/ui";
-import { StepType, ContentStepData, QuizStepData, ScenarioStepData } from "@/lib/types/education";
+import { StepType, ContentStepData, QuizStepData, ScenarioStepData, ModuleStep } from "@/lib/types/education";
 
 export default function CreateStepPage() {
   const t = useTranslations("teacher.modules.steps.create");
@@ -42,7 +42,7 @@ export default function CreateStepPage() {
         const json = await res.json();
         if (res.ok && json.steps) {
           const maxOrder = json.steps.length > 0
-            ? Math.max(...json.steps.map((s: any) => s.order_index))
+            ? Math.max(...(json.steps as ModuleStep[]).map((s) => s.order_index))
             : 0;
           setOrderIndex(maxOrder + 1);
         }
@@ -150,8 +150,8 @@ export default function CreateStepPage() {
       }
 
       router.push(`/${locale}/teacher/modules/${moduleId}`);
-    } catch (e: any) {
-      setError(e.message || t('errors.createFailed'));
+    } catch (e: unknown) {
+      setError(e instanceof Error ? e.message : t('errors.createFailed'));
     } finally {
       setLoading(false);
     }

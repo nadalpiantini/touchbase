@@ -46,9 +46,14 @@ export default function StudentClassesPage() {
         .eq("student_id", user.id)
         .eq("org_id", currentOrg.id);
 
+      type EnrollmentWithClass = {
+        class_id: string;
+        class: Class | null;
+      };
+
       const enrolledClasses = (enrollments || [])
-        .map((e: any) => e.class)
-        .filter((c: any) => c !== null) as Class[];
+        .map((e: EnrollmentWithClass) => e.class)
+        .filter((c): c is Class => c !== null);
 
       setClasses(enrolledClasses);
     } catch (e: unknown) {

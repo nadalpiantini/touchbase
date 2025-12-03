@@ -77,8 +77,8 @@ export default function EditStepPage() {
       } else {
         setError(json.error || t('errors.loadFailed'));
       }
-    } catch (e: any) {
-      setError(e.message || t('errors.loadFailed'));
+    } catch (e: unknown) {
+      setError(e instanceof Error ? e.message : t('errors.loadFailed'));
     } finally {
       setLoading(false);
     }
@@ -181,8 +181,8 @@ export default function EditStepPage() {
       }
 
       router.push(`/${locale}/teacher/modules/${moduleId}`);
-    } catch (e: any) {
-      setError(e.message || t('errors.updateFailed'));
+    } catch (e: unknown) {
+      setError(e instanceof Error ? e.message : t('errors.updateFailed'));
     } finally {
       setSaving(false);
     }

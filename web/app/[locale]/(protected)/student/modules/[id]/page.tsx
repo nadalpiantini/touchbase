@@ -4,7 +4,7 @@ import { useState, useEffect, lazy, Suspense } from "react";
 import { useParams } from "next/navigation";
 import { useTranslations } from 'next-intl';
 import { Card, CardContent, CardHeader, CardTitle, Button, ProgressBar } from '@/components/ui';
-import { Module, ModuleStep, ModuleProgress } from '@/lib/types/education';
+import { Module, ModuleStep, ModuleProgress, StepProgress, ContentStepData, QuizStepData, ScenarioStepData } from '@/lib/types/education';
 
 // Lazy load AICoach component for code splitting
 const AICoach = lazy(() => import('@/components/student/AICoach'));
@@ -72,13 +72,13 @@ export default function ModulePlayerPage() {
     if (!progress) return;
 
     const currentStep = steps[currentStepIndex];
-    let stepData: any = { completed: true };
+    let stepData: Partial<StepProgress> = { completed: true };
 
     // For quiz steps, include the answer and score
     if (currentStep.step_type === "quiz") {
-      const quizData = currentStep.content_data as any;
+      const quizData = currentStep.content_data as QuizStepData;
       const selectedAnswer = quizAnswers[currentStepIndex];
-      const isCorrect = selectedAnswer === quizData?.correctAnswer;
+      const isCorrect = selectedAnswer === quizData?.correctIndex;
       const quizScore = isCorrect ? 100 : 0;
 
       stepData = {
@@ -170,12 +170,12 @@ export default function ModulePlayerPage() {
           {currentStep.step_type === "content" && (
             <div>
               <p className="text-[--color-tb-navy] mb-4">
-                {(currentStep.content_data as any)?.text || "Content step"}
+                {(currentStep.content_data as ContentStepData)?.text || "Content step"}
               </p>
-              {(currentStep.content_data as any)?.mediaUrl && (
+              {(currentStep.content_data as ContentStepData)?.mediaUrl && (
                 <div className="mb-4">
                   <img
-                    src={(currentStep.content_data as any).mediaUrl}
+                    src={(currentStep.content_data as ContentStepData).mediaUrl!}
                     alt="Module content"
                     className="rounded-lg w-full"
                   />
@@ -187,22 +187,22 @@ export default function ModulePlayerPage() {
           {currentStep.step_type === "quiz" && (
             <div>
               <p className="font-semibold text-[--color-tb-navy] mb-4">
-                {(currentStep.content_data as any)?.question}
+                {(currentStep.content_data as QuizStepData)?.question}
               </p>
               {showQuizResult && (
                 <div className="mb-4 p-4 bg-[--color-tb-beige] rounded-lg">
                   <p className="text-sm text-[--color-tb-navy]">
-                    {quizAnswers[currentStepIndex] === (currentStep.content_data as any)?.correctAnswer
+                    {quizAnswers[currentStepIndex] === (currentStep.content_data as QuizStepData)?.correctIndex
                       ? t('quiz.correct')
                       : t('quiz.incorrect')}
                   </p>
                 </div>
               )}
               <div className="space-y-2">
-                {((currentStep.content_data as any)?.options || []).map(
+                {((currentStep.content_data as QuizStepData)?.options || []).map(
                   (option: string, idx: number) => {
                     const isSelected = quizAnswers[currentStepIndex] === idx;
-                    const isCorrect = idx === (currentStep.content_data as any)?.correctAnswer;
+                    const isCorrect = idx === (currentStep.content_data as QuizStepData)?.correctIndex;
                     const showResult = showQuizResult;
 
                     return (
@@ -234,11 +234,11 @@ export default function ModulePlayerPage() {
           {currentStep.step_type === "scenario" && (
             <div>
               <p className="font-semibold text-[--color-tb-navy] mb-4">
-                {(currentStep.content_data as any)?.prompt}
+                {(currentStep.content_data as ScenarioStepData)?.prompt}
               </p>
               <div className="space-y-2">
-                {((currentStep.content_data as any)?.options || []).map(
-                  (option: any, idx: number) => {
+                {((currentStep.content_data as ScenarioStepData)?.options || []).map(
+                  (option: { text: string; consequence: string }, idx: number) => {
                     const isSelected = quizAnswers[currentStepIndex] === idx;
                     return (
                       <Button
@@ -311,7 +311,7 @@ export default function ModulePlayerPage() {
             stepContent={JSON.stringify(steps[currentStepIndex].content_data)}
             question={
               steps[currentStepIndex].step_type === "quiz"
-                ? (steps[currentStepIndex].content_data as any)?.question
+                ? (steps[currentStepIndex].content_data as QuizStepData)?.question
                 : undefined
             }
           />
