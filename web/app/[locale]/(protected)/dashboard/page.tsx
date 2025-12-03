@@ -10,7 +10,7 @@ export default async function DashboardPage({
 }) {
   const { locale } = await params;
   const t = await getTranslations('dashboard');
-  const s = supabaseServer();
+  const s = await supabaseServer();
 
   // 1) Obtener usuario autenticado
   const { data: { user }, error: userError } = await s.auth.getUser();
