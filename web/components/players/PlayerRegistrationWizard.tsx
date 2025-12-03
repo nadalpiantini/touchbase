@@ -48,6 +48,7 @@ export default function PlayerRegistrationWizard({ onComplete, onCancel }: { onC
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [photoPreview, setPhotoPreview] = useState<string | null>(null);
+  const [photoFile, setPhotoFile] = useState<File | null>(null);
   
   const [formData, setFormData] = useState<PlayerData>({
     full_name: "",
@@ -68,15 +69,13 @@ export default function PlayerRegistrationWizard({ onComplete, onCancel }: { onC
   const handlePhotoUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
+      setPhotoFile(file);
       // Create preview
       const reader = new FileReader();
       reader.onloadend = () => {
         setPhotoPreview(reader.result as string);
       };
       reader.readAsDataURL(file);
-      
-      // TODO: Upload to Supabase Storage and get URL
-      // For now, we'll handle this in the submit
     }
   };
 
@@ -94,10 +93,32 @@ export default function PlayerRegistrationWizard({ onComplete, onCancel }: { onC
     setError(null);
 
     try {
+      let photoUrl = formData.photo_url;
+
+      // Upload photo if provided
+      if (photoFile) {
+        const formData = new FormData();
+        formData.append('file', photoFile);
+        formData.append('folder', 'avatars');
+
+        const uploadRes = await fetch('/api/storage/upload', {
+          method: 'POST',
+          body: formData,
+        });
+
+        if (!uploadRes.ok) {
+          const { error } = await uploadRes.json();
+          throw new Error(error || 'Failed to upload image');
+        }
+
+        const { url } = await uploadRes.json();
+        photoUrl = url;
+      }
+
       const res = await fetch("/api/players/create", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({ ...formData, photo_url: photoUrl }),
       });
 
       const json = await res.json();
