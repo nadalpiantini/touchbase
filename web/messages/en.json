@@ -484,6 +484,31 @@
         "notAuthenticated": "Not authenticated",
         "loadFailed": "Failed to load progress"
       }
+    },
+    "classes": {
+      "title": "My Classes",
+      "loading": "Loading classes...",
+      "joinClass": "Join a Class",
+      "enterCode": "Enter class code",
+      "join": "Join",
+      "joining": "Joining...",
+      "myClasses": "My Classes",
+      "noClasses": "You haven't joined any classes yet.",
+      "joinHint": "Ask your teacher for a class code to join.",
+      "viewClass": "View Class",
+      "backToClasses": "Back to Classes",
+      "assignedModules": "Assigned Modules",
+      "noModules": "No modules assigned yet.",
+      "start": "Start",
+      "continue": "Continue",
+      "review": "Review",
+      "errors": {
+        "notAuthenticated": "Not authenticated",
+        "loadFailed": "Failed to load classes",
+        "invalidCode": "Please enter a valid class code",
+        "joinFailed": "Failed to join class",
+        "notFound": "Class not found"
+      }
     }
   },
   "notFound": {
