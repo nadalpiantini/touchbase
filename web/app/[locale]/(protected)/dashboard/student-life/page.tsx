@@ -176,6 +176,8 @@ export default function StudentLifePage() {
               ))}
             </div>
           )}
+            </>
+          )}
         </div>
       )}
 

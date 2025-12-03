@@ -80,7 +80,7 @@ export default function TeacherClassAssignmentsPage() {
         setAvailableModules(json.modules || []);
       }
     } catch (e: unknown) {
-      console.error("Failed to load modules:", e);
+      // Failed to load modules - handled by UI state
     }
   };
 

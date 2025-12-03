@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { Button } from "@/components/ui";
-import { Input } from "@/components/ui/Input";
+import { Input } from "@/components/ui";
 
 type WellnessProgramFormProps = {
   onSubmit: (data: {

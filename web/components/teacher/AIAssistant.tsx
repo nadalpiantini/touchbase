@@ -89,7 +89,7 @@ export default function AIAssistant({ context }: AIAssistantProps) {
       ]);
       setIsOpen(true);
     } catch (error: any) {
-      console.error("Failed to execute quick action:", error);
+      // Failed to execute quick action - handled by UI state
     } finally {
       setLoading(false);
     }

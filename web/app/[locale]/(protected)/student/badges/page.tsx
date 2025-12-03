@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { useTranslations } from "next-intl";
-import { Card, CardContent, CardHeader, CardTitle, Badge } from "@/components/ui";
+import { Card, CardContent, CardHeader, CardTitle, Badge, LoadingSpinner, Alert } from "@/components/ui";
 import { UserBadge } from "@/lib/types/badge";
 import { useCurrentOrg } from "@/lib/hooks/useCurrentOrg";
 import { supabaseClient } from "@/lib/supabase/client";
@@ -35,19 +35,29 @@ export default function StudentBadgesPage() {
       } else {
         setError(json.error || t('errors.loadFailed'));
       }
-    } catch (e: any) {
-      setError(e.message || t('errors.loadFailed'));
+    } catch (e: unknown) {
+      setError((e instanceof Error ? e.message : String(e)) || t('errors.loadFailed'));
     } finally {
       setLoading(false);
     }
   };
 
   if (loading) {
-    return <div className="text-center py-12">{t('loading')}</div>;
+    return (
+      <div className="flex justify-center py-12">
+        <LoadingSpinner size="lg" text={t('loading')} />
+      </div>
+    );
   }
 
   if (error) {
-    return <div className="text-center py-12 text-red-600">{error}</div>;
+    return (
+      <div className="max-w-2xl mx-auto py-12">
+        <Alert variant="error" title={t('errors.loadFailed')}>
+          {error}
+        </Alert>
+      </div>
+    );
   }
 
   // Group badges by category

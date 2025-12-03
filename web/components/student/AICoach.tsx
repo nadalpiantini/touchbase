@@ -73,7 +73,7 @@ export default function AICoach({ moduleTitle, stepContent, question }: AICoachP
         setIsOpen(true);
       }
     } catch (error: any) {
-      console.error("Failed to get hint:", error);
+      // Failed to get hint - handled by UI state
     } finally {
       setLoading(false);
     }

@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
-import { Card, CardContent, CardHeader, CardTitle, Badge, Button } from "@/components/ui";
+import { Card, CardContent, CardHeader, CardTitle, Badge, Button, LoadingSpinner, Alert } from "@/components/ui";
 import { supabaseClient } from "@/lib/supabase/client";
 import { getStudentAssignments } from "@/lib/services/assignments";
 import type { Assignment } from "@/lib/services/assignments";
@@ -40,11 +40,21 @@ export default function StudentAssignmentsPage() {
   };
 
   if (loading) {
-    return <div className="text-center py-12">{t('loading')}</div>;
+    return (
+      <div className="flex justify-center py-12">
+        <LoadingSpinner size="lg" text={t('loading')} />
+      </div>
+    );
   }
 
   if (error) {
-    return <div className="text-center py-12 text-[--color-tb-stitch]">{error}</div>;
+    return (
+      <div className="max-w-2xl mx-auto py-12">
+        <Alert variant="error" title={t('errors.loadFailed')}>
+          {error}
+        </Alert>
+      </div>
+    );
   }
 
   const now = new Date();
