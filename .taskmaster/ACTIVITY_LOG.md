@@ -320,6 +320,93 @@
 3. Implementar landing page y dashboards
 4. Validar y hacer commit por sprint
 
+---
+
+## 📋 TAREA #2: Core UI Shell: Landing Page & Dashboard Layouts
+
+**Estado:** 🔄 IN PROGRESS  
+**Prioridad:** HIGH  
+**Dependencias:** Tarea #1 (✅ DONE)
+
+### Mini Sprint 2.1: Análisis de Estado Actual ✅
+
+**Fecha:** 2025-12-03  
+**Duración:** ~10 min
+
+#### Estado Verificado:
+
+**✅ Landing Page (`web/app/[locale]/page.tsx`):**
+- Existe con hero básico
+- Features grid presente
+- CTA simple (solo login)
+- **Mejoras necesarias:** Hero más impactante, mejor CTA, sección de beneficios
+
+**✅ Dashboards:**
+- Student Dashboard: ✅ Existe y funcional
+- Teacher Dashboard: ✅ Existe y funcional
+- Admin Dashboard: ⚠️ Redirige a dashboard general
+
+**✅ Navegación:**
+- Layout protegido con navegación horizontal
+- **Problema:** No responsive (se desborda en mobile)
+- **Problema:** No es role-based dinámica (muestra todos los links siempre)
+
+**✅ Design System:**
+- Colores TouchBase aplicados
+- Tipografía correcta
+- Componentes UI consistentes
+
+#### Archivos a Modificar:
+- `web/app/[locale]/page.tsx` - Mejorar landing
+- `web/app/[locale]/(protected)/layout.tsx` - Navegación responsive + role-based
+- `web/app/[locale]/(protected)/student/layout.tsx` - Verificar responsive
+- `web/app/[locale]/(protected)/teacher/layout.tsx` - Verificar responsive
+
+### Mini Sprint 2.2: Mejora Landing Page ✅
+
+**Fecha:** 2025-12-03  
+**Duración:** ~15 min
+
+**Cambios Realizados:**
+- ✅ Hero section mejorado con headline prominente
+- ✅ CTA section con botón primario (Get Started) y secundario (Sign In)
+- ✅ Tipografía mejorada (text-4xl md:text-6xl para headline)
+- ✅ Traducciones agregadas (en.json y es.json)
+
+**Commit:** `8cfae0ea26`
+
+---
+
+### Mini Sprint 2.3-2.4: Actualización Layouts Student/Teacher ✅
+
+**Fecha:** 2025-12-03  
+**Duración:** ~10 min
+
+**Cambios Realizados:**
+- ✅ Student layout actualizado con ResponsiveNav
+- ✅ Teacher layout actualizado con ResponsiveNav
+- ✅ Navegación consistente en todos los layouts
+- ✅ SignOutButton y CompanySignature integrados
+
+**Commit:** `843404cd92`
+
+---
+
+### Mini Sprint 2.6: Navegación Responsive y Role-Based ✅
+
+**Fecha:** 2025-12-03  
+**Duración:** ~20 min
+
+**Cambios Realizados:**
+- ✅ Componente ResponsiveNav creado con hamburger menu
+- ✅ Navegación role-based (filtra items según rol del usuario)
+- ✅ Breakpoints responsive (lg: para desktop, mobile menu)
+- ✅ OrgDropdown integrado en navegación
+- ✅ SignOutButton component creado
+- ✅ Protected layout actualizado para usar ResponsiveNav
+
+**Commit:** `b75d1c44ba`
+
 | Sprint | Estado | Duración | Commit |
 |--------|--------|----------|--------|
 | 1.1 - Verificación | ✅ COMPLETO | ~15 min | 96b53b800e |
