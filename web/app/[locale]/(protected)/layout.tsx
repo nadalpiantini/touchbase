@@ -3,7 +3,9 @@ import { supabaseServer } from "@/lib/supabase/server";
 import Link from "next/link";
 import Image from "next/image";
 import { redirect } from "next/navigation";
+import { getLocale } from "next-intl/server";
 import OrgDropdown from "@/components/org/OrgDropdown";
+import { CompanySignature } from "@/components/CompanySignature";
 
 export default async function ProtectedLayout({
   children
@@ -12,9 +14,10 @@ export default async function ProtectedLayout({
 }) {
   const s = supabaseServer();
   const { data: { user } } = await s.auth.getUser();
+  const locale = await getLocale();
 
   if (!user) {
-    redirect("/login");
+    redirect(`/${locale}/login`);
   }
 
   return (
@@ -23,7 +26,7 @@ export default async function ProtectedLayout({
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             <div className="flex items-center gap-6">
-              <Link href="/dashboard" className="flex items-center gap-2">
+              <Link href={`/${locale}/dashboard`} className="flex items-center gap-2">
                 <Image
                   src="/touchbase-logo.png"
                   alt="TouchBase"
@@ -34,22 +37,22 @@ export default async function ProtectedLayout({
                 <span className="text-xl font-display font-bold tracking-wide">TOUCHBASE</span>
               </Link>
               <nav className="flex items-center gap-4">
-                <Link href="/dashboard" className="text-sm hover:text-[--color-tb-beige] transition">
+                <Link href={`/${locale}/dashboard`} className="text-sm hover:text-[--color-tb-beige] transition">
                   Dashboard
                 </Link>
-                <Link href="/dashboard/teams" className="text-sm hover:text-[--color-tb-beige] transition">
+                <Link href={`/${locale}/dashboard/teams`} className="text-sm hover:text-[--color-tb-beige] transition">
                   Equipos
                 </Link>
-                <Link href="/dashboard/players" className="text-sm hover:text-[--color-tb-beige] transition">
+                <Link href={`/${locale}/dashboard/players`} className="text-sm hover:text-[--color-tb-beige] transition">
                   Jugadores
                 </Link>
-                <Link href="/dashboard/games" className="text-sm hover:text-[--color-tb-beige] transition">
+                <Link href={`/${locale}/dashboard/games`} className="text-sm hover:text-[--color-tb-beige] transition">
                   Partidos
                 </Link>
-                <Link href="/dashboard/recycle" className="text-sm hover:text-[--color-tb-beige] transition">
+                <Link href={`/${locale}/dashboard/recycle`} className="text-sm hover:text-[--color-tb-beige] transition">
                   Papelera
                 </Link>
-                <Link href="/dashboard/audit" className="text-sm hover:text-[--color-tb-beige] transition">
+                <Link href={`/${locale}/dashboard/audit`} className="text-sm hover:text-[--color-tb-beige] transition">
                   Auditoría
                 </Link>
               </nav>
@@ -74,6 +77,7 @@ export default async function ProtectedLayout({
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {children}
       </main>
+      <CompanySignature />
     </div>
   );
 }

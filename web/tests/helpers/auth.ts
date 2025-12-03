@@ -2,8 +2,8 @@ import { Page } from '@playwright/test';
 
 // Test user credentials - make sure these exist in your Supabase test environment
 export const TEST_USER = {
-  email: 'test@touchbase.com',
-  password: 'TestPassword123!',
+  email: 'nadalpiantini@gmail.com',
+  password: 'Teclados#13',
   invalidPassword: 'WrongPassword123'
 };
 

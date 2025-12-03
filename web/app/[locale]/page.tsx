@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { getTranslations } from 'next-intl/server';
 import { LanguageSelector } from '@/components/LanguageSelector';
+import { CompanySignature } from '@/components/CompanySignature';
 
 export default async function HomePage({
   params
@@ -47,7 +48,7 @@ export default async function HomePage({
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
             <div className="bg-white p-6 rounded-2xl border border-[--color-tb-line] shadow-sm hover:shadow-dugout transition-shadow">
               <div className="text-[--color-tb-navy] mb-4">
-                <svg className="h-12 w-12 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <svg className="h-8 w-8 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
                 </svg>
               </div>
@@ -59,7 +60,7 @@ export default async function HomePage({
 
             <div className="bg-white p-6 rounded-2xl border border-[--color-tb-line] shadow-sm hover:shadow-dugout transition-shadow">
               <div className="text-[--color-tb-stitch] mb-4">
-                <svg className="h-12 w-12 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <svg className="h-8 w-8 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
                 </svg>
               </div>
@@ -71,7 +72,7 @@ export default async function HomePage({
 
             <div className="bg-white p-6 rounded-2xl border border-[--color-tb-line] shadow-sm hover:shadow-dugout transition-shadow">
               <div className="text-[--color-tb-red] mb-4">
-                <svg className="h-12 w-12 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <svg className="h-8 w-8 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
                 </svg>
               </div>
@@ -93,6 +94,7 @@ export default async function HomePage({
           </div>
         </div>
       </div>
+      <CompanySignature />
     </main>
   );
 }

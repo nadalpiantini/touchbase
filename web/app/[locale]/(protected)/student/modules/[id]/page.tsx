@@ -1,11 +1,13 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, lazy, Suspense } from "react";
 import { useParams } from "next/navigation";
 import { useTranslations } from 'next-intl';
 import { Card, CardContent, CardHeader, CardTitle, Button, ProgressBar } from '@/components/ui';
 import { Module, ModuleStep, ModuleProgress } from '@/lib/types/education';
-import AICoach from '@/components/student/AICoach';
+
+// Lazy load AICoach component for code splitting
+const AICoach = lazy(() => import('@/components/student/AICoach'));
 
 export default function ModulePlayerPage() {
   const t = useTranslations('student.modules');
@@ -303,15 +305,17 @@ export default function ModulePlayerPage() {
 
       {/* AI Coach */}
       {module && steps[currentStepIndex] && (
-        <AICoach
-          moduleTitle={module.title}
-          stepContent={JSON.stringify(steps[currentStepIndex].content_data)}
-          question={
-            steps[currentStepIndex].step_type === "quiz"
-              ? (steps[currentStepIndex].content_data as any)?.question
-              : undefined
-          }
-        />
+        <Suspense fallback={<div className="text-center py-4 text-gray-500">Loading AI Coach...</div>}>
+          <AICoach
+            moduleTitle={module.title}
+            stepContent={JSON.stringify(steps[currentStepIndex].content_data)}
+            question={
+              steps[currentStepIndex].step_type === "quiz"
+                ? (steps[currentStepIndex].content_data as any)?.question
+                : undefined
+            }
+          />
+        </Suspense>
       )}
     </div>
   );

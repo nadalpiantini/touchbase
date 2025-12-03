@@ -5,13 +5,14 @@ import { supabaseClient } from "@/lib/supabase/client";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 import { LanguageSelector } from '@/components/LanguageSelector';
 
 const supabase = supabaseClient!;
 
 export default function LoginPage() {
   const t = useTranslations('login');
+  const locale = useLocale();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
@@ -24,17 +25,24 @@ export default function LoginPage() {
     setError(null);
 
     try {
-      const { error } = await supabase.auth.signInWithPassword({
+      const { data, error } = await supabase.auth.signInWithPassword({
         email,
         password,
       });
 
       if (error) throw error;
 
-      router.push("/dashboard");
+      // Wait a moment for session to be established
+      if (data.session) {
+        // Use window.location for a full page reload to ensure session is set
+        window.location.href = `/${locale}/dashboard`;
+      } else {
+        // Fallback to router if no session data
+        router.push(`/${locale}/dashboard`);
+        router.refresh();
+      }
     } catch (err: unknown) {
       setError(err instanceof Error ? err.message : "Error al iniciar sesión");
-    } finally {
       setLoading(false);
     }
   };
@@ -118,7 +126,7 @@ export default function LoginPage() {
 
           <div className="text-center">
             <p className="text-sm text-gray-600">
-              {t('footer.firstTime')} <Link href="/signup" className="font-medium text-[--color-tb-navy] hover:text-[--color-tb-stitch] transition">{t('footer.createAccount')}</Link>
+              {t('footer.firstTime')} <Link href={`/${locale}/signup`} className="font-medium text-[--color-tb-navy] hover:text-[--color-tb-stitch] transition">{t('footer.createAccount')}</Link>
             </p>
           </div>
         </form>

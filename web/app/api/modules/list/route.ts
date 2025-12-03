@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { supabaseServer } from "@/lib/supabase/server";
 import { getActiveModules } from "@/lib/services/modules";
 import { requireAuth } from "@/lib/auth/middleware-helpers";
+import { getCacheHeaders, CACHE_CONFIG } from "@/lib/performance/cache";
 
 export async function GET(req: Request) {
   try {
@@ -38,7 +39,15 @@ export async function GET(req: Request) {
       });
     }
 
-    return NextResponse.json({ modules });
+        const response = NextResponse.json({ modules });
+        // Add cache headers for public module data
+        const cacheHeaders = getCacheHeaders(CACHE_CONFIG.api.medium, CACHE_CONFIG.api.short);
+        Object.entries(cacheHeaders).forEach(
+          ([key, value]) => {
+            response.headers.set(key, String(value));
+          }
+        );
+        return response;
   } catch (error: any) {
     console.error("List modules error:", error);
     return NextResponse.json(
