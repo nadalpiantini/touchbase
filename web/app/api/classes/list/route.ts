@@ -1,18 +1,42 @@
 import { NextResponse } from "next/server";
 import { supabaseServer } from "@/lib/supabase/server";
+import { getTeacherClasses } from "@/lib/services/classes";
+import { getUserWithRole } from "@/lib/auth/middleware-helpers";
 
 export async function GET() {
-  const s = supabaseServer();
-  const { data: { user } } = await s.auth.getUser();
-  
-  if (!user) {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-  }
+  try {
+    const s = supabaseServer();
+    const { user, role, orgId, isTeacher, isStudent } = await getUserWithRole(s);
 
-  // TODO: Implement class listing
-  // - For teachers: list their classes
-  // - For students: list enrolled classes
-  
-  return NextResponse.json({ classes: [] });
+    if (isTeacher && orgId) {
+      // Get teacher's classes
+      const classes = await getTeacherClasses(s, user.id, orgId);
+      return NextResponse.json({ classes });
+    }
+
+    if (isStudent && orgId) {
+      // Get student's enrolled classes
+      const { data, error } = await s
+        .from("touchbase_class_enrollments")
+        .select(`
+          *,
+          touchbase_classes (*)
+        `)
+        .eq("student_id", user.id);
+
+      if (error) throw error;
+
+      const classes = (data || []).map((item: any) => item.touchbase_classes).filter(Boolean);
+      return NextResponse.json({ classes });
+    }
+
+    return NextResponse.json({ classes: [] });
+  } catch (error: any) {
+    console.error("List classes error:", error);
+    return NextResponse.json(
+      { error: error.message || "Failed to list classes" },
+      { status: 400 }
+    );
+  }
 }
 
