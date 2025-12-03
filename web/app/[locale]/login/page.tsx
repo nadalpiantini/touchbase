@@ -26,23 +26,18 @@ export default function LoginPage() {
       // Get Supabase client dynamically (will throw if env vars are missing)
       const supabase = supabaseBrowser();
 
-      console.log("Attempting login for:", email);
-      
       const { data, error: authError } = await supabase.auth.signInWithPassword({
         email,
         password,
       });
 
       if (authError) {
-        console.error("Login error:", authError);
         throw authError;
       }
 
       if (!data.session) {
         throw new Error("No se pudo establecer la sesión. Intenta nuevamente.");
       }
-
-      console.log("Login successful, session:", data.session.user.email);
 
       // Wait a moment for session to be established in storage
       await new Promise(resolve => setTimeout(resolve, 300));
@@ -52,13 +47,10 @@ export default function LoginPage() {
       if (!verifySession) {
         throw new Error("La sesión no se guardó correctamente. Intenta nuevamente.");
       }
-
-      console.log("Session verified, redirecting to dashboard");
       
       // Use window.location for a full page reload to ensure session is set
       window.location.href = `/${locale}/dashboard`;
     } catch (err: unknown) {
-      console.error("Login error details:", err);
       const errorMessage = err instanceof Error 
         ? err.message 
         : "Error al iniciar sesión. Verifica tus credenciales.";

@@ -17,7 +17,10 @@ export default function AuthCallbackPage() {
         if (error) throw error;
 
         setMsg("¡Sesión iniciada! Redirigiendo…");
-        window.location.replace("/dashboard");
+        // Extract locale from URL or default to 'en'
+        const pathParts = window.location.pathname.split('/');
+        const locale = pathParts[1] || 'en';
+        window.location.replace(`/${locale}/dashboard`);
       } catch (e: unknown) {
         setMsg(`Error: ${e instanceof Error ? e.message : "No se pudo iniciar sesión"}`);
       }
