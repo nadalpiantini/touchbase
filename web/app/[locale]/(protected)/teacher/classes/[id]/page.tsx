@@ -65,6 +65,30 @@ export default async function ClassDetailPage({
         </Card>
       )}
 
+      {/* Stats */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+        <Card>
+          <CardContent className="pt-6">
+            <p className="text-sm text-[--color-tb-shadow] mb-1">{t('totalStudents')}</p>
+            <p className="text-3xl font-display font-bold text-[--color-tb-navy]">
+              {students.length}
+            </p>
+          </CardContent>
+        </Card>
+        <Card>
+          <CardContent className="pt-6">
+            <p className="text-sm text-[--color-tb-shadow] mb-1">{t('assignments')}</p>
+            <p className="text-3xl font-display font-bold text-[--color-tb-navy]">0</p>
+          </CardContent>
+        </Card>
+        <Card>
+          <CardContent className="pt-6">
+            <p className="text-sm text-[--color-tb-shadow] mb-1">{t('avgProgress')}</p>
+            <p className="text-3xl font-display font-bold text-[--color-tb-navy]">--</p>
+          </CardContent>
+        </Card>
+      </div>
+
       {/* Students */}
       <Card>
         <CardHeader>
@@ -74,23 +98,33 @@ export default async function ClassDetailPage({
         </CardHeader>
         <CardContent>
           {students.length === 0 ? (
-            <p className="text-[--color-tb-shadow] text-center py-8">
-              {t('noStudents')}
-            </p>
+            <div className="text-center py-12">
+              <p className="text-[--color-tb-shadow] mb-4">{t('noStudents')}</p>
+              <p className="text-sm text-[--color-tb-shadow]">
+                {t('shareCode')} <span className="font-mono font-bold text-[--color-tb-red]">{classItem.code}</span>
+              </p>
+            </div>
           ) : (
             <div className="space-y-2">
               {students.map(({ enrollment, student }) => (
                 <div
                   key={enrollment.id}
-                  className="flex items-center justify-between p-3 border border-[--color-tb-line] rounded-lg"
+                  className="flex items-center justify-between p-3 border border-[--color-tb-line] rounded-lg hover:bg-[--color-tb-bone] transition"
                 >
-                  <div>
-                    <p className="font-medium text-[--color-tb-navy]">
-                      {student.full_name || student.email}
-                    </p>
-                    <p className="text-sm text-[--color-tb-shadow]">
-                      {student.email}
-                    </p>
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-full bg-[--color-tb-red]/10 flex items-center justify-center">
+                      <span className="text-[--color-tb-red] font-semibold">
+                        {(student.full_name || student.email).charAt(0).toUpperCase()}
+                      </span>
+                    </div>
+                    <div>
+                      <p className="font-medium text-[--color-tb-navy]">
+                        {student.full_name || student.email}
+                      </p>
+                      <p className="text-sm text-[--color-tb-shadow]">
+                        {student.email}
+                      </p>
+                    </div>
                   </div>
                   <Badge variant="info">
                     {new Date(enrollment.enrolled_at).toLocaleDateString()}
