@@ -65,6 +65,21 @@ export async function requireStudent(supabase: SupabaseClient) {
 }
 
 /**
+ * Require admin role
+ */
+export async function requireAdmin(supabase: SupabaseClient) {
+  const user = await requireAuth(supabase);
+  
+  const { role } = await getUserDefaultRole(supabase, user.id);
+  
+  if (!role || !['admin', 'owner'].includes(role)) {
+    redirect("/dashboard");
+  }
+
+  return user;
+}
+
+/**
  * Get user with role info (for pages that need role but don't require specific role)
  */
 export async function getUserWithRole(supabase: SupabaseClient) {
