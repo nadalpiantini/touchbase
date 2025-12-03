@@ -61,8 +61,8 @@ export default function ModulePlayerPage() {
           setProgress(startJson.progress);
         }
       }
-    } catch (e) {
-      console.error("Failed to load module:", e);
+    } catch (err: unknown) {
+      // Error handled by UI state
     } finally {
       setLoading(false);
     }
