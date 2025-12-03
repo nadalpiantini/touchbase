@@ -40,7 +40,7 @@ export default async function HomePage({
               className="w-auto h-40 drop-shadow-2xl block md:hidden"
             />
           </div>
-          <p className="text-xl text-[--color-tb-bone] mb-12 font-medium">
+          <p className="text-xl font-sans text-[--color-tb-bone] mb-12 font-medium">
             {t('tagline')}
           </p>
 
@@ -53,7 +53,7 @@ export default async function HomePage({
                 </svg>
               </div>
               <h3 className="text-lg font-display font-semibold mb-2 text-[--color-tb-navy]">{t('features.players.title')}</h3>
-              <p className="text-[--color-tb-shadow] text-sm">
+              <p className="text-sm font-sans text-[--color-tb-shadow]">
                 {t('features.players.description')}
               </p>
             </div>
@@ -65,7 +65,7 @@ export default async function HomePage({
                 </svg>
               </div>
               <h3 className="text-lg font-display font-semibold mb-2 text-[--color-tb-navy]">{t('features.analytics.title')}</h3>
-              <p className="text-[--color-tb-shadow] text-sm">
+              <p className="text-sm font-sans text-[--color-tb-shadow]">
                 {t('features.analytics.description')}
               </p>
             </div>
@@ -77,7 +77,7 @@ export default async function HomePage({
                 </svg>
               </div>
               <h3 className="text-lg font-display font-semibold mb-2 text-[--color-tb-navy]">{t('features.mobile.title')}</h3>
-              <p className="text-[--color-tb-shadow] text-sm">
+              <p className="text-sm font-sans text-[--color-tb-shadow]">
                 {t('features.mobile.description')}
               </p>
             </div>

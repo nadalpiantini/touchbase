@@ -88,7 +88,7 @@ export default function RoleSelection() {
                     {t('roles.teacher.title')}
                   </h3>
                 </div>
-                <p className="text-sm text-[--color-tb-shadow]">
+                <p className="text-sm font-sans text-[--color-tb-shadow]">
                   {t('roles.teacher.description')}
                 </p>
               </button>
@@ -114,7 +114,7 @@ export default function RoleSelection() {
                     {t('roles.student.title')}
                   </h3>
                 </div>
-                <p className="text-sm text-[--color-tb-shadow]">
+                <p className="text-sm font-sans text-[--color-tb-shadow]">
                   {t('roles.student.description')}
                 </p>
               </button>

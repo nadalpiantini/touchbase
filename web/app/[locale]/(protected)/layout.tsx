@@ -40,11 +40,23 @@ export default async function ProtectedLayout({
                 <Link href={`/${locale}/dashboard`} className="text-sm hover:text-[--color-tb-beige] transition">
                   Dashboard
                 </Link>
-                <Link href={`/${locale}/dashboard/teams`} className="text-sm hover:text-[--color-tb-beige] transition">
-                  Equipos
-                </Link>
                 <Link href={`/${locale}/dashboard/players`} className="text-sm hover:text-[--color-tb-beige] transition">
                   Jugadores
+                </Link>
+                <Link href={`/${locale}/dashboard/teachers`} className="text-sm hover:text-[--color-tb-beige] transition">
+                  Profesores
+                </Link>
+                <Link href={`/${locale}/dashboard/schedules`} className="text-sm hover:text-[--color-tb-beige] transition">
+                  Horarios
+                </Link>
+                <Link href={`/${locale}/dashboard/placement-tests`} className="text-sm hover:text-[--color-tb-beige] transition">
+                  Pruebas
+                </Link>
+                <Link href={`/${locale}/dashboard/budgeting`} className="text-sm hover:text-[--color-tb-beige] transition">
+                  Presupuesto
+                </Link>
+                <Link href={`/${locale}/dashboard/teams`} className="text-sm hover:text-[--color-tb-beige] transition">
+                  Equipos
                 </Link>
                 <Link href={`/${locale}/dashboard/games`} className="text-sm hover:text-[--color-tb-beige] transition">
                   Partidos

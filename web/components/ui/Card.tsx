@@ -49,7 +49,7 @@ export const CardDescription = forwardRef<HTMLParagraphElement, HTMLAttributes<H
   ({ className, ...props }, ref) => (
     <p
       ref={ref}
-      className={cn('text-sm text-[--color-tb-shadow]/80 mt-1', className)}
+      className={cn('text-sm font-sans text-[--color-tb-shadow]/80 mt-1', className)}
       {...props}
     />
   )

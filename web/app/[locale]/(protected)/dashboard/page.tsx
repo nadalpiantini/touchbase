@@ -36,7 +36,7 @@ export default async function DashboardPage({
               <h1 className="text-2xl font-display font-bold text-[--color-tb-navy] mb-4">
                 {t('onboarding.title')}
               </h1>
-              <p className="text-[--color-tb-shadow] mb-6">
+              <p className="text-sm font-sans text-[--color-tb-shadow] mb-6">
                 {t('onboarding.subtitle')}
               </p>
               {/* Role selection onboarding */}
@@ -82,7 +82,7 @@ export default async function DashboardPage({
               <h1 className="text-3xl font-display font-bold text-[--color-tb-navy]">
                 {t('header.title', { orgName: org?.name || "TouchBase" })}
               </h1>
-              <p className="mt-1 text-sm text-[--color-tb-shadow]">
+              <p className="mt-1 text-sm font-sans text-[--color-tb-shadow]">
                 {t('header.welcome', { userName: profile?.full_name || effectiveUser.email })} • {t('header.role', { role: membership?.role || "viewer" })}
               </p>
             </div>
@@ -102,7 +102,7 @@ export default async function DashboardPage({
                   </div>
                   <div className="ml-5 w-0 flex-1">
                     <dl>
-                      <dt className="text-sm font-medium text-[--color-tb-shadow] truncate">
+                      <dt className="text-sm font-sans font-medium text-[--color-tb-shadow] truncate">
                         {t('stats.players')}
                       </dt>
                       <dd className="text-lg font-display font-semibold text-[--color-tb-navy]">
@@ -126,7 +126,7 @@ export default async function DashboardPage({
                   </div>
                   <div className="ml-5 w-0 flex-1">
                     <dl>
-                      <dt className="text-sm font-medium text-[--color-tb-shadow] truncate">
+                      <dt className="text-sm font-sans font-medium text-[--color-tb-shadow] truncate">
                         {t('stats.games')}
                       </dt>
                       <dd className="text-lg font-display font-semibold text-[--color-tb-navy]">
@@ -150,7 +150,7 @@ export default async function DashboardPage({
                   </div>
                   <div className="ml-5 w-0 flex-1">
                     <dl>
-                      <dt className="text-sm font-medium text-[--color-tb-shadow] truncate">
+                      <dt className="text-sm font-sans font-medium text-[--color-tb-shadow] truncate">
                         {t('stats.teams')}
                       </dt>
                       <dd className="text-lg font-display font-semibold text-[--color-tb-navy]">
@@ -174,7 +174,7 @@ export default async function DashboardPage({
                   </div>
                   <div className="ml-5 w-0 flex-1">
                     <dl>
-                      <dt className="text-sm font-medium text-[--color-tb-shadow] truncate">
+                      <dt className="text-sm font-sans font-medium text-[--color-tb-shadow] truncate">
                         {t('stats.nextGame')}
                       </dt>
                       <dd className="text-lg font-display font-semibold text-[--color-tb-navy]">

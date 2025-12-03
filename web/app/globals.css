@@ -22,10 +22,10 @@
   --color-secondary: var(--color-tb-navy);
   --color-accent: var(--color-tb-stitch);
 
-  /* Typography */
-  --font-display: var(--font-oswald), 'Oswald', ui-sans-serif, system-ui;
-  --font-sans: var(--font-inter), 'Inter', ui-sans-serif, system-ui;
-  --font-script: var(--font-lobster), 'Lobster Two', cursive;
+  /* Typography - Font Families */
+  --font-family-display: var(--font-oswald), 'Oswald', ui-sans-serif, system-ui;
+  --font-family-sans: var(--font-inter), 'Inter', ui-sans-serif, system-ui;
+  --font-family-script: var(--font-lobster), 'Lobster Two', cursive;
 
   /* Shadows */
   --shadow-dugout: 0 10px 24px rgba(20, 33, 61, 0.25);
@@ -80,4 +80,20 @@
 
 .skip-to-main:focus {
   top: 0;
+}
+
+/* ============================================================
+ * Typography Utilities
+ * ============================================================ */
+
+.font-display {
+  font-family: var(--font-oswald), 'Oswald', ui-sans-serif, system-ui;
+}
+
+.font-sans {
+  font-family: var(--font-inter), 'Inter', ui-sans-serif, system-ui;
+}
+
+.font-script {
+  font-family: var(--font-lobster), 'Lobster Two', cursive;
 }
