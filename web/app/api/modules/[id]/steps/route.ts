@@ -29,7 +29,6 @@ export async function POST(
 
     return NextResponse.json({ step });
   } catch (error: unknown) {
-    console.error("Create step error:", error);
     return NextResponse.json(
       { error: error instanceof Error ? error.message : "Failed to create step" },
       { status: 400 }
@@ -59,7 +58,6 @@ export async function PUT(
 
     return NextResponse.json({ step });
   } catch (error: unknown) {
-    console.error("Update step error:", error);
     return NextResponse.json(
       { error: error instanceof Error ? error.message : "Failed to update step" },
       { status: 400 }
@@ -87,7 +85,6 @@ export async function DELETE(
 
     return NextResponse.json({ success: true });
   } catch (error: unknown) {
-    console.error("Delete step error:", error);
     return NextResponse.json(
       { error: error instanceof Error ? error.message : "Failed to delete step" },
       { status: 400 }

@@ -26,7 +26,6 @@ export async function POST(
 
     return NextResponse.json({ success: true });
   } catch (error: unknown) {
-    console.error("Assign module error:", error);
     return NextResponse.json(
       { error: (error instanceof Error ? error.message : String(error)) || "Failed to assign module" },
       { status: 400 }

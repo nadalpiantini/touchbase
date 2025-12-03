@@ -21,7 +21,6 @@ export async function POST(req: Request) {
 
     return NextResponse.json({ success: true });
   } catch (error: unknown) {
-    console.error("Update progress error:", error);
     return NextResponse.json(
       { error: error instanceof Error ? error.message : "Failed to update progress" },
       { status: 400 }
