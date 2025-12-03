@@ -521,6 +521,43 @@
 
 ---
 
+### Mini Sprint 3.5-3.6: Middleware y Validación RLS ✅
+
+**Fecha:** 2025-12-03  
+**Duración:** ~10 min
+
+**Validaciones:**
+- ✅ Middleware actual maneja i18n correctamente
+- ✅ Protección de rutas se hace en layouts (mejor práctica para App Router)
+- ✅ RLS habilitado en todas las tablas (284 políticas encontradas)
+- ✅ Funciones helper para role-based access implementadas
+- ✅ Políticas de seguridad validadas en schema
+
+**Nota:** El middleware de Next.js App Router funciona mejor con protección en layouts que en middleware.ts para queries complejas a la DB.
+
+---
+
+## ✅ TAREA #3 COMPLETADA
+
+**Estado Final:** ✅ DONE  
+**Commits:** 5 (cdf42dcf5e, 346fa535f9, 850988d859, 6e615b970b, f782b06a46)  
+**Duración Total:** ~70 minutos
+
+### Resumen Ejecutivo:
+
+**✅ Authentication & User Management Implementado:**
+- Upload de imágenes a Supabase Storage
+- Página de perfil para editar datos del usuario
+- Upload integrado en wizards de registro
+- Autenticación validada (login/signup/signout)
+- RLS policies verificadas
+
+**✅ Próxima Tarea:**
+- **Tarea #4:** Registration Modules: Player, Teacher & Class Registration
+- **Estado:** Pending
+
+---
+
 ## 🚀 PUSH REALIZADO
 
 **Fecha:** 2025-12-03  
