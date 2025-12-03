@@ -40,7 +40,10 @@ export default async function HomePage({
               className="w-auto h-40 drop-shadow-2xl block md:hidden"
             />
           </div>
-          <p className="text-xl font-sans text-[--color-tb-bone] mb-12 font-medium">
+          <h1 className="text-4xl md:text-6xl font-display font-bold text-[--color-tb-bone] mb-4">
+            {t('hero.headline')}
+          </h1>
+          <p className="text-xl md:text-2xl font-sans text-[--color-tb-bone] mb-12 font-medium">
             {t('tagline')}
           </p>
 
@@ -83,14 +86,28 @@ export default async function HomePage({
             </div>
           </div>
 
-          {/* CTAs */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link
-              href={`/${locale}/login`}
-              className="inline-flex items-center justify-center px-6 py-2 border border-transparent font-display tracking-wide rounded-xl text-white bg-[--color-tb-navy] hover:bg-[--color-tb-ink] shadow-dugout transition-all active:translate-y-[1px]"
-            >
-              {t('cta.login')}
-            </Link>
+          {/* Hero CTA Section */}
+          <div className="mb-16">
+            <h2 className="text-3xl md:text-4xl font-display font-bold text-[--color-tb-bone] mb-6">
+              {t('hero.title')}
+            </h2>
+            <p className="text-lg font-sans text-[--color-tb-bone]/90 mb-8 max-w-2xl mx-auto">
+              {t('hero.subtitle')}
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link
+                href={`/${locale}/signup`}
+                className="inline-flex items-center justify-center px-8 py-4 border border-transparent font-display tracking-wide rounded-xl text-white bg-[--color-tb-red] hover:bg-[--color-tb-stitch] shadow-dugout transition-all active:translate-y-[1px] text-lg"
+              >
+                {t('cta.getStarted')}
+              </Link>
+              <Link
+                href={`/${locale}/login`}
+                className="inline-flex items-center justify-center px-8 py-4 border-2 border-[--color-tb-bone] font-display tracking-wide rounded-xl text-[--color-tb-bone] bg-transparent hover:bg-white/10 shadow-dugout transition-all active:translate-y-[1px] text-lg"
+              >
+                {t('cta.login')}
+              </Link>
+            </div>
           </div>
         </div>
       </div>

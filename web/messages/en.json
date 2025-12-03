@@ -6,8 +6,14 @@
   },
   "landing": {
     "tagline": "Modern Sports Club Management System",
+    "hero": {
+      "headline": "Your Dugout in the Cloud",
+      "title": "Transform Your Sports Organization",
+      "subtitle": "Manage players, coaches, schedules, and analytics all in one powerful platform. Built for modern sports organizations."
+    },
     "cta": {
-      "login": "Sign In"
+      "login": "Sign In",
+      "getStarted": "Get Started Free"
     },
     "features": {
       "players": {

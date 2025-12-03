@@ -6,8 +6,14 @@
   },
   "landing": {
     "tagline": "Sistema Moderno de Gestión de Clubes Deportivos",
+    "hero": {
+      "headline": "Tu Dugout en la Nube",
+      "title": "Transforma Tu Organización Deportiva",
+      "subtitle": "Gestiona jugadores, entrenadores, horarios y análisis en una plataforma poderosa. Construido para organizaciones deportivas modernas."
+    },
     "cta": {
-      "login": "Iniciar Sesión"
+      "login": "Iniciar Sesión",
+      "getStarted": "Comenzar Gratis"
     },
     "features": {
       "players": {
