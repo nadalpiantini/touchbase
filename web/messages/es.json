@@ -436,6 +436,30 @@
     }
   },
   "teacher": {
+    "dashboard": {
+      "title": "Panel del Profesor",
+      "stats": {
+        "classes": "Clases",
+        "activeClasses": "Clases activas",
+        "students": "Estudiantes",
+        "totalStudents": "Total estudiantes",
+        "modules": "Módulos",
+        "availableModules": "Módulos disponibles"
+      },
+      "myClasses": "Mis Clases",
+      "createClass": "Crear Clase",
+      "noClasses": "Aún no has creado ninguna clase.",
+      "createFirstClass": "Crea Tu Primera Clase",
+      "students": "estudiantes",
+      "viewClass": "Ver Clase",
+      "quickActions": "Acciones Rápidas",
+      "manageModules": "Gestionar Módulos",
+      "manageModulesDesc": "Ver y editar tus módulos de aprendizaje",
+      "viewAnalytics": "Ver Analíticas",
+      "viewAnalyticsDesc": "Rastrear progreso y rendimiento de estudiantes",
+      "createModule": "Crear Módulo",
+      "createModuleDesc": "Crear nuevo contenido de aprendizaje"
+    },
     "aiAssistant": {
       "title": "Asistente IA",
       "openAssistant": "Abrir Asistente IA",
