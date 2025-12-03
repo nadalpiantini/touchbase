@@ -12,6 +12,10 @@ Next.js 15 web application for TouchBase Academy, a life skills education platfo
 - ✅ AI coaching and teacher assistance
 - ✅ Class management and assignments
 - ✅ Scheduling and attendance
+- ✅ Placement tests system
+- ✅ Budget and expense management
+- ✅ Student life (wellness, activities, development logs)
+- ✅ Report export (PDF/CSV)
 - ✅ Internationalization (English/Spanish)
 - ✅ Responsive design
 - ✅ Accessibility (WCAG 2.1 AA)
