@@ -20,7 +20,6 @@ export async function GET(
 
     return NextResponse.json(moduleData);
   } catch (error: unknown) {
-    console.error("Get module error:", error);
     const errorMessage = error instanceof Error ? error.message : "Failed to get module";
     return NextResponse.json(
       { error: errorMessage },

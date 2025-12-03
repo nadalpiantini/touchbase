@@ -47,7 +47,6 @@ export async function POST(req: Request) {
     }
     return NextResponse.json({ ok: true, id: data?.id });
   } catch (error: unknown) {
-    console.error("Create game error:", error);
     const errorMessage = error instanceof Error ? error.message : "Failed to create game";
     return NextResponse.json(
       { error: errorMessage },

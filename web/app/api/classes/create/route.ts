@@ -50,7 +50,6 @@ export async function POST(req: Request) {
 
     return NextResponse.json({ class: newClass });
   } catch (error: unknown) {
-    console.error("Create class error:", error);
     const errorMessage = error instanceof Error ? error.message : "Failed to create class";
     return NextResponse.json(
       { error: errorMessage },

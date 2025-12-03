@@ -23,7 +23,6 @@ export async function GET(
 
     return NextResponse.json({ class: classItem });
   } catch (error: unknown) {
-    console.error("Get class error:", error);
     const errorMessage = error instanceof Error ? error.message : "Failed to get class";
     return NextResponse.json(
       { error: errorMessage },

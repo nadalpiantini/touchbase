@@ -55,7 +55,6 @@ export async function POST(req: Request) {
 
     return NextResponse.json({ ok: true, org_id: org.id, role: selectedRole });
   } catch (e: unknown) {
-    console.error("Unexpected onboarding error:", e);
     return NextResponse.json({ error: e instanceof Error ? e.message : "Unexpected error" }, { status: 500 });
   }
 }
