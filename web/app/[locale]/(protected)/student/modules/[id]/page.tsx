@@ -186,16 +186,39 @@ export default function ModulePlayerPage() {
 
           {currentStep.step_type === "quiz" && (
             <div>
-              <p className="font-semibold text-[--color-tb-navy] mb-4">
-                {(currentStep.content_data as QuizStepData)?.question}
-              </p>
+              <div className="mb-4">
+                <p className="font-semibold text-[--color-tb-navy] mb-2 text-lg">
+                  {(currentStep.content_data as QuizStepData)?.question}
+                </p>
+                {(currentStep.content_data as QuizStepData)?.quizType && (
+                  <Badge variant="info" className="text-xs">
+                    {(currentStep.content_data as QuizStepData)?.quizType === "true_false" ? "True/False" : "Multiple Choice"}
+                  </Badge>
+                )}
+              </div>
               {showQuizResult && (
-                <div className="mb-4 p-4 bg-[--color-tb-beige] rounded-lg">
-                  <p className="text-sm text-[--color-tb-navy]">
-                    {quizAnswers[currentStepIndex] === (currentStep.content_data as QuizStepData)?.correctIndex
-                      ? t('quiz.correct')
-                      : t('quiz.incorrect')}
-                  </p>
+                <div className={`mb-4 p-4 rounded-lg ${
+                  quizAnswers[currentStepIndex] === (currentStep.content_data as QuizStepData)?.correctIndex
+                    ? "bg-green-50 border border-green-200"
+                    : "bg-red-50 border border-red-200"
+                }`}>
+                  <div className="flex items-center gap-2">
+                    {quizAnswers[currentStepIndex] === (currentStep.content_data as QuizStepData)?.correctIndex ? (
+                      <>
+                        <svg className="w-5 h-5 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                        </svg>
+                        <p className="text-sm font-medium text-green-800">{t('quiz.correct')}</p>
+                      </>
+                    ) : (
+                      <>
+                        <svg className="w-5 h-5 text-red-600" fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
+                        </svg>
+                        <p className="text-sm font-medium text-red-800">{t('quiz.incorrect')}</p>
+                      </>
+                    )}
+                  </div>
                 </div>
               )}
               <div className="space-y-2">
@@ -204,15 +227,18 @@ export default function ModulePlayerPage() {
                     const isSelected = quizAnswers[currentStepIndex] === idx;
                     const isCorrect = idx === (currentStep.content_data as QuizStepData)?.correctIndex;
                     const showResult = showQuizResult;
+                    const quizData = currentStep.content_data as QuizStepData;
 
                     return (
                       <Button
                         key={idx}
                         variant={isSelected ? "primary" : "outline"}
-                        className={`w-full text-left ${
-                          showResult && isCorrect ? "bg-green-100 border-green-500" : ""
+                        className={`w-full text-left transition-all ${
+                          showResult && isCorrect ? "bg-green-100 border-green-500 text-green-800" : ""
                         } ${
-                          showResult && isSelected && !isCorrect ? "bg-red-100 border-red-500" : ""
+                          showResult && isSelected && !isCorrect ? "bg-red-100 border-red-500 text-red-800" : ""
+                        } ${
+                          showResult && !isSelected && !isCorrect ? "opacity-60" : ""
                         }`}
                         onClick={() => {
                           if (!showResult) {
@@ -222,7 +248,14 @@ export default function ModulePlayerPage() {
                         }}
                         disabled={showResult}
                       >
-                        {option}
+                        <div className="flex items-center gap-2">
+                          {quizData.quizType === "true_false" && (
+                            <span className="font-mono text-xs">
+                              {idx === 0 ? "✓" : "✗"}
+                            </span>
+                          )}
+                          <span>{option}</span>
+                        </div>
                       </Button>
                     );
                   }

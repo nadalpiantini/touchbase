@@ -60,6 +60,7 @@ export type QuizStepData = {
   question: string;
   options: string[];
   correctIndex: number;
+  quizType?: "multiple_choice" | "true_false";
 };
 
 export type ScenarioStepData = {
