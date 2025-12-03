@@ -34,7 +34,7 @@ export default function ModulesScreen() {
       }
       setModules(offlineModules);
     } catch (error) {
-      console.error('Error loading modules:', error);
+      // Error loading modules - will be handled by UI state
     } finally {
       setLoading(false);
     }
