@@ -2,113 +2,149 @@
   "master": {
     "tasks": [
       {
-        "id": 1,
+        "id": "1",
         "title": "Foundation Setup: Monorepo & Firebase Configuration",
         "description": "Initialize Turborepo monorepo structure, configure Firebase (Firestore, Auth, Storage), and set up base UI component library with Tailwind CSS",
-        "status": "pending",
+        "status": "in-progress",
         "dependencies": [],
         "priority": "high",
         "details": "1. Initialize Turborepo with workspaces for web (Next.js 14) and mobile (React Native Expo)\n2. Configure Firebase project with Firestore database, Authentication (email/password + OAuth), and Storage\n3. Set up shared UI component library with Tailwind CSS design system\n4. Configure TypeScript for all workspaces\n5. Set up environment variables and configuration files\n\nTech Stack: Turborepo, Next.js 14 App Router, React Native Expo, Firebase, TypeScript, Tailwind CSS",
-        "testStrategy": "Verify monorepo builds successfully, Firebase connection works, and base components render correctly"
+        "testStrategy": "Verify monorepo builds successfully, Firebase connection works, and base components render correctly",
+        "updatedAt": "2025-12-03T22:30:04.432Z",
+        "subtasks": []
       },
       {
-        "id": 2,
+        "id": "2",
         "title": "Core UI Shell: Landing Page & Dashboard Layouts",
         "description": "Create landing page and skeleton dashboard layouts for player, teacher, and admin roles with navigation and responsive design",
         "status": "pending",
-        "dependencies": [1],
+        "dependencies": [
+          "1"
+        ],
         "priority": "high",
         "details": "1. Build landing page with hero section, features, and CTA\n2. Create dashboard shell components for each role (player/teacher/admin)\n3. Implement responsive navigation with role-based menu items\n4. Set up mobile screen skeletons for Expo app\n5. Apply consistent design system (TouchBase brand colors, typography)\n\nComponents: LandingPage, PlayerDashboard, TeacherDashboard, AdminDashboard, Navigation, MobileLayout",
-        "testStrategy": "Test responsive layouts across devices, verify navigation works, and check role-based UI rendering"
+        "testStrategy": "Test responsive layouts across devices, verify navigation works, and check role-based UI rendering",
+        "subtasks": []
       },
       {
-        "id": 3,
+        "id": "3",
         "title": "Authentication & User Management System",
         "description": "Implement Firebase Authentication with multi-role support (player/teacher/admin), profile management with photo upload, and role-based access control",
         "status": "pending",
-        "dependencies": [1],
+        "dependencies": [
+          "1"
+        ],
         "priority": "high",
         "details": "1. Integrate Firebase Auth with email/password and OAuth providers\n2. Create user profile schema in Firestore (roles, default_org_id, photo_url)\n3. Build profile management UI with image upload to Firebase Storage\n4. Implement role-based routing middleware (Next.js middleware.ts)\n5. Create Firestore security rules for role-based access\n6. Build signup/login flows for each role type\n\nAPI Routes: /api/auth/signup, /api/auth/login, /api/auth/signout\nSecurity: Firestore rules based on user.role and org_id",
-        "testStrategy": "Test authentication flows, verify role-based access control, test image upload, and validate security rules"
+        "testStrategy": "Test authentication flows, verify role-based access control, test image upload, and validate security rules",
+        "subtasks": []
       },
       {
-        "id": 4,
+        "id": "4",
         "title": "Registration Modules: Player, Teacher & Class Registration",
         "description": "Build registration forms for players, teachers, and class creation with data persistence, image upload, and CSV export functionality",
         "status": "pending",
-        "dependencies": [2, 3],
+        "dependencies": [
+          "2",
+          "3"
+        ],
         "priority": "medium",
         "details": "1. Create player registration form (name, email, role selection)\n2. Create teacher registration form (name, email, school/org)\n3. Build class creation form (name, code generation, teacher assignment)\n4. Implement image upload to Firebase Storage with preview\n5. Add CSV export functionality for user/class lists\n6. Create invite code system for class enrollment\n\nComponents: PlayerRegistrationForm, TeacherRegistrationForm, ClassCreationForm, ImageUpload, CSVExport",
-        "testStrategy": "Test form validation, image upload, data persistence, CSV export, and invite code generation"
+        "testStrategy": "Test form validation, image upload, data persistence, CSV export, and invite code generation",
+        "subtasks": []
       },
       {
-        "id": 5,
+        "id": "5",
         "title": "Attendance System with Analytics & Streak Tracking",
         "description": "Implement attendance marking (present/late/absent), daily analytics dashboard, and streak tracking system with recovery mechanisms",
         "status": "pending",
-        "dependencies": [3, 4],
+        "dependencies": [
+          "3",
+          "4"
+        ],
         "priority": "medium",
         "details": "1. Build attendance marking UI (teacher view with student list)\n2. Create Firestore schema: attendance collection (class_id, date, student_id, status)\n3. Implement daily analytics (attendance rate, trends)\n4. Build streak tracking system (consecutive days present)\n5. Add streak recovery mechanism (grace period)\n6. Create attendance history view\n\nAPI Routes: /api/attendance/mark, /api/attendance/class/[classId], /api/attendance/analytics\nCollections: touchbase_attendance (class_id, date, student_id, status, created_at)",
-        "testStrategy": "Test attendance marking, verify analytics calculations, test streak tracking logic, and validate recovery mechanism"
+        "testStrategy": "Test attendance marking, verify analytics calculations, test streak tracking logic, and validate recovery mechanism",
+        "subtasks": []
       },
       {
-        "id": 6,
+        "id": "6",
         "title": "Scheduling System: Class Schedule Builder & Weekly Agenda",
         "description": "Create class schedule builder for teachers, weekly agenda view for students, and push notification system for schedule reminders",
         "status": "pending",
-        "dependencies": [4],
+        "dependencies": [
+          "4"
+        ],
         "priority": "medium",
         "details": "1. Build schedule builder UI (day/time selection, recurring patterns)\n2. Create Firestore schema: schedules collection (class_id, day_of_week, time, location)\n3. Implement weekly agenda view for students (upcoming classes)\n4. Set up push notification service (Firebase Cloud Messaging)\n5. Create notification triggers for schedule reminders\n6. Build schedule editing and deletion functionality\n\nAPI Routes: /api/schedules/create, /api/schedules/class/[classId], /api/schedules/update\nMobile: Expo Notifications for push alerts",
-        "testStrategy": "Test schedule creation, verify weekly agenda display, test push notifications, and validate recurring pattern logic"
+        "testStrategy": "Test schedule creation, verify weekly agenda display, test push notifications, and validate recurring pattern logic",
+        "subtasks": []
       },
       {
-        "id": 7,
+        "id": "7",
         "title": "Curriculum & Module Engine: Lesson Player & Progress Tracking",
         "description": "Build module structure (steps, content, quizzes, scenarios), interactive lesson player, quiz engine, and progress state persistence",
         "status": "pending",
-        "dependencies": [2, 3],
+        "dependencies": [
+          "2",
+          "3"
+        ],
         "priority": "high",
         "details": "1. Design Firestore schema: modules collection (title, description, skill_category, difficulty)\n2. Create module steps subcollection (step_type: lesson/quiz/scenario, content, order)\n3. Build interactive lesson player component (text, video, audio, images)\n4. Implement quiz engine (multiple choice, true/false, scoring)\n5. Create scenario/interactive content renderer\n6. Build progress tracking system (per-user-per-module state)\n7. Implement progress persistence (Firestore: progress collection)\n\nAPI Routes: /api/modules/list, /api/modules/[id], /api/modules/[id]/steps, /api/progress/update\nCollections: touchbase_modules, touchbase_modules/{id}/steps, touchbase_progress",
-        "testStrategy": "Test module rendering, quiz functionality, progress tracking, and verify state persistence across sessions"
+        "testStrategy": "Test module rendering, quiz functionality, progress tracking, and verify state persistence across sessions",
+        "subtasks": []
       },
       {
-        "id": 8,
+        "id": "8",
         "title": "Gamification System: XP, Levels, Badges & Challenges",
         "description": "Implement XP calculation system, multi-level progression (global + per-skill), badge awards, streak system, and class challenges with leaderboards",
         "status": "pending",
-        "dependencies": [5, 7],
+        "dependencies": [
+          "5",
+          "7"
+        ],
         "priority": "medium",
         "details": "1. Design XP calculation rules (per action type: lesson completion, quiz score, attendance)\n2. Implement level system (global level + per-skill levels)\n3. Create badge system (event-triggered + teacher-awarded)\n4. Build streak system integration with attendance\n5. Create challenge system (class/global challenges)\n6. Implement optional leaderboards (class/global)\n7. Build skill tree visualization\n\nAPI Routes: /api/xp/award, /api/badges/list, /api/badges/user, /api/challenges/create, /api/leaderboards/class\nCloud Functions: XP calculation triggers, badge award automation",
-        "testStrategy": "Test XP calculations, verify level progression, test badge awards, validate challenge system, and check leaderboard accuracy"
+        "testStrategy": "Test XP calculations, verify level progression, test badge awards, validate challenge system, and check leaderboard accuracy",
+        "subtasks": []
       },
       {
-        "id": 9,
+        "id": "9",
         "title": "AI Integration: Player Coach, Teacher Assistant & Adaptive Learning",
         "description": "Build AI Gateway via Cloud Functions, player AI coach chat, teacher AI assistant for lesson planning, and adaptive learning engine with safety filters",
         "status": "pending",
-        "dependencies": [7],
+        "dependencies": [
+          "7"
+        ],
         "priority": "low",
         "details": "1. Create AI Gateway Cloud Function (OpenAI/Gemini integration)\n2. Build player AI coach chat interface (contextual hints, explanations, reflection prompts)\n3. Implement teacher AI assistant (generate discussion prompts, lesson plans, adaptations)\n4. Create adaptive learning engine (personalized content recommendations)\n5. Add safety filters (content moderation, age-appropriate tone)\n6. Implement opt-out controls for AI features\n7. Add rate limiting and usage tracking\n\nAPI Routes: /api/ai/coach, /api/ai/explanation, /api/ai/hint\nCloud Functions: ai-gateway (with guardrails, rate limiting)\nSafety: Content filters, moderation API integration",
-        "testStrategy": "Test AI responses, verify safety filters, test rate limiting, validate adaptive recommendations, and check opt-out functionality"
+        "testStrategy": "Test AI responses, verify safety filters, test rate limiting, validate adaptive recommendations, and check opt-out functionality",
+        "subtasks": []
       },
       {
-        "id": 10,
+        "id": "10",
         "title": "Analytics & Insights: Teacher Dashboard, Admin Analytics & Experiments",
         "description": "Build teacher analytics dashboard (skill heatmaps, at-risk indicators), admin analytics (adoption, engagement), early warning system, and A/B testing framework",
         "status": "pending",
-        "dependencies": [5, 7, 8],
+        "dependencies": [
+          "5",
+          "7",
+          "8"
+        ],
         "priority": "low",
         "details": "1. Create teacher analytics dashboard (skill heatmaps, time-series performance, at-risk student indicators)\n2. Build admin analytics dashboard (adoption metrics, engagement rates, impact metrics)\n3. Implement early warning system (rule-based student risk detection)\n4. Create feature flags system (Firestore: featureFlags collection)\n5. Build A/B testing framework (experiment configuration, variant assignment, results tracking)\n6. Integrate PostHog for product analytics\n7. Create custom event tracking system\n\nAPI Routes: /api/analytics/students, /api/analytics/classes, /api/admin/analytics\nCollections: touchbase_feature_flags, touchbase_experiments\nAnalytics: PostHog integration, custom event tracking",
-        "testStrategy": "Test analytics calculations, verify heatmap rendering, test early warning triggers, validate A/B test framework, and check PostHog integration"
+        "testStrategy": "Test analytics calculations, verify heatmap rendering, test early warning triggers, validate A/B test framework, and check PostHog integration",
+        "subtasks": []
       }
     ],
     "metadata": {
-      "projectName": "TouchBase Life Skills Platform",
-      "totalTasks": 10,
-      "sourceFile": "prd.txt",
-      "generatedAt": "2025-12-03T20:55:00.000Z"
+      "version": "1.0.0",
+      "lastModified": "2025-12-03T22:30:04.433Z",
+      "taskCount": 10,
+      "completedCount": 0,
+      "tags": [
+        "master"
+      ]
     }
   }
 }
-
-
