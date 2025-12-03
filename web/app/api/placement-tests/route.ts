@@ -40,7 +40,6 @@ export async function GET(req: Request) {
       results: results || []
     });
   } catch (error: unknown) {
-    console.error("Get placement tests error:", error);
     return NextResponse.json(
       { error: error instanceof Error ? error.message : "Failed to get placement tests" },
       { status: 400 }
@@ -85,7 +84,6 @@ export async function POST(req: Request) {
 
     return NextResponse.json({ ok: true, id: test.id });
   } catch (error: unknown) {
-    console.error("Create placement test error:", error);
     return NextResponse.json(
       { error: error instanceof Error ? error.message : "Failed to create placement test" },
       { status: 400 }

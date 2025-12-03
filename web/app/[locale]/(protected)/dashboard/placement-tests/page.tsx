@@ -19,6 +19,11 @@ type TestResult = {
   score: number;
   recommended_level: string;
   taken_at: string;
+  touchbase_profiles?: {
+    id: string;
+    full_name?: string;
+    email?: string;
+  };
 };
 
 export default function PlacementTestsPage() {
@@ -43,7 +48,7 @@ export default function PlacementTestsPage() {
       setTests(json.tests || []);
       setResults(json.results || []);
     } catch (error) {
-      console.error("Error loading placement tests:", error);
+      // Error handled by UI state
     } finally {
       setLoading(false);
     }
@@ -123,11 +128,15 @@ export default function PlacementTestsPage() {
                 <tbody>
                   {results.map(result => (
                     <tr key={result.id} className="border-b hover:bg-gray-50">
-                      <td className="p-3">Estudiante {result.student_id.slice(0, 8)}</td>
-                      <td className="p-3">Prueba {result.test_id.slice(0, 8)}</td>
+                      <td className="p-3">
+                        {result.touchbase_profiles?.full_name || result.touchbase_profiles?.email || `Estudiante ${result.student_id.slice(0, 8)}`}
+                      </td>
+                      <td className="p-3">
+                        {tests.find(t => t.id === result.test_id)?.name || `Prueba ${result.test_id.slice(0, 8)}`}
+                      </td>
                       <td className="p-3 text-right font-semibold">{result.score}%</td>
                       <td className="p-3">
-                        <Badge variant="success">{result.recommended_level}</Badge>
+                        <Badge variant="success">{result.recommended_level || "N/A"}</Badge>
                       </td>
                       <td className="p-3">
                         {new Date(result.taken_at).toLocaleDateString("es-ES")}
