@@ -9,7 +9,7 @@ export async function GET(
 ) {
   try {
     const { id } = await params;
-    const s = supabaseServer();
+    const s = await supabaseServer();
     await requireAuth(s);
 
     const classItem = await getClassById(s, id);

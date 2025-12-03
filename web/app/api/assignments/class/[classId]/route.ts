@@ -9,7 +9,7 @@ export async function GET(
 ) {
   try {
     const { classId } = await params;
-    const s = supabaseServer();
+    const s = await supabaseServer();
     const user = await requireTeacher(s);
 
     const assignments = await getClassAssignments(s, classId, user.id);
@@ -30,7 +30,7 @@ export async function POST(
 ) {
   try {
     const { classId } = await params;
-    const s = supabaseServer();
+    const s = await supabaseServer();
     const user = await requireTeacher(s);
 
     const body = await req.json();

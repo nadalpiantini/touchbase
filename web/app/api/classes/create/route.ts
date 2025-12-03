@@ -5,7 +5,7 @@ import { requireTeacher } from "@/lib/auth/middleware-helpers";
 
 export async function POST(req: Request) {
   try {
-    const s = supabaseServer();
+    const s = await supabaseServer();
     const user = await requireTeacher(s);
 
     const { name, gradeLevel, description, schedule } = await req.json();

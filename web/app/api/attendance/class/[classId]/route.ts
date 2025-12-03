@@ -8,7 +8,7 @@ export async function GET(
   { params }: { params: Promise<{ classId: string }> }
 ) {
   try {
-    const s = supabaseServer();
+    const s = await supabaseServer();
     await requireAuth(s);
 
     const { classId } = await params;
@@ -32,7 +32,7 @@ export async function POST(
   { params }: { params: Promise<{ classId: string }> }
 ) {
   try {
-    const s = supabaseServer();
+    const s = await supabaseServer();
     const user = await requireAuth(s);
 
     const { classId } = await params;

@@ -4,7 +4,7 @@ import { supabaseServer } from "@/lib/supabase/server";
 export async function POST(req: Request) {
   try {
     const { orgName, role } = await req.json().catch(() => ({ orgName: null, role: null }));
-    const s = supabaseServer();
+    const s = await supabaseServer();
 
     // Confirma sesión
     const { data: { user }, error: uerr } = await s.auth.getUser();

@@ -5,7 +5,7 @@ import { requireStudent } from "@/lib/auth/middleware-helpers";
 
 export async function POST(req: Request) {
   try {
-    const s = supabaseServer();
+    const s = await supabaseServer();
     const user = await requireStudent(s);
 
     const { code } = await req.json();

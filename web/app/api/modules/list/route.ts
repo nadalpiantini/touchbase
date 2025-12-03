@@ -6,7 +6,7 @@ import { getCacheHeaders, CACHE_CONFIG } from "@/lib/performance/cache";
 
 export async function GET(req: Request) {
   try {
-    const s = supabaseServer();
+    const s = await supabaseServer();
     await requireAuth(s);
 
     const url = new URL(req.url);

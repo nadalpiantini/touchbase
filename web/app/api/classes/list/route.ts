@@ -5,7 +5,7 @@ import { getUserWithRole } from "@/lib/auth/middleware-helpers";
 
 export async function GET() {
   try {
-    const s = supabaseServer();
+    const s = await supabaseServer();
     const { user, role, orgId, isTeacher, isStudent } = await getUserWithRole(s);
 
     if (isTeacher && orgId) {

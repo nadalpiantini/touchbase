@@ -9,7 +9,7 @@ export async function DELETE(
 ) {
   try {
     const { id: classId, moduleId } = await params;
-    const s = supabaseServer();
+    const s = await supabaseServer();
     await requireTeacher(s);
 
     await unassignModuleFromClass(s, classId, moduleId);

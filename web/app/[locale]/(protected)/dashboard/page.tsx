@@ -10,7 +10,7 @@ export default async function DashboardPage({
 }) {
   const { locale } = await params;
   const t = await getTranslations('dashboard');
-  const s = await supabaseServer();
+  const s = supabaseServer();
 
   // 1) Obtener usuario autenticado
   const { data: { user }, error: userError } = await s.auth.getUser();
@@ -21,10 +21,10 @@ export default async function DashboardPage({
 
   // 2) Obtener profile para ver si tiene default_org_id
   const { data: profile } = await s
-    .from("touchbase_profiles")
-    .select("id, full_name, default_org_id")
+      .from("touchbase_profiles")
+      .select("id, full_name, default_org_id")
     .eq("id", user.id)
-    .single();
+      .single();
 
   // 3) Si NO tiene org aún, mostrar onboarding
   if (!profile?.default_org_id) {
@@ -56,11 +56,11 @@ export default async function DashboardPage({
     .single();
 
   const { data: membership } = await s
-    .from("touchbase_memberships")
-    .select("role")
+      .from("touchbase_memberships")
+      .select("role")
     .eq("org_id", profile?.default_org_id)
     .eq("user_id", user.id)
-    .single();
+      .single();
 
   const role = membership?.role;
 

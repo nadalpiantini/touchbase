@@ -9,7 +9,7 @@ export async function POST(
 ) {
   try {
     const { id: classId } = await params;
-    const s = supabaseServer();
+    const s = await supabaseServer();
     await requireTeacher(s);
 
     const body = await req.json();

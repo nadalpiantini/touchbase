@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { supabaseServer } from "@/lib/supabase/server";
 
 export async function GET(req: Request) {
-  const s = supabaseServer();
+  const s = await supabaseServer();
   const { data: { user } } = await s.auth.getUser();
   
   if (!user) {

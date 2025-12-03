@@ -12,7 +12,7 @@ export default async function ProtectedLayout({
 }: {
   children: ReactNode
 }) {
-  const s = await supabaseServer();
+  const s = supabaseServer();
   const { data: { user }, error: userError } = await s.auth.getUser();
   const locale = await getLocale();
 

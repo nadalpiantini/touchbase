@@ -8,7 +8,7 @@ export async function POST(
   { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const s = supabaseServer();
+    const s = await supabaseServer();
     const user = await requireTeacher(s);
     const { id: moduleId } = await params;
 
@@ -42,7 +42,7 @@ export async function PUT(
   { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const s = supabaseServer();
+    const s = await supabaseServer();
     await requireTeacher(s);
     const { id: moduleId } = await params;
 
@@ -72,7 +72,7 @@ export async function DELETE(
   { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const s = supabaseServer();
+    const s = await supabaseServer();
     await requireTeacher(s);
     const { id: moduleId } = await params;
 

@@ -8,7 +8,7 @@ export async function GET(
   { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const s = supabaseServer();
+    const s = await supabaseServer();
     await requireAuth(s);
 
     const { id } = await params;
