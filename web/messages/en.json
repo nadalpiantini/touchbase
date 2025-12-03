@@ -203,6 +203,30 @@
     }
   },
   "teacher": {
+    "dashboard": {
+      "title": "Teacher Dashboard",
+      "stats": {
+        "classes": "Classes",
+        "activeClasses": "Active classes",
+        "students": "Students",
+        "totalStudents": "Total students",
+        "modules": "Modules",
+        "availableModules": "Available modules"
+      },
+      "myClasses": "My Classes",
+      "createClass": "Create Class",
+      "noClasses": "You haven't created any classes yet.",
+      "createFirstClass": "Create Your First Class",
+      "students": "students",
+      "viewClass": "View Class",
+      "quickActions": "Quick Actions",
+      "manageModules": "Manage Modules",
+      "manageModulesDesc": "View and edit your learning modules",
+      "viewAnalytics": "View Analytics",
+      "viewAnalyticsDesc": "Track student progress and performance",
+      "createModule": "Create Module",
+      "createModuleDesc": "Build new learning content"
+    },
     "modules": {
       "title": "Modules",
       "createModule": "Create Module",

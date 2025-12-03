@@ -1,7 +1,7 @@
 import { getTranslations } from 'next-intl/server';
 import { supabaseServer } from '@/lib/supabase/server';
 import { requireStudent } from '@/lib/auth/middleware-helpers';
-import { getStudentClasses } from '@/lib/services/classes';
+import { Class } from '@/lib/types/education';
 import { getUserProgress } from '@/lib/services/progress';
 import { getUserXPSummary } from '@/lib/services/xp';
 import { Card, CardContent, CardHeader, CardTitle, ProgressBar, Badge, Button } from '@/components/ui';
@@ -25,9 +25,19 @@ export default async function StudentDashboardPage({
     .eq("id", user.id)
     .single();
 
-  const classes = profile?.default_org_id
-    ? await getStudentClasses(s, user.id, profile.default_org_id)
-    : [];
+  // Get classes where student is enrolled
+  let classes: Class[] = [];
+  if (profile?.default_org_id) {
+    const { data: enrollments } = await s
+      .from("touchbase_class_enrollments")
+      .select("class_id, class:touchbase_classes(*)")
+      .eq("student_id", user.id)
+      .eq("org_id", profile.default_org_id);
+    
+    classes = (enrollments || [])
+      .map((e: any) => e.class)
+      .filter((c: any) => c !== null) as Class[];
+  }
 
   // Fetch progress
   const progress = await getUserProgress(s, user.id);
@@ -95,7 +105,7 @@ export default async function StudentDashboardPage({
             {t('myClasses')}
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {classes.map((classItem) => (
+            {classes.map((classItem: Class) => (
               <Card key={classItem.id} className="hover:shadow-lg transition-shadow">
                 <CardHeader>
                   <CardTitle className="text-lg">{classItem.name}</CardTitle>
