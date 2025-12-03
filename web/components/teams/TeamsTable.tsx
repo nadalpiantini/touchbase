@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import { useTranslations } from 'next-intl';
+import { LoadingSpinner, Alert } from '@/components/ui';
 
 type Team = { id: string; name: string; created_at: string };
 
@@ -69,9 +70,29 @@ export default function TeamsTable() {
     load();
   };
 
-  if (loading) return <p className="font-sans text-[--color-tb-shadow]">{t('loading')}</p>;
-  if (err) return <p className="font-sans text-[--color-tb-stitch]">{t('error')} {err}</p>;
-  if (!teams.length) return <p className="font-sans text-[--color-tb-shadow]">{t('empty')}</p>;
+  if (loading) {
+    return (
+      <div className="flex justify-center py-12">
+        <LoadingSpinner size="lg" text={t('loading')} />
+      </div>
+    );
+  }
+
+  if (err) {
+    return (
+      <Alert variant="error" title={t('error')}>
+        {err}
+      </Alert>
+    );
+  }
+
+  if (!teams.length) {
+    return (
+      <div className="bg-white border border-[--color-tb-line] rounded-xl p-8 text-center shadow-sm">
+        <p className="font-sans text-[--color-tb-shadow]">{t('empty')}</p>
+      </div>
+    );
+  }
 
   return (
     <div className="border border-[--color-tb-line] rounded-xl overflow-hidden bg-white shadow-sm">
