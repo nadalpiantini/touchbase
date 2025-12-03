@@ -1,4 +1,5 @@
 import { getTranslations } from 'next-intl/server';
+import AIAssistant from '@/components/teacher/AIAssistant';
 
 export default async function TeacherDashboardPage() {
   const t = await getTranslations('teacher.dashboard');

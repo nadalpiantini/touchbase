@@ -435,6 +435,30 @@
       }
     }
   },
+  "teacher": {
+    "aiAssistant": {
+      "title": "Asistente IA",
+      "openAssistant": "Abrir Asistente IA",
+      "close": "Cerrar",
+      "welcome": "¡Hola! Soy tu asistente de enseñanza con IA.",
+      "askQuestion": "¡Pregúntame lo que quieras sobre gestionar tus clases, crear contenido o analizar el progreso de los estudiantes!",
+      "typeMessage": "Escribe tu pregunta...",
+      "send": "Enviar",
+      "thinking": "Pensando",
+      "quickActions": {
+        "title": "Acciones Rápidas",
+        "createModule": "Crear Módulo",
+        "analyzeProgress": "Analizar Progreso",
+        "suggestContent": "Sugerir Contenido",
+        "createModulePrompt": "Ayúdame a crear un nuevo módulo educativo. ¿Qué debería incluir?",
+        "analyzeProgressPrompt": "Analiza el progreso de mis estudiantes y sugiere mejoras.",
+        "suggestContentPrompt": "Sugiere ideas de contenido para mi próximo módulo basado en mis objetivos de enseñanza."
+      },
+      "errors": {
+        "failed": "Lo siento, no pude procesar tu solicitud. Por favor intenta de nuevo."
+      }
+    }
+  },
   "notFound": {
     "title": "404 — Página no encontrada",
     "message": "La página que buscas no existe o ha sido movida.",
