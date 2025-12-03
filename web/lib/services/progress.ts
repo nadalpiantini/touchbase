@@ -142,7 +142,7 @@ export async function updateStepProgress(
   if (status === "completed" && !wasCompleted) {
     try {
       const { awardModuleCompletionXP } = await import("./xp");
-      await awardModuleCompletionXP(supabase, userId, moduleId, progress.score);
+      const xpResult = await awardModuleCompletionXP(supabase, userId, moduleId, progress.score);
       
       // Update streak
       const { data: profile } = await supabase
@@ -169,6 +169,28 @@ export async function updateStepProgress(
         // Check for badge eligibility
         const { checkAndAwardBadges } = await import("./badges");
         await checkAndAwardBadges(supabase, userId, profile.default_org_id, "module_complete");
+        
+        // Update challenge progress
+        try {
+          const { updateChallengeProgress } = await import("./challenges");
+          const { data: challenges } = await supabase
+            .from("touchbase_challenge_participants")
+            .select("challenge_id, challenge:touchbase_challenges(*)")
+            .eq("user_id", userId)
+            .eq("org_id", profile.default_org_id)
+            .eq("completed", false);
+          
+          if (challenges && challenges.length > 0) {
+            for (const participant of challenges) {
+              const challenge = (participant as any).challenge;
+              if (challenge?.challenge_type === "module_complete" && challenge.is_active) {
+                await updateChallengeProgress(supabase, challenge.id, userId, 1);
+              }
+            }
+          }
+        } catch (challengeError) {
+          console.error("Failed to update challenge progress:", challengeError);
+        }
       }
     } catch (xpError) {
       // Don't fail the progress update if XP award fails

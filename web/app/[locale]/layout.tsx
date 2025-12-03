@@ -1,40 +1,8 @@
-import type { Metadata } from "next";
-import { Oswald, Inter, Lobster_Two, Geist_Mono } from "next/font/google";
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages, setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { locales } from '@/i18n/config';
 import { AnalyticsProvider } from '@/components/providers/AnalyticsProvider';
-import '../globals.css';
-
-const oswald = Oswald({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  variable: "--font-oswald",
-});
-
-const inter = Inter({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  variable: "--font-inter",
-});
-
-const lobsterTwo = Lobster_Two({
-  subsets: ["latin"],
-  weight: ["400", "700"],
-  style: ["normal", "italic"],
-  variable: "--font-lobster",
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
-export const metadata: Metadata = {
-  title: "TouchBase - Your Dugout in the Cloud",
-  description: "Sistema moderno de gestión de clubes deportivos. Your dugout in the cloud.",
-};
 
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
@@ -58,14 +26,10 @@ export default async function LocaleLayout({
   const messages = await getMessages();
 
   return (
-    <html lang={locale}>
-      <body className={`${oswald.variable} ${inter.variable} ${lobsterTwo.variable} ${geistMono.variable} antialiased font-sans`}>
-        <AnalyticsProvider>
-          <NextIntlClientProvider messages={messages}>
-            {children}
-          </NextIntlClientProvider>
-        </AnalyticsProvider>
-      </body>
-    </html>
+    <AnalyticsProvider>
+      <NextIntlClientProvider messages={messages}>
+        {children}
+      </NextIntlClientProvider>
+    </AnalyticsProvider>
   );
 }

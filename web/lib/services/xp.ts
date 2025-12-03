@@ -69,6 +69,28 @@ export async function awardXP(
       
       if (profile?.default_org_id) {
         await checkAndAwardBadges(supabase, award.userId, profile.default_org_id, "level_up");
+        
+        // Update XP challenge progress
+        try {
+          const { updateChallengeProgress } = await import("./challenges");
+          const { data: challenges } = await supabase
+            .from("touchbase_challenge_participants")
+            .select("challenge_id, challenge:touchbase_challenges(*)")
+            .eq("user_id", award.userId)
+            .eq("org_id", profile.default_org_id)
+            .eq("completed", false);
+          
+          if (challenges && challenges.length > 0) {
+            for (const participant of challenges) {
+              const challenge = (participant as any).challenge;
+              if (challenge?.challenge_type === "xp_earn" && challenge.is_active) {
+                await updateChallengeProgress(supabase, challenge.id, award.userId, award.amount);
+              }
+            }
+          }
+        } catch (challengeError) {
+          console.error("Failed to update challenge progress:", challengeError);
+        }
       }
     } catch (badgeError) {
       console.error("Failed to check badges on level up:", badgeError);
