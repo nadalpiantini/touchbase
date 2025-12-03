@@ -17,14 +17,15 @@
         "id": "2",
         "title": "Core UI Shell: Landing Page & Dashboard Layouts",
         "description": "Create landing page and skeleton dashboard layouts for player, teacher, and admin roles with navigation and responsive design",
-        "status": "pending",
+        "status": "done",
         "dependencies": [
           "1"
         ],
         "priority": "high",
         "details": "1. Build landing page with hero section, features, and CTA\n2. Create dashboard shell components for each role (player/teacher/admin)\n3. Implement responsive navigation with role-based menu items\n4. Set up mobile screen skeletons for Expo app\n5. Apply consistent design system (TouchBase brand colors, typography)\n\nComponents: LandingPage, PlayerDashboard, TeacherDashboard, AdminDashboard, Navigation, MobileLayout",
         "testStrategy": "Test responsive layouts across devices, verify navigation works, and check role-based UI rendering",
-        "subtasks": []
+        "subtasks": [],
+        "updatedAt": "2025-12-03T23:19:00.486Z"
       },
       {
         "id": "3",
@@ -139,9 +140,9 @@
     ],
     "metadata": {
       "version": "1.0.0",
-      "lastModified": "2025-12-03T22:32:16.396Z",
+      "lastModified": "2025-12-03T23:19:00.486Z",
       "taskCount": 10,
-      "completedCount": 1,
+      "completedCount": 2,
       "tags": [
         "master"
       ]
