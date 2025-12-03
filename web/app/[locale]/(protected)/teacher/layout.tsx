@@ -35,10 +35,10 @@ export default async function TeacherLayout({
                   Dashboard
                 </Link>
                 <Link href="/teacher/classes" className="text-sm hover:text-[--color-tb-beige] transition">
-                  Mis Clases
+                  Classes
                 </Link>
                 <Link href="/teacher/modules" className="text-sm hover:text-[--color-tb-beige] transition">
-                  Módulos
+                  Modules
                 </Link>
                 <Link href="/teacher/analytics" className="text-sm hover:text-[--color-tb-beige] transition">
                   Analytics
@@ -54,7 +54,7 @@ export default async function TeacherLayout({
                   type="submit"
                   className="text-sm hover:bg-white/20 border border-white/20 px-3 py-2 rounded-lg transition"
                 >
-                  Cerrar sesión
+                  Sign Out
                 </button>
               </form>
             </div>

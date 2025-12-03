@@ -44,10 +44,13 @@ export default async function StudentLayout({
                   Progress
                 </Link>
                 <Link href="/student/skills" className="text-sm hover:text-[--color-tb-beige] transition">
-                  Habilidades
+                  Skills
+                </Link>
+                <Link href="/student/badges" className="text-sm hover:text-[--color-tb-beige] transition">
+                  Badges
                 </Link>
                 <Link href="/student/leaderboard" className="text-sm hover:text-[--color-tb-beige] transition">
-                  Clasificación
+                  Leaderboard
                 </Link>
               </nav>
             </div>
@@ -60,7 +63,7 @@ export default async function StudentLayout({
                   type="submit"
                   className="text-sm hover:bg-white/20 border border-white/20 px-3 py-2 rounded-lg transition"
                 >
-                  Cerrar sesión
+                  Sign Out
                 </button>
               </form>
             </div>
