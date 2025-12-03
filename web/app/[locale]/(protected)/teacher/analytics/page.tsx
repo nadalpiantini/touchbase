@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { useTranslations } from "next-intl";
-import { Card, CardContent, CardHeader, CardTitle, ProgressBar } from "@/components/ui";
+import { Card, CardContent, CardHeader, CardTitle, ProgressBar, LoadingSpinner, Alert } from "@/components/ui";
 import { ClassAnalytics, ModuleAnalytics } from "@/lib/services/analytics";
 import { useCurrentOrg } from "@/lib/hooks/useCurrentOrg";
 
@@ -44,11 +44,29 @@ export default function TeacherAnalyticsPage() {
         setModuleAnalytics(modulesJson.analytics || []);
       }
     } catch (e: unknown) {
-      setError(e instanceof Error ? e.message : t('errors.loadFailed'));
+      setError((e instanceof Error ? e.message : String(e)) || t('errors.loadFailed'));
     } finally {
       setLoading(false);
     }
   };
+
+  if (loading) {
+    return (
+      <div className="flex justify-center py-12">
+        <LoadingSpinner size="lg" text={t('loading')} />
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="max-w-2xl mx-auto py-12">
+        <Alert variant="error" title={t('errors.loadFailed')}>
+          {error}
+        </Alert>
+      </div>
+    );
+  }
 
   if (loading) {
     return <div className="text-center py-12">{t('loading')}</div>;
