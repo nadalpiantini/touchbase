@@ -73,10 +73,15 @@ export default function OrgDropdown() {
 
   return (
     <div className="flex items-center gap-2">
+      <label htmlFor="org-select" className="sr-only">
+        Seleccionar organización
+      </label>
       <select
+        id="org-select"
         className="border border-[--color-tb-line] rounded-lg px-2 py-1 text-sm font-sans bg-white text-[--color-tb-navy] focus:outline-none focus:ring-2 focus:ring-[--color-tb-stitch]/60 focus:border-[--color-tb-stitch] transition"
         value={current?.org_id ?? ""}
         onChange={(e) => onSwitch(e.target.value)}
+        aria-label="Seleccionar organización"
       >
         {orgs.map(o => (
           <option key={o.org_id} value={o.org_id}>

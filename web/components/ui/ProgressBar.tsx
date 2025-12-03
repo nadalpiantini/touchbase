@@ -1,4 +1,4 @@
-import { HTMLAttributes, forwardRef } from 'react';
+import { HTMLAttributes, forwardRef, memo } from 'react';
 import { cn } from '@/lib/utils';
 
 export interface ProgressBarProps extends HTMLAttributes<HTMLDivElement> {
@@ -8,7 +8,7 @@ export interface ProgressBarProps extends HTMLAttributes<HTMLDivElement> {
   size?: 'sm' | 'md' | 'lg';
 }
 
-const ProgressBar = forwardRef<HTMLDivElement, ProgressBarProps>(
+const ProgressBar = memo(forwardRef<HTMLDivElement, ProgressBarProps>(
   ({ className, value, showLabel = false, color = 'primary', size = 'md', ...props }, ref) => {
     const clampedValue = Math.min(100, Math.max(0, value));
 
@@ -33,7 +33,14 @@ const ProgressBar = forwardRef<HTMLDivElement, ProgressBarProps>(
             <span className="text-sm font-display font-semibold text-[--color-tb-navy]">{Math.round(clampedValue)}%</span>
           </div>
         )}
-        <div className={cn('w-full bg-[--color-tb-line] rounded-full overflow-hidden', sizeClasses[size])}>
+        <div 
+          className={cn('w-full bg-[--color-tb-line] rounded-full overflow-hidden', sizeClasses[size])}
+          role="progressbar"
+          aria-valuenow={clampedValue}
+          aria-valuemin={0}
+          aria-valuemax={100}
+          aria-label={showLabel ? undefined : `Progress: ${Math.round(clampedValue)}%`}
+        >
           <div
             className={cn(
               'h-full rounded-full transition-all duration-500 ease-out',
@@ -45,7 +52,7 @@ const ProgressBar = forwardRef<HTMLDivElement, ProgressBarProps>(
       </div>
     );
   }
-);
+));
 
 ProgressBar.displayName = 'ProgressBar';
 

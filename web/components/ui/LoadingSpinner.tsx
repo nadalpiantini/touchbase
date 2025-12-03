@@ -1,4 +1,4 @@
-import { HTMLAttributes } from 'react';
+import { HTMLAttributes, memo } from 'react';
 import { cn } from '@/lib/utils';
 
 export interface LoadingSpinnerProps extends HTMLAttributes<HTMLDivElement> {
@@ -6,7 +6,7 @@ export interface LoadingSpinnerProps extends HTMLAttributes<HTMLDivElement> {
   text?: string;
 }
 
-export default function LoadingSpinner({ 
+const LoadingSpinner = memo(function LoadingSpinner({ 
   className, 
   size = 'md', 
   text,
@@ -54,5 +54,7 @@ export default function LoadingSpinner({
       <span className="sr-only">Loading...</span>
     </div>
   );
-}
+});
+
+export default LoadingSpinner;
 
