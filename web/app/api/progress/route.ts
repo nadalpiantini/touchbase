@@ -19,7 +19,6 @@ export async function GET(req: Request) {
 
     return NextResponse.json({ progress });
   } catch (error: unknown) {
-    console.error("Get progress error:", error);
     return NextResponse.json(
       { error: error instanceof Error ? error.message : "Failed to get progress" },
       { status: 400 }

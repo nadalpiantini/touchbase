@@ -16,7 +16,6 @@ export async function GET(
 
     return NextResponse.json({ assignments });
   } catch (error: unknown) {
-    console.error("Get assignments error:", error);
     return NextResponse.json(
       { error: error instanceof Error ? error.message : "Failed to get assignments" },
       { status: 400 }
@@ -54,7 +53,6 @@ export async function POST(
 
     return NextResponse.json({ assignment });
   } catch (error: unknown) {
-    console.error("Create assignment error:", error);
     return NextResponse.json(
       { error: error instanceof Error ? error.message : "Failed to create assignment" },
       { status: 400 }
