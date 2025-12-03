@@ -10,10 +10,33 @@ export async function GET(req: Request) {
 
     const url = new URL(req.url);
     const difficulty = url.searchParams.get("difficulty");
+    const classId = url.searchParams.get("classId");
 
-    const modules = await getActiveModules(s, {
-      difficulty: difficulty as any || undefined,
-    });
+    let modules;
+
+    if (classId) {
+      // Get modules assigned to this class via assignments
+      const { data: assignments } = await s
+        .from("touchbase_assignments")
+        .select("module_id")
+        .eq("class_id", classId);
+
+      if (assignments && assignments.length > 0) {
+        const moduleIds = assignments.map((a: any) => a.module_id);
+        const { data: modulesData } = await s
+          .from("touchbase_modules")
+          .select("*")
+          .in("id", moduleIds)
+          .eq("is_active", true);
+        modules = modulesData || [];
+      } else {
+        modules = [];
+      }
+    } else {
+      modules = await getActiveModules(s, {
+        difficulty: difficulty as any || undefined,
+      });
+    }
 
     return NextResponse.json({ modules });
   } catch (error: any) {
