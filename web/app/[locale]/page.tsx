@@ -3,7 +3,12 @@ import Image from "next/image";
 import { getTranslations } from 'next-intl/server';
 import { LanguageSelector } from '@/components/LanguageSelector';
 
-export default async function HomePage() {
+export default async function HomePage({
+  params
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
   const t = await getTranslations('landing');
 
   return (
@@ -80,7 +85,7 @@ export default async function HomePage() {
           {/* CTAs */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
-              href="/login"
+              href={`/${locale}/login`}
               className="inline-flex items-center justify-center px-6 py-2 border border-transparent font-display tracking-wide rounded-xl text-white bg-[--color-tb-navy] hover:bg-[--color-tb-ink] shadow-dugout transition-all active:translate-y-[1px]"
             >
               {t('cta.login')}

@@ -419,6 +419,20 @@
       "errors": {
         "loadFailed": "Error al cargar clasificación"
       }
+    },
+    "aiCoach": {
+      "title": "Coach IA",
+      "openCoach": "Abrir Coach IA",
+      "close": "Cerrar",
+      "getHint": "Obtener Pista",
+      "welcome": "¡Hola! Soy tu coach de aprendizaje con IA.",
+      "askQuestion": "¡Pregúntame lo que quieras sobre esta lección!",
+      "typeMessage": "Escribe tu pregunta...",
+      "send": "Enviar",
+      "thinking": "Pensando",
+      "errors": {
+        "failed": "Lo siento, no pude procesar tu solicitud. Por favor intenta de nuevo."
+      }
     }
   },
   "notFound": {
