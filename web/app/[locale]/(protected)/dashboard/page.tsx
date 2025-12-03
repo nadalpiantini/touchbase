@@ -3,14 +3,19 @@ import { redirect } from "next/navigation";
 import RoleSelection from "@/components/onboarding/RoleSelection";
 import { getTranslations } from 'next-intl/server';
 
-export default async function DashboardPage() {
+export default async function DashboardPage({
+  params
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
   const t = await getTranslations('dashboard');
   const s = supabaseServer();
 
   // 1) Obtener usuario autenticado
   const { data: { user }, error: userError } = await s.auth.getUser();
   if (userError || !user) {
-    redirect("/login");
+    redirect(`/${locale}/login`);
   }
 
   // 2) Obtener profile para ver si tiene default_org_id
@@ -60,10 +65,10 @@ export default async function DashboardPage() {
 
   // Redirect based on role
   if (role === 'teacher') {
-    redirect('/teacher/dashboard');
+    redirect(`/${locale}/teacher/dashboard`);
   }
   if (role === 'student') {
-    redirect('/student/dashboard');
+    redirect(`/${locale}/student/dashboard`);
   }
 
   return (

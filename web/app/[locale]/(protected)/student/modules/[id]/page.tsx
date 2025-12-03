@@ -1,0 +1,228 @@
+"use client";
+
+import { useState, useEffect } from "react";
+import { useParams } from "next/navigation";
+import { useTranslations } from 'next-intl';
+import { Card, CardContent, CardHeader, CardTitle, Button, ProgressBar } from '@/components/ui';
+import { Module, ModuleStep, ModuleProgress } from '@/lib/types/education';
+
+export default function ModulePlayerPage() {
+  const t = useTranslations('student.modules');
+  const params = useParams();
+  const moduleId = params.id as string;
+
+  const [module, setModule] = useState<Module | null>(null);
+  const [steps, setSteps] = useState<ModuleStep[]>([]);
+  const [progress, setProgress] = useState<ModuleProgress | null>(null);
+  const [currentStepIndex, setCurrentStepIndex] = useState(0);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    loadModule();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [moduleId]);
+
+  const loadModule = async () => {
+    try {
+      // Load module with steps
+      const res = await fetch(`/api/modules/${moduleId}`);
+      const json = await res.json();
+      if (res.ok) {
+        setModule(json.module);
+        setSteps(json.steps || []);
+      }
+
+      // Load or start progress
+      const progressRes = await fetch(`/api/progress?moduleId=${moduleId}`);
+      const progressJson = await progressRes.json();
+      if (progressRes.ok && progressJson.progress) {
+        setProgress(progressJson.progress);
+        // Find first incomplete step
+        const firstIncomplete = progressJson.progress.step_progress?.findIndex(
+          (s: { completed: boolean }) => !s.completed
+        );
+        if (firstIncomplete !== undefined && firstIncomplete >= 0) {
+          setCurrentStepIndex(firstIncomplete);
+        }
+      } else {
+        // Start progress
+        const startRes = await fetch("/api/progress/start", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ moduleId }),
+        });
+        const startJson = await startRes.json();
+        if (startRes.ok) {
+          setProgress(startJson.progress);
+        }
+      }
+    } catch (e) {
+      console.error("Failed to load module:", e);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleStepComplete = async () => {
+    if (!progress) return;
+
+    await fetch("/api/progress/update", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        moduleId,
+        stepIndex: currentStepIndex,
+        stepData: { completed: true },
+      }),
+    });
+
+    // Move to next step
+    if (currentStepIndex < steps.length - 1) {
+      setCurrentStepIndex(currentStepIndex + 1);
+    }
+
+    // Reload progress
+    await loadModule();
+  };
+
+  if (loading) {
+    return <div className="text-center py-12">{t('loading')}</div>;
+  }
+
+  if (!module || steps.length === 0) {
+    return <div className="text-center py-12">{t('notFound')}</div>;
+  }
+
+  const currentStep = steps[currentStepIndex];
+  const isLastStep = currentStepIndex === steps.length - 1;
+
+  return (
+    <div className="max-w-4xl mx-auto">
+      {/* Header */}
+      <div className="mb-6">
+        <h1 className="text-3xl font-display font-bold text-[--color-tb-navy] mb-2">
+          {module.title}
+        </h1>
+        {module.description && (
+          <p className="text-[--color-tb-shadow]">{module.description}</p>
+        )}
+      </div>
+
+      {/* Progress */}
+      {progress && (
+        <Card className="mb-6">
+          <CardContent className="pt-6">
+            <ProgressBar
+              value={progress.completion_percentage}
+              showLabel
+              color="primary"
+            />
+            <p className="text-sm text-[--color-tb-shadow] mt-2 text-center">
+              Step {currentStepIndex + 1} of {steps.length}
+            </p>
+          </CardContent>
+        </Card>
+      )}
+
+      {/* Current Step */}
+      <Card>
+        <CardHeader>
+          <CardTitle>
+            {t('step')} {currentStepIndex + 1}: {currentStep.step_type}
+          </CardTitle>
+        </CardHeader>
+        <CardContent>
+          {currentStep.step_type === "content" && (
+            <div>
+              <p className="text-[--color-tb-navy] mb-4">
+                {(currentStep.content_data as any)?.text || "Content step"}
+              </p>
+              {(currentStep.content_data as any)?.mediaUrl && (
+                <div className="mb-4">
+                  <img
+                    src={(currentStep.content_data as any).mediaUrl}
+                    alt="Module content"
+                    className="rounded-lg w-full"
+                  />
+                </div>
+              )}
+            </div>
+          )}
+
+          {currentStep.step_type === "quiz" && (
+            <div>
+              <p className="font-semibold text-[--color-tb-navy] mb-4">
+                {(currentStep.content_data as any)?.question}
+              </p>
+              <div className="space-y-2">
+                {((currentStep.content_data as any)?.options || []).map(
+                  (option: string, idx: number) => (
+                    <Button
+                      key={idx}
+                      variant="outline"
+                      className="w-full text-left"
+                      onClick={() => {
+                        // TODO: Check answer and update progress
+                        handleStepComplete();
+                      }}
+                    >
+                      {option}
+                    </Button>
+                  )
+                )}
+              </div>
+            </div>
+          )}
+
+          {currentStep.step_type === "scenario" && (
+            <div>
+              <p className="font-semibold text-[--color-tb-navy] mb-4">
+                {(currentStep.content_data as any)?.prompt}
+              </p>
+              <div className="space-y-2">
+                {((currentStep.content_data as any)?.options || []).map(
+                  (option: any, idx: number) => (
+                    <Button
+                      key={idx}
+                      variant="outline"
+                      className="w-full text-left"
+                      onClick={() => {
+                        // TODO: Handle scenario choice
+                        handleStepComplete();
+                      }}
+                    >
+                      {option.text}
+                    </Button>
+                  )
+                )}
+              </div>
+            </div>
+          )}
+
+          <div className="flex gap-3 mt-6">
+            {currentStepIndex > 0 && (
+              <Button
+                variant="outline"
+                onClick={() => setCurrentStepIndex(currentStepIndex - 1)}
+              >
+                {t('previous')}
+              </Button>
+            )}
+            <div className="flex-1" />
+            {!isLastStep && (
+              <Button onClick={handleStepComplete}>
+                {t('next')}
+              </Button>
+            )}
+            {isLastStep && (
+              <Button onClick={handleStepComplete}>
+                {t('complete')}
+              </Button>
+            )}
+          </div>
+        </CardContent>
+      </Card>
+    </div>
+  );
+}
+

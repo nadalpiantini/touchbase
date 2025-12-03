@@ -1,13 +1,14 @@
 "use client";
 
 import { useState } from "react";
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 import { useRouter } from 'next/navigation';
 import { Button, Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui';
 type OnboardingRole = 'teacher' | 'student';
 
 export default function RoleSelection() {
   const t = useTranslations('onboarding');
+  const locale = useLocale();
   const router = useRouter();
   const [selectedRole, setSelectedRole] = useState<OnboardingRole | null>(null);
   const [orgName, setOrgName] = useState("");
@@ -40,7 +41,7 @@ export default function RoleSelection() {
       setStatus("done");
       // Redirect based on role
       setTimeout(() => {
-        router.push(`/${selectedRole}/dashboard`);
+        router.push(`/${locale}/${selectedRole}/dashboard`);
       }, 1000);
     } catch (e: unknown) {
       setStatus("error");

@@ -5,7 +5,28 @@
 @tailwind utilities;
 
 :root {
-  /* TouchBase Brand Colors */
+  /* ============================================
+     WHITELABEL THEME TOKENS
+     These can be overridden dynamically by ThemeProvider
+     ============================================ */
+  
+  /* Brand Colors (Whitelabel) */
+  --primary: #B21E2A;
+  --secondary: #14213D;
+  --accent: #C82E3C;
+  
+  /* Typography (Whitelabel) */
+  --font-brand: var(--font-oswald), 'Oswald', ui-sans-serif, system-ui;
+  --font-body: var(--font-inter), 'Inter', ui-sans-serif, system-ui;
+  
+  /* Layout & Spacing */
+  --radius: 0.5rem;
+  --spacing-unit: 0.25rem;
+  
+  /* ============================================
+     TOUCHBASE SPECIFIC COLORS
+     Static brand colors for TouchBase
+     ============================================ */
   --tb-red: #B21E2A;
   --tb-navy: #14213D;
   --tb-beige: #F8EBD0;
@@ -21,7 +42,23 @@
 }
 
 @theme inline {
-  /* TouchBase Color System */
+  /* ============================================
+     WHITELABEL TOKENS (Tailwind 4)
+     Exposed to utility classes
+     ============================================ */
+  
+  /* Brand Colors */
+  --color-primary: var(--primary);
+  --color-secondary: var(--secondary);
+  --color-accent: var(--accent);
+  
+  /* Typography */
+  --font-brand: var(--font-brand);
+  --font-body: var(--font-body);
+  
+  /* ============================================
+     TOUCHBASE COLORS (Tailwind 4)
+     ============================================ */
   --color-tb-red: #B21E2A;
   --color-tb-navy: #14213D;
   --color-tb-beige: #F8EBD0;

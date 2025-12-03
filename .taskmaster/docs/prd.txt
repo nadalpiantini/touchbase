@@ -1,0 +1,239 @@
+# Life Skills & Education Management Platform - PRD
+
+## Executive Summary
+
+Complete life-skills education platform for players (students) and teachers, with AI coaching, gamification, analytics, and comprehensive management tools. Solo-dev project using Next.js 14, React Native Expo, Firebase, and AI integration.
+
+## Product Vision
+
+Transform static life-skills content into interactive, gamified learning platform with:
+- Real-time progress tracking
+- AI-powered coaching
+- Teacher management dashboards
+- Analytics and experimentation framework
+- Multi-platform (web + mobile) support
+
+## Target Users
+
+1. **Players (Students)**: Interactive life-skills learning with gamification
+2. **Teachers**: Class management, progress tracking, content assignment
+3. **Admins**: Platform-wide management, analytics, content creation
+
+## Core Features
+
+### 1. Authentication & User Management
+- Multi-role auth (player, teacher, admin)
+- Firebase Auth with email/password and OAuth
+- Profile management with photo upload
+- Role-based access control
+
+### 2. Player Portal
+- Interactive module player with lessons, quizzes, scenarios
+- Personal dashboard with progress tracking
+- XP/Level system with skill trees
+- Badge and achievement collection
+- Streak tracking and daily goals
+- AI Coach chat integration
+
+### 3. Teacher Portal
+- Class creation and management
+- Student roster with invite codes
+- Module assignment with due dates
+- Progress monitoring dashboards
+- Analytics: skill heatmaps, at-risk students
+- AI-powered lesson planning tools
+
+### 4. Admin Portal
+- Content management system for modules
+- User and role management
+- Platform-wide analytics
+- Feature flags and A/B testing
+- System health monitoring
+
+### 5. Content & Curriculum
+- Module structure: steps, content, quizzes, scenarios
+- Multi-format support: text, video, audio, images
+- Skill categorization (Communication, Self-Management, Decision Making, etc.)
+- Difficulty levels (beginner, intermediate, advanced)
+- Progress state persistence
+
+### 6. Scheduling & Attendance
+- Class schedule builder
+- Weekly agenda for students
+- Attendance tracking (present/late/absent)
+- Push notifications for schedules
+
+### 7. Gamification System
+- XP calculation per action type
+- Multi-level system (global + per-skill)
+- Badge awards (event-triggered + teacher-awarded)
+- Streak system with recovery
+- Class challenges and competitions
+- Optional leaderboards
+
+### 8. AI Integration
+- **Player AI Coach**: Contextual hints, explanations, reflection prompts
+- **Teacher AI Assistant**: Generate discussion prompts, lesson plans, adaptations
+- **Adaptive Learning Engine**: Personalized content recommendations
+- Safety: content filters, age-appropriate tone, opt-out controls
+
+### 9. Analytics & Insights
+- **Teacher Dashboard**: Skill heatmaps, at-risk indicators, time-series performance
+- **Admin Dashboard**: Adoption, engagement, impact metrics
+- **Early Warning System**: Rule-based student risk detection
+- **Experiments**: Feature flags with A/B testing framework
+
+### 10. Mobile App
+- React Native Expo with shared logic
+- Offline-capable lesson downloads
+- Push notifications
+- Native performance optimizations
+
+## Technical Architecture
+
+### Frontend
+- **Web**: Next.js 14 App Router, TypeScript, Tailwind CSS
+- **Mobile**: React Native Expo with shared components
+- **Monorepo**: Turborepo with workspace management
+- **UI Kit**: Shared component library with consistent design system
+
+### Backend
+- **Database**: Firebase Firestore (NoSQL, real-time)
+- **Auth**: Firebase Authentication
+- **Storage**: Firebase Storage for media
+- **Functions**: Cloud Functions for XP, badges, analytics
+- **Hosting**: Vercel (web) + Firebase Hosting + EAS (mobile)
+
+### AI Layer
+- AI Gateway via Cloud Functions
+- OpenAI or Gemini LLM integration
+- Context injection with guardrails
+- Rate limiting and moderation
+
+### Analytics
+- PostHog for product analytics
+- Custom event tracking
+- Feature flag management
+- A/B testing infrastructure
+
+### Data Schema
+
+**Collections:**
+- users (profiles, XP, levels, streaks, skills)
+- classes (name, code, teacher, schedule)
+- enrollments (class-student relationships)
+- modules (content structure, metadata)
+- modules/{id}/steps (lesson content, quizzes, scenarios)
+- assignments (class assignments with due dates)
+- progress (per-user-per-module tracking)
+- attendance (per-class-per-date records)
+- challenges (class/global challenges)
+- featureFlags (experimentation config)
+
+## Development Approach
+
+### Solo Developer Strategy
+- Turborepo monorepo for code sharing
+- Firebase for zero-DevOps backend
+- Expo for rapid mobile development
+- Tailwind for fast UI iteration
+- Phased feature delivery
+
+### Sprint Structure (12-16 weeks)
+
+**Sprint 0**: Foundation Setup (2-3 days)
+- Monorepo initialization
+- Firebase configuration
+- Base UI components
+
+**Sprint 1**: Core UI Shell (5-7 days)
+- Landing page
+- Dashboard shells (player/teacher/admin)
+- Mobile screens skeleton
+- Navigation and layout
+
+**Sprint 2**: Registration Modules (5-7 days)
+- Player/teacher/class registration
+- Image upload
+- Data persistence
+- CSV export
+
+**Sprint 3**: Authentication & Roles (4-5 days)
+- Firebase Auth integration
+- Role-based routing
+- Firestore security rules
+
+**Sprint 4**: Attendance System (5-6 days)
+- Attendance marking
+- Daily analytics
+- Streak tracking
+
+**Sprint 5**: Scheduling System (4-6 days)
+- Schedule builder
+- Weekly agenda
+- Push notifications
+
+**Sprint 6**: Curriculum & Module Engine (7-10 days)
+- Module structure
+- Lesson player
+- Quiz engine
+- Progress tracking
+
+**Sprint 7**: Student Progress & Insights (6-8 days)
+- Analytics dashboards
+- Skill trees
+- Performance visualization
+
+**Sprint 8**: Gamification System (8-12 days)
+- XP/Level calculation
+- Badge system
+- Streaks and goals
+- Challenges
+
+**Sprint 9**: AI Coach & Tools (10-14 days)
+- AI Gateway
+- Player coach chat
+- Teacher AI assistant
+- Adaptive recommendations
+
+**Sprint 10**: Analytics & Experiments (8-10 days)
+- Teacher insights
+- Admin analytics
+- Feature flags
+- A/B testing
+
+**Sprint 11**: Polish & QA (5-7 days)
+- Performance optimization
+- Bug fixes
+- Accessibility
+
+**Sprint 12**: Deployment (3-5 days)
+- Production deployment
+- App store submission
+- Final testing
+
+## Success Criteria
+
+- All user flows functional on web and mobile
+- <2s page load times
+- >95% uptime
+- WCAG 2.1 AA compliance
+- Secure data handling (encryption, privacy)
+- Positive user feedback from beta testing
+
+## Future Enhancements
+
+- Advanced AI personalization
+- Community features (peer learning)
+- Integration with school LMS systems
+- Wearables integration for wellness tracking
+- Multi-language support
+- Advanced analytics (predictive models)
+
+## Constraints & Considerations
+
+- Solo developer: realistic timelines, phased approach
+- Budget: leverage free tiers (Firebase, Vercel, PostHog)
+- Security: COPPA, GDPR compliance for student data
+- Scalability: design for growth without re-architecture
+- Accessibility: inclusive design from start
