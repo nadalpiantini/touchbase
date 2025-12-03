@@ -161,14 +161,6 @@ Los logos oficiales se encuentran en `/items/LOGO/`. Hay **dos logos principales
 - ✅ Pueden permitir al usuario **elegir en el onboarding**
 - ✅ Ambos mantienen la misma línea de color y son intercambiables
 
-#### Variantes Adicionales
-
-- `LOGO_TBASR0b.png` - Variante retro alternativa
-- `LOGO_TB01.png` - Variante TB01
-- `LOGO_TB01b.png` - Variante TB01b
-- `LOGO_TBS01.png` - Variante TBS01
-- `LOGO_TBS01b.png` - Variante TBS01b
-
 **Referencia completa:** Ver `/items/touchbase_academy_brand_guide.pdf` para especificaciones detalladas.
 
 #### Fondos permitidos
