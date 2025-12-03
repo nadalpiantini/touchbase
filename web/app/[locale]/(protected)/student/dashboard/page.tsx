@@ -1,15 +1,14 @@
 import { getTranslations } from 'next-intl/server';
 import { supabaseServer } from '@/lib/supabase/server';
-import { redirect } from 'next/navigation';
+import { requireStudent } from '@/lib/auth/middleware-helpers';
 
 export default async function StudentDashboardPage() {
   const t = await getTranslations('student.dashboard');
   const s = supabaseServer();
   
-  const { data: { user } } = await s.auth.getUser();
-  if (!user) redirect('/login');
+  // Verify user has student role (redirects if not)
+  const user = await requireStudent(s);
 
-  // TODO: Verify user has student role
   // TODO: Fetch student's classes and assignments
   // TODO: Display dashboard with modules, progress, etc.
 
