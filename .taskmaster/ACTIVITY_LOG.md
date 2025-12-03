@@ -447,6 +447,80 @@
 
 ---
 
+## 📋 TAREA #3: Authentication & User Management System
+
+**Estado:** 🔄 IN PROGRESS  
+**Prioridad:** HIGH  
+**Dependencias:** Tarea #1 (✅ DONE)
+
+### Mini Sprint 3.1: Análisis de Estado Actual ✅
+
+**Fecha:** 2025-12-03  
+**Duración:** ~10 min
+
+#### Estado Verificado:
+
+**✅ Autenticación:**
+- Login/Signup/Signout implementados con Supabase Auth
+- OAuth callback handler existe
+- Middleware helpers para role-based access (requireTeacher, requireStudent, requireAdmin)
+
+**⚠️ Pendiente:**
+- Upload de imágenes a Supabase Storage (TODO en wizards)
+- Página de perfil para editar datos del usuario
+- OAuth providers (opcional)
+
+**✅ Seguridad:**
+- RLS habilitado en todas las tablas
+- Role-based helpers implementados
+- Middleware básico (i18n + protección en layouts)
+
+---
+
+### Mini Sprint 3.2: Upload de Imágenes ✅
+
+**Fecha:** 2025-12-03  
+**Duración:** ~15 min
+
+**Cambios Realizados:**
+- ✅ Creada utilidad `uploadImage` en `web/lib/storage/upload.ts`
+- ✅ API route `/api/storage/upload` para manejar uploads
+- ✅ Validación de tipo y tamaño de archivo
+- ✅ Soporte para carpetas personalizadas (default: avatars)
+
+**Commit:** `cdf42dcf5e`
+
+---
+
+### Mini Sprint 3.3: Página de Perfil ✅
+
+**Fecha:** 2025-12-03  
+**Duración:** ~20 min
+
+**Cambios Realizados:**
+- ✅ Creada página `/profile` para editar perfil del usuario
+- ✅ Formulario con full_name, email, phone
+- ✅ Upload de foto de perfil integrado
+- ✅ Traducciones agregadas (en/es)
+
+**Commit:** `346fa535f9`
+
+---
+
+### Mini Sprint 3.4: Integración en Wizards ✅
+
+**Fecha:** 2025-12-03  
+**Duración:** ~15 min
+
+**Cambios Realizados:**
+- ✅ PlayerRegistrationWizard actualizado para upload de fotos
+- ✅ TeacherRegistrationWizard actualizado para upload de fotos
+- ✅ Fotos se suben antes de crear registros
+
+**Commit:** `850988d859`
+
+---
+
 ## 🚀 PUSH REALIZADO
 
 **Fecha:** 2025-12-03  
