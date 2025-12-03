@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import { useTranslations } from 'next-intl';
 import { LoadingSpinner, Alert } from '@/components/ui';
+import { CSVExportButton } from '@/components/export/CSVExportButton';
 
 type Player = { id: string; full_name: string; team_id: string | null; created_at: string };
 type Team = { id: string; name: string };
@@ -92,16 +93,19 @@ export default function PlayersTable() {
 
   return (
     <div className="space-y-3">
-      <div className="flex items-center gap-2">
-        <label className="text-sm font-medium text-gray-700">{t('filter.label')}</label>
-        <select
-          className="border border-[--color-tb-line] p-2 rounded bg-white font-sans"
-          value={teamFilter}
-          onChange={e => setTeamFilter(e.target.value)}
-        >
-          <option value="">{t('filter.all')}</option>
-          {teams.map(team => <option key={team.id} value={team.id}>{team.name}</option>)}
-        </select>
+      <div className="flex items-center justify-between">
+        <div className="flex items-center gap-2">
+          <label className="text-sm font-medium text-gray-700">{t('filter.label')}</label>
+          <select
+            className="border border-[--color-tb-line] p-2 rounded bg-white font-sans"
+            value={teamFilter}
+            onChange={e => setTeamFilter(e.target.value)}
+          >
+            <option value="">{t('filter.all')}</option>
+            {teams.map(team => <option key={team.id} value={team.id}>{team.name}</option>)}
+          </select>
+        </div>
+        <CSVExportButton type="players" />
       </div>
 
       <div className="border border-gray-200 rounded-lg overflow-hidden bg-white">

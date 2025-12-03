@@ -3,6 +3,7 @@ import { supabaseServer } from '@/lib/supabase/server';
 import { getTeacherClasses } from '@/lib/services/classes';
 import { getUserWithRole } from '@/lib/auth/middleware-helpers';
 import { Card, CardContent, CardHeader, CardTitle, Button } from '@/components/ui';
+import { CSVExportButton } from '@/components/export/CSVExportButton';
 import Link from 'next/link';
 
 export default async function TeacherClassesPage() {
@@ -18,11 +19,14 @@ export default async function TeacherClassesPage() {
         <h1 className="text-3xl font-display font-bold text-[--color-tb-navy]">
           {t('title')}
         </h1>
-        <Link href="/teacher/classes/create">
-          <Button>
-            {t('createClass')}
-          </Button>
-        </Link>
+        <div className="flex items-center gap-3">
+          {classes.length > 0 && <CSVExportButton type="classes" />}
+          <Link href="/teacher/classes/create">
+            <Button>
+              {t('createClass')}
+            </Button>
+          </Link>
+        </div>
       </div>
 
       {classes.length === 0 ? (

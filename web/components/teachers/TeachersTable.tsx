@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import { Badge } from "@/components/ui";
+import { CSVExportButton } from '@/components/export/CSVExportButton';
 
 type Teacher = {
   id: string;
@@ -67,8 +68,12 @@ export default function TeachersTable() {
   }
 
   return (
-    <div className="bg-white border border-[--color-tb-line] rounded-xl overflow-hidden shadow-sm">
-      <div className="overflow-x-auto">
+    <div className="space-y-4">
+      <div className="flex justify-end">
+        <CSVExportButton type="teachers" />
+      </div>
+      <div className="bg-white border border-[--color-tb-line] rounded-xl overflow-hidden shadow-sm">
+        <div className="overflow-x-auto">
         <table className="w-full font-sans">
           <thead className="bg-[--color-tb-beige] border-b border-[--color-tb-line]">
             <tr>
@@ -120,6 +125,7 @@ export default function TeachersTable() {
           </tbody>
         </table>
       </div>
+    </div>
     </div>
   );
 }
