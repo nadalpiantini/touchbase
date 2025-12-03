@@ -403,6 +403,22 @@
       "errors": {
         "loadFailed": "Failed to load badges"
       }
+    },
+    "leaderboard": {
+      "title": "Leaderboard",
+      "loading": "Loading leaderboard...",
+      "leaderboardTitle": "{type} Leaderboard",
+      "tabs": {
+        "xp": "XP",
+        "streak": "Streak",
+        "modules": "Modules"
+      },
+      "days": "days",
+      "modules": "modules",
+      "noEntries": "No entries yet. Be the first!",
+      "errors": {
+        "loadFailed": "Failed to load leaderboard"
+      }
     }
   },
   "notFound": {

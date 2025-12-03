@@ -43,6 +43,9 @@ export default async function StudentLayout({
                 <Link href="/student/skills" className="text-sm hover:text-[--color-tb-beige] transition">
                   Habilidades
                 </Link>
+                <Link href="/student/leaderboard" className="text-sm hover:text-[--color-tb-beige] transition">
+                  Clasificación
+                </Link>
               </nav>
             </div>
 

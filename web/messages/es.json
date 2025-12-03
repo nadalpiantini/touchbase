@@ -403,6 +403,22 @@
       "errors": {
         "loadFailed": "Error al cargar insignias"
       }
+    },
+    "leaderboard": {
+      "title": "Clasificación",
+      "loading": "Cargando clasificación...",
+      "leaderboardTitle": "Clasificación de {type}",
+      "tabs": {
+        "xp": "XP",
+        "streak": "Racha",
+        "modules": "Módulos"
+      },
+      "days": "días",
+      "modules": "módulos",
+      "noEntries": "Aún no hay entradas. ¡Sé el primero!",
+      "errors": {
+        "loadFailed": "Error al cargar clasificación"
+      }
     }
   },
   "notFound": {
