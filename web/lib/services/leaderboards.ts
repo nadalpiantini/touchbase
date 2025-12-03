@@ -62,7 +62,7 @@ export async function getXPLeaderboard(
     user_email: profile.email,
     total_xp: profile.xp || 0,
     level: profile.level || 1,
-    current_streak: (profile.streak as any)?.[0]?.current_streak || 0,
+    current_streak: (Array.isArray(profile.streak) && profile.streak[0]?.current_streak) || 0,
     modules_completed: completionCounts.get(profile.id) || 0,
     rank: index + 1,
   }));
@@ -105,8 +105,12 @@ export async function getStreakLeaderboard(
     completionCounts.set(p.user_id, (completionCounts.get(p.user_id) || 0) + 1);
   });
 
-  return (data || []).map((streak, index) => {
-    const profile = streak.user_profile as any;
+  type StreakWithProfile = {
+    user_profile: { full_name?: string; email?: string; xp?: number; level?: number } | null;
+  } & { user_id: string; current_streak: number; longest_streak: number };
+
+  return (data || []).map((streak: StreakWithProfile, index) => {
+    const profile = streak.user_profile;
     return {
       user_id: streak.user_id,
       user_name: profile?.full_name,

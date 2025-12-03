@@ -66,7 +66,11 @@ export async function getStreakLeaderboard(
 
   if (error) throw error;
 
-  return (data || []).map((item: any) => ({
+  type StreakWithProfile = {
+    user_profile: { full_name?: string; email?: string } | null;
+  } & Streak;
+
+  return (data || []).map((item: StreakWithProfile) => ({
     ...item,
     user_name: item.user_profile?.full_name,
     user_email: item.user_profile?.email,
