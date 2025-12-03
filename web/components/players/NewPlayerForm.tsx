@@ -42,24 +42,30 @@ export default function NewPlayerForm() {
   };
 
   return (
-    <form onSubmit={onSubmit} className="flex flex-wrap gap-2 items-center">
+    <form onSubmit={onSubmit} className="flex flex-wrap gap-2 items-center" aria-label="Formulario de nuevo jugador">
       <input
         className="border border-[--color-tb-line] p-2 rounded-lg w-64 font-sans text-[--color-tb-navy] placeholder:text-[--color-tb-shadow]/50 focus:ring-2 focus:ring-[--color-tb-stitch]/60 focus:border-[--color-tb-stitch] transition"
         placeholder="Nombre completo"
         value={fullName}
         onChange={(e) => setFullName(e.target.value)}
         required
+        aria-label="Nombre completo del jugador"
+        aria-required="true"
       />
       <select
         className="border border-[--color-tb-line] p-2 rounded-lg bg-white font-sans text-[--color-tb-navy] focus:ring-2 focus:ring-[--color-tb-stitch]/60 focus:border-[--color-tb-stitch] transition"
         value={teamId}
         onChange={(e) => setTeamId(e.target.value)}
+        aria-label="Equipo del jugador"
       >
         <option value="">Sin equipo</option>
         {teams.map(t => <option key={t.id} value={t.id}>{t.name}</option>)}
       </select>
       <button 
-        disabled={loading} 
+        disabled={loading}
+        type="submit"
+        aria-busy={loading}
+        aria-label={loading ? "Creando jugador..." : "Crear jugador"}
         className="bg-[--color-tb-red] text-white px-4 py-2 rounded-xl font-display hover:bg-[--color-tb-stitch] shadow-dugout disabled:opacity-50 transition-all active:translate-y-[1px]"
       >
         {loading ? "Creando..." : "Crear jugador"}
