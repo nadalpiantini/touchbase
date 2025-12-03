@@ -4,7 +4,7 @@ import { requireTeacher } from '@/lib/auth/middleware-helpers';
 import { getTeacherClasses } from '@/lib/services/classes';
 import { Card, CardContent, CardHeader, CardTitle, Button, Badge } from '@/components/ui';
 import Link from 'next/link';
-import AIAssistantWrapper from '@/components/teacher/AIAssistantWrapper';
+import AIAssistant from '@/components/teacher/AIAssistant';
 
 export default async function TeacherDashboardPage({
   params
@@ -193,7 +193,7 @@ export default async function TeacherDashboardPage({
       </div>
 
       {/* AI Assistant */}
-        <AIAssistantWrapper />
+      <AIAssistant />
     </div>
   );
 }
