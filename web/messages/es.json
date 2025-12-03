@@ -249,10 +249,51 @@
         "stepTypeScenario": "Escenario",
         "order": "Orden",
         "edit": "Editar",
+      "errors": {
+        "fetchFailed": "Error al cargar módulo"
+      }
+    },
+    "classes": {
+      "detail": {
+        "manageAssignments": "Gestionar Asignaciones",
+        "students": "Estudiantes",
+        "noStudents": "Aún no hay estudiantes inscritos.",
+        "viewProfile": "Ver Perfil",
         "errors": {
-          "fetchFailed": "Error al cargar módulo"
+          "loadFailed": "Error al cargar detalles de la clase"
         }
       },
+      "assignments": {
+        "title": "Asignaciones de Clase",
+        "loading": "Cargando asignaciones...",
+        "backToClass": "Volver a Clase",
+        "createAssignment": "Crear Asignación",
+        "selectModule": "Seleccionar Módulo",
+        "selectModulePlaceholder": "Elige un módulo...",
+        "title": "Título",
+        "titlePlaceholder": "Título de la asignación",
+        "description": "Descripción",
+        "descriptionPlaceholder": "Descripción de la asignación (opcional)",
+        "dueDate": "Fecha de Vencimiento",
+        "creating": "Creando...",
+        "create": "Crear",
+        "cancel": "Cancelar",
+        "assignmentsList": "Asignaciones",
+        "noAssignments": "Aún no hay asignaciones. Crea tu primera asignación para comenzar.",
+        "module": "Módulo",
+        "overdue": "Vencida",
+        "dueSoon": "Por Vencer",
+        "upcoming": "Próxima",
+        "assignedAt": "Asignada el",
+        "viewModule": "Ver Módulo",
+        "errors": {
+          "notAuthenticated": "No autenticado",
+          "loadFailed": "Error al cargar asignaciones",
+          "missingFields": "Por favor completa todos los campos requeridos",
+          "createFailed": "Error al crear asignación"
+        }
+      }
+    },
       "steps": {
         "create": {
           "title": "Crear Nuevo Paso",

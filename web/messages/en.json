@@ -273,10 +273,51 @@
         "stepTypeScenario": "Scenario",
         "order": "Order",
         "edit": "Edit",
+      "errors": {
+        "fetchFailed": "Failed to load module"
+      }
+    },
+    "classes": {
+      "detail": {
+        "manageAssignments": "Manage Assignments",
+        "students": "Students",
+        "noStudents": "No students enrolled yet.",
+        "viewProfile": "View Profile",
         "errors": {
-          "fetchFailed": "Failed to load module"
+          "loadFailed": "Failed to load class details"
         }
       },
+      "assignments": {
+        "title": "Class Assignments",
+        "loading": "Loading assignments...",
+        "backToClass": "Back to Class",
+        "createAssignment": "Create Assignment",
+        "selectModule": "Select Module",
+        "selectModulePlaceholder": "Choose a module...",
+        "title": "Title",
+        "titlePlaceholder": "Assignment title",
+        "description": "Description",
+        "descriptionPlaceholder": "Assignment description (optional)",
+        "dueDate": "Due Date",
+        "creating": "Creating...",
+        "create": "Create",
+        "cancel": "Cancel",
+        "assignmentsList": "Assignments",
+        "noAssignments": "No assignments yet. Create your first assignment to get started.",
+        "module": "Module",
+        "overdue": "Overdue",
+        "dueSoon": "Due Soon",
+        "upcoming": "Upcoming",
+        "assignedAt": "Assigned at",
+        "viewModule": "View Module",
+        "errors": {
+          "notAuthenticated": "Not authenticated",
+          "loadFailed": "Failed to load assignments",
+          "missingFields": "Please fill in all required fields",
+          "createFailed": "Failed to create assignment"
+        }
+      }
+    },
       "steps": {
         "create": {
           "title": "Create New Step",
