@@ -1,36 +1,124 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# TouchBase Academy - Web Application
+
+Next.js 15 web application for TouchBase Academy, a life skills education platform.
+
+## Features
+
+- ✅ Multi-tenant organization support
+- ✅ Role-based access control (Teacher, Student, Admin)
+- ✅ Module system with quizzes and scenarios
+- ✅ Progress tracking and analytics
+- ✅ Gamification (XP, badges, streaks, leaderboards)
+- ✅ AI coaching and teacher assistance
+- ✅ Class management and assignments
+- ✅ Scheduling and attendance
+- ✅ Internationalization (English/Spanish)
+- ✅ Responsive design
+- ✅ Accessibility (WCAG 2.1 AA)
+
+## Tech Stack
+
+- **Framework**: Next.js 15 (App Router)
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS
+- **Backend**: Supabase (PostgreSQL, Auth, Storage)
+- **Analytics**: PostHog
+- **i18n**: next-intl
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+
+- Node.js 20+
+- npm or yarn
+- Supabase account
+
+### Installation
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+# Install dependencies
+npm install
+
+# Set up environment variables
+cp .env.example .env.local
+
+# Edit .env.local with your Supabase credentials
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Environment Variables
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```env
+NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
+SUPABASE_SERVICE_ROLE=your_service_role_key
+SUPABASE_JWT_SECRET=your_jwt_secret
+NEXT_PUBLIC_POSTHOG_KEY=your_posthog_key (optional)
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Development
 
-## Learn More
+```bash
+# Run development server
+npm run dev
 
-To learn more about Next.js, take a look at the following resources:
+# Open http://localhost:3000
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Build
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+# Build for production
+npm run build
 
-## Deploy on Vercel
+# Start production server
+npm start
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Project Structure
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```
+web/
+├── app/                    # Next.js App Router pages
+│   ├── [locale]/          # Internationalized routes
+│   │   ├── (protected)/   # Protected routes
+│   │   └── login/         # Auth pages
+│   └── api/               # API routes
+├── components/            # React components
+│   ├── ui/               # UI primitives
+│   ├── student/          # Student-specific components
+│   └── teacher/          # Teacher-specific components
+├── lib/                   # Utilities and services
+│   ├── supabase/         # Supabase clients
+│   ├── services/         # Business logic
+│   └── auth/             # Authentication helpers
+├── messages/              # i18n translations
+└── public/               # Static assets
+```
+
+## Testing
+
+```bash
+# Run E2E tests
+npm run test:e2e
+
+# Run E2E tests with UI
+npm run test:e2e:ui
+
+# Run accessibility tests
+npm run test:e2e -- tests/accessibility.spec.ts
+```
+
+## Deployment
+
+See [DEPLOYMENT.md](../DEPLOYMENT.md) for production deployment instructions.
+
+## Documentation
+
+- [Performance Guide](./PERFORMANCE.md)
+- [Accessibility Guide](./ACCESSIBILITY.md)
+- [Design Tokens](./DESIGN_TOKENS.md)
+- [Style Guide](./TOUCHBASE_STYLE_GUIDE.md)
+
+## License
+
+GPL-3.0-or-later
