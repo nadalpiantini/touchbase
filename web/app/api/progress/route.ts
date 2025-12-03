@@ -18,10 +18,10 @@ export async function GET(req: Request) {
     const progress = await getModuleProgress(s, user.id, moduleId);
 
     return NextResponse.json({ progress });
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error("Get progress error:", error);
     return NextResponse.json(
-      { error: error.message || "Failed to get progress" },
+      { error: error instanceof Error ? error.message : "Failed to get progress" },
       { status: 400 }
     );
   }

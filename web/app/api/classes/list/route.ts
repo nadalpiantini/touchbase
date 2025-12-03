@@ -31,10 +31,10 @@ export async function GET() {
     }
 
     return NextResponse.json({ classes: [] });
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error("List classes error:", error);
     return NextResponse.json(
-      { error: error.message || "Failed to list classes" },
+      { error: error instanceof Error ? error.message : "Failed to list classes" },
       { status: 400 }
     );
   }

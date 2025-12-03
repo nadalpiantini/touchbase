@@ -19,10 +19,11 @@ export async function GET(
     }
 
     return NextResponse.json(moduleData);
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error("Get module error:", error);
+    const errorMessage = error instanceof Error ? error.message : "Failed to get module";
     return NextResponse.json(
-      { error: error.message || "Failed to get module" },
+      { error: errorMessage },
       { status: 400 }
     );
   }

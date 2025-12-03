@@ -15,10 +15,10 @@ export async function GET(
     const assignments = await getClassAssignments(s, classId, user.id);
 
     return NextResponse.json({ assignments });
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error("Get assignments error:", error);
     return NextResponse.json(
-      { error: error.message || "Failed to get assignments" },
+      { error: error instanceof Error ? error.message : "Failed to get assignments" },
       { status: 400 }
     );
   }
@@ -53,10 +53,10 @@ export async function POST(
     });
 
     return NextResponse.json({ assignment });
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error("Create assignment error:", error);
     return NextResponse.json(
-      { error: error.message || "Failed to create assignment" },
+      { error: error instanceof Error ? error.message : "Failed to create assignment" },
       { status: 400 }
     );
   }

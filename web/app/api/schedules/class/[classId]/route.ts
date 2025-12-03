@@ -15,10 +15,10 @@ export async function GET(
     const schedules = await getClassSchedules(s, classId);
 
     return NextResponse.json({ schedules });
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error("Get schedules error:", error);
     return NextResponse.json(
-      { error: error.message || "Failed to get schedules" },
+      { error: error instanceof Error ? error.message : "Failed to get schedules" },
       { status: 400 }
     );
   }
@@ -49,10 +49,10 @@ export async function POST(
     const schedule = await createClassSchedule(s, classId, classData.org_id, body);
 
     return NextResponse.json({ schedule });
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error("Create schedule error:", error);
     return NextResponse.json(
-      { error: error.message || "Failed to create schedule" },
+      { error: error instanceof Error ? error.message : "Failed to create schedule" },
       { status: 400 }
     );
   }

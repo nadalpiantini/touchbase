@@ -20,10 +20,10 @@ export async function POST(req: Request) {
     await updateStepProgress(s, user.id, moduleId, stepIndex, stepData);
 
     return NextResponse.json({ success: true });
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error("Update progress error:", error);
     return NextResponse.json(
-      { error: error.message || "Failed to update progress" },
+      { error: error instanceof Error ? error.message : "Failed to update progress" },
       { status: 400 }
     );
   }

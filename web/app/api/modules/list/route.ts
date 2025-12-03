@@ -48,10 +48,11 @@ export async function GET(req: Request) {
           }
         );
         return response;
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error("List modules error:", error);
+    const errorMessage = error instanceof Error ? error.message : "Failed to list modules";
     return NextResponse.json(
-      { error: error.message || "Failed to list modules" },
+      { error: errorMessage },
       { status: 400 }
     );
   }

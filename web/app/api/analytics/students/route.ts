@@ -18,10 +18,10 @@ export async function GET(req: Request) {
     const progress = await getClassStudentProgress(s, classId);
 
     return NextResponse.json({ progress });
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error("Get student progress error:", error);
     return NextResponse.json(
-      { error: error.message || "Failed to get student progress" },
+      { error: error instanceof Error ? error.message : "Failed to get student progress" },
       { status: 400 }
     );
   }

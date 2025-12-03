@@ -23,10 +23,10 @@ export async function POST(req: Request) {
     });
 
     return NextResponse.json({ module: newModule });
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error("Create module error:", error);
     return NextResponse.json(
-      { error: error.message || "Failed to create module" },
+      { error: error instanceof Error ? error.message : "Failed to create module" },
       { status: 400 }
     );
   }

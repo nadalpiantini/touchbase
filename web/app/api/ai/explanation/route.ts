@@ -26,10 +26,10 @@ export async function POST(req: Request) {
     );
 
     return NextResponse.json({ explanation });
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error("Get AI explanation error:", error);
     return NextResponse.json(
-      { error: error.message || "Failed to get AI explanation" },
+      { error: error instanceof Error ? error.message : "Failed to get AI explanation" },
       { status: 400 }
     );
   }

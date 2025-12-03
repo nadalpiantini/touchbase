@@ -20,10 +20,10 @@ export async function POST(req: Request) {
     const hint = await getAIHint(s, moduleTitle, stepContent, question);
 
     return NextResponse.json({ hint });
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error("Get AI hint error:", error);
     return NextResponse.json(
-      { error: error.message || "Failed to get AI hint" },
+      { error: error instanceof Error ? error.message : "Failed to get AI hint" },
       { status: 400 }
     );
   }

@@ -30,10 +30,10 @@ export async function POST(req: Request) {
     );
 
     return NextResponse.json({ progress });
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error("Start progress error:", error);
     return NextResponse.json(
-      { error: error.message || "Failed to start module" },
+      { error: error instanceof Error ? error.message : "Failed to start module" },
       { status: 400 }
     );
   }

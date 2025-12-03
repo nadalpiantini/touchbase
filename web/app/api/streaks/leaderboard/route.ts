@@ -19,10 +19,10 @@ export async function GET(req: Request) {
     const leaderboard = await getStreakLeaderboard(s, orgId, limit);
 
     return NextResponse.json({ leaderboard });
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error("Get streak leaderboard error:", error);
     return NextResponse.json(
-      { error: error.message || "Failed to get leaderboard" },
+      { error: error instanceof Error ? error.message : "Failed to get leaderboard" },
       { status: 400 }
     );
   }

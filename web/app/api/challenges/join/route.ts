@@ -17,10 +17,10 @@ export async function POST(req: Request) {
     const participant = await joinChallenge(s, challengeId);
 
     return NextResponse.json({ success: true, participant });
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error("Join challenge error:", error);
     return NextResponse.json(
-      { error: error.message || "Failed to join challenge" },
+      { error: error instanceof Error ? error.message : "Failed to join challenge" },
       { status: 400 }
     );
   }

@@ -17,10 +17,10 @@ export async function POST(req: Request) {
     const result = await updateStreak(s, user.id, orgId);
 
     return NextResponse.json({ success: true, ...result });
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error("Update streak error:", error);
     return NextResponse.json(
-      { error: error.message || "Failed to update streak" },
+      { error: error instanceof Error ? error.message : "Failed to update streak" },
       { status: 400 }
     );
   }

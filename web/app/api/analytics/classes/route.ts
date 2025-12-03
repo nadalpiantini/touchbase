@@ -18,10 +18,10 @@ export async function GET(req: Request) {
     const analytics = await getTeacherClassAnalytics(s, user.id, orgId);
 
     return NextResponse.json({ analytics });
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error("Get class analytics error:", error);
     return NextResponse.json(
-      { error: error.message || "Failed to get analytics" },
+      { error: error instanceof Error ? error.message : "Failed to get analytics" },
       { status: 400 }
     );
   }

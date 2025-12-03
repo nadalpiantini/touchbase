@@ -23,10 +23,10 @@ export async function GET(req: Request) {
     });
 
     return NextResponse.json({ challenges });
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error("Get challenges error:", error);
     return NextResponse.json(
-      { error: error.message || "Failed to get challenges" },
+      { error: error instanceof Error ? error.message : "Failed to get challenges" },
       { status: 400 }
     );
   }

@@ -28,10 +28,10 @@ export async function POST(
     });
 
     return NextResponse.json({ step });
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error("Create step error:", error);
     return NextResponse.json(
-      { error: error.message || "Failed to create step" },
+      { error: error instanceof Error ? error.message : "Failed to create step" },
       { status: 400 }
     );
   }
@@ -58,10 +58,10 @@ export async function PUT(
     });
 
     return NextResponse.json({ step });
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error("Update step error:", error);
     return NextResponse.json(
-      { error: error.message || "Failed to update step" },
+      { error: error instanceof Error ? error.message : "Failed to update step" },
       { status: 400 }
     );
   }
@@ -86,10 +86,10 @@ export async function DELETE(
     await deleteModuleStep(s, stepId);
 
     return NextResponse.json({ success: true });
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error("Delete step error:", error);
     return NextResponse.json(
-      { error: error.message || "Failed to delete step" },
+      { error: error instanceof Error ? error.message : "Failed to delete step" },
       { status: 400 }
     );
   }

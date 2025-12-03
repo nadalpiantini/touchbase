@@ -22,10 +22,11 @@ export async function GET(
     }
 
     return NextResponse.json({ class: classItem });
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error("Get class error:", error);
+    const errorMessage = error instanceof Error ? error.message : "Failed to get class";
     return NextResponse.json(
-      { error: error.message || "Failed to get class" },
+      { error: errorMessage },
       { status: 400 }
     );
   }

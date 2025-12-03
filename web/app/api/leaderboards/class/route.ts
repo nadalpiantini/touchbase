@@ -20,10 +20,10 @@ export async function GET(req: Request) {
     const leaderboard = await getClassLeaderboard(s, classId, type, limit);
 
     return NextResponse.json({ leaderboard });
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error("Get class leaderboard error:", error);
     return NextResponse.json(
-      { error: error.message || "Failed to get leaderboard" },
+      { error: error instanceof Error ? error.message : "Failed to get leaderboard" },
       { status: 400 }
     );
   }

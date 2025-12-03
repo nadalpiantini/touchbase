@@ -15,10 +15,10 @@ export async function DELETE(
     await deleteAssignment(s, id);
 
     return NextResponse.json({ success: true });
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error("Delete assignment error:", error);
     return NextResponse.json(
-      { error: error.message || "Failed to delete assignment" },
+      { error: error instanceof Error ? error.message : "Failed to delete assignment" },
       { status: 400 }
     );
   }

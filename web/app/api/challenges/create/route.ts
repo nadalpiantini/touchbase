@@ -40,10 +40,10 @@ export async function POST(req: Request) {
     });
 
     return NextResponse.json({ challenge });
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error("Create challenge error:", error);
     return NextResponse.json(
-      { error: error.message || "Failed to create challenge" },
+      { error: error instanceof Error ? error.message : "Failed to create challenge" },
       { status: 400 }
     );
   }

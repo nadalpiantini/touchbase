@@ -18,10 +18,10 @@ export async function GET(
     const attendance = await getClassAttendance(s, classId, date);
 
     return NextResponse.json({ attendance });
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error("Get attendance error:", error);
     return NextResponse.json(
-      { error: error.message || "Failed to get attendance" },
+      { error: error instanceof Error ? error.message : "Failed to get attendance" },
       { status: 400 }
     );
   }
@@ -59,10 +59,10 @@ export async function POST(
     const attendance = await markAttendanceBulk(s, classId, date, records);
 
     return NextResponse.json({ success: true, attendance });
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error("Mark attendance error:", error);
     return NextResponse.json(
-      { error: error.message || "Failed to mark attendance" },
+      { error: error instanceof Error ? error.message : "Failed to mark attendance" },
       { status: 400 }
     );
   }

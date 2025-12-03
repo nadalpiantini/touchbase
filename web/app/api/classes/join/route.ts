@@ -41,10 +41,10 @@ export async function POST(req: Request) {
       class: classItem,
       enrollment 
     });
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error("Join class error:", error);
     return NextResponse.json(
-      { error: error.message || "Failed to join class" },
+      { error: error instanceof Error ? error.message : "Failed to join class" },
       { status: 400 }
     );
   }

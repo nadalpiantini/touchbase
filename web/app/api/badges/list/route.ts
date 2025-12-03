@@ -14,10 +14,10 @@ export async function GET(req: Request) {
     const badges = await getBadges(s, orgId);
 
     return NextResponse.json({ badges });
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error("Get badges error:", error);
     return NextResponse.json(
-      { error: error.message || "Failed to get badges" },
+      { error: error instanceof Error ? error.message : "Failed to get badges" },
       { status: 400 }
     );
   }
