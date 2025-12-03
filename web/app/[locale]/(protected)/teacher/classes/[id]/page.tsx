@@ -7,6 +7,7 @@ import { notFound } from 'next/navigation';
 import { Card, CardContent, CardHeader, CardTitle, Badge, Button } from '@/components/ui';
 import { CopyCodeButton } from '@/components/teacher/CopyCodeButton';
 import { AttendanceMarking } from '@/components/attendance/AttendanceMarking';
+import { ScheduleBuilder } from '@/components/schedules/ScheduleBuilder';
 import Link from 'next/link';
 
 export default async function ClassDetailPage({
@@ -96,6 +97,9 @@ export default async function ClassDetailPage({
         </Link>
         <Link href={`/teacher/classes/${classItem.id}/modules`}>
           <Button variant="outline">{t('manageModules')}</Button>
+        </Link>
+        <Link href={`/teacher/classes/${classItem.id}/attendance`}>
+          <Button variant="outline">Attendance Analytics</Button>
         </Link>
       </div>
 
