@@ -27,6 +27,23 @@ function ModulesStack() {
   );
 }
 
+function ProfileStack() {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen 
+        name="ProfileMain" 
+        component={ProfileScreen}
+        options={{ title: 'Profile' }}
+      />
+      <Stack.Screen 
+        name="NotificationSettings" 
+        component={NotificationSettingsScreen}
+        options={{ title: 'Notifications' }}
+      />
+    </Stack.Navigator>
+  );
+}
+
 export default function MainNavigator() {
   return (
     <Tab.Navigator
@@ -58,8 +75,8 @@ export default function MainNavigator() {
       />
       <Tab.Screen 
         name="Profile" 
-        component={ProfileScreen}
-        options={{ title: 'Profile' }}
+        component={ProfileStack}
+        options={{ title: 'Profile', headerShown: false }}
       />
     </Tab.Navigator>
   );
