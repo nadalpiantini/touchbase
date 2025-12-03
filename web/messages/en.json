@@ -62,6 +62,25 @@
       "loginLink": "Sign in here"
     }
   },
+  "onboarding": {
+    "title": "Welcome to TouchBase Academy!",
+    "subtitle": "Select your role and create your organization to get started.",
+    "selectRole": "What is your role?",
+    "orgName": "Organization name",
+    "orgNamePlaceholder": "E.g: My Academy, Elementary School, etc.",
+    "createAccount": "Create account",
+    "creating": "Creating organization…",
+    "roles": {
+      "teacher": {
+        "title": "Teacher",
+        "description": "Create classes, assign modules and manage students"
+      },
+      "student": {
+        "title": "Student",
+        "description": "Access modules, complete assignments and track your progress"
+      }
+    }
+  },
   "dashboard": {
     "onboarding": {
       "title": "Welcome to TouchBase!",

@@ -62,6 +62,25 @@
       "loginLink": "Entra aquí"
     }
   },
+  "onboarding": {
+    "title": "¡Bienvenido a TouchBase Academy!",
+    "subtitle": "Selecciona tu rol y crea tu organización para comenzar.",
+    "selectRole": "¿Cuál es tu rol?",
+    "orgName": "Nombre de tu organización",
+    "orgNamePlaceholder": "Ej: Mi Academia, Escuela Primaria, etc.",
+    "createAccount": "Crear cuenta",
+    "creating": "Creando organización…",
+    "roles": {
+      "teacher": {
+        "title": "Profesor",
+        "description": "Crea clases, asigna módulos y gestiona estudiantes"
+      },
+      "student": {
+        "title": "Estudiante",
+        "description": "Accede a módulos, completa asignaciones y sigue tu progreso"
+      }
+    }
+  },
   "dashboard": {
     "onboarding": {
       "title": "¡Bienvenido a TouchBase!",

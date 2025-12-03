@@ -1,6 +1,6 @@
 import { supabaseServer } from "@/lib/supabase/server";
 import { redirect } from "next/navigation";
-import OnboardingKickoff from "@/components/onboarding/OnboardingKickoff";
+import RoleSelection from "@/components/onboarding/RoleSelection";
 import { getTranslations } from 'next-intl/server';
 
 export default async function DashboardPage() {
@@ -33,8 +33,8 @@ export default async function DashboardPage() {
               <p className="text-[--color-tb-shadow] mb-6">
                 {t('onboarding.subtitle')}
               </p>
-              {/* Kickoff auto-ejecutará la creación */}
-              <OnboardingKickoff suggestedName="Mi Academia" />
+              {/* Role selection onboarding */}
+              <RoleSelection />
             </div>
           </div>
         </div>
