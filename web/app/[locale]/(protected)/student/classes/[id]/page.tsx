@@ -74,7 +74,7 @@ export default function StudentClassDetailPage() {
   if (error || !classItem) {
     return (
       <div className="text-center py-12">
-        <p className="text-red-600 mb-4">{error || t('errors.notFound')}</p>
+        <p className="text-[--color-tb-stitch] mb-4">{error || t('errors.notFound')}</p>;
         <Button onClick={() => router.push("/student/classes")}>
           {t('backToClasses')}
         </Button>

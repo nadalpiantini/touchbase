@@ -16,7 +16,7 @@ export default async function StudentDashboardPage({
   const t = await getTranslations('student.dashboard');
   const { locale } = await params;
   
-  const s = supabaseServer();
+  const s = await supabaseServer();
   const user = await requireStudent(s);
 
   // Fetch student's classes

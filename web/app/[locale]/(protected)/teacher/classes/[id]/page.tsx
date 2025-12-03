@@ -14,7 +14,7 @@ export default async function ClassDetailPage({
   params: Promise<{ id: string }>;
 }) {
   const t = await getTranslations('teacher.classes.detail');
-  const s = supabaseServer();
+  const s = await supabaseServer();
   const user = await requireTeacher(s);
   
   const { id } = await params;

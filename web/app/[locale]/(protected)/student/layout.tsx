@@ -11,7 +11,7 @@ export default async function StudentLayout({
 }: {
   children: ReactNode
 }) {
-  const s = supabaseServer();
+  const s = await supabaseServer();
   const user = await requireStudent(s);
 
   return (

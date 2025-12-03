@@ -12,24 +12,13 @@ export default async function ProtectedLayout({
 }: {
   children: ReactNode
 }) {
-  const s = supabaseServer();
-  const { data: { user } } = await s.auth.getUser();
+  const s = await supabaseServer();
+  const { data: { user }, error: userError } = await s.auth.getUser();
   const locale = await getLocale();
 
-  // Skip auth in development
-  const isDevelopment = process.env.NODE_ENV !== 'production';
-  
-  if (!user && !isDevelopment) {
+  if (userError || !user) {
     redirect(`/${locale}/login`);
   }
-  
-  // In development, use a mock user if no user is present
-  const effectiveUser = user || (isDevelopment ? {
-    id: 'dev-user-id',
-    email: 'dev@touchbase.local',
-    user_metadata: {},
-    app_metadata: {}
-  } as typeof user : null);
 
   return (
     <div className="min-h-screen bg-[--color-tb-bone]">
@@ -71,20 +60,15 @@ export default async function ProtectedLayout({
 
             <div className="flex items-center gap-4">
               <OrgDropdown />
-              <span className="text-sm text-[--color-tb-bone]">{effectiveUser?.email || 'dev@touchbase.local'}</span>
-              {!isDevelopment && (
-                <form action="/api/auth/signout" method="POST">
-                  <button
-                    type="submit"
-                    className="text-sm hover:bg-white/20 border border-white/20 px-3 py-2 rounded-lg transition"
-                  >
-                    Cerrar sesión
-                  </button>
-                </form>
-              )}
-              {isDevelopment && (
-                <span className="text-xs text-yellow-300">DEV MODE - Auth Disabled</span>
-              )}
+              <span className="text-sm text-[--color-tb-bone]">{user.email}</span>
+              <form action="/api/auth/signout" method="POST">
+                <button
+                  type="submit"
+                  className="text-sm hover:bg-white/20 border border-white/20 px-3 py-2 rounded-lg transition"
+                >
+                  Cerrar sesión
+                </button>
+              </form>
             </div>
           </div>
         </div>

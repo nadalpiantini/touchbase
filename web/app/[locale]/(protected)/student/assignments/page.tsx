@@ -44,7 +44,7 @@ export default function StudentAssignmentsPage() {
   }
 
   if (error) {
-    return <div className="text-center py-12 text-red-600">{error}</div>;
+    return <div className="text-center py-12 text-[--color-tb-stitch]">{error}</div>;
   }
 
   const now = new Date();
@@ -71,7 +71,7 @@ export default function StudentAssignmentsPage() {
             <CardTitle className="text-lg">{t('stats.overdue')}</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-4xl font-bold text-red-600">
+            <div className="text-4xl font-bold text-[--color-tb-stitch]">
               {overdue.length}
             </div>
           </CardContent>

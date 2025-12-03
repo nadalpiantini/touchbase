@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { supabaseBrowser } from "@/lib/supabase/client";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
@@ -16,18 +16,6 @@ export default function LoginPage() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const router = useRouter();
-  
-  // In development, auto-redirect to dashboard
-  useEffect(() => {
-    const isDevelopment = process.env.NODE_ENV !== 'production';
-    if (isDevelopment) {
-      // Auto-redirect after a short delay to show the page briefly
-      const timer = setTimeout(() => {
-        window.location.href = `/${locale}/dashboard`;
-      }, 500);
-      return () => clearTimeout(timer);
-    }
-  }, [locale]);
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -35,18 +23,11 @@ export default function LoginPage() {
     setError(null);
 
     try {
-      // In development, skip auth and redirect directly
-      const isDevelopment = process.env.NODE_ENV !== 'production';
-      
-      if (isDevelopment) {
-        // In dev mode, just redirect to dashboard without auth
-        window.location.href = `/${locale}/dashboard`;
-        return;
-      }
-
       // Get Supabase client dynamically (will throw if env vars are missing)
       const supabase = supabaseBrowser();
 
+      console.log("Attempting login for:", email);
+      
       const { data, error: authError } = await supabase.auth.signInWithPassword({
         email,
         password,
@@ -61,9 +42,19 @@ export default function LoginPage() {
         throw new Error("No se pudo establecer la sesión. Intenta nuevamente.");
       }
 
-      // Wait a moment for session to be established in storage
-      await new Promise(resolve => setTimeout(resolve, 500));
+      console.log("Login successful, session:", data.session.user.email);
 
+      // Wait a moment for session to be established in storage
+      await new Promise(resolve => setTimeout(resolve, 300));
+
+      // Verify session is stored
+      const { data: { session: verifySession } } = await supabase.auth.getSession();
+      if (!verifySession) {
+        throw new Error("La sesión no se guardó correctamente. Intenta nuevamente.");
+      }
+
+      console.log("Session verified, redirecting to dashboard");
+      
       // Use window.location for a full page reload to ensure session is set
       window.location.href = `/${locale}/dashboard`;
     } catch (err: unknown) {
@@ -76,21 +67,12 @@ export default function LoginPage() {
     }
   };
 
-  const isDevelopment = process.env.NODE_ENV !== 'production';
-
   return (
     <main className="min-h-screen flex items-center justify-center bg-[--color-tb-beige]/20 relative">
       {/* Language Selector */}
       <div className="absolute top-4 right-4 z-10">
         <LanguageSelector />
       </div>
-      
-      {/* Development Mode Banner */}
-      {isDevelopment && (
-        <div className="absolute top-20 left-1/2 transform -translate-x-1/2 z-10 bg-yellow-500 text-yellow-900 px-4 py-2 rounded-lg text-sm font-semibold">
-          🚧 DEV MODE: Auth disabled - Redirecting to dashboard...
-        </div>
-      )}
 
       <div className="max-w-md w-full space-y-8">
         <div className="flex flex-col items-center">
@@ -113,7 +95,7 @@ export default function LoginPage() {
         <form className="mt-8 space-y-6" onSubmit={handleLogin}>
           <div className="space-y-4">
             <div>
-              <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+              <label htmlFor="email" className="block text-sm font-medium text-[--color-tb-navy] mb-2">
                 {t('form.emailPlaceholder')}
               </label>
               <input
@@ -129,7 +111,7 @@ export default function LoginPage() {
               />
             </div>
             <div>
-              <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-2">
+              <label htmlFor="password" className="block text-sm font-medium text-[--color-tb-navy] mb-2">
                 {t('form.passwordPlaceholder')}
               </label>
               <input
@@ -163,7 +145,7 @@ export default function LoginPage() {
           </div>
 
           <div className="text-center">
-            <p className="text-sm text-gray-600">
+            <p className="text-sm text-[--color-tb-shadow]">
               {t('footer.firstTime')} <Link href={`/${locale}/signup`} className="font-medium text-[--color-tb-navy] hover:text-[--color-tb-stitch] transition">{t('footer.createAccount')}</Link>
             </p>
           </div>

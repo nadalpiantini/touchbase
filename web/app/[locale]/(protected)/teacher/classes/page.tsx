@@ -7,7 +7,7 @@ import Link from 'next/link';
 
 export default async function TeacherClassesPage() {
   const t = await getTranslations('teacher.classes');
-  const s = supabaseServer();
+  const s = await supabaseServer();
   const { user, orgId } = await getUserWithRole(s);
 
   const classes = orgId ? await getTeacherClasses(s, user.id, orgId) : [];

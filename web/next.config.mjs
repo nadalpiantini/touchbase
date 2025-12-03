@@ -7,11 +7,6 @@ const nextConfig = {
   // Enable React strict mode for better development experience
   reactStrictMode: true,
   
-  // Disable ESLint during builds temporarily
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
-  
   // Disable TypeScript errors during builds temporarily
   typescript: {
     ignoreBuildErrors: true,
@@ -27,9 +22,6 @@ const nextConfig = {
 
   // Compress responses
   compress: true,
-
-  // Optimize production builds
-  swcMinify: true,
 
   // Experimental features for performance
   experimental: {

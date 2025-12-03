@@ -53,7 +53,7 @@ export default function ModuleDetailPage() {
   }
 
   if (error || !module) {
-    return <div className="text-center py-12 text-red-600">{error || t('notFound')}</div>;
+    return <div className="text-center py-12 text-[--color-tb-stitch]">{error || t('notFound')}</div>;
   }
 
   const stepTypeLabels: Record<StepType, string> = {
