@@ -256,6 +256,7 @@
     "classes": {
       "detail": {
         "manageAssignments": "Gestionar Asignaciones",
+        "manageModules": "Gestionar Módulos",
         "students": "Estudiantes",
         "noStudents": "Aún no hay estudiantes inscritos.",
         "viewProfile": "Ver Perfil",
