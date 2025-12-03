@@ -89,7 +89,7 @@
         "id": "7",
         "title": "Curriculum & Module Engine: Lesson Player & Progress Tracking",
         "description": "Build module structure (steps, content, quizzes, scenarios), interactive lesson player, quiz engine, and progress state persistence",
-        "status": "pending",
+        "status": "done",
         "dependencies": [
           "2",
           "3"
@@ -97,7 +97,8 @@
         "priority": "high",
         "details": "1. Design Firestore schema: modules collection (title, description, skill_category, difficulty)\n2. Create module steps subcollection (step_type: lesson/quiz/scenario, content, order)\n3. Build interactive lesson player component (text, video, audio, images)\n4. Implement quiz engine (multiple choice, true/false, scoring)\n5. Create scenario/interactive content renderer\n6. Build progress tracking system (per-user-per-module state)\n7. Implement progress persistence (Firestore: progress collection)\n\nAPI Routes: /api/modules/list, /api/modules/[id], /api/modules/[id]/steps, /api/progress/update\nCollections: touchbase_modules, touchbase_modules/{id}/steps, touchbase_progress",
         "testStrategy": "Test module rendering, quiz functionality, progress tracking, and verify state persistence across sessions",
-        "subtasks": []
+        "subtasks": [],
+        "updatedAt": "2025-12-03T23:34:53.675Z"
       },
       {
         "id": "8",
@@ -144,9 +145,9 @@
     ],
     "metadata": {
       "version": "1.0.0",
-      "lastModified": "2025-12-03T23:33:34.735Z",
+      "lastModified": "2025-12-03T23:34:53.676Z",
       "taskCount": 10,
-      "completedCount": 6,
+      "completedCount": 7,
       "tags": [
         "master"
       ]
