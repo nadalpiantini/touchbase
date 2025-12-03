@@ -4,6 +4,7 @@ import { requireStudent } from '@/lib/auth/middleware-helpers';
 import { Class } from '@/lib/types/education';
 import { getUserProgress } from '@/lib/services/progress';
 import { getUserXPSummary } from '@/lib/services/xp';
+import { getStudentAssignments, type Assignment } from '@/lib/services/assignments';
 import { Card, CardContent, CardHeader, CardTitle, ProgressBar, Badge, Button } from '@/components/ui';
 import Link from 'next/link';
 
@@ -35,8 +36,11 @@ export default async function StudentDashboardPage({
       .eq("org_id", profile.default_org_id);
     
     classes = (enrollments || [])
-      .map((e: any) => e.class)
-      .filter((c: any) => c !== null) as Class[];
+      .map((e: { class_id: string; class: Class | Class[] | null }) => {
+        const classData = Array.isArray(e.class) ? e.class[0] : e.class;
+        return classData;
+      })
+      .filter((c: Class | null | undefined): c is Class => c !== null && c !== undefined);
   }
 
   // Fetch progress
@@ -46,6 +50,16 @@ export default async function StudentDashboardPage({
 
   // Fetch XP summary
   const xpSummary = await getUserXPSummary(s, user.id);
+
+  // Fetch assignments
+  const assignments = await getStudentAssignments(s, user.id);
+  const now = new Date();
+  const overdueAssignments = assignments.filter((a: Assignment) => new Date(a.due_date) < now);
+  const dueSoonAssignments = assignments.filter(
+    (a: Assignment) =>
+      new Date(a.due_date) >= now &&
+      new Date(a.due_date) <= new Date(now.getTime() + 7 * 24 * 60 * 60 * 1000)
+  );
 
   return (
     <div className="max-w-7xl mx-auto">
@@ -161,12 +175,53 @@ export default async function StudentDashboardPage({
         </div>
       )}
 
+      {/* Assignments Alert */}
+      {(overdueAssignments.length > 0 || dueSoonAssignments.length > 0) && (
+        <div className="mb-8">
+          <Card className={overdueAssignments.length > 0 ? "border-red-500" : "border-orange-500"}>
+            <CardContent className="pt-6">
+              <div className="flex items-center justify-between">
+                <div>
+                  <h3 className="font-semibold text-[--color-tb-navy] mb-2">
+                    {overdueAssignments.length > 0
+                      ? t('assignmentsAlert.overdue')
+                      : t('assignmentsAlert.dueSoon')}
+                  </h3>
+                  <p className="text-sm text-[--color-tb-shadow]">
+                    {overdueAssignments.length > 0
+                      ? t('assignmentsAlert.overdueCount', { count: overdueAssignments.length })
+                      : t('assignmentsAlert.dueSoonCount', { count: dueSoonAssignments.length })}
+                  </p>
+                </div>
+                <Link href={`/${locale}/student/assignments`}>
+                  <Button variant={overdueAssignments.length > 0 ? "primary" : "outline"}>
+                    {t('viewAssignments')}
+                  </Button>
+                </Link>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+      )}
+
       {/* Quick Actions */}
       <div>
         <h2 className="text-2xl font-semibold text-[--color-tb-navy] mb-4">
           {t('quickActions')}
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <Link href={`/${locale}/student/assignments`}>
+            <Card className="hover:shadow-lg transition-shadow cursor-pointer">
+              <CardContent className="pt-6">
+                <h3 className="font-semibold text-[--color-tb-navy] mb-2">
+                  {t('viewAssignments')}
+                </h3>
+                <p className="text-sm text-[--color-tb-shadow]">
+                  {t('viewAssignmentsDesc')}
+                </p>
+              </CardContent>
+            </Card>
+          </Link>
           <Link href={`/${locale}/student/modules`}>
             <Card className="hover:shadow-lg transition-shadow cursor-pointer">
               <CardContent className="pt-6">
