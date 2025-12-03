@@ -21,7 +21,6 @@ export async function POST(req: Request) {
 
     return NextResponse.json({ hint });
   } catch (error: unknown) {
-    console.error("Get AI hint error:", error);
     return NextResponse.json(
       { error: error instanceof Error ? error.message : "Failed to get AI hint" },
       { status: 400 }
