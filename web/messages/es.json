@@ -378,6 +378,8 @@
       "nextLevel": "Siguiente Nivel",
       "xp": "XP",
       "skillDescription": "Rastrea tu progreso en habilidades de {skill}",
+      "dayStreak": "Racha de Días",
+      "longestStreak": "Más Larga",
       "recentAchievements": "Logros Recientes",
       "noAchievementsYet": "Aún no hay logros. ¡Completa módulos para ganar logros!",
       "errors": {

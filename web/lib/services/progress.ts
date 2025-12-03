@@ -144,8 +144,7 @@ export async function updateStepProgress(
       const { awardModuleCompletionXP } = await import("./xp");
       await awardModuleCompletionXP(supabase, userId, moduleId, progress.score);
       
-      // Check for badge eligibility
-      const { checkAndAwardBadges } = await import("./badges");
+      // Update streak
       const { data: profile } = await supabase
         .from("touchbase_profiles")
         .select("default_org_id")
@@ -153,6 +152,22 @@ export async function updateStepProgress(
         .single();
       
       if (profile?.default_org_id) {
+        const { updateStreak } = await import("./streaks");
+        const streakResult = await updateStreak(supabase, userId, profile.default_org_id);
+        
+        // Award streak XP if new streak
+        if (streakResult.is_new_streak && streakResult.current_streak > 0) {
+          const { awardXP } = await import("./xp");
+          await awardXP(supabase, {
+            userId,
+            action: "daily_streak",
+            amount: 0, // Uses XP_VALUES
+            metadata: { streak: streakResult.current_streak },
+          });
+        }
+        
+        // Check for badge eligibility
+        const { checkAndAwardBadges } = await import("./badges");
         await checkAndAwardBadges(supabase, userId, profile.default_org_id, "module_complete");
       }
     } catch (xpError) {

@@ -378,6 +378,8 @@
       "nextLevel": "Next Level",
       "xp": "XP",
       "skillDescription": "Track your progress in {skill} skills",
+      "dayStreak": "Day Streak",
+      "longestStreak": "Longest",
       "recentAchievements": "Recent Achievements",
       "noAchievementsYet": "No achievements yet. Complete modules to earn achievements!",
       "errors": {

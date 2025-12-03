@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { useTranslations } from "next-intl";
 import { Card, CardContent, CardHeader, CardTitle, ProgressBar, Badge } from "@/components/ui";
 import { getUserXPSummary } from "@/lib/services/xp";
+import { getUserStreak } from "@/lib/services/streaks";
 import { SkillCategory, xpProgressToNextLevel } from "@/lib/types/gamification";
 import { supabaseClient } from "@/lib/supabase/client";
 
@@ -15,6 +16,10 @@ export default function StudentSkillsPage() {
     level: number;
     xpForNextLevel: number;
     xpProgress: number;
+  } | null>(null);
+  const [streak, setStreak] = useState<{
+    current_streak: number;
+    longest_streak: number;
   } | null>(null);
   const [error, setError] = useState<string | null>(null);
 
@@ -32,8 +37,30 @@ export default function StudentSkillsPage() {
         return;
       }
 
-      const summary = await getUserXPSummary(supabase, user.id);
+      const [summary, streakData] = await Promise.all([
+        getUserXPSummary(supabase, user.id),
+        (async () => {
+          const { data: profile } = await supabase
+            .from("touchbase_profiles")
+            .select("default_org_id")
+            .eq("id", user.id)
+            .single();
+          
+          if (profile?.default_org_id) {
+            const { getUserStreak } = await import("@/lib/services/streaks");
+            return await getUserStreak(supabase, user.id, profile.default_org_id);
+          }
+          return null;
+        })(),
+      ]);
+      
       setXpSummary(summary);
+      if (streakData) {
+        setStreak({
+          current_streak: streakData.current_streak,
+          longest_streak: streakData.longest_streak,
+        });
+      }
     } catch (e: any) {
       setError(e.message || t('errors.loadFailed'));
     } finally {
@@ -71,7 +98,7 @@ export default function StudentSkillsPage() {
           <CardTitle>{t('overallLevel')}</CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="flex items-center gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div className="text-center">
               <div className="text-6xl font-bold text-[--color-tb-red] mb-2">
                 {xpSummary.level}
@@ -93,6 +120,17 @@ export default function StudentSkillsPage() {
                 <span>{t('nextLevel')} {xpSummary.level + 1}</span>
               </div>
             </div>
+            {streak && (
+              <div className="text-center">
+                <div className="text-4xl font-bold text-[--color-tb-red] mb-2">
+                  🔥 {streak.current_streak}
+                </div>
+                <div className="text-sm text-[--color-tb-shadow]">{t('dayStreak')}</div>
+                <div className="text-xs text-[--color-tb-shadow] mt-1">
+                  {t('longestStreak')}: {streak.longest_streak}
+                </div>
+              </div>
+            )}
           </div>
         </CardContent>
       </Card>
