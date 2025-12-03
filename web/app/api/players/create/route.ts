@@ -9,7 +9,27 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
-  const { full_name, team_id } = await req.json().catch(() => ({}));
+  const data = await req.json().catch(() => ({}));
+  const {
+    full_name,
+    team_id,
+    photo_url,
+    phone,
+    email,
+    country,
+    birthdate,
+    jersey_number,
+    position,
+    affiliate,
+    signing_year,
+    family_info,
+    academic_level,
+    english_level,
+    spanish_level,
+    math_level,
+    science_level,
+    notes,
+  } = data;
   
   if (!full_name || typeof full_name !== "string" || full_name.trim().length < 2) {
     return NextResponse.json({ error: "Nombre de jugador inválido" }, { status: 400 });
@@ -23,15 +43,29 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: "No default org" }, { status: 400 });
   }
 
-  // Preparar payload (team_id es opcional)
-  const payload: { org_id: string; full_name: string; team_id?: string } = { 
+  // Preparar payload completo
+  const payload: any = { 
     org_id: current.org_id, 
-    full_name: full_name.trim() 
+    full_name: full_name.trim(),
   };
   
-  if (team_id) {
-    payload.team_id = team_id;
-  }
+  if (team_id) payload.team_id = team_id;
+  if (photo_url) payload.photo_url = photo_url;
+  if (phone) payload.phone = phone;
+  if (email) payload.email = email;
+  if (country) payload.country = country;
+  if (birthdate) payload.birthdate = birthdate;
+  if (jersey_number) payload.jersey_number = jersey_number;
+  if (position) payload.position = position;
+  if (affiliate) payload.affiliate = affiliate;
+  if (signing_year) payload.signing_year = signing_year;
+  if (family_info) payload.family_info = family_info;
+  if (academic_level) payload.academic_level = academic_level;
+  if (english_level) payload.english_level = english_level;
+  if (spanish_level) payload.spanish_level = spanish_level;
+  if (math_level) payload.math_level = math_level;
+  if (science_level) payload.science_level = science_level;
+  if (notes) payload.notes = notes;
 
   const { data, error } = await s
     .from("touchbase_players")

@@ -79,7 +79,7 @@ export default function LoginPage() {
           <h2 className="text-center text-3xl font-display font-bold text-[--color-tb-navy]">
             {t('title')}
           </h2>
-          <p className="mt-2 text-center text-sm text-[--color-tb-shadow]">
+          <p className="mt-2 text-center text-sm font-sans text-[--color-tb-shadow]">
             {t('subtitle')}
           </p>
         </div>
@@ -87,7 +87,7 @@ export default function LoginPage() {
         <form className="mt-8 space-y-6" onSubmit={handleLogin}>
           <div className="space-y-4">
             <div>
-              <label htmlFor="email" className="block text-sm font-medium text-[--color-tb-navy] mb-2">
+              <label htmlFor="email" className="block text-sm font-sans font-medium text-[--color-tb-navy] mb-2">
                 {t('form.emailPlaceholder')}
               </label>
               <input
@@ -96,14 +96,14 @@ export default function LoginPage() {
                 type="email"
                 autoComplete="email"
                 required
-                className="appearance-none relative block w-full px-3 py-2 border border-[--color-tb-line] placeholder-[--color-tb-shadow]/50 text-[--color-tb-ink] rounded-lg focus:outline-none focus:ring-2 focus:ring-[--color-tb-stitch]/60 focus:border-[--color-tb-stitch] transition sm:text-sm"
+                className="appearance-none relative block w-full px-3 py-2 border border-[--color-tb-line] placeholder-[--color-tb-shadow]/50 text-[--color-tb-ink] rounded-lg focus:outline-none focus:ring-2 focus:ring-[--color-tb-stitch]/60 focus:border-[--color-tb-stitch] transition sm:text-sm font-sans"
                 placeholder={t('form.emailPlaceholder')}
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
               />
             </div>
             <div>
-              <label htmlFor="password" className="block text-sm font-medium text-[--color-tb-navy] mb-2">
+              <label htmlFor="password" className="block text-sm font-sans font-medium text-[--color-tb-navy] mb-2">
                 {t('form.passwordPlaceholder')}
               </label>
               <input
@@ -112,7 +112,7 @@ export default function LoginPage() {
                 type="password"
                 autoComplete="current-password"
                 required
-                className="appearance-none relative block w-full px-3 py-2 border border-[--color-tb-line] placeholder-[--color-tb-shadow]/50 text-[--color-tb-ink] rounded-lg focus:outline-none focus:ring-2 focus:ring-[--color-tb-stitch]/60 focus:border-[--color-tb-stitch] transition sm:text-sm"
+                className="appearance-none relative block w-full px-3 py-2 border border-[--color-tb-line] placeholder-[--color-tb-shadow]/50 text-[--color-tb-ink] rounded-lg focus:outline-none focus:ring-2 focus:ring-[--color-tb-stitch]/60 focus:border-[--color-tb-stitch] transition sm:text-sm font-sans"
                 placeholder={t('form.passwordPlaceholder')}
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
@@ -121,8 +121,13 @@ export default function LoginPage() {
           </div>
 
           {error && (
-            <div className="rounded-md bg-red-50 p-4">
-              <div className="text-sm text-red-800">{error}</div>
+            <div className="rounded-lg bg-red-50 p-4 border border-red-200 shadow-sm">
+              <div className="flex items-start gap-2">
+                <svg className="h-5 w-5 text-red-600 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
+                </svg>
+                <div className="text-sm text-red-800 font-medium">{error}</div>
+              </div>
             </div>
           )}
 
@@ -137,7 +142,7 @@ export default function LoginPage() {
           </div>
 
           <div className="text-center">
-            <p className="text-sm text-[--color-tb-shadow]">
+            <p className="text-sm font-sans text-[--color-tb-shadow]">
               {t('footer.firstTime')} <Link href={`/${locale}/signup`} className="font-medium text-[--color-tb-navy] hover:text-[--color-tb-stitch] transition">{t('footer.createAccount')}</Link>
             </p>
           </div>
