@@ -43,8 +43,8 @@ export default function TeacherAnalyticsPage() {
       if (modulesRes.ok) {
         setModuleAnalytics(modulesJson.analytics || []);
       }
-    } catch (e: any) {
-      setError(e.message || t('errors.loadFailed'));
+    } catch (e: unknown) {
+      setError(e instanceof Error ? e.message : t('errors.loadFailed'));
     } finally {
       setLoading(false);
     }
