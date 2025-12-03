@@ -1,10 +1,11 @@
 import { ReactNode } from "react";
 import { supabaseServer } from "@/lib/supabase/server";
-import Link from "next/link";
-import Image from "next/image";
 import { redirect } from "next/navigation";
-import OrgDropdown from "@/components/org/OrgDropdown";
+import { getLocale } from "next-intl/server";
 import { requireTeacher } from "@/lib/auth/middleware-helpers";
+import { ResponsiveNav } from "@/components/navigation/ResponsiveNav";
+import SignOutButton from "@/components/navigation/SignOutButton";
+import { CompanySignature } from "@/components/CompanySignature";
 
 export default async function TeacherLayout({
   children
@@ -13,58 +14,35 @@ export default async function TeacherLayout({
 }) {
   const s = await supabaseServer();
   const user = await requireTeacher(s);
+  const locale = await getLocale();
+
+  const navItems = [
+    { href: `/${locale}/teacher/dashboard`, label: "Dashboard" },
+    { href: `/${locale}/teacher/classes`, label: "Classes" },
+    { href: `/${locale}/teacher/modules`, label: "Modules" },
+    { href: `/${locale}/teacher/analytics`, label: "Analytics" },
+  ];
 
   return (
     <div className="min-h-screen bg-[--color-tb-bone]">
-      <header className="bg-[--color-tb-navy] text-white border-b border-[--color-tb-navy]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16">
-            <div className="flex items-center gap-6">
-              <Link href="/teacher/dashboard" className="flex items-center gap-2">
-                <Image
-                  src="/touchbase-logo.png"
-                  alt="TouchBase"
-                  width={32}
-                  height={32}
-                  className="w-8 h-8"
-                />
-                <span className="text-xl font-display font-bold tracking-wide">TOUCHBASE</span>
-              </Link>
-              <nav className="flex items-center gap-4">
-                <Link href="/teacher/dashboard" className="text-sm font-sans hover:text-[--color-tb-beige] transition">
-                  Dashboard
-                </Link>
-                <Link href="/teacher/classes" className="text-sm font-sans hover:text-[--color-tb-beige] transition">
-                  Classes
-                </Link>
-                <Link href="/teacher/modules" className="text-sm font-sans hover:text-[--color-tb-beige] transition">
-                  Modules
-                </Link>
-                <Link href="/teacher/analytics" className="text-sm font-sans hover:text-[--color-tb-beige] transition">
-                  Analytics
-                </Link>
-              </nav>
-            </div>
-
-            <div className="flex items-center gap-4">
-              <OrgDropdown />
-              <span className="text-sm font-sans text-[--color-tb-bone]">{user.email}</span>
-              <form action="/api/auth/signout" method="POST">
-                <button
-                  type="submit"
-                  className="text-sm font-sans hover:bg-white/20 border border-white/20 px-3 py-2 rounded-lg transition"
-                >
-                  Sign Out
-                </button>
-              </form>
-            </div>
-          </div>
+      <ResponsiveNav
+        locale={locale}
+        userRole="teacher"
+        userEmail={user.email || ""}
+        navItems={navItems}
+        logoHref={`/${locale}/teacher/dashboard`}
+      />
+      
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2">
+        <div className="flex items-center justify-end">
+          <SignOutButton />
         </div>
-      </header>
+      </div>
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {children}
       </main>
+      <CompanySignature />
     </div>
   );
 }

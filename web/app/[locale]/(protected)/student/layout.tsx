@@ -1,10 +1,11 @@
 import { ReactNode } from "react";
 import { supabaseServer } from "@/lib/supabase/server";
-import Link from "next/link";
-import Image from "next/image";
 import { redirect } from "next/navigation";
-import OrgDropdown from "@/components/org/OrgDropdown";
+import { getLocale } from "next-intl/server";
 import { requireStudent } from "@/lib/auth/middleware-helpers";
+import { ResponsiveNav } from "@/components/navigation/ResponsiveNav";
+import SignOutButton from "@/components/navigation/SignOutButton";
+import { CompanySignature } from "@/components/CompanySignature";
 
 export default async function StudentLayout({
   children
@@ -13,70 +14,39 @@ export default async function StudentLayout({
 }) {
   const s = await supabaseServer();
   const user = await requireStudent(s);
+  const locale = await getLocale();
+
+  const navItems = [
+    { href: `/${locale}/student/dashboard`, label: "Dashboard" },
+    { href: `/${locale}/student/classes`, label: "Classes" },
+    { href: `/${locale}/student/modules`, label: "Modules" },
+    { href: `/${locale}/student/assignments`, label: "Assignments" },
+    { href: `/${locale}/student/progress`, label: "Progress" },
+    { href: `/${locale}/student/skills`, label: "Skills" },
+    { href: `/${locale}/student/badges`, label: "Badges" },
+    { href: `/${locale}/student/leaderboard`, label: "Leaderboard" },
+  ];
 
   return (
     <div className="min-h-screen bg-[--color-tb-bone]">
-      <header className="bg-[--color-tb-navy] text-white border-b border-[--color-tb-navy]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16">
-            <div className="flex items-center gap-6">
-              <Link href="/student/dashboard" className="flex items-center gap-2">
-                <Image
-                  src="/touchbase-logo.png"
-                  alt="TouchBase"
-                  width={32}
-                  height={32}
-                  className="w-8 h-8"
-                />
-                <span className="text-xl font-display font-bold tracking-wide">TOUCHBASE</span>
-              </Link>
-              <nav className="flex items-center gap-4">
-                <Link href="/student/dashboard" className="text-sm font-sans hover:text-[--color-tb-beige] transition">
-                  Dashboard
-                </Link>
-                <Link href="/student/classes" className="text-sm font-sans hover:text-[--color-tb-beige] transition">
-                  Classes
-                </Link>
-                <Link href="/student/modules" className="text-sm font-sans hover:text-[--color-tb-beige] transition">
-                  Modules
-                </Link>
-                <Link href="/student/assignments" className="text-sm font-sans hover:text-[--color-tb-beige] transition">
-                  Assignments
-                </Link>
-                <Link href="/student/progress" className="text-sm font-sans hover:text-[--color-tb-beige] transition">
-                  Progress
-                </Link>
-                <Link href="/student/skills" className="text-sm font-sans hover:text-[--color-tb-beige] transition">
-                  Skills
-                </Link>
-                <Link href="/student/badges" className="text-sm font-sans hover:text-[--color-tb-beige] transition">
-                  Badges
-                </Link>
-                <Link href="/student/leaderboard" className="text-sm font-sans hover:text-[--color-tb-beige] transition">
-                  Leaderboard
-                </Link>
-              </nav>
-            </div>
-
-            <div className="flex items-center gap-4">
-              <OrgDropdown />
-              <span className="text-sm font-sans text-[--color-tb-bone]">{user.email}</span>
-              <form action="/api/auth/signout" method="POST">
-                <button
-                  type="submit"
-                  className="text-sm font-sans hover:bg-white/20 border border-white/20 px-3 py-2 rounded-lg transition"
-                >
-                  Sign Out
-                </button>
-              </form>
-            </div>
-          </div>
+      <ResponsiveNav
+        locale={locale}
+        userRole="student"
+        userEmail={user.email || ""}
+        navItems={navItems}
+        logoHref={`/${locale}/student/dashboard`}
+      />
+      
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2">
+        <div className="flex items-center justify-end">
+          <SignOutButton />
         </div>
-      </header>
+      </div>
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {children}
       </main>
+      <CompanySignature />
     </div>
   );
 }
