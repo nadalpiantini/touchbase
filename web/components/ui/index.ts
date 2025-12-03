@@ -8,4 +8,6 @@ export { default as Badge } from './Badge';
 export { default as ProgressBar } from './ProgressBar';
 export { default as Input } from './Input';
 export { default as ScoreChip } from './ScoreChip';
+export { default as LoadingSpinner } from './LoadingSpinner';
+export { default as Alert } from './Alert';
 
