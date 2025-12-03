@@ -286,11 +286,14 @@
         "upcoming": "Próxima",
         "assignedAt": "Asignada el",
         "viewModule": "Ver Módulo",
+        "delete": "Eliminar",
+        "deleteConfirm": "¿Estás seguro de que quieres eliminar esta asignación?",
         "errors": {
           "notAuthenticated": "No autenticado",
           "loadFailed": "Error al cargar asignaciones",
           "missingFields": "Por favor completa todos los campos requeridos",
-          "createFailed": "Error al crear asignación"
+          "createFailed": "Error al crear asignación",
+          "deleteFailed": "Error al eliminar asignación"
         }
       }
     },

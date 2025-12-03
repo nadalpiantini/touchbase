@@ -17,6 +17,7 @@ export default function StudentAssignmentsPage() {
 
   useEffect(() => {
     loadAssignments();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const loadAssignments = async () => {

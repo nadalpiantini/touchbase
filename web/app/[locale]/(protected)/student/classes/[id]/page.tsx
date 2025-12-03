@@ -36,13 +36,14 @@ export default function StudentClassDetailPage() {
         return;
       }
 
-      // Load modules assigned to this class (would need API endpoint)
-      // For now, we'll show a placeholder
+      // Load modules assigned to this class
       const modulesRes = await fetch(`/api/modules/list?classId=${classId}`);
       const modulesJson = await modulesRes.json();
 
       if (modulesRes.ok) {
         setModules(modulesJson.modules || []);
+      } else {
+        console.error("Failed to load modules:", modulesJson.error);
       }
 
       // Load progress

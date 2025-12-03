@@ -310,11 +310,14 @@
         "upcoming": "Upcoming",
         "assignedAt": "Assigned at",
         "viewModule": "View Module",
+        "delete": "Delete",
+        "deleteConfirm": "Are you sure you want to delete this assignment?",
         "errors": {
           "notAuthenticated": "Not authenticated",
           "loadFailed": "Failed to load assignments",
           "missingFields": "Please fill in all required fields",
-          "createFailed": "Failed to create assignment"
+          "createFailed": "Failed to create assignment",
+          "deleteFailed": "Failed to delete assignment"
         }
       }
     },

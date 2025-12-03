@@ -7,15 +7,10 @@ import { Card, CardContent, CardHeader, CardTitle, Button, Badge, Input } from "
 import { Module } from "@/lib/types/education";
 import { supabaseClient } from "@/lib/supabase/client";
 import { useCurrentOrg } from "@/lib/hooks/useCurrentOrg";
+import type { Assignment } from "@/lib/services/assignments";
 
-type Assignment = {
-  id: string;
-  module_id: string;
-  title: string;
-  description?: string;
-  due_date: string;
-  assigned_at: string;
-  module?: Module;
+type AssignmentWithModule = Assignment & {
+  module?: Module | null;
 };
 
 export default function TeacherClassAssignmentsPage() {
@@ -25,7 +20,7 @@ export default function TeacherClassAssignmentsPage() {
   const classId = params.id as string;
   const { currentOrg } = useCurrentOrg();
 
-  const [assignments, setAssignments] = useState<Assignment[]>([]);
+  const [assignments, setAssignments] = useState<AssignmentWithModule[]>([]);
   const [availableModules, setAvailableModules] = useState<Module[]>([]);
   const [showCreateForm, setShowCreateForm] = useState(false);
   const [selectedModuleId, setSelectedModuleId] = useState("");
@@ -41,6 +36,7 @@ export default function TeacherClassAssignmentsPage() {
       loadAssignments();
       loadAvailableModules();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentOrg, classId]);
 
   const loadAssignments = async () => {
@@ -283,15 +279,38 @@ export default function TeacherClassAssignmentsPage() {
                       <p>{t('dueDate')}: {dueDateObj.toLocaleDateString()}</p>
                       <p>{t('assignedAt')}: {new Date(assignment.assigned_at).toLocaleDateString()}</p>
                     </div>
-                    {assignment.module && (
+                    <div className="flex gap-2 mt-4">
+                      {assignment.module && (
+                        <Button
+                          variant="outline"
+                          onClick={() => router.push(`/teacher/modules/${assignment.module_id}`)}
+                        >
+                          {t('viewModule')}
+                        </Button>
+                      )}
                       <Button
                         variant="outline"
-                        className="mt-4"
-                        onClick={() => router.push(`/teacher/modules/${assignment.module_id}`)}
+                        className="text-red-600 hover:text-red-700"
+                        onClick={async () => {
+                          if (confirm(t('deleteConfirm'))) {
+                            try {
+                              const res = await fetch(`/api/assignments/${assignment.id}`, {
+                                method: 'DELETE',
+                              });
+                              if (res.ok) {
+                                await loadAssignments();
+                              } else {
+                                setError(t('errors.deleteFailed'));
+                              }
+                            } catch (e: unknown) {
+                              setError((e instanceof Error ? e.message : String(e)) || t('errors.deleteFailed'));
+                            }
+                          }
+                        }}
                       >
-                        {t('viewModule')}
+                        {t('delete')}
                       </Button>
-                    )}
+                    </div>
                   </CardContent>
                 </Card>
               );
