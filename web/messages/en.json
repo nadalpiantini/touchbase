@@ -28,6 +28,25 @@
         "title": "Mobile Access",
         "description": "Manage your team from any device"
       }
+    },
+    "stats": {
+      "title": "Results That Speak",
+      "organizations": {
+        "label": "Organizations",
+        "value": "500+"
+      },
+      "players": {
+        "label": "Active Players",
+        "value": "10K+"
+      },
+      "teams": {
+        "label": "Teams Managed",
+        "value": "2K+"
+      },
+      "satisfaction": {
+        "label": "Satisfaction",
+        "value": "98%"
+      }
     }
   },
   "login": {

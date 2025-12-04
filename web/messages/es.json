@@ -28,6 +28,25 @@
         "title": "Acceso Móvil",
         "description": "Gestiona tu equipo desde cualquier dispositivo"
       }
+    },
+    "stats": {
+      "title": "Resultados que Hablan",
+      "organizations": {
+        "label": "Organizaciones",
+        "value": "500+"
+      },
+      "players": {
+        "label": "Jugadores Activos",
+        "value": "10K+"
+      },
+      "teams": {
+        "label": "Equipos Gestionados",
+        "value": "2K+"
+      },
+      "satisfaction": {
+        "label": "Satisfacción",
+        "value": "98%"
+      }
     }
   },
   "login": {
