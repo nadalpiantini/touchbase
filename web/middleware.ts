@@ -1,4 +1,5 @@
 import type { NextRequest } from "next/server";
+import { NextResponse } from "next/server";
 import createIntlMiddleware from 'next-intl/middleware';
 import { locales, defaultLocale } from './i18n/config';
 
@@ -6,10 +7,15 @@ import { locales, defaultLocale } from './i18n/config';
 const intlMiddleware = createIntlMiddleware({
   locales,
   defaultLocale,
-  localePrefix: 'always'
+  localePrefix: 'as-needed' // Only add locale prefix when not using default locale
 });
 
 export async function middleware(request: NextRequest) {
+  // Skip middleware for root path - serve app/page.tsx directly without locale
+  if (request.nextUrl.pathname === '/') {
+    return NextResponse.next();
+  }
+  
   return intlMiddleware(request);
 }
 
@@ -22,6 +28,7 @@ export const config = {
      * - favicon.ico (favicon file)
      * - public folder
      * - legacy (PHP proxy)
+     * - root path (/) - handled separately in middleware function
      */
     "/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$|legacy).*)",
   ],
