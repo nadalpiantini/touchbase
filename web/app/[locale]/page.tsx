@@ -46,18 +46,16 @@ export default async function HomePage({
         <section className="min-h-[85vh] sm:min-h-[90vh] flex items-center justify-center px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20 xl:py-24">
           <div className="w-full max-w-6xl mx-auto">
             <div className="text-center space-y-8 sm:space-y-12 lg:space-y-16 xl:space-y-20">
-              {/* Logo Section - Maintained exactly as is */}
+              {/* Logo Section - Minimalist baseball club style */}
               <div className="flex justify-center animate-fade-in">
-                <div className="bg-[--color-tb-bone] p-3 sm:p-4 md:p-6 border-6 sm:border-8 border-[--color-tb-shadow] shadow-[8px_8px_0_0_rgba(62,62,62,1)] sm:shadow-[12px_12px_0_0_rgba(62,62,62,1)]">
-                  <Image
-                    src="/touchbase-logo.png"
-                    alt={t('hero.headline')}
-                    width={400}
-                    height={400}
-                    priority
-                    className="w-auto h-24 sm:h-32 md:h-40 lg:h-48 xl:h-56"
-                  />
-                </div>
+                <Image
+                  src="/touchbase-logo.png"
+                  alt={t('hero.headline')}
+                  width={400}
+                  height={400}
+                  priority
+                  className="w-auto h-24 sm:h-32 md:h-40 lg:h-48 xl:h-56 drop-shadow-lg"
+                />
               </div>
 
               {/* Hero Headline - Enhanced */}
