@@ -12,13 +12,13 @@ export default async function HomePage({
 
   return (
     <main className="min-h-screen flex flex-col items-center justify-center" style={{ backgroundColor: 'var(--color-tb-bone)' }}>
-      {/* Logo - Clickable to dashboard */}
+      {/* Logo with slogan - Clickable to dashboard */}
       <Link href={`/${locale}/dashboard`} className="flex justify-center cursor-pointer hover:opacity-90 transition-opacity duration-200">
         <Image
-          src="/touchbase-logo.png"
-          alt="TouchBase"
-          width={400}
-          height={400}
+          src="/touchbase-slogan-logo.png"
+          alt="TouchBase - Your dugout in the cloud"
+          width={600}
+          height={600}
           priority
           className="w-auto h-32 sm:h-40 md:h-48 lg:h-56"
         />
