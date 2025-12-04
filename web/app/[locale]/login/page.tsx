@@ -6,7 +6,6 @@ import { useRouter } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import { useTranslations, useLocale } from 'next-intl';
-import { LanguageSelector } from '@/components/LanguageSelector';
 
 export default function LoginPage() {
   const t = useTranslations('login');
@@ -60,31 +59,32 @@ export default function LoginPage() {
   };
 
   return (
-    <main className="min-h-screen flex items-center justify-center bg-[--color-tb-beige]/20 relative">
-      {/* Language Selector */}
-      <div className="absolute top-4 right-4 z-10">
-        <LanguageSelector />
+    <main className="min-h-screen flex flex-col items-center justify-center" style={{ backgroundColor: 'var(--color-tb-bone)' }}>
+      {/* Logo */}
+      <div className="flex justify-center mb-8">
+        <Image
+          src="/touchbase-logo.png"
+          alt={t('logoAlt')}
+          width={400}
+          height={400}
+          priority
+          className="w-auto h-24 sm:h-32 md:h-40 lg:h-48"
+        />
       </div>
 
-      <div className="max-w-md w-full space-y-8">
-        <div className="flex flex-col items-center">
-          <Image
-            src="/touchbase-slogan-logo.png"
-            alt="TouchBase - Your dugout in the cloud"
-            width={600}
-            height={600}
-            priority
-            className="w-auto h-50 mb-6"
-          />
-          <h2 className="text-center text-3xl font-display font-bold text-[--color-tb-navy]">
-            {t('title')}
-          </h2>
-          <p className="mt-2 text-center text-sm font-sans text-[--color-tb-shadow]">
-            {t('subtitle')}
-          </p>
-        </div>
+      {/* Login Form - Centered with margins */}
+      <div className="w-full max-w-md px-4 sm:px-6">
+        <div className="bg-white rounded-2xl shadow-dugout border border-[--color-tb-line] p-6 sm:p-8 space-y-6">
+          <div className="text-center">
+            <h2 className="text-2xl sm:text-3xl font-display font-bold text-[--color-tb-navy]">
+              {t('title')}
+            </h2>
+            <p className="mt-2 text-sm font-sans text-[--color-tb-shadow]">
+              {t('subtitle')}
+            </p>
+          </div>
 
-        <form className="mt-8 space-y-6" onSubmit={handleLogin}>
+          <form className="space-y-6" onSubmit={handleLogin}>
           <div className="space-y-4">
             <div>
               <label htmlFor="email" className="block text-sm font-sans font-medium text-[--color-tb-navy] mb-2">
@@ -146,7 +146,8 @@ export default function LoginPage() {
               {t('footer.firstTime')} <Link href={`/${locale}/signup`} className="font-medium text-[--color-tb-navy] hover:text-[--color-tb-stitch] transition">{t('footer.createAccount')}</Link>
             </p>
           </div>
-        </form>
+          </form>
+        </div>
       </div>
     </main>
   );

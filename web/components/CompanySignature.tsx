@@ -1,13 +1,23 @@
 'use client';
 
+import Image from 'next/image';
+
 export function CompanySignature() {
   return (
-    <div className="fixed bottom-6 right-6 z-50 pointer-events-none">
-      <div className="flex items-center gap-1.5 text-[--color-tb-shadow]/35 text-[11px] font-sans font-light tracking-[0.15em] uppercase select-none">
-        <span className="opacity-50 font-extralight">by</span>
-        <span className="opacity-75 font-light">EMPLEAIDO</span>
-        <span className="opacity-30 font-extralight">&</span>
-        <span className="opacity-75 font-light">ALED SYSTEMS</span>
+    <div className="w-full flex items-center justify-center pb-2 pointer-events-none">
+      <div className="flex items-center justify-center opacity-30">
+        {/* EMPLEAIDO Logo */}
+        <div className="relative h-2.5 w-auto">
+          <Image
+            src="/logos/empleaido-logo.png"
+            alt="EMPLEAIDO"
+            width={50}
+            height={10}
+            className="object-contain h-full w-auto"
+            unoptimized
+            priority={false}
+          />
+        </div>
       </div>
     </div>
   );

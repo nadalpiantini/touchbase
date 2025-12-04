@@ -2,6 +2,7 @@ import { ReactNode } from "react";
 import { supabaseServer } from "@/lib/supabase/server";
 import { redirect } from "next/navigation";
 import { getLocale } from "next-intl/server";
+import { headers } from "next/headers";
 import { CompanySignature } from "@/components/CompanySignature";
 import { ResponsiveNav } from "@/components/navigation/ResponsiveNav";
 import SignOutButton from "@/components/navigation/SignOutButton";
@@ -14,27 +15,35 @@ export default async function ProtectedLayout({
   const s = await supabaseServer();
   const { data: { user }, error: userError } = await s.auth.getUser();
   const locale = await getLocale();
+  
+  // Admin bypass - allow access without auth for admin backdoor in development
+  const isAdminBypass = process.env.NODE_ENV === 'development';
 
-  if (userError || !user) {
+  if ((userError || !user) && !isAdminBypass) {
     redirect(`/${locale}/login`);
   }
 
-  // Get user role from membership
-  const { data: profile } = await s
-    .from("touchbase_profiles")
-    .select("default_org_id")
-    .eq("id", user.id)
-    .single();
-
+  // Get user role from membership (only if user exists)
   let userRole: string | undefined;
-  if (profile?.default_org_id) {
-    const { data: membership } = await s
-      .from("touchbase_memberships")
-      .select("role")
-      .eq("org_id", profile.default_org_id)
-      .eq("user_id", user.id)
+  let userEmail = "";
+  
+  if (user) {
+    userEmail = user.email || "";
+    const { data: profile } = await s
+      .from("touchbase_profiles")
+      .select("default_org_id")
+      .eq("id", user.id)
       .single();
-    userRole = membership?.role;
+
+    if (profile?.default_org_id) {
+      const { data: membership } = await s
+        .from("touchbase_memberships")
+        .select("role")
+        .eq("org_id", profile.default_org_id)
+        .eq("user_id", user.id)
+        .single();
+      userRole = membership?.role;
+    }
   }
 
   // Define navigation items with role-based visibility
@@ -58,7 +67,7 @@ export default async function ProtectedLayout({
       <ResponsiveNav
         locale={locale}
         userRole={userRole}
-        userEmail={user.email || ""}
+        userEmail={userEmail}
         navItems={navItems}
         logoHref={`/${locale}/dashboard`}
       />
