@@ -81,7 +81,7 @@ export default function SignUpPage() {
         <div className="flex flex-col items-center">
           <Image
             src="/touchbase-slogan-logo.png"
-            alt="TouchBase - Your dugout in the cloud"
+            alt={t('logoAlt')}
             width={300}
             height={300}
             priority

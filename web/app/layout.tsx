@@ -27,8 +27,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "TouchBase - Your Dugout in the Cloud",
-  description: "Sistema moderno de gestión de clubes deportivos. Your dugout in the cloud.",
+  title: "TouchBase",
+  description: "Sports management and life skills education platform",
   icons: {
     icon: [
       { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
@@ -47,7 +47,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="es" suppressHydrationWarning>
+    <html suppressHydrationWarning>
       <body className={`${oswald.variable} ${inter.variable} ${lobsterTwo.variable} ${geistMono.variable} antialiased font-sans`}>
         <a href="#main-content" className="skip-to-main">
           Skip to main content

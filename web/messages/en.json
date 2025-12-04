@@ -52,6 +52,7 @@
   "login": {
     "title": "TouchBase Login",
     "subtitle": "Access your sports management system",
+    "logoAlt": "TouchBase - Your dugout in the cloud",
     "form": {
       "emailPlaceholder": "your@email.com",
       "passwordPlaceholder": "Your password",
@@ -66,6 +67,7 @@
   "signup": {
     "title": "Create TouchBase Account",
     "subtitle": "Sports management system",
+    "logoAlt": "TouchBase - Your dugout in the cloud",
     "form": {
       "emailPlaceholder": "your@email.com",
       "passwordPlaceholder": "Minimum 6 characters",

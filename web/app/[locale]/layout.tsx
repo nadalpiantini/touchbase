@@ -17,14 +17,15 @@ export default async function LocaleLayout({
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
-  setRequestLocale(locale);
   // Validate locale
   if (!locales.includes(locale as typeof locales[number])) {
     notFound();
   }
-
-  // Get messages for the current request locale
-  const messages = await getMessages();
+  
+  setRequestLocale(locale);
+  
+  // Get messages for the current request locale - pass locale explicitly
+  const messages = await getMessages({ locale });
 
   return (
     <AnalyticsProvider>

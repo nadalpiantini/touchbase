@@ -5,7 +5,6 @@ import { getLocale } from "next-intl/server";
 import { requireStudent } from "@/lib/auth/middleware-helpers";
 import { ResponsiveNav } from "@/components/navigation/ResponsiveNav";
 import SignOutButton from "@/components/navigation/SignOutButton";
-import { CompanySignature } from "@/components/CompanySignature";
 
 export default async function StudentLayout({
   children
@@ -46,7 +45,6 @@ export default async function StudentLayout({
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {children}
       </main>
-      <CompanySignature />
     </div>
   );
 }

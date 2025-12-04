@@ -244,3 +244,4 @@ Antes de contactar a Supabase, verificar:
 **Estado**: Restricción activa - Acción urgente requerida
 
 
+
