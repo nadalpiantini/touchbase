@@ -5,30 +5,48 @@
 import { SupabaseClient } from "@supabase/supabase-js";
 import { redirect } from "next/navigation";
 import { getUserDefaultRole, isTeacher, isStudent, UserRole } from "./roles";
+import { DEV_USER_ID, DEV_ORG_ID, isDevMode } from "@/lib/dev-helpers";
 
 /**
  * Require authentication - redirects to login if not authenticated
  * In development mode, returns a mock user instead
  */
 export async function requireAuth(supabase: SupabaseClient) {
-  const isDevelopment = process.env.NODE_ENV !== 'production';
-  
   const { data: { user } } = await supabase.auth.getUser();
-  
+
   // In development, return mock user if no real user
-  if (!user && isDevelopment) {
+  if (!user && isDevMode()) {
     return {
-      id: 'dev-user-id',
+      id: DEV_USER_ID,
       email: 'dev@touchbase.local',
       user_metadata: {},
       app_metadata: {}
     } as any;
   }
-  
+
   if (!user) {
     redirect("/login");
   }
   return user;
+}
+
+/**
+ * Get current org_id for API routes
+ * Returns dev org in development mode if no auth
+ */
+export async function getCurrentOrgId(supabase: SupabaseClient): Promise<string | null> {
+  const { data: { user } } = await supabase.auth.getUser();
+
+  if (user) {
+    const { data: cur } = await supabase.rpc("touchbase_current_org");
+    return cur?.[0]?.org_id || null;
+  }
+
+  if (isDevMode()) {
+    return DEV_ORG_ID;
+  }
+
+  return null;
 }
 
 /**

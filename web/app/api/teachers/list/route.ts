@@ -1,26 +1,38 @@
 import { NextResponse } from "next/server";
-import { supabaseServer } from "@/lib/supabase/server";
+import { supabaseServer, supabaseAdmin } from "@/lib/supabase/server";
+import { isDevMode, DEV_ORG_ID } from "@/lib/dev-helpers";
 
 export async function GET(req: Request) {
   const s = await supabaseServer();
   const { data: { user } } = await s.auth.getUser();
-  
-  if (!user) {
+
+  // DEV MODE: Allow access without auth
+  if (!user && !isDevMode()) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
-  // Obtener org actual
-  const { data: cur } = await s.rpc("touchbase_current_org");
-  const current = cur?.[0];
-  
-  if (!current?.org_id) {
+  let orgId: string | null = null;
+
+  if (user) {
+    // Production: get org from RPC
+    const { data: cur } = await s.rpc("touchbase_current_org");
+    orgId = cur?.[0]?.org_id;
+  } else if (isDevMode()) {
+    // Dev mode: use mock org ID
+    orgId = DEV_ORG_ID;
+  }
+
+  if (!orgId) {
     return NextResponse.json({ error: "No default org" }, { status: 400 });
   }
 
-  const { data, error } = await s
+  // Use admin client in dev mode to bypass RLS
+  const client = isDevMode() && !user ? supabaseAdmin() : s;
+
+  const { data, error } = await client
     .from("touchbase_teachers")
     .select("*")
-    .eq("org_id", current.org_id)
+    .eq("org_id", orgId)
     .is("deleted_at", null)
     .order("created_at", { ascending: false });
 

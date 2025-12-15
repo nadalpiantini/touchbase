@@ -1,35 +1,50 @@
 import { NextResponse } from "next/server";
-import { supabaseServer } from "@/lib/supabase/server";
-import { requireAuth } from "@/lib/auth/middleware-helpers";
+import { supabaseServer, supabaseAdmin } from "@/lib/supabase/server";
+import { requireAuth, getCurrentOrgId } from "@/lib/auth/middleware-helpers";
+import { isDevMode, DEV_ORG_ID } from "@/lib/dev-helpers";
 
 export async function GET(req: Request) {
   try {
     const s = await supabaseServer();
-    await requireAuth(s);
+    const { data: { user } } = await s.auth.getUser();
 
-    const { data: cur } = await s.rpc("touchbase_current_org");
-    const current = cur?.[0];
-    
-    if (!current?.org_id) {
+    // DEV MODE: Allow access without auth
+    if (!user && !isDevMode()) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
+
+    let orgId: string | null = null;
+
+    if (user) {
+      const { data: cur } = await s.rpc("touchbase_current_org");
+      orgId = cur?.[0]?.org_id;
+    } else if (isDevMode()) {
+      orgId = DEV_ORG_ID;
+    }
+
+    if (!orgId) {
       return NextResponse.json({ error: "No default org" }, { status: 400 });
     }
 
     const url = new URL(req.url);
     const includeResults = url.searchParams.get("includeResults") === "true";
 
-    const testsRes = await s
+    // Use admin client in dev mode to bypass RLS
+    const client = isDevMode() && !user ? supabaseAdmin() : s;
+
+    const testsRes = await client
       .from("touchbase_placement_tests")
       .select("*")
-      .eq("org_id", current.org_id)
+      .eq("org_id", orgId)
       .is("deleted_at", null)
       .order("created_at", { ascending: false });
 
     let results = null;
     if (includeResults) {
-      const resultsRes = await s
+      const resultsRes = await client
         .from("touchbase_placement_test_results")
         .select("*")
-        .eq("org_id", current.org_id)
+        .eq("org_id", orgId)
         .order("taken_at", { ascending: false })
         .limit(50);
       results = resultsRes.data;

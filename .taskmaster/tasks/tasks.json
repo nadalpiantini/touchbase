@@ -2,7 +2,7 @@
   "master": {
     "tasks": [
       {
-        "id": "1",
+        "id": 1,
         "title": "Foundation Setup: Monorepo & Firebase Configuration",
         "description": "Initialize Turborepo monorepo structure, configure Firebase (Firestore, Auth, Storage), and set up base UI component library with Tailwind CSS",
         "status": "done",
@@ -14,7 +14,7 @@
         "subtasks": []
       },
       {
-        "id": "2",
+        "id": 2,
         "title": "Core UI Shell: Landing Page & Dashboard Layouts",
         "description": "Create landing page and skeleton dashboard layouts for player, teacher, and admin roles with navigation and responsive design",
         "status": "done",
@@ -28,7 +28,7 @@
         "updatedAt": "2025-12-03T23:19:00.486Z"
       },
       {
-        "id": "3",
+        "id": 3,
         "title": "Authentication & User Management System",
         "description": "Implement Firebase Authentication with multi-role support (player/teacher/admin), profile management with photo upload, and role-based access control",
         "status": "done",
@@ -42,7 +42,7 @@
         "updatedAt": "2025-12-03T23:24:28.840Z"
       },
       {
-        "id": "4",
+        "id": 4,
         "title": "Registration Modules: Player, Teacher & Class Registration",
         "description": "Build registration forms for players, teachers, and class creation with data persistence, image upload, and CSV export functionality",
         "status": "done",
@@ -57,7 +57,7 @@
         "updatedAt": "2025-12-03T23:28:21.319Z"
       },
       {
-        "id": "5",
+        "id": 5,
         "title": "Attendance System with Analytics & Streak Tracking",
         "description": "Implement attendance marking (present/late/absent), daily analytics dashboard, and streak tracking system with recovery mechanisms",
         "status": "done",
@@ -72,7 +72,7 @@
         "updatedAt": "2025-12-03T23:31:22.250Z"
       },
       {
-        "id": "6",
+        "id": 6,
         "title": "Scheduling System: Class Schedule Builder & Weekly Agenda",
         "description": "Create class schedule builder for teachers, weekly agenda view for students, and push notification system for schedule reminders",
         "status": "done",
@@ -86,7 +86,7 @@
         "updatedAt": "2025-12-03T23:33:34.734Z"
       },
       {
-        "id": "7",
+        "id": 7,
         "title": "Curriculum & Module Engine: Lesson Player & Progress Tracking",
         "description": "Build module structure (steps, content, quizzes, scenarios), interactive lesson player, quiz engine, and progress state persistence",
         "status": "done",
@@ -101,7 +101,7 @@
         "updatedAt": "2025-12-03T23:34:53.675Z"
       },
       {
-        "id": "8",
+        "id": 8,
         "title": "Gamification System: XP, Levels, Badges & Challenges",
         "description": "Implement XP calculation system, multi-level progression (global + per-skill), badge awards, streak system, and class challenges with leaderboards",
         "status": "done",
@@ -116,7 +116,7 @@
         "updatedAt": "2025-12-03T23:35:33.034Z"
       },
       {
-        "id": "9",
+        "id": 9,
         "title": "AI Integration: Player Coach, Teacher Assistant & Adaptive Learning",
         "description": "Build AI Gateway via Cloud Functions, player AI coach chat, teacher AI assistant for lesson planning, and adaptive learning engine with safety filters",
         "status": "done",
@@ -130,7 +130,7 @@
         "updatedAt": "2025-12-03T23:35:57.887Z"
       },
       {
-        "id": "10",
+        "id": 10,
         "title": "Analytics & Insights: Teacher Dashboard, Admin Analytics & Experiments",
         "description": "Build teacher analytics dashboard (skill heatmaps, at-risk indicators), admin analytics (adoption, engagement), early warning system, and A/B testing framework",
         "status": "done",
@@ -153,7 +153,51 @@
       "completedCount": 10,
       "tags": [
         "master"
-      ]
+      ],
+      "created": "2025-12-15T17:52:29.573Z",
+      "description": "Tasks for master context"
+    }
+  },
+  "qa-testing": {
+    "tasks": [
+      {
+        "id": 1,
+        "title": "Fix LoadingSpinner undefined in TeachersTable",
+        "description": "CRITICAL: components/teachers/TeachersTable.tsx line 49 throws ReferenceError because LoadingSpinner is not imported",
+        "details": "",
+        "testStrategy": "",
+        "status": "done",
+        "dependencies": [],
+        "priority": "high",
+        "subtasks": []
+      },
+      {
+        "id": 2,
+        "title": "Create mock org data for dev mode",
+        "description": "7 sections show JSON error because dev-org mock does not exist in Supabase. Create seed data or modify APIs to handle missing org gracefully.",
+        "details": "",
+        "testStrategy": "",
+        "status": "pending",
+        "dependencies": [],
+        "priority": "high",
+        "subtasks": []
+      },
+      {
+        "id": 3,
+        "title": "Fix OrgDropdown JSON error in navigation",
+        "description": "OrgDropdown component shows JSON parse error in navigation menu when org data is not available",
+        "details": "",
+        "testStrategy": "",
+        "status": "pending",
+        "dependencies": [],
+        "priority": "medium",
+        "subtasks": []
+      }
+    ],
+    "metadata": {
+      "created": "2025-12-15T17:52:29.573Z",
+      "updated": "2025-12-15T18:19:07.875Z",
+      "description": "QA Testing sistemático de todas las secciones"
     }
   }
 }

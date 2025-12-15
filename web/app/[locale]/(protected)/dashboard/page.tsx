@@ -12,22 +12,30 @@ export default async function DashboardPage({
   const t = await getTranslations('dashboard');
   const s = await supabaseServer();
 
+  // DEV MODE bypass
+  const isDevBypass = process.env.NODE_ENV === 'development';
+
   // 1) Obtener usuario autenticado
   const { data: { user }, error: userError } = await s.auth.getUser();
-  
-  if (userError || !user) {
+
+  if ((userError || !user) && !isDevBypass) {
     redirect(`/${locale}/login`);
   }
 
+  // Mock user for dev mode - use consistent UUIDs that match seed data
+  const DEV_USER_ID = "00000000-0000-0000-0000-000000000002";
+  const DEV_ORG_ID = "00000000-0000-0000-0000-000000000001";
+  const effectiveUser = user || { id: DEV_USER_ID, email: 'dev@touchbase.local' };
+
   // 2) Obtener profile para ver si tiene default_org_id
-  const { data: profile } = await s
+  const { data: profile } = user ? await s
       .from("touchbase_profiles")
       .select("id, full_name, default_org_id")
     .eq("id", user.id)
-      .single();
+      .single() : { data: null };
 
-  // 3) Si NO tiene org aún, mostrar onboarding
-  if (!profile?.default_org_id) {
+  // 3) Si NO tiene org aún, mostrar onboarding (skip in dev mode)
+  if (!profile?.default_org_id && !isDevBypass) {
     return (
       <main className="min-h-screen bg-[--color-tb-bone]">
         <div className="max-w-4xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
@@ -49,27 +57,41 @@ export default async function DashboardPage({
   }
 
   // 4) Si tiene org, obtener datos y mostrar dashboard normal
-  const { data: org } = await s
-    .from("touchbase_organizations")
-    .select("id, name, slug")
-    .eq("id", profile.default_org_id)
-    .single();
+  // DEV MODE: Skip DB queries and use mock data
+  let org = null;
+  let membership = null;
 
-  const { data: membership } = await s
-      .from("touchbase_memberships")
-      .select("role")
-    .eq("org_id", profile?.default_org_id)
-    .eq("user_id", user.id)
+  if (profile?.default_org_id && user) {
+    const { data: orgData } = await s
+      .from("touchbase_organizations")
+      .select("id, name, slug")
+      .eq("id", profile.default_org_id)
       .single();
+    org = orgData;
+
+    const { data: membershipData } = await s
+        .from("touchbase_memberships")
+        .select("role")
+      .eq("org_id", profile.default_org_id)
+      .eq("user_id", user.id)
+        .single();
+    membership = membershipData;
+  } else if (isDevBypass) {
+    // Mock data for dev mode - use consistent UUIDs that match seed data
+    org = { id: DEV_ORG_ID, name: 'Dev Organization', slug: 'dev-org' };
+    membership = { role: 'owner' };
+  }
 
   const role = membership?.role;
 
-  // Redirect based on role
-  if (role === 'teacher') {
-    redirect(`/${locale}/teacher/dashboard`);
-  }
-  if (role === 'student') {
-    redirect(`/${locale}/student/dashboard`);
+  // Redirect based on role (skip in dev mode to stay on main dashboard)
+  if (!isDevBypass) {
+    if (role === 'teacher') {
+      redirect(`/${locale}/teacher/dashboard`);
+    }
+    if (role === 'student') {
+      redirect(`/${locale}/student/dashboard`);
+    }
   }
 
   return (

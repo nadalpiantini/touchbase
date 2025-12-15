@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import { Badge } from "@/components/ui";
+import { Badge, LoadingSpinner, Alert } from "@/components/ui";
 import { CSVExportButton } from '@/components/export/CSVExportButton';
 
 type Teacher = {

@@ -1,18 +1,33 @@
 import { NextResponse } from "next/server";
-import { supabaseServer } from "@/lib/supabase/server";
+import { supabaseServer, supabaseAdmin } from "@/lib/supabase/server";
 import { requireAuth } from "@/lib/auth/middleware-helpers";
+import { isDevMode, DEV_ORG_ID } from "@/lib/dev-helpers";
 
 export async function GET(req: Request) {
   try {
     const s = await supabaseServer();
-    await requireAuth(s);
+    const { data: { user } } = await s.auth.getUser();
 
-    const { data: cur } = await s.rpc("touchbase_current_org");
-    const current = cur?.[0];
-    
-    if (!current?.org_id) {
+    // DEV MODE: Allow access without auth
+    if (!user && !isDevMode()) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
+
+    let orgId: string | null = null;
+
+    if (user) {
+      const { data: cur } = await s.rpc("touchbase_current_org");
+      orgId = cur?.[0]?.org_id;
+    } else if (isDevMode()) {
+      orgId = DEV_ORG_ID;
+    }
+
+    if (!orgId) {
       return NextResponse.json({ error: "No default org" }, { status: 400 });
     }
+
+    // Use admin client in dev mode to bypass RLS
+    const client = isDevMode() && !user ? supabaseAdmin() : s;
 
     const url = new URL(req.url);
     const type = url.searchParams.get("type") || "all"; // all, wellness, activities, logs
@@ -20,26 +35,26 @@ export async function GET(req: Request) {
     const results: any = {};
 
     if (type === "all" || type === "wellness") {
-      const wellnessRes = await s
+      const wellnessRes = await client
         .from("touchbase_wellness_programs")
         .select("*")
-        .eq("org_id", current.org_id)
+        .eq("org_id", orgId)
         .is("deleted_at", null)
         .order("start_date", { ascending: false });
       results.wellnessPrograms = wellnessRes.data || [];
     }
 
     if (type === "all" || type === "activities") {
-      const activitiesRes = await s
+      const activitiesRes = await client
         .from("touchbase_extracurricular_activities")
         .select(`
           *,
           touchbase_activity_participants (student_id)
         `)
-        .eq("org_id", current.org_id)
+        .eq("org_id", orgId)
         .is("deleted_at", null)
         .order("activity_date", { ascending: false });
-      
+
       const activities = (activitiesRes.data || []).map((activity: any) => ({
         ...activity,
         participant_count: activity.touchbase_activity_participants?.length || 0
@@ -48,10 +63,10 @@ export async function GET(req: Request) {
     }
 
     if (type === "all" || type === "logs") {
-      const logsRes = await s
+      const logsRes = await client
         .from("touchbase_personal_development_logs")
         .select("*")
-        .eq("org_id", current.org_id)
+        .eq("org_id", orgId)
         .order("logged_at", { ascending: false })
         .limit(50);
       results.logs = logsRes.data || [];

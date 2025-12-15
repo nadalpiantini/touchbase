@@ -25,8 +25,12 @@ export default async function ProtectedLayout({
   // Get user role from membership (only if user exists)
   let userRole: string | undefined;
   let userEmail = "";
-  
-  if (user) {
+
+  // DEV MODE: Mock user with full admin access
+  if (isAdminBypass && !user) {
+    userRole = "owner";
+    userEmail = "dev@touchbase.local";
+  } else if (user) {
     userEmail = user.email || "";
     const { data: profile } = await s
       .from("touchbase_profiles")
