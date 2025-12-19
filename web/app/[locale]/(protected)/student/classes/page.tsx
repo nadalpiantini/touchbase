@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
-import { Card, CardContent, CardHeader, CardTitle, Button, Badge, Input } from "@/components/ui";
+import { Card, CardContent, CardHeader, CardTitle, Button, Badge, Input, LoadingSpinner, Alert } from "@/components/ui";
 import { Class } from "@/lib/types/education";
 import { supabaseClient } from "@/lib/supabase/client";
 import { useCurrentOrg } from "@/lib/hooks/useCurrentOrg";
@@ -96,7 +96,11 @@ export default function StudentClassesPage() {
   };
 
   if (loading) {
-    return <div className="text-center py-12">{t('loading')}</div>;
+    return (
+      <div className="flex justify-center py-12">
+        <LoadingSpinner size="lg" text={t('loading')} />
+      </div>
+    );
   }
 
   return (
@@ -124,7 +128,7 @@ export default function StudentClassesPage() {
             </Button>
           </div>
           {error && (
-            <p className="text-red-600 text-sm mt-2">{error}</p>
+            <Alert variant="error" className="mt-3">{error}</Alert>
           )}
         </CardContent>
       </Card>

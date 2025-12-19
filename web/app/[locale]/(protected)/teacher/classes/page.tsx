@@ -39,7 +39,7 @@ export default async function TeacherClassesPage() {
           </CardContent>
         </Card>
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="thirds-card-grid">
           {classes.map((classItem) => (
             <Card key={classItem.id} className="hover:shadow-dugout transition-shadow">
               <CardHeader>

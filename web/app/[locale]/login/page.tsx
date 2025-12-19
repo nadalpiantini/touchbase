@@ -70,7 +70,7 @@ export default function LoginPage() {
   };
 
   return (
-    <main className="thirds-auth-layout" style={{ backgroundColor: 'var(--color-tb-bone)' }}>
+    <main className="thirds-auth-layout bg-[--color-tb-bone]">
       {/* Left Third - Branding panel (hidden on mobile) */}
       <div className="thirds-auth-brand">
         <div className="w-32 h-32 rounded-full bg-[--color-tb-red]/10 border-4 border-[--color-tb-red] flex items-center justify-center shadow-dugout mb-6">

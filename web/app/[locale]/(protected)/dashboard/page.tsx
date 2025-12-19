@@ -110,8 +110,8 @@ export default async function DashboardPage({
             </div>
           </div>
 
-          {/* Stats Grid */}
-          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          {/* Stats Grid - 4 KPIs */}
+          <div className="fourths-stats-grid">
             <div className="bg-white overflow-hidden shadow-dugout rounded-2xl border border-[--color-tb-line]">
               <div className="p-5">
                 <div className="flex items-center">
