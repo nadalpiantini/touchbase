@@ -59,9 +59,61 @@
       "submitButton": "Sign In",
       "submittingButton": "Signing in..."
     },
+    "errors": {
+      "invalidCredentials": "Invalid email or password. Please try again.",
+      "emailNotConfirmed": "Please verify your email address before signing in.",
+      "tooManyRequests": "Too many login attempts. Please wait a few minutes.",
+      "networkError": "Connection error. Please check your internet.",
+      "generic": "An error occurred. Please try again."
+    },
     "footer": {
       "firstTime": "First time?",
-      "createAccount": "Create an account"
+      "createAccount": "Create an account",
+      "forgotPassword": "Forgot your password?"
+    }
+  },
+  "forgotPassword": {
+    "title": "Reset Password",
+    "subtitle": "Enter your email and we'll send you a reset link.",
+    "form": {
+      "emailPlaceholder": "your@email.com",
+      "submitButton": "Send Reset Link",
+      "submittingButton": "Sending..."
+    },
+    "success": {
+      "title": "Check your email",
+      "message": "We've sent you a link to reset your password. Please check your inbox.",
+      "backToLogin": "Back to login"
+    },
+    "errors": {
+      "generic": "Error sending reset email. Please try again."
+    },
+    "footer": {
+      "backToLogin": "Back to login"
+    }
+  },
+  "resetPassword": {
+    "title": "Set New Password",
+    "subtitle": "Enter your new password below.",
+    "loading": "Verifying link...",
+    "form": {
+      "passwordPlaceholder": "New password (min. 6 characters)",
+      "confirmPasswordPlaceholder": "Confirm new password",
+      "submitButton": "Update Password",
+      "submittingButton": "Updating..."
+    },
+    "success": {
+      "title": "Password Updated!",
+      "message": "Your password has been successfully updated.",
+      "loginButton": "Sign In"
+    },
+    "errors": {
+      "passwordMismatch": "Passwords do not match",
+      "passwordTooShort": "Password must be at least 6 characters",
+      "generic": "Error updating password. Please try again.",
+      "invalidLink": "Invalid or Expired Link",
+      "invalidLinkMessage": "This password reset link is invalid or has expired.",
+      "requestNewLink": "Request New Link"
     }
   },
   "signup": {
@@ -82,7 +134,11 @@
     "errors": {
       "passwordMismatch": "Passwords do not match",
       "passwordTooShort": "Password must be at least 6 characters",
-      "genericError": "Error creating account"
+      "emailInUse": "This email is already registered. Please sign in instead.",
+      "invalidEmail": "Please enter a valid email address.",
+      "weakPassword": "Password is too weak. Please use a stronger password.",
+      "tooManyRequests": "Too many signup attempts. Please wait a few minutes.",
+      "genericError": "Error creating account. Please try again."
     },
     "footer": {
       "hasAccount": "Already have an account?",

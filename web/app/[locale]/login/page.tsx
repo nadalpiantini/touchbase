@@ -50,37 +50,63 @@ export default function LoginPage() {
       // Use window.location for a full page reload to ensure session is set
       window.location.href = `/${locale}/dashboard`;
     } catch (err: unknown) {
-      const errorMessage = err instanceof Error 
-        ? err.message 
-        : "Error al iniciar sesión. Verifica tus credenciales.";
-      setError(errorMessage);
+      // Translate Supabase error messages
+      let errorKey = 'generic';
+      if (err instanceof Error) {
+        const msg = err.message.toLowerCase();
+        if (msg.includes('invalid login credentials') || msg.includes('invalid email or password')) {
+          errorKey = 'invalidCredentials';
+        } else if (msg.includes('email not confirmed')) {
+          errorKey = 'emailNotConfirmed';
+        } else if (msg.includes('rate limit') || msg.includes('too many requests')) {
+          errorKey = 'tooManyRequests';
+        } else if (msg.includes('network') || msg.includes('fetch')) {
+          errorKey = 'networkError';
+        }
+      }
+      setError(t(`errors.${errorKey}`));
       setLoading(false);
     }
   };
 
   return (
     <main className="min-h-screen flex items-center justify-center" style={{ backgroundColor: 'var(--color-tb-bone)' }}>
-      {/* Login Form - Small, centered, minimal */}
-      <div className="w-full max-w-sm px-6">
-        <div className="bg-white rounded-2xl shadow-dugout border border-[--color-tb-line] p-8 space-y-8">
-          {/* Logo - Small */}
-          <div className="flex justify-center">
-            <Image
-              src="/touchbase-logo.png"
-              alt={t('logoAlt')}
-              width={200}
-              height={200}
-              priority
-              className="w-auto h-16 sm:h-20"
-            />
+      {/* Rule of Thirds: 3-column grid with form at right 2/3 */}
+      <div className="w-full max-w-4xl mx-auto px-6">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center">
+          {/* Left Third - Decorative branding element */}
+          <div className="hidden lg:flex flex-col items-center justify-center space-y-6 lg:pr-8">
+            <div className="w-32 h-32 rounded-full bg-[--color-tb-red]/10 border-4 border-[--color-tb-red] flex items-center justify-center shadow-dugout">
+              <svg className="w-16 h-16 text-[--color-tb-red]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1" />
+              </svg>
+            </div>
+            <p className="text-center text-[--color-tb-shadow] font-sans text-sm max-w-[200px]">
+              {locale === 'es' ? 'Gestiona tu equipo deportivo de forma profesional' : 'Manage your sports team professionally'}
+            </p>
           </div>
 
-          {/* Title - Large, centered */}
-          <div className="text-center">
-            <h2 className="text-3xl sm:text-4xl font-display font-bold text-[--color-tb-navy]">
-              {t('title')}
-            </h2>
-          </div>
+          {/* Right 2/3 - Login Form */}
+          <div className="lg:col-span-2">
+            <div className="bg-white rounded-2xl shadow-dugout border border-[--color-tb-line] p-8 space-y-8 max-w-sm mx-auto lg:mx-0 lg:ml-auto">
+              {/* Logo - Small */}
+              <div className="flex justify-center">
+                <Image
+                  src="/touchbase-logo.png"
+                  alt={t('logoAlt')}
+                  width={200}
+                  height={200}
+                  priority
+                  className="w-auto h-16 sm:h-20"
+                />
+              </div>
+
+              {/* Title - Large, centered */}
+              <div className="text-center">
+                <h2 className="text-3xl sm:text-4xl font-display font-bold text-[--color-tb-navy]">
+                  {t('title')}
+                </h2>
+              </div>
 
           <form className="space-y-6" onSubmit={handleLogin}>
             <div className="space-y-5">
@@ -128,12 +154,19 @@ export default function LoginPage() {
               </button>
             </div>
 
-            <div className="text-center">
+            <div className="text-center space-y-3">
+              <p className="text-sm font-sans text-[--color-tb-shadow]">
+                <Link href={`/${locale}/forgot-password`} className="font-medium text-[--color-tb-navy] hover:text-[--color-tb-stitch] transition">
+                  {t('footer.forgotPassword')}
+                </Link>
+              </p>
               <p className="text-base font-sans text-[--color-tb-shadow]">
                 {t('footer.firstTime')} <Link href={`/${locale}/signup`} className="font-medium text-[--color-tb-navy] hover:text-[--color-tb-stitch] transition">{t('footer.createAccount')}</Link>
               </p>
             </div>
           </form>
+            </div>
+          </div>
         </div>
       </div>
     </main>

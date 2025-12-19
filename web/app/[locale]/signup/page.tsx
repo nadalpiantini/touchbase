@@ -1,15 +1,12 @@
 "use client";
 
 import { useState } from "react";
-import { supabaseClient } from "@/lib/supabase/client";
+import { supabaseBrowser } from "@/lib/supabase/client";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import { useTranslations, useLocale } from 'next-intl';
 import { LanguageSelector } from '@/components/LanguageSelector';
-
-// Use the singleton client at module level
-const supabase = supabaseClient!;
 
 export default function SignUpPage() {
   const t = useTranslations('signup');
@@ -43,28 +40,38 @@ export default function SignUpPage() {
     }
 
     try {
-      // En desarrollo, podemos desactivar confirmación de email
-      // pero la mejor solución es configurar SMTP personalizado en Supabase
+      const supabase = supabaseBrowser();
+
       const { error } = await supabase.auth.signUp({
         email,
         password,
         options: {
-          // Solo en producción usar redirect de email
-          emailRedirectTo: process.env.NODE_ENV === 'production' 
-            ? `${window.location.origin}/auth/callback`
-            : undefined,
+          emailRedirectTo: `${window.location.origin}/auth/callback`,
         }
       });
 
       if (error) throw error;
 
       setSuccess(true);
-      // Redirigir al dashboard después de 2 segundos
       setTimeout(() => {
         router.push(`/${locale}/dashboard`);
       }, 2000);
     } catch (err: unknown) {
-      setError(err instanceof Error ? err.message : t('errors.genericError'));
+      // Translate Supabase error messages
+      let errorKey = 'genericError';
+      if (err instanceof Error) {
+        const msg = err.message.toLowerCase();
+        if (msg.includes('already registered') || msg.includes('already been registered')) {
+          errorKey = 'emailInUse';
+        } else if (msg.includes('invalid email') || msg.includes('email format')) {
+          errorKey = 'invalidEmail';
+        } else if (msg.includes('weak password') || msg.includes('password should')) {
+          errorKey = 'weakPassword';
+        } else if (msg.includes('rate limit') || msg.includes('too many')) {
+          errorKey = 'tooManyRequests';
+        }
+      }
+      setError(t(`errors.${errorKey}`));
     } finally {
       setLoading(false);
     }
@@ -77,23 +84,28 @@ export default function SignUpPage() {
         <LanguageSelector />
       </div>
 
-      <div className="max-w-md w-full space-y-8">
-        <div className="flex flex-col items-center">
-          <Image
-            src="/touchbase-slogan-logo.png"
-            alt={t('logoAlt')}
-            width={300}
-            height={300}
-            priority
-            className="w-auto h-25 mb-4"
-          />
-          <h2 className="text-center text-3xl font-display font-bold text-[--color-tb-navy]">
-            {t('title')}
-          </h2>
-          <p className="mt-2 text-center text-sm font-sans text-[--color-tb-shadow]">
-            {t('subtitle')}
-          </p>
-        </div>
+      {/* Rule of Thirds: 3-column grid with form at left 2/3 */}
+      <div className="w-full max-w-4xl mx-auto px-6">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center">
+          {/* Left 2/3 - Signup Form */}
+          <div className="lg:col-span-2">
+            <div className="max-w-md w-full space-y-8 mx-auto lg:mx-0 lg:mr-auto">
+              <div className="flex flex-col items-center">
+                <Image
+                  src="/touchbase-slogan-logo.png"
+                  alt={t('logoAlt')}
+                  width={300}
+                  height={300}
+                  priority
+                  className="w-auto h-25 mb-4"
+                />
+                <h2 className="text-center text-3xl font-display font-bold text-[--color-tb-navy]">
+                  {t('title')}
+                </h2>
+                <p className="mt-2 text-center text-sm font-sans text-[--color-tb-shadow]">
+                  {t('subtitle')}
+                </p>
+              </div>
 
         {success ? (
           <div className="rounded-md bg-green-50 p-4 border border-green-200">
@@ -184,16 +196,32 @@ export default function SignUpPage() {
               </button>
             </div>
 
-            <div className="flex items-center justify-between">
-              <div className="text-sm">
-                <Link href="/login" className="font-sans font-medium text-[--color-tb-navy] hover:text-[--color-tb-stitch] transition">
-                  {t('footer.hasAccount')} {t('footer.loginLink')}
+            <div className="text-center">
+              <p className="text-sm font-sans text-[--color-tb-shadow]">
+                {t('footer.hasAccount')}{' '}
+                <Link href={`/${locale}/login`} className="font-medium text-[--color-tb-navy] hover:text-[--color-tb-stitch] transition">
+                  {t('footer.loginLink')}
                 </Link>
-              </div>
+              </p>
             </div>
 
           </form>
         )}
+            </div>
+          </div>
+
+          {/* Right Third - Decorative branding element */}
+          <div className="hidden lg:flex flex-col items-center justify-center space-y-6 lg:pl-8">
+            <div className="w-32 h-32 rounded-full bg-[--color-tb-navy]/10 border-4 border-[--color-tb-navy] flex items-center justify-center shadow-dugout">
+              <svg className="w-16 h-16 text-[--color-tb-navy]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z" />
+              </svg>
+            </div>
+            <p className="text-center text-[--color-tb-shadow] font-sans text-sm max-w-[200px]">
+              {locale === 'es' ? 'Únete a miles de equipos que ya usan TouchBase' : 'Join thousands of teams already using TouchBase'}
+            </p>
+          </div>
+        </div>
       </div>
     </main>
   );

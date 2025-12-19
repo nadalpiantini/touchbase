@@ -59,9 +59,61 @@
       "submitButton": "Iniciar Sesión",
       "submittingButton": "Iniciando sesión..."
     },
+    "errors": {
+      "invalidCredentials": "Email o contraseña inválidos. Por favor intenta de nuevo.",
+      "emailNotConfirmed": "Por favor verifica tu correo electrónico antes de iniciar sesión.",
+      "tooManyRequests": "Demasiados intentos de inicio de sesión. Por favor espera unos minutos.",
+      "networkError": "Error de conexión. Por favor verifica tu internet.",
+      "generic": "Ocurrió un error. Por favor intenta de nuevo."
+    },
     "footer": {
       "firstTime": "¿Primera vez?",
-      "createAccount": "Crea una cuenta"
+      "createAccount": "Crea una cuenta",
+      "forgotPassword": "¿Olvidaste tu contraseña?"
+    }
+  },
+  "forgotPassword": {
+    "title": "Restablecer Contraseña",
+    "subtitle": "Ingresa tu email y te enviaremos un enlace para restablecer tu contraseña.",
+    "form": {
+      "emailPlaceholder": "tu@email.com",
+      "submitButton": "Enviar Enlace",
+      "submittingButton": "Enviando..."
+    },
+    "success": {
+      "title": "Revisa tu email",
+      "message": "Te hemos enviado un enlace para restablecer tu contraseña. Por favor revisa tu bandeja de entrada.",
+      "backToLogin": "Volver al login"
+    },
+    "errors": {
+      "generic": "Error al enviar el email. Por favor intenta de nuevo."
+    },
+    "footer": {
+      "backToLogin": "Volver al login"
+    }
+  },
+  "resetPassword": {
+    "title": "Nueva Contraseña",
+    "subtitle": "Ingresa tu nueva contraseña.",
+    "loading": "Verificando enlace...",
+    "form": {
+      "passwordPlaceholder": "Nueva contraseña (mín. 6 caracteres)",
+      "confirmPasswordPlaceholder": "Confirmar nueva contraseña",
+      "submitButton": "Actualizar Contraseña",
+      "submittingButton": "Actualizando..."
+    },
+    "success": {
+      "title": "¡Contraseña Actualizada!",
+      "message": "Tu contraseña ha sido actualizada exitosamente.",
+      "loginButton": "Iniciar Sesión"
+    },
+    "errors": {
+      "passwordMismatch": "Las contraseñas no coinciden",
+      "passwordTooShort": "La contraseña debe tener al menos 6 caracteres",
+      "generic": "Error al actualizar la contraseña. Por favor intenta de nuevo.",
+      "invalidLink": "Enlace Inválido o Expirado",
+      "invalidLinkMessage": "Este enlace de restablecimiento de contraseña es inválido o ha expirado.",
+      "requestNewLink": "Solicitar Nuevo Enlace"
     }
   },
   "signup": {
@@ -82,7 +134,11 @@
     "errors": {
       "passwordMismatch": "Las contraseñas no coinciden",
       "passwordTooShort": "La contraseña debe tener al menos 6 caracteres",
-      "genericError": "Error al crear la cuenta"
+      "emailInUse": "Este email ya está registrado. Por favor inicia sesión.",
+      "invalidEmail": "Por favor ingresa un email válido.",
+      "weakPassword": "La contraseña es muy débil. Por favor usa una más segura.",
+      "tooManyRequests": "Demasiados intentos. Por favor espera unos minutos.",
+      "genericError": "Error al crear la cuenta. Por favor intenta de nuevo."
     },
     "footer": {
       "hasAccount": "¿Ya tienes cuenta?",

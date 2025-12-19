@@ -26,9 +26,66 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://touchbase.app';
+
 export const metadata: Metadata = {
-  title: "TouchBase",
-  description: "Sports management and life skills education platform",
+  title: {
+    default: "TouchBase - Your Dugout in the Cloud",
+    template: "%s | TouchBase",
+  },
+  description: "Modern sports management platform. Manage players, coaches, schedules, and analytics all in one powerful platform built for modern sports organizations.",
+  keywords: ["sports management", "team management", "player tracking", "sports analytics", "coaching platform", "sports education"],
+  authors: [{ name: "TouchBase" }],
+  creator: "TouchBase",
+  publisher: "TouchBase",
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
+  metadataBase: new URL(siteUrl),
+  alternates: {
+    canonical: '/',
+    languages: {
+      'en': '/en',
+      'es': '/es',
+    },
+  },
+  openGraph: {
+    type: 'website',
+    locale: 'es_ES',
+    alternateLocale: 'en_US',
+    url: siteUrl,
+    siteName: 'TouchBase',
+    title: 'TouchBase - Your Dugout in the Cloud',
+    description: 'Modern sports management platform. Manage players, coaches, schedules, and analytics all in one powerful platform.',
+    images: [
+      {
+        url: '/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'TouchBase - Sports Management Platform',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'TouchBase - Your Dugout in the Cloud',
+    description: 'Modern sports management platform. Manage players, coaches, schedules, and analytics all in one powerful platform.',
+    images: ['/og-image.png'],
+    creator: '@touchbaseapp',
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
   icons: {
     icon: [
       { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
@@ -47,7 +104,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html suppressHydrationWarning>
+    <html lang="es" suppressHydrationWarning>
       <body className={`${oswald.variable} ${inter.variable} ${lobsterTwo.variable} ${geistMono.variable} antialiased font-sans`}>
         <a href="#main-content" className="skip-to-main">
           Skip to main content
