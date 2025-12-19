@@ -88,7 +88,7 @@ export default async function LandingPage({
                 href={`/${locale}/pricing`}
                 className="hidden sm:block text-[--color-tb-ink] hover:text-[--color-tb-red] font-display font-bold uppercase text-sm tracking-wide transition-colors"
               >
-                {locale === 'es' ? 'Precios' : 'Pricing'}
+                {t('nav.pricing')}
               </Link>
               <Link
                 href={`/${locale}/login`}
@@ -176,12 +176,10 @@ export default async function LandingPage({
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12 sm:mb-16">
             <div className="lg:col-span-2">
               <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-black uppercase text-[--color-tb-bone] mb-4">
-                {locale === 'es' ? 'Todo lo que necesitas' : 'Everything You Need'}
+                {t('features.sectionTitle')}
               </h2>
               <p className="text-lg sm:text-xl text-[--color-tb-bone]/80 font-sans max-w-xl">
-                {locale === 'es'
-                  ? 'Herramientas poderosas para gestionar tu organización deportiva.'
-                  : 'Powerful tools to manage your sports organization.'}
+                {t('features.sectionSubtitle')}
               </p>
             </div>
           </div>
@@ -192,9 +190,9 @@ export default async function LandingPage({
               { icon: <UsersIcon />, title: t('features.players.title'), desc: t('features.players.description') },
               { icon: <ChartIcon />, title: t('features.analytics.title'), desc: t('features.analytics.description') },
               { icon: <DeviceIcon />, title: t('features.mobile.title'), desc: t('features.mobile.description') },
-              { icon: <CalendarIcon />, title: locale === 'es' ? 'Programación' : 'Scheduling', desc: locale === 'es' ? 'Organiza partidos y eventos' : 'Organize games and events' },
-              { icon: <ShieldIcon />, title: locale === 'es' ? 'Seguridad' : 'Security', desc: locale === 'es' ? 'Datos protegidos' : 'Protected data' },
-              { icon: <BookIcon />, title: locale === 'es' ? 'Educación' : 'Education', desc: locale === 'es' ? 'Módulos de aprendizaje' : 'Learning modules' },
+              { icon: <CalendarIcon />, title: t('features.scheduling.title'), desc: t('features.scheduling.description') },
+              { icon: <ShieldIcon />, title: t('features.security.title'), desc: t('features.security.description') },
+              { icon: <BookIcon />, title: t('features.education.title'), desc: t('features.education.description') },
             ].map((feature, i) => (
               <div
                 key={i}
@@ -274,16 +272,16 @@ export default async function LandingPage({
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12 sm:mb-16">
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-black uppercase text-[--color-tb-bone]">
-              {locale === 'es' ? 'Cómo Funciona' : 'How It Works'}
+              {t('howItWorks.title')}
             </h2>
           </div>
 
           {/* Steps positioned at thirds */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-4">
             {[
-              { num: '1', title: locale === 'es' ? 'Crea tu cuenta' : 'Create Account', desc: locale === 'es' ? 'Regístrate gratis en minutos.' : 'Sign up for free in minutes.' },
-              { num: '2', title: locale === 'es' ? 'Agrega tu equipo' : 'Add Your Team', desc: locale === 'es' ? 'Invita jugadores y staff.' : 'Invite players and staff.' },
-              { num: '3', title: locale === 'es' ? 'Gestiona todo' : 'Manage Everything', desc: locale === 'es' ? 'Programa y rastrea estadísticas.' : 'Schedule and track stats.' },
+              { num: '1', title: t('howItWorks.step1.title'), desc: t('howItWorks.step1.description') },
+              { num: '2', title: t('howItWorks.step2.title'), desc: t('howItWorks.step2.description') },
+              { num: '3', title: t('howItWorks.step3.title'), desc: t('howItWorks.step3.description') },
             ].map((step, i) => (
               <div key={i} className="relative text-center lg:text-left">
                 {/* Connection line for desktop */}
@@ -313,12 +311,10 @@ export default async function LandingPage({
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center">
             <div className="lg:col-span-2">
               <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-black uppercase text-[--color-tb-bone] mb-4">
-                {locale === 'es' ? '¿Listo para empezar?' : 'Ready to Get Started?'}
+                {t('finalCta.title')}
               </h2>
               <p className="text-lg sm:text-xl text-[--color-tb-bone]/90 font-sans mb-8">
-                {locale === 'es'
-                  ? 'Únete a cientos de organizaciones deportivas que confían en TouchBase.'
-                  : 'Join hundreds of sports organizations that trust TouchBase.'}
+                {t('finalCta.subtitle')}
               </p>
               <Link
                 href={`/${locale}/signup`}

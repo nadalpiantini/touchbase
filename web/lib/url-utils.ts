@@ -31,16 +31,15 @@ export function getMagicLinkRedirectUrl(): string {
       return `${origin}/auth/callback`;
     }
 
-    // Si estamos en el dominio final (sujeto10.com subdomain)
-    if (host === 'touchbase.sujeto10.com') {
+    // Si estamos en el dominio final
+    if (host === 'www.touchbase.academy' || host === 'touchbase.academy') {
       return `${origin}/auth/callback`;
     }
   }
 
-  // Fallback a la URL de producción conocida de Vercel
-  // Esta se actualiza cuando tengamos el dominio final configurado
+  // Fallback a la URL de producción
   const fallbackUrl = process.env.NEXT_PUBLIC_SITE_URL ||
-    'https://touchbase-74y4upr6i-nadalpiantini-fcbc2d66.vercel.app';
+    'https://www.touchbase.academy';
 
   return `${fallbackUrl}/auth/callback`;
 }
@@ -55,14 +54,14 @@ export const ALLOWED_REDIRECT_URLS = [
   'http://localhost:3001/auth/callback',
   'http://127.0.0.1:3000/auth/callback',
 
-  // Vercel Preview/Production URLs
-  'https://touchbase-74y4upr6i-nadalpiantini-fcbc2d66.vercel.app/auth/callback',
-  'https://touchbase-*.vercel.app/auth/callback', // Pattern para todas las preview URLs
+  // Production domain
+  'https://www.touchbase.academy/auth/callback',
+  'https://www.touchbase.academy/es/auth/callback',
+  'https://www.touchbase.academy/en/auth/callback',
+  'https://touchbase.academy/auth/callback',
 
-  // Dominio final (cuando esté configurado)
-  'https://touchbase.sujeto10.com/auth/callback',
-
-  // URLs adicionales de Vercel (se pueden agregar según necesidad)
+  // Vercel Preview URLs (pattern for all preview deployments)
+  'https://touchbase-*.vercel.app/auth/callback',
   'https://touchbase-git-*.vercel.app/auth/callback',
 ];
 

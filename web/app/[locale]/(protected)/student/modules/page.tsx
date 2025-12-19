@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
-import { Card, CardContent, CardHeader, CardTitle, Badge, Button, ProgressBar } from "@/components/ui";
+import { Card, CardContent, CardHeader, CardTitle, Badge, Button, ProgressBar, LoadingSpinner, Alert } from "@/components/ui";
 import { Module } from "@/lib/types/education";
 import { useCurrentOrg } from "@/lib/hooks/useCurrentOrg";
 

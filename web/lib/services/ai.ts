@@ -42,11 +42,11 @@ function checkRateLimit(userId: string): boolean {
  * In production, use a proper content moderation API
  */
 function filterUnsafeContent(content: string): boolean {
-  const unsafeKeywords = [
+  const unsafeKeywords: string[] = [
     // Add keywords that should be filtered
     // This is a basic implementation - use proper moderation API in production
   ];
-  
+
   const lowerContent = content.toLowerCase();
   return !unsafeKeywords.some(keyword => lowerContent.includes(keyword));
 }

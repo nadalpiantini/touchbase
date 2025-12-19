@@ -15,7 +15,12 @@
       "login": "Iniciar Sesión",
       "getStarted": "Comenzar Gratis"
     },
+    "nav": {
+      "pricing": "Precios"
+    },
     "features": {
+      "sectionTitle": "Todo lo que necesitas",
+      "sectionSubtitle": "Herramientas poderosas para gestionar tu organización deportiva.",
       "players": {
         "title": "Gestión de Jugadores",
         "description": "Administra rosters, estadísticas y rendimiento"
@@ -27,7 +32,38 @@
       "mobile": {
         "title": "Acceso Móvil",
         "description": "Gestiona tu equipo desde cualquier dispositivo"
+      },
+      "scheduling": {
+        "title": "Programación",
+        "description": "Organiza partidos y eventos"
+      },
+      "security": {
+        "title": "Seguridad",
+        "description": "Datos protegidos"
+      },
+      "education": {
+        "title": "Educación",
+        "description": "Módulos de aprendizaje"
       }
+    },
+    "howItWorks": {
+      "title": "Cómo Funciona",
+      "step1": {
+        "title": "Crea tu cuenta",
+        "description": "Regístrate gratis en minutos."
+      },
+      "step2": {
+        "title": "Agrega tu equipo",
+        "description": "Invita jugadores y staff."
+      },
+      "step3": {
+        "title": "Gestiona todo",
+        "description": "Programa y rastrea estadísticas."
+      }
+    },
+    "finalCta": {
+      "title": "¿Listo para empezar?",
+      "subtitle": "Únete a cientos de organizaciones deportivas que confían en TouchBase."
     },
     "stats": {
       "title": "Resultados que Hablan",

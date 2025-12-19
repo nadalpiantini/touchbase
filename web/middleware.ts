@@ -1,5 +1,4 @@
 import type { NextRequest } from "next/server";
-import { NextResponse } from "next/server";
 import createIntlMiddleware from 'next-intl/middleware';
 import { locales, defaultLocale } from './i18n/config';
 
@@ -7,15 +6,11 @@ import { locales, defaultLocale } from './i18n/config';
 const intlMiddleware = createIntlMiddleware({
   locales,
   defaultLocale,
-  localePrefix: 'as-needed' // Only add locale prefix when not using default locale
+  localePrefix: 'always' // SEO best practice: always show locale in URL
 });
 
 export async function middleware(request: NextRequest) {
-  // Skip middleware for root path - serve app/page.tsx directly without locale
-  if (request.nextUrl.pathname === '/') {
-    return NextResponse.next();
-  }
-  
+  // Let the i18n middleware handle all routes including root
   return intlMiddleware(request);
 }
 

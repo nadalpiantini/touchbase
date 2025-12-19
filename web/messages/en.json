@@ -11,11 +11,16 @@
       "title": "Transform Your Sports Organization",
       "subtitle": "Manage players, coaches, schedules, and analytics all in one powerful platform. Built for modern sports organizations."
     },
+    "nav": {
+      "pricing": "Pricing"
+    },
     "cta": {
       "login": "Sign In",
       "getStarted": "Get Started Free"
     },
     "features": {
+      "sectionTitle": "Everything You Need",
+      "sectionSubtitle": "Powerful tools to manage your sports organization.",
       "players": {
         "title": "Player Management",
         "description": "Manage rosters, statistics and performance"
@@ -27,6 +32,18 @@
       "mobile": {
         "title": "Mobile Access",
         "description": "Manage your team from any device"
+      },
+      "scheduling": {
+        "title": "Scheduling",
+        "description": "Organize games and events"
+      },
+      "security": {
+        "title": "Security",
+        "description": "Protected data"
+      },
+      "education": {
+        "title": "Education",
+        "description": "Learning modules"
       }
     },
     "stats": {
@@ -47,6 +64,25 @@
         "label": "Satisfaction",
         "value": "98%"
       }
+    },
+    "howItWorks": {
+      "title": "How It Works",
+      "step1": {
+        "title": "Create Account",
+        "description": "Sign up for free in minutes."
+      },
+      "step2": {
+        "title": "Add Your Team",
+        "description": "Invite players and staff."
+      },
+      "step3": {
+        "title": "Manage Everything",
+        "description": "Schedule and track stats."
+      }
+    },
+    "finalCta": {
+      "title": "Ready to Get Started?",
+      "subtitle": "Join hundreds of sports organizations that trust TouchBase."
     }
   },
   "login": {

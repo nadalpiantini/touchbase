@@ -105,12 +105,14 @@ export async function getStreakLeaderboard(
     completionCounts.set(p.user_id, (completionCounts.get(p.user_id) || 0) + 1);
   });
 
+  // Supabase returns joined relations as arrays, so we handle both cases
+  type ProfileData = { full_name?: string; email?: string; xp?: number; level?: number };
   type StreakWithProfile = {
-    user_profile: { full_name?: string; email?: string; xp?: number; level?: number } | null;
+    user_profile: ProfileData | ProfileData[] | null;
   } & { user_id: string; current_streak: number; longest_streak: number };
 
   return (data || []).map((streak: StreakWithProfile, index) => {
-    const profile = streak.user_profile;
+    const profile = Array.isArray(streak.user_profile) ? streak.user_profile[0] : streak.user_profile;
     return {
       user_id: streak.user_id,
       user_name: profile?.full_name,

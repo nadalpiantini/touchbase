@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { useParams, useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
-import { Card, CardContent, CardHeader, CardTitle, Button, Badge, ProgressBar } from "@/components/ui";
+import { Card, CardContent, CardHeader, CardTitle, Button, Badge, ProgressBar, LoadingSpinner, Alert } from "@/components/ui";
 import { Class, Module } from "@/lib/types/education";
 import { supabaseClient } from "@/lib/supabase/client";
 

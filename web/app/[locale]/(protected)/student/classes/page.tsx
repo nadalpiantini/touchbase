@@ -46,13 +46,14 @@ export default function StudentClassesPage() {
         .eq("student_id", user.id)
         .eq("org_id", currentOrg.id);
 
+      // Supabase returns joined relations as arrays
       type EnrollmentWithClass = {
         class_id: string;
-        class: Class | null;
+        class: Class[] | Class | null;
       };
 
       const enrolledClasses = (enrollments || [])
-        .map((e: EnrollmentWithClass) => e.class)
+        .map((e: EnrollmentWithClass) => Array.isArray(e.class) ? e.class[0] : e.class)
         .filter((c): c is Class => c !== null);
 
       setClasses(enrolledClasses);

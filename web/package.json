@@ -2,9 +2,6 @@
   "name": "web",
   "version": "0.1.0",
   "private": true,
-  "engines": {
-    "node": ">=22.0.0"
-  },
   "scripts": {
     "predev": "tsx scripts/preflight.ts",
     "dev": "next dev --turbopack",

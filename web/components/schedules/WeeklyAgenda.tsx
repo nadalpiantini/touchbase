@@ -14,6 +14,7 @@ interface ScheduleData {
   day_of_week: number;
   start_time: string;
   end_time: string;
+  is_recurring: boolean;
   touchbase_classes?: {
     id: string;
     name: string;

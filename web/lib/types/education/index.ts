@@ -88,6 +88,8 @@ export type StepProgress = {
   type: StepType;
   completed: boolean;
   quizScore?: number;
+  selectedAnswer?: number;
+  isCorrect?: boolean;
   scenarioChoice?: number;
   timeSpentSeconds: number;
 };

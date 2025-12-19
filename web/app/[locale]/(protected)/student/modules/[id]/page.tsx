@@ -3,7 +3,7 @@
 import { useState, useEffect, lazy, Suspense } from "react";
 import { useParams } from "next/navigation";
 import { useTranslations } from 'next-intl';
-import { Card, CardContent, CardHeader, CardTitle, Button, ProgressBar } from '@/components/ui';
+import { Card, CardContent, CardHeader, CardTitle, Button, ProgressBar, Badge } from '@/components/ui';
 import { Module, ModuleStep, ModuleProgress, StepProgress, ContentStepData, QuizStepData, ScenarioStepData } from '@/lib/types/education';
 
 // Lazy load AICoach component for code splitting
