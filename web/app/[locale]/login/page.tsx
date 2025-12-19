@@ -70,24 +70,22 @@ export default function LoginPage() {
   };
 
   return (
-    <main className="min-h-screen flex items-center justify-center" style={{ backgroundColor: 'var(--color-tb-bone)' }}>
-      {/* Rule of Thirds: 3-column grid with form at right 2/3 */}
-      <div className="w-full max-w-4xl mx-auto px-6">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center">
-          {/* Left Third - Decorative branding element */}
-          <div className="hidden lg:flex flex-col items-center justify-center space-y-6 lg:pr-8">
-            <div className="w-32 h-32 rounded-full bg-[--color-tb-red]/10 border-4 border-[--color-tb-red] flex items-center justify-center shadow-dugout">
-              <svg className="w-16 h-16 text-[--color-tb-red]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1" />
-              </svg>
-            </div>
-            <p className="text-center text-[--color-tb-shadow] font-sans text-sm max-w-[200px]">
-              {locale === 'es' ? 'Gestiona tu equipo deportivo de forma profesional' : 'Manage your sports team professionally'}
-            </p>
-          </div>
+    <main className="thirds-auth-layout" style={{ backgroundColor: 'var(--color-tb-bone)' }}>
+      {/* Left Third - Branding panel (hidden on mobile) */}
+      <div className="thirds-auth-brand">
+        <div className="w-32 h-32 rounded-full bg-[--color-tb-red]/10 border-4 border-[--color-tb-red] flex items-center justify-center shadow-dugout mb-6">
+          <svg className="w-16 h-16 text-[--color-tb-red]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1" />
+          </svg>
+        </div>
+        <p className="text-center text-[--color-tb-bone]/80 font-sans text-sm max-w-[200px]">
+          {locale === 'es' ? 'Gestiona tu equipo deportivo de forma profesional' : 'Manage your sports team professionally'}
+        </p>
+      </div>
 
-          {/* Right 2/3 - Login Form */}
-          <div className="lg:col-span-2">
+      {/* Right 2/3 - Login Form */}
+      <div className="thirds-auth-content">
+        <div className="max-w-sm mx-auto w-full">
             <div className="bg-white rounded-2xl shadow-dugout border border-[--color-tb-line] p-8 space-y-8 max-w-sm mx-auto lg:mx-0 lg:ml-auto">
               {/* Logo - Small */}
               <div className="flex justify-center">
@@ -166,7 +164,6 @@ export default function LoginPage() {
             </div>
           </form>
             </div>
-          </div>
         </div>
       </div>
     </main>

@@ -55,8 +55,8 @@ export default async function TeacherDashboardPage({
         {t('title')}
       </h1>
 
-      {/* Stats Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+      {/* Stats Cards - Rule of Thirds: 3-column responsive grid */}
+      <div className="thirds-stats-grid mb-8">
         <Card>
           <CardHeader>
             <CardTitle className="text-lg">{t('stats.classes')}</CardTitle>
@@ -100,100 +100,109 @@ export default async function TeacherDashboardPage({
         </Card>
       </div>
 
-      {/* Classes */}
-      <div className="mb-8">
-        <div className="flex items-center justify-between mb-4">
-          <h2 className="text-2xl font-display font-semibold text-[--color-tb-navy]">
-            {t('myClasses')}
-          </h2>
-          <Link href={`/${locale}/teacher/classes/create`}>
-            <Button>{t('createClass')}</Button>
-          </Link>
-        </div>
-        {classes.length === 0 ? (
-          <Card>
-            <CardContent className="text-center py-12">
-              <p className="text-sm font-sans text-[--color-tb-shadow] mb-4">{t('noClasses')}</p>
+      {/* Rule of Thirds: 2/3 main content + 1/3 sidebar */}
+      <div className="thirds-dashboard">
+        {/* Main Content - 2/3 width on desktop */}
+        <div className="thirds-dashboard-main">
+          {/* Classes */}
+          <div>
+            <div className="flex items-center justify-between mb-4">
+              <h2 className="text-2xl font-display font-semibold text-[--color-tb-navy]">
+                {t('myClasses')}
+              </h2>
               <Link href={`/${locale}/teacher/classes/create`}>
-                <Button>{t('createFirstClass')}</Button>
+                <Button>{t('createClass')}</Button>
               </Link>
-            </CardContent>
-          </Card>
-        ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {classStats.map((classItem) => (
-              <Card key={classItem.id} className="hover:shadow-dugout transition-shadow">
-                <CardHeader>
-                  <CardTitle className="text-lg">{classItem.name}</CardTitle>
-                  {classItem.grade_level && (
-                    <p className="text-sm font-sans text-[--color-tb-shadow]">{classItem.grade_level}</p>
-                  )}
-                </CardHeader>
-                <CardContent>
-                  <div className="flex items-center gap-4 mb-4">
-                    <Badge variant="info">
-                      {classItem.studentCount} {t('students')}
-                    </Badge>
-                  </div>
-                  <Link href={`/${locale}/teacher/classes/${classItem.id}`}>
-                    <Button variant="outline" className="w-full">
-                      {t('viewClass')}
-                    </Button>
+            </div>
+            {classes.length === 0 ? (
+              <Card>
+                <CardContent className="text-center py-12">
+                  <p className="text-sm font-sans text-[--color-tb-shadow] mb-4">{t('noClasses')}</p>
+                  <Link href={`/${locale}/teacher/classes/create`}>
+                    <Button>{t('createFirstClass')}</Button>
                   </Link>
                 </CardContent>
               </Card>
-            ))}
+            ) : (
+              <div className="thirds-card-grid">
+                {classStats.map((classItem) => (
+                  <Card key={classItem.id} className="hover:shadow-dugout transition-shadow">
+                    <CardHeader>
+                      <CardTitle className="text-lg">{classItem.name}</CardTitle>
+                      {classItem.grade_level && (
+                        <p className="text-sm font-sans text-[--color-tb-shadow]">{classItem.grade_level}</p>
+                      )}
+                    </CardHeader>
+                    <CardContent>
+                      <div className="flex items-center gap-4 mb-4">
+                        <Badge variant="info">
+                          {classItem.studentCount} {t('students')}
+                        </Badge>
+                      </div>
+                      <Link href={`/${locale}/teacher/classes/${classItem.id}`}>
+                        <Button variant="outline" className="w-full">
+                          {t('viewClass')}
+                        </Button>
+                      </Link>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+            )}
           </div>
-        )}
-      </div>
+        </div>
 
-      {/* Quick Actions */}
-      <div>
-        <h2 className="text-2xl font-display font-semibold text-[--color-tb-navy] mb-4">
-          {t('quickActions')}
-        </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          <Link href={`/${locale}/teacher/modules`}>
-            <Card className="hover:shadow-dugout transition-shadow cursor-pointer">
-              <CardContent className="pt-6">
-                <h3 className="font-display font-semibold text-[--color-tb-navy] mb-2">
-                  {t('manageModules')}
-                </h3>
-                <p className="text-sm font-sans text-[--color-tb-shadow]">
-                  {t('manageModulesDesc')}
-                </p>
-              </CardContent>
-            </Card>
-          </Link>
-          <Link href={`/${locale}/teacher/analytics`}>
-            <Card className="hover:shadow-dugout transition-shadow cursor-pointer">
-              <CardContent className="pt-6">
-                <h3 className="font-display font-semibold text-[--color-tb-navy] mb-2">
-                  {t('viewAnalytics')}
-                </h3>
-                <p className="text-sm font-sans text-[--color-tb-shadow]">
-                  {t('viewAnalyticsDesc')}
-                </p>
-              </CardContent>
-            </Card>
-          </Link>
-          <Link href={`/${locale}/teacher/modules/create`}>
-            <Card className="hover:shadow-dugout transition-shadow cursor-pointer">
-              <CardContent className="pt-6">
-                <h3 className="font-display font-semibold text-[--color-tb-navy] mb-2">
-                  {t('createModule')}
-                </h3>
-                <p className="text-sm font-sans text-[--color-tb-shadow]">
-                  {t('createModuleDesc')}
-                </p>
-              </CardContent>
-            </Card>
-          </Link>
+        {/* Sidebar - 1/3 width on desktop */}
+        <div className="thirds-dashboard-sidebar">
+          {/* Quick Actions */}
+          <div>
+            <h2 className="text-2xl font-display font-semibold text-[--color-tb-navy] mb-4">
+              {t('quickActions')}
+            </h2>
+            <div className="space-y-4">
+              <Link href={`/${locale}/teacher/modules`}>
+                <Card className="hover:shadow-dugout transition-shadow cursor-pointer">
+                  <CardContent className="pt-6">
+                    <h3 className="font-display font-semibold text-[--color-tb-navy] mb-2">
+                      {t('manageModules')}
+                    </h3>
+                    <p className="text-sm font-sans text-[--color-tb-shadow]">
+                      {t('manageModulesDesc')}
+                    </p>
+                  </CardContent>
+                </Card>
+              </Link>
+              <Link href={`/${locale}/teacher/analytics`}>
+                <Card className="hover:shadow-dugout transition-shadow cursor-pointer">
+                  <CardContent className="pt-6">
+                    <h3 className="font-display font-semibold text-[--color-tb-navy] mb-2">
+                      {t('viewAnalytics')}
+                    </h3>
+                    <p className="text-sm font-sans text-[--color-tb-shadow]">
+                      {t('viewAnalyticsDesc')}
+                    </p>
+                  </CardContent>
+                </Card>
+              </Link>
+              <Link href={`/${locale}/teacher/modules/create`}>
+                <Card className="hover:shadow-dugout transition-shadow cursor-pointer">
+                  <CardContent className="pt-6">
+                    <h3 className="font-display font-semibold text-[--color-tb-navy] mb-2">
+                      {t('createModule')}
+                    </h3>
+                    <p className="text-sm font-sans text-[--color-tb-shadow]">
+                      {t('createModuleDesc')}
+                    </p>
+                  </CardContent>
+                </Card>
+              </Link>
+            </div>
+          </div>
+
+          {/* AI Assistant in sidebar */}
+          <AIAssistant />
         </div>
       </div>
-
-      {/* AI Assistant */}
-      <AIAssistant />
     </div>
   );
 }

@@ -68,8 +68,8 @@ export default async function StudentDashboardPage({
         {t('title')}
       </h1>
 
-      {/* Stats Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+      {/* Stats Cards - Rule of Thirds: 3-column responsive grid */}
+      <div className="thirds-stats-grid mb-8">
         <Card>
           <CardHeader>
             <CardTitle className="text-lg">{t('stats.level')}</CardTitle>
@@ -113,145 +113,146 @@ export default async function StudentDashboardPage({
         </Card>
       </div>
 
-      {/* Weekly Agenda */}
-      <div className="mb-8">
-        <WeeklyAgenda />
-      </div>
+      {/* Rule of Thirds: 2/3 main content + 1/3 sidebar */}
+      <div className="thirds-dashboard">
+        {/* Main Content - 2/3 width on desktop */}
+        <div className="thirds-dashboard-main">
+          {/* Classes */}
+          {classes.length > 0 && (
+            <div>
+              <h2 className="text-2xl font-display font-semibold text-[--color-tb-navy] mb-4">
+                {t('myClasses')}
+              </h2>
+              <div className="thirds-card-grid">
+                {classes.map((classItem: Class) => (
+                  <Card key={classItem.id} className="hover:shadow-dugout transition-shadow">
+                    <CardHeader>
+                      <CardTitle className="text-lg">{classItem.name}</CardTitle>
+                      {classItem.grade_level && (
+                        <p className="text-sm font-sans text-[--color-tb-shadow]">{classItem.grade_level}</p>
+                      )}
+                    </CardHeader>
+                    <CardContent>
+                      <Link href={`/${locale}/student/classes/${classItem.id}`}>
+                        <Button variant="outline" className="w-full">
+                          {t('viewClass')}
+                        </Button>
+                      </Link>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+            </div>
+          )}
 
-      {/* Classes */}
-      {classes.length > 0 && (
-        <div className="mb-8">
-          <h2 className="text-2xl font-display font-semibold text-[--color-tb-navy] mb-4">
-            {t('myClasses')}
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {classes.map((classItem: Class) => (
-              <Card key={classItem.id} className="hover:shadow-dugout transition-shadow">
-                <CardHeader>
-                  <CardTitle className="text-lg">{classItem.name}</CardTitle>
-                  {classItem.grade_level && (
-                    <p className="text-sm font-sans text-[--color-tb-shadow]">{classItem.grade_level}</p>
-                  )}
-                </CardHeader>
-                <CardContent>
-                  <Link href={`/${locale}/student/classes/${classItem.id}`}>
-                    <Button variant="outline" className="w-full">
-                      {t('viewClass')}
-                    </Button>
-                  </Link>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      )}
+          {/* In Progress Modules */}
+          {inProgress.length > 0 && (
+            <div>
+              <h2 className="text-2xl font-display font-semibold text-[--color-tb-navy] mb-4">
+                {t('continueLearning')}
+              </h2>
+              <div className="space-y-4">
+                {inProgress.slice(0, 5).map((prog) => (
+                  <Card key={prog.id}>
+                    <CardContent className="pt-6">
+                      <div className="flex items-center justify-between mb-2">
+                        <h3 className="font-display font-semibold text-[--color-tb-navy]">
+                          Module {prog.module_id.slice(0, 8)}...
+                        </h3>
+                        <Badge variant="info">
+                          {prog.completion_percentage}%
+                        </Badge>
+                      </div>
+                      <ProgressBar
+                        value={prog.completion_percentage}
+                        showLabel
+                        color="primary"
+                      />
+                      <Link href={`/${locale}/student/modules/${prog.module_id}`}>
+                        <Button variant="outline" className="mt-4 w-full">
+                          {t('continue')}
+                        </Button>
+                      </Link>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+            </div>
+          )}
 
-      {/* In Progress Modules */}
-      {inProgress.length > 0 && (
-        <div className="mb-8">
-          <h2 className="text-2xl font-display font-semibold text-[--color-tb-navy] mb-4">
-            {t('continueLearning')}
-          </h2>
-          <div className="space-y-4">
-            {inProgress.slice(0, 5).map((prog) => (
-              <Card key={prog.id}>
-                <CardContent className="pt-6">
-                  <div className="flex items-center justify-between mb-2">
-                    <h3 className="font-display font-semibold text-[--color-tb-navy]">
-                      Module {prog.module_id.slice(0, 8)}...
+          {/* Quick Actions */}
+          <div>
+            <h2 className="text-2xl font-display font-semibold text-[--color-tb-navy] mb-4">
+              {t('quickActions')}
+            </h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+              <Link href={`/${locale}/student/assignments`}>
+                <Card className="hover:shadow-dugout transition-shadow cursor-pointer h-full">
+                  <CardContent className="pt-6">
+                    <h3 className="font-display font-semibold text-[--color-tb-navy] mb-2">
+                      {t('viewAssignments')}
                     </h3>
-                    <Badge variant="info">
-                      {prog.completion_percentage}%
-                    </Badge>
-                  </div>
-                  <ProgressBar
-                    value={prog.completion_percentage}
-                    showLabel
-                    color="primary"
-                  />
-                  <Link href={`/${locale}/student/modules/${prog.module_id}`}>
-                    <Button variant="outline" className="mt-4 w-full">
-                      {t('continue')}
-                    </Button>
-                  </Link>
-                </CardContent>
-              </Card>
-            ))}
+                    <p className="text-sm font-sans text-[--color-tb-shadow]">
+                      {t('viewAssignmentsDesc')}
+                    </p>
+                  </CardContent>
+                </Card>
+              </Link>
+              <Link href={`/${locale}/student/modules`}>
+                <Card className="hover:shadow-dugout transition-shadow cursor-pointer h-full">
+                  <CardContent className="pt-6">
+                    <h3 className="font-display font-semibold text-[--color-tb-navy] mb-2">
+                      {t('browseModules')}
+                    </h3>
+                    <p className="text-sm font-sans text-[--color-tb-shadow]">
+                      {t('browseModulesDesc')}
+                    </p>
+                  </CardContent>
+                </Card>
+              </Link>
+              <Link href={`/${locale}/student/skills`}>
+                <Card className="hover:shadow-dugout transition-shadow cursor-pointer h-full">
+                  <CardContent className="pt-6">
+                    <h3 className="font-display font-semibold text-[--color-tb-navy] mb-2">
+                      {t('viewSkills')}
+                    </h3>
+                    <p className="text-sm font-sans text-[--color-tb-shadow]">
+                      {t('viewSkillsDesc')}
+                    </p>
+                  </CardContent>
+                </Card>
+              </Link>
+            </div>
           </div>
         </div>
-      )}
 
-      {/* Assignments Alert */}
-      {(overdueAssignments.length > 0 || dueSoonAssignments.length > 0) && (
-        <div className="mb-8">
-          <Card className={overdueAssignments.length > 0 ? "border-[--color-tb-stitch]" : "border-[--color-tb-stitch]/50"}>
-            <CardContent className="pt-6">
-              <div className="flex items-center justify-between">
-                <div>
-                  <h3 className="font-display font-semibold text-[--color-tb-navy] mb-2">
-                    {overdueAssignments.length > 0
-                      ? t('assignmentsAlert.overdue')
-                      : t('assignmentsAlert.dueSoon')}
-                  </h3>
-                  <p className="text-sm font-sans text-[--color-tb-shadow]">
-                    {overdueAssignments.length > 0
-                      ? t('assignmentsAlert.overdueCount', { count: overdueAssignments.length })
-                      : t('assignmentsAlert.dueSoonCount', { count: dueSoonAssignments.length })}
-                  </p>
-                </div>
+        {/* Sidebar - 1/3 width on desktop */}
+        <div className="thirds-dashboard-sidebar">
+          {/* Weekly Agenda */}
+          <WeeklyAgenda />
+
+          {/* Assignments Alert */}
+          {(overdueAssignments.length > 0 || dueSoonAssignments.length > 0) && (
+            <Card className={overdueAssignments.length > 0 ? "border-[--color-tb-stitch]" : "border-[--color-tb-stitch]/50"}>
+              <CardContent className="pt-6">
+                <h3 className="font-display font-semibold text-[--color-tb-navy] mb-2">
+                  {overdueAssignments.length > 0
+                    ? t('assignmentsAlert.overdue')
+                    : t('assignmentsAlert.dueSoon')}
+                </h3>
+                <p className="text-sm font-sans text-[--color-tb-shadow] mb-4">
+                  {overdueAssignments.length > 0
+                    ? t('assignmentsAlert.overdueCount', { count: overdueAssignments.length })
+                    : t('assignmentsAlert.dueSoonCount', { count: dueSoonAssignments.length })}
+                </p>
                 <Link href={`/${locale}/student/assignments`}>
-                  <Button variant={overdueAssignments.length > 0 ? "primary" : "outline"}>
+                  <Button variant={overdueAssignments.length > 0 ? "primary" : "outline"} className="w-full">
                     {t('viewAssignments')}
                   </Button>
                 </Link>
-              </div>
-            </CardContent>
-          </Card>
-        </div>
-      )}
-
-      {/* Quick Actions */}
-      <div>
-        <h2 className="text-2xl font-display font-semibold text-[--color-tb-navy] mb-4">
-          {t('quickActions')}
-        </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <Link href={`/${locale}/student/assignments`}>
-            <Card className="hover:shadow-dugout transition-shadow cursor-pointer">
-              <CardContent className="pt-6">
-                <h3 className="font-display font-semibold text-[--color-tb-navy] mb-2">
-                  {t('viewAssignments')}
-                </h3>
-                <p className="text-sm font-sans text-[--color-tb-shadow]">
-                  {t('viewAssignmentsDesc')}
-                </p>
               </CardContent>
             </Card>
-          </Link>
-          <Link href={`/${locale}/student/modules`}>
-            <Card className="hover:shadow-dugout transition-shadow cursor-pointer">
-              <CardContent className="pt-6">
-                <h3 className="font-display font-semibold text-[--color-tb-navy] mb-2">
-                  {t('browseModules')}
-                </h3>
-                <p className="text-sm font-sans text-[--color-tb-shadow]">
-                  {t('browseModulesDesc')}
-                </p>
-              </CardContent>
-            </Card>
-          </Link>
-          <Link href={`/${locale}/student/skills`}>
-            <Card className="hover:shadow-dugout transition-shadow cursor-pointer">
-              <CardContent className="pt-6">
-                <h3 className="font-display font-semibold text-[--color-tb-navy] mb-2">
-                  {t('viewSkills')}
-                </h3>
-                <p className="text-sm font-sans text-[--color-tb-shadow]">
-                  {t('viewSkillsDesc')}
-                </p>
-              </CardContent>
-            </Card>
-          </Link>
+          )}
         </div>
       </div>
     </div>

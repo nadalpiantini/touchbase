@@ -92,7 +92,7 @@ export default function StudentModulesPage() {
           </CardContent>
         </Card>
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="thirds-card-grid">
           {modules.map((module) => {
             const moduleProgress = progress[module.id];
             const isCompleted = moduleProgress?.status === "completed";

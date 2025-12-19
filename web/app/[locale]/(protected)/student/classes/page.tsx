@@ -129,7 +129,7 @@ export default function StudentClassesPage() {
         </CardContent>
       </Card>
 
-      {/* My Classes */}
+      {/* My Classes - Rule of Thirds grid */}
       <div>
         <h2 className="text-2xl font-semibold text-[--color-tb-navy] mb-4">
           {t('myClasses')}
@@ -142,7 +142,7 @@ export default function StudentClassesPage() {
             </CardContent>
           </Card>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="thirds-card-grid">
             {classes.map((classItem) => (
               <Card key={classItem.id} className="hover:shadow-lg transition-shadow">
                 <CardHeader>

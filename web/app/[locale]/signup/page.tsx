@@ -78,18 +78,27 @@ export default function SignUpPage() {
   };
 
   return (
-    <main className="min-h-screen flex items-center justify-center bg-[--color-tb-beige]/20 relative">
+    <main className="thirds-auth-layout bg-[--color-tb-beige]/20 relative">
       {/* Language Selector */}
       <div className="absolute top-4 right-4 z-10">
         <LanguageSelector />
       </div>
 
-      {/* Rule of Thirds: 3-column grid with form at left 2/3 */}
-      <div className="w-full max-w-4xl mx-auto px-6">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center">
-          {/* Left 2/3 - Signup Form */}
-          <div className="lg:col-span-2">
-            <div className="max-w-md w-full space-y-8 mx-auto lg:mx-0 lg:mr-auto">
+      {/* Left Third - Branding panel (hidden on mobile) */}
+      <div className="thirds-auth-brand">
+        <div className="w-32 h-32 rounded-full bg-[--color-tb-navy]/10 border-4 border-[--color-tb-navy] flex items-center justify-center shadow-dugout mb-6">
+          <svg className="w-16 h-16 text-[--color-tb-navy]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z" />
+          </svg>
+        </div>
+        <p className="text-center text-[--color-tb-bone]/80 font-sans text-sm max-w-[200px]">
+          {locale === 'es' ? 'Únete a miles de equipos que ya usan TouchBase' : 'Join thousands of teams already using TouchBase'}
+        </p>
+      </div>
+
+      {/* Right 2/3 - Signup Form */}
+      <div className="thirds-auth-content">
+        <div className="max-w-md w-full space-y-8 mx-auto">
               <div className="flex flex-col items-center">
                 <Image
                   src="/touchbase-slogan-logo.png"
@@ -207,20 +216,6 @@ export default function SignUpPage() {
 
           </form>
         )}
-            </div>
-          </div>
-
-          {/* Right Third - Decorative branding element */}
-          <div className="hidden lg:flex flex-col items-center justify-center space-y-6 lg:pl-8">
-            <div className="w-32 h-32 rounded-full bg-[--color-tb-navy]/10 border-4 border-[--color-tb-navy] flex items-center justify-center shadow-dugout">
-              <svg className="w-16 h-16 text-[--color-tb-navy]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z" />
-              </svg>
-            </div>
-            <p className="text-center text-[--color-tb-shadow] font-sans text-sm max-w-[200px]">
-              {locale === 'es' ? 'Únete a miles de equipos que ya usan TouchBase' : 'Join thousands of teams already using TouchBase'}
-            </p>
-          </div>
         </div>
       </div>
     </main>
