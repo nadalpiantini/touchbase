@@ -5,7 +5,7 @@
   "scripts": {
     "predev": "tsx scripts/preflight.ts",
     "dev": "next dev --turbopack",
-    "build": "ESLINT_NO_DEV_ERRORS=true next build --turbopack",
+    "build": "ESLINT_NO_DEV_ERRORS=true next build",
     "start": "next start",
     "lint": "eslint",
     "health": "tsx scripts/healthcheck.ts",
