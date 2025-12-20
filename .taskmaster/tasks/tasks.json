@@ -265,7 +265,7 @@
         "description": "Design and implement Toast component for success/error notifications (Priority 4 from SPRINT_FRONTEND_REMEDIATION). Replace alert() calls.",
         "details": "",
         "testStrategy": "",
-        "status": "pending",
+        "status": "done",
         "dependencies": [],
         "priority": "medium",
         "subtasks": []
@@ -276,7 +276,7 @@
         "description": "Design and implement Dropdown Menu component for action menus in tables (Priority 4 from SPRINT_FRONTEND_REMEDIATION)",
         "details": "",
         "testStrategy": "",
-        "status": "pending",
+        "status": "done",
         "dependencies": [],
         "priority": "medium",
         "subtasks": []
@@ -287,7 +287,7 @@
         "description": "Design and implement Avatar component for user photos (Priority 4 from SPRINT_FRONTEND_REMEDIATION, currently inline in TeachersTable)",
         "details": "",
         "testStrategy": "",
-        "status": "pending",
+        "status": "done",
         "dependencies": [],
         "priority": "medium",
         "subtasks": []
@@ -295,7 +295,7 @@
     ],
     "metadata": {
       "created": "2025-12-15T17:52:29.573Z",
-      "updated": "2025-12-20T16:46:53.790Z",
+      "updated": "2025-12-20T17:37:55.371Z",
       "description": "QA Testing sistemático de todas las secciones"
     }
   }
