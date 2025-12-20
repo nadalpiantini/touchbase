@@ -156,11 +156,13 @@ export default async function ClassDetailPage({
         <div className="mb-6">
           <AttendanceMarking
             classId={id}
-            students={students.map(({ student }) => ({
-              id: student.id,
-              full_name: student.full_name || student.email,
-              email: student.email || '',
-            }))}
+            students={students
+              .filter(s => s.student)
+              .map(({ student }) => ({
+                id: student!.id,
+                full_name: student!.full_name || student!.email || '',
+                email: student!.email || '',
+              }))}
           />
         </div>
       )}
@@ -182,31 +184,33 @@ export default async function ClassDetailPage({
             </div>
           ) : (
             <div className="space-y-2">
-              {students.map(({ enrollment, student }) => (
-                <div
-                  key={enrollment.id}
-                  className="flex items-center justify-between p-3 border border-tb-line rounded-lg hover:bg-tb-bone transition"
-                >
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-full bg-tb-red/10 flex items-center justify-center">
-                      <span className="text-tb-red font-semibold">
-                        {(student.full_name || student.email).charAt(0).toUpperCase()}
-                      </span>
+              {students
+                .filter(s => s.student && s.enrollment)
+                .map(({ enrollment, student }) => (
+                  <div
+                    key={enrollment!.id}
+                    className="flex items-center justify-between p-3 border border-tb-line rounded-lg hover:bg-tb-bone transition"
+                  >
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 rounded-full bg-tb-red/10 flex items-center justify-center">
+                        <span className="text-tb-red font-semibold">
+                          {(student!.full_name || student!.email || '').charAt(0).toUpperCase()}
+                        </span>
+                      </div>
+                      <div>
+                        <p className="font-medium text-tb-navy">
+                          {student!.full_name || student!.email}
+                        </p>
+                        <p className="text-sm text-tb-shadow">
+                          {student!.email}
+                        </p>
+                      </div>
                     </div>
-                    <div>
-                      <p className="font-medium text-tb-navy">
-                        {student.full_name || student.email}
-                      </p>
-                      <p className="text-sm text-tb-shadow">
-                        {student.email}
-                      </p>
-                    </div>
+                    <Badge variant="info">
+                      {new Date(enrollment!.enrolled_at).toLocaleDateString()}
+                    </Badge>
                   </div>
-                  <Badge variant="info">
-                    {new Date(enrollment.enrolled_at).toLocaleDateString()}
-                  </Badge>
-                </div>
-              ))}
+                ))}
             </div>
           )}
         </CardContent>
