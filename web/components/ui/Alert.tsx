@@ -8,11 +8,12 @@ export interface AlertProps extends HTMLAttributes<HTMLDivElement> {
 
 const Alert = memo(forwardRef<HTMLDivElement, AlertProps>(
   ({ className, variant = 'info', title, children, ...props }, ref) => {
+    // Using TB design tokens with semantic color support
     const variants = {
-      success: 'bg-green-50 border-green-200 text-green-800',
-      error: 'bg-red-50 border-red-200 text-red-800',
-      warning: 'bg-yellow-50 border-yellow-200 text-yellow-800',
-      info: 'bg-blue-50 border-blue-200 text-blue-800',
+      success: 'bg-emerald-50 border-emerald-200 text-emerald-800',
+      error: 'bg-tb-stitch/10 border-tb-stitch/30 text-tb-stitch',
+      warning: 'bg-amber-50 border-amber-200 text-amber-800',
+      info: 'bg-tb-navy/10 border-tb-navy/30 text-tb-navy',
     };
 
     return (

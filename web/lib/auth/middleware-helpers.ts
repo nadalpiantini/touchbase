@@ -69,7 +69,7 @@ export async function requireRole(
 }
 
 /**
- * Require teacher role
+ * Require teacher role (or admin/owner who have teacher access)
  * In development mode, returns a mock teacher user for testing
  */
 export async function requireTeacher(supabase: SupabaseClient) {
@@ -89,8 +89,11 @@ export async function requireTeacher(supabase: SupabaseClient) {
     redirect("/login");
   }
 
-  const isTeacherUser = await isTeacher(supabase, user.id);
-  if (!isTeacherUser) {
+  // Check role directly - owners and admins always have teacher access
+  const { role } = await getUserDefaultRole(supabase, user.id);
+  const hasTeacherAccess = role !== null && ['teacher', 'admin', 'owner', 'coach'].includes(role);
+
+  if (!hasTeacherAccess) {
     redirect("/dashboard");
   }
 
@@ -98,7 +101,7 @@ export async function requireTeacher(supabase: SupabaseClient) {
 }
 
 /**
- * Require student role
+ * Require student role (or admin/owner who can access all areas)
  * In development mode, returns a mock student user for testing
  */
 export async function requireStudent(supabase: SupabaseClient) {
@@ -118,8 +121,11 @@ export async function requireStudent(supabase: SupabaseClient) {
     redirect("/login");
   }
 
-  const isStudentUser = await isStudent(supabase, user.id);
-  if (!isStudentUser) {
+  // Check role directly - owners and admins can access all areas including student view
+  const { role } = await getUserDefaultRole(supabase, user.id);
+  const hasStudentAccess = role !== null && ['student', 'player', 'admin', 'owner'].includes(role);
+
+  if (!hasStudentAccess) {
     redirect("/dashboard");
   }
 

@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { useParams } from "next/navigation";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import Link from "next/link";
 import {
   Card,
@@ -35,6 +35,7 @@ type OrgDetails = {
 
 export default function OrganizationDetailPage() {
   const t = useTranslations("admin.organizations");
+  const locale = useLocale();
   const params = useParams();
   const orgId = params.id as string;
 
@@ -194,7 +195,7 @@ export default function OrganizationDetailPage() {
         <div className="mb-8">
           <div className="flex items-center gap-2 mb-4">
             <Link
-              href="/admin/organizations"
+              href={`/${locale}/admin/organizations`}
               className="text-tb-shadow hover:text-tb-navy"
             >
               <svg

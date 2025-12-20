@@ -18,7 +18,7 @@ const STATUS_COLORS: Record<string, string> = {
   scheduled: "bg-tb-navy/10 text-tb-navy",
   live: "bg-tb-stitch/10 text-tb-stitch",
   final: "bg-tb-beige text-tb-shadow",
-  canceled: "bg-red-50 text-red-700"
+  canceled: "bg-tb-stitch/10 text-tb-stitch"
 };
 
 export default function GamesTable() {

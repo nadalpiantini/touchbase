@@ -397,8 +397,9 @@
         "stepTypeScenario": "Scenario",
         "order": "Order",
         "edit": "Edit",
-      "errors": {
-        "fetchFailed": "Failed to load module"
+        "errors": {
+          "fetchFailed": "Failed to load module"
+        }
       }
     },
     "classes": {
@@ -489,8 +490,8 @@
         }
       }
     },
-      "steps": {
-        "create": {
+    "steps": {
+      "create": {
           "title": "Create New Step",
           "stepTypeLabel": "Step Type",
           "stepTypeContent": "Content",
@@ -579,8 +580,7 @@
             "minTwoScenarioOptions": "At least two scenario options are required"
           }
         }
-      }
-    },
+      },
     "analytics": {
       "title": "Analytics Dashboard",
       "loading": "Loading analytics...",
@@ -600,6 +600,28 @@
       "noModules": "No modules assigned yet. Assign modules to classes to see analytics.",
       "errors": {
         "loadFailed": "Failed to load analytics"
+      }
+    },
+    "aiAssistant": {
+      "title": "AI Assistant",
+      "openAssistant": "Open AI Assistant",
+      "close": "Close",
+      "welcome": "Hi! I'm your AI teaching assistant.",
+      "askQuestion": "Ask me anything about managing your classes, creating content, or analyzing student progress!",
+      "typeMessage": "Type your question...",
+      "send": "Send",
+      "thinking": "Thinking",
+      "quickActions": {
+        "title": "Quick Actions",
+        "createModule": "Create Module",
+        "analyzeProgress": "Analyze Progress",
+        "suggestContent": "Suggest Content",
+        "createModulePrompt": "Help me create a new educational module. What should I include?",
+        "analyzeProgressPrompt": "Analyze my students' progress and suggest improvements.",
+        "suggestContentPrompt": "Suggest content ideas for my next module based on my teaching goals."
+      },
+      "errors": {
+        "failed": "Sorry, I couldn't process your request. Please try again."
       }
     }
   },
@@ -791,5 +813,116 @@
     "title": "404 — Page not found",
     "message": "The page you're looking for doesn't exist or has been moved.",
     "backHome": "Back to home"
+  },
+  "admin": {
+    "dashboard": {
+      "title": "Admin Dashboard",
+      "subtitle": "System-wide overview and management",
+      "manageOrgs": "Manage Organizations",
+      "manageUsers": "Manage Users",
+      "billing": "Billing",
+      "settings": "Settings"
+    },
+    "stats": {
+      "organizations": "Organizations",
+      "totalUsers": "Total Users",
+      "classes": "Classes",
+      "modules": "Modules",
+      "learningProgress": "Learning Progress Overview",
+      "quickStats": "Quick Stats"
+    },
+    "activity": {
+      "title": "Recent Activity",
+      "viewAll": "View All",
+      "noActivity": "No recent activity"
+    },
+    "organizations": {
+      "title": "Organizations",
+      "subtitle": "Manage all organizations in the system",
+      "create": "Create Organization",
+      "search": "Search organizations...",
+      "noOrganizations": "No organizations found",
+      "members": "members",
+      "classes": "classes",
+      "created": "Created",
+      "viewDetails": "View Details"
+    },
+    "users": {
+      "title": "User Management",
+      "subtitle": "Manage all users in the system",
+      "create": "Create User",
+      "search": "Search users...",
+      "noUsers": "No users found",
+      "role": "Role",
+      "organization": "Organization",
+      "status": "Status",
+      "lastActive": "Last Active",
+      "actions": "Actions"
+    },
+    "billing": {
+      "title": "Billing & Subscriptions",
+      "subtitle": "Manage billing and subscription plans",
+      "currentPlan": "Current Plan",
+      "usage": "Usage",
+      "paymentHistory": "Payment History",
+      "invoices": "Invoices"
+    },
+    "settings": {
+      "title": "System Settings",
+      "subtitle": "Configure system-wide settings",
+      "breadcrumb": {
+        "admin": "Admin"
+      },
+      "sections": {
+        "general": "General",
+        "security": "Security",
+        "notifications": "Notifications",
+        "integrations": "Integrations"
+      },
+      "general": {
+        "title": "General Settings",
+        "description": "Basic platform configuration options",
+        "siteName": "Site Name",
+        "defaultLanguage": "Default Language",
+        "timezone": "Timezone"
+      },
+      "security": {
+        "title": "Security Settings",
+        "description": "Authentication and access control options",
+        "requireMfa": "Require Two-Factor Authentication",
+        "sessionTimeout": "Session Timeout (minutes)",
+        "passwordMinLength": "Minimum Password Length"
+      },
+      "notifications": {
+        "title": "Notification Settings",
+        "description": "Configure email and alert preferences",
+        "emailNotifications": "Enable Email Notifications",
+        "weeklyDigest": "Send Weekly Activity Digest",
+        "newUserAlerts": "Alert on New User Registration"
+      },
+      "integrations": {
+        "title": "Integrations",
+        "description": "Connect external services and APIs",
+        "connected": "Connected",
+        "configure": "Configure"
+      },
+      "save": "Save Settings",
+      "saving": "Saving..."
+    }
+  },
+  "teachers": {
+    "title": "Teachers",
+    "loading": "Loading teachers...",
+    "empty": "No teachers registered.",
+    "error": "Error",
+    "table": {
+      "photo": "Photo",
+      "name": "Name",
+      "email": "Email",
+      "phone": "Phone",
+      "department": "Department",
+      "type": "Type",
+      "hireDate": "Hire Date"
+    }
   }
 }

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import Link from "next/link";
 import {
   Card,
@@ -25,6 +25,7 @@ type Organization = {
 
 export default function OrganizationsPage() {
   const t = useTranslations("admin.organizations");
+  const locale = useLocale();
   const [organizations, setOrganizations] = useState<Organization[]>([]);
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState("");
@@ -122,7 +123,7 @@ export default function OrganizationsPage() {
         <div className="flex justify-between items-center mb-8">
           <div>
             <div className="flex items-center gap-2 mb-2">
-              <Link href="/admin" className="text-tb-shadow hover:text-tb-navy">
+              <Link href={`/${locale}/admin`} className="text-tb-shadow hover:text-tb-navy">
                 <svg
                   className="w-5 h-5"
                   fill="none"
@@ -177,7 +178,7 @@ export default function OrganizationsPage() {
         {/* Organizations Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredOrgs.map((org) => (
-            <Link key={org.id} href={`/admin/organizations/${org.id}`}>
+            <Link key={org.id} href={`/${locale}/admin/organizations/${org.id}`}>
               <Card className="hover:shadow-lg transition-shadow cursor-pointer h-full">
                 <CardHeader>
                   <div className="flex items-center gap-4">

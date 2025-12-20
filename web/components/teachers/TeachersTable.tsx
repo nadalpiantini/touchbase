@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
+import { useTranslations } from 'next-intl';
 import { Badge, LoadingSpinner, Alert } from "@/components/ui";
 import { CSVExportButton } from '@/components/export/CSVExportButton';
 
@@ -18,6 +19,7 @@ type Teacher = {
 };
 
 export default function TeachersTable() {
+  const t = useTranslations('teachers');
   const [teachers, setTeachers] = useState<Teacher[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -30,14 +32,14 @@ export default function TeachersTable() {
     try {
       const res = await fetch("/api/teachers/list");
       const json = await res.json();
-      
+
       if (!res.ok) {
-        throw new Error(json?.error || "Error al cargar profesores");
+        throw new Error(json?.error || t('error'));
       }
 
       setTeachers(json.teachers || []);
     } catch (err: unknown) {
-      setError(err instanceof Error ? err.message : "Error desconocido");
+      setError(err instanceof Error ? err.message : t('error'));
     } finally {
       setLoading(false);
     }
@@ -46,14 +48,14 @@ export default function TeachersTable() {
   if (loading) {
     return (
       <div className="flex justify-center py-12">
-        <LoadingSpinner size="lg" text="Cargando profesores..." />
+        <LoadingSpinner size="lg" text={t('loading')} />
       </div>
     );
   }
 
   if (error) {
     return (
-      <Alert variant="error" title="Error">
+      <Alert variant="error" title={t('error')}>
         {error}
       </Alert>
     );
@@ -62,7 +64,7 @@ export default function TeachersTable() {
   if (teachers.length === 0) {
     return (
       <div className="bg-white border border-tb-line rounded-xl p-8 text-center shadow-sm">
-        <p className="font-sans text-tb-shadow">No hay profesores registrados.</p>
+        <p className="font-sans text-tb-shadow">{t('empty')}</p>
       </div>
     );
   }
@@ -77,13 +79,13 @@ export default function TeachersTable() {
         <table className="w-full font-sans">
           <thead className="bg-tb-beige border-b border-tb-line">
             <tr>
-              <th className="text-left p-4 font-display font-semibold text-tb-navy">Foto</th>
-              <th className="text-left p-4 font-display font-semibold text-tb-navy">Nombre</th>
-              <th className="text-left p-4 font-display font-semibold text-tb-navy">Email</th>
-              <th className="text-left p-4 font-display font-semibold text-tb-navy">Teléfono</th>
-              <th className="text-left p-4 font-display font-semibold text-tb-navy">Departamento</th>
-              <th className="text-left p-4 font-display font-semibold text-tb-navy">Tipo</th>
-              <th className="text-left p-4 font-display font-semibold text-tb-navy">Fecha Contratación</th>
+              <th className="text-left p-4 font-display font-semibold text-tb-navy">{t('table.photo')}</th>
+              <th className="text-left p-4 font-display font-semibold text-tb-navy">{t('table.name')}</th>
+              <th className="text-left p-4 font-display font-semibold text-tb-navy">{t('table.email')}</th>
+              <th className="text-left p-4 font-display font-semibold text-tb-navy">{t('table.phone')}</th>
+              <th className="text-left p-4 font-display font-semibold text-tb-navy">{t('table.department')}</th>
+              <th className="text-left p-4 font-display font-semibold text-tb-navy">{t('table.type')}</th>
+              <th className="text-left p-4 font-display font-semibold text-tb-navy">{t('table.hireDate')}</th>
             </tr>
           </thead>
           <tbody>

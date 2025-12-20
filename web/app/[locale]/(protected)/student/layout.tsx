@@ -1,10 +1,8 @@
 import { ReactNode } from "react";
 import { supabaseServer } from "@/lib/supabase/server";
-import { redirect } from "next/navigation";
 import { getLocale } from "next-intl/server";
 import { requireStudent } from "@/lib/auth/middleware-helpers";
-import { ResponsiveNav } from "@/components/navigation/ResponsiveNav";
-import SignOutButton from "@/components/navigation/SignOutButton";
+import Link from "next/link";
 
 export default async function StudentLayout({
   children
@@ -12,10 +10,10 @@ export default async function StudentLayout({
   children: ReactNode
 }) {
   const s = await supabaseServer();
-  const user = await requireStudent(s);
+  await requireStudent(s);
   const locale = await getLocale();
 
-  const navItems = [
+  const studentNavItems = [
     { href: `/${locale}/student/dashboard`, label: "Dashboard" },
     { href: `/${locale}/student/classes`, label: "Classes" },
     { href: `/${locale}/student/modules`, label: "Modules" },
@@ -27,20 +25,23 @@ export default async function StudentLayout({
   ];
 
   return (
-    <div className="min-h-screen bg-tb-bone">
-      <ResponsiveNav
-        locale={locale}
-        userRole="student"
-        userEmail={user.email || ""}
-        navItems={navItems}
-        logoHref={`/${locale}/student/dashboard`}
-      />
-      
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2">
-        <div className="flex items-center justify-end">
-          <SignOutButton />
+    <div>
+      {/* Secondary navigation for student section */}
+      <nav className="bg-tb-bone border-b border-tb-line">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex space-x-6 h-12 items-center overflow-x-auto">
+            {studentNavItems.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className="text-tb-navy hover:text-tb-stitch text-sm font-medium transition-colors whitespace-nowrap"
+              >
+                {item.label}
+              </Link>
+            ))}
+          </div>
         </div>
-      </div>
+      </nav>
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {children}
@@ -48,4 +49,3 @@ export default async function StudentLayout({
     </div>
   );
 }
-

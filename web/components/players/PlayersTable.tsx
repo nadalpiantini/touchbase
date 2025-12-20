@@ -1,7 +1,19 @@
 "use client";
 import { useEffect, useState } from "react";
 import { useTranslations } from 'next-intl';
-import { LoadingSpinner, Alert } from '@/components/ui';
+import {
+  LoadingSpinner,
+  Alert,
+  Table,
+  TableHeader,
+  TableBody,
+  TableRow,
+  TableHead,
+  TableCell,
+  Select,
+  Input,
+  Button,
+} from '@/components/ui';
 import { CSVExportButton } from '@/components/export/CSVExportButton';
 
 type Player = { id: string; full_name: string; team_id: string | null; created_at: string };
@@ -37,9 +49,9 @@ export default function PlayersTable() {
   };
 
   useEffect(() => { load(); }, []);
-  useEffect(() => { 
-    setLoading(true); 
-    load(teamFilter || undefined); 
+  useEffect(() => {
+    setLoading(true);
+    load(teamFilter || undefined);
   }, [teamFilter]);
 
   const startEdit = (p: Player) => {
@@ -85,121 +97,120 @@ export default function PlayersTable() {
     load(teamFilter || undefined);
   };
 
-  if (loading) return <p className="text-gray-500">{t('loading')}</p>;
-  if (err) return <p className="text-sm font-sans text-tb-stitch">{t('error')} {err}</p>;
-  if (!players.length) return <p className="text-gray-500">{t('empty')}</p>;
+  if (loading) return <p className="text-tb-shadow">{t('loading')}</p>;
+  if (err) return <Alert variant="error">{t('error')} {err}</Alert>;
+  if (!players.length) return <p className="text-tb-shadow">{t('empty')}</p>;
 
   const mapTeam = new Map(teams.map(t => [t.id, t.name]));
 
   return (
     <div className="space-y-3">
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
         <div className="flex items-center gap-2">
-          <label className="text-sm font-medium text-gray-700">{t('filter.label')}</label>
-          <select
-            className="border border-tb-line p-2 rounded bg-white font-sans"
+          <label className="text-sm font-medium text-tb-navy">{t('filter.label')}</label>
+          <Select
             value={teamFilter}
             onChange={e => setTeamFilter(e.target.value)}
+            className="w-auto"
           >
             <option value="">{t('filter.all')}</option>
             {teams.map(team => <option key={team.id} value={team.id}>{team.name}</option>)}
-          </select>
+          </Select>
         </div>
         <CSVExportButton type="players" />
       </div>
 
-      <div className="border border-gray-200 rounded-lg overflow-hidden bg-white">
-        <table className="w-full text-sm">
-          <thead className="bg-gray-50 border-b border-gray-200">
-            <tr>
-              <th className="text-left p-3 font-medium text-gray-700">{t('table.player')}</th>
-              <th className="text-left p-3 font-medium text-gray-700">{t('table.team')}</th>
-              <th className="text-left p-3 font-medium text-gray-700">{t('table.created')}</th>
-              <th className="text-right p-3 font-medium text-gray-700">{t('table.actions')}</th>
-            </tr>
-          </thead>
-          <tbody>
-            {players.map(p => (
-              <tr key={p.id} className="border-b border-gray-100 hover:bg-gray-50">
-                <td className="p-3">
-                  {editId === p.id ? (
-                    <input 
-                      className="border border-gray-300 p-1 rounded w-full"
-                      value={editName}
-                      onChange={e => setEditName(e.target.value)}
-                      onKeyDown={e => {
-                        if (e.key === "Enter") saveEdit();
-                        if (e.key === "Escape") cancelEdit();
-                      }}
-                    />
-                  ) : (
-                    p.full_name
-                  )}
-                </td>
-                <td className="p-3">
-                  {editId === p.id ? (
-                    <select
-                      className="border border-gray-300 p-1 rounded bg-white"
-                      value={editTeam}
-                      onChange={e => setEditTeam(e.target.value)}
+      <Table>
+        <TableHeader>
+          <TableRow>
+            <TableHead>{t('table.player')}</TableHead>
+            <TableHead>{t('table.team')}</TableHead>
+            <TableHead>{t('table.created')}</TableHead>
+            <TableHead className="text-right">{t('table.actions')}</TableHead>
+          </TableRow>
+        </TableHeader>
+        <TableBody>
+          {players.map(p => (
+            <TableRow key={p.id}>
+              <TableCell>
+                {editId === p.id ? (
+                  <Input
+                    value={editName}
+                    onChange={e => setEditName(e.target.value)}
+                    onKeyDown={e => {
+                      if (e.key === "Enter") saveEdit();
+                      if (e.key === "Escape") cancelEdit();
+                    }}
+                    className="py-1"
+                  />
+                ) : (
+                  p.full_name
+                )}
+              </TableCell>
+              <TableCell>
+                {editId === p.id ? (
+                  <Select
+                    value={editTeam}
+                    onChange={e => setEditTeam(e.target.value)}
+                    className="py-1"
+                  >
+                    <option value="">{t('noTeam')}</option>
+                    {teams.map(team => <option key={team.id} value={team.id}>{team.name}</option>)}
+                  </Select>
+                ) : (
+                  <span className="text-tb-shadow">
+                    {p.team_id ? (mapTeam.get(p.team_id) ?? "—") : "—"}
+                  </span>
+                )}
+              </TableCell>
+              <TableCell className="text-tb-shadow">
+                {new Date(p.created_at).toLocaleString()}
+              </TableCell>
+              <TableCell className="text-right space-x-2">
+                {editId === p.id ? (
+                  <>
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={saveEdit}
+                      aria-label={`Guardar cambios para ${p.full_name}`}
                     >
-                      <option value="">{t('noTeam')}</option>
-                      {teams.map(team => <option key={team.id} value={team.id}>{team.name}</option>)}
-                    </select>
-                  ) : (
-                    <span className="text-gray-600">
-                      {p.team_id ? (mapTeam.get(p.team_id) ?? "—") : "—"}
-                    </span>
-                  )}
-                </td>
-                <td className="p-3 text-gray-600">
-                  {new Date(p.created_at).toLocaleString()}
-                </td>
-                <td className="p-3 text-right space-x-2">
-                  {editId === p.id ? (
-                    <>
-                      <button
-                        type="button"
-                        className="text-sm font-sans border border-tb-line px-3 py-1 rounded-lg hover:bg-tb-beige transition"
-                        onClick={saveEdit}
-                        aria-label={`Guardar cambios para ${p.full_name}`}
-                      >
-                        {t('actions.save')}
-                      </button>
-                      <button
-                        type="button"
-                        className="text-sm font-sans border border-tb-line px-3 py-1 rounded-lg hover:bg-tb-beige transition"
-                        onClick={cancelEdit}
-                        aria-label={`Cancelar edición de ${p.full_name}`}
-                      >
-                        {t('actions.cancel')}
-                      </button>
-                    </>
-                  ) : (
-                    <>
-                      <button
-                        type="button"
-                        className="text-sm font-sans text-tb-navy hover:text-tb-stitch transition"
-                        onClick={() => startEdit(p)}
-                        aria-label={`Editar ${p.full_name}`}
-                      >
-                        {t('actions.edit')}
-                      </button>
-                      <button
-                        type="button"
-                        className="text-sm font-sans text-tb-stitch hover:text-tb-red transition"
-                        onClick={() => softDelete(p.id)}
-                      >
-                        {t('actions.delete')}
-                      </button>
-                    </>
-                  )}
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+                      {t('actions.save')}
+                    </Button>
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={cancelEdit}
+                      aria-label={`Cancelar edición de ${p.full_name}`}
+                    >
+                      {t('actions.cancel')}
+                    </Button>
+                  </>
+                ) : (
+                  <>
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      onClick={() => startEdit(p)}
+                      aria-label={`Editar ${p.full_name}`}
+                    >
+                      {t('actions.edit')}
+                    </Button>
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      className="text-tb-stitch hover:text-tb-red"
+                      onClick={() => softDelete(p.id)}
+                    >
+                      {t('actions.delete')}
+                    </Button>
+                  </>
+                )}
+              </TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
     </div>
   );
 }

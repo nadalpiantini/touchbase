@@ -794,5 +794,116 @@
     "title": "404 — Página no encontrada",
     "message": "La página que buscas no existe o ha sido movida.",
     "backHome": "Volver al inicio"
+  },
+  "admin": {
+    "dashboard": {
+      "title": "Panel de Administración",
+      "subtitle": "Vista general y gestión del sistema",
+      "manageOrgs": "Gestionar Organizaciones",
+      "manageUsers": "Gestionar Usuarios",
+      "billing": "Facturación",
+      "settings": "Configuración"
+    },
+    "stats": {
+      "organizations": "Organizaciones",
+      "totalUsers": "Total de Usuarios",
+      "classes": "Clases",
+      "modules": "Módulos",
+      "learningProgress": "Progreso de Aprendizaje",
+      "quickStats": "Estadísticas Rápidas"
+    },
+    "activity": {
+      "title": "Actividad Reciente",
+      "viewAll": "Ver Todo",
+      "noActivity": "Sin actividad reciente"
+    },
+    "organizations": {
+      "title": "Organizaciones",
+      "subtitle": "Gestiona todas las organizaciones del sistema",
+      "create": "Crear Organización",
+      "search": "Buscar organizaciones...",
+      "noOrganizations": "No se encontraron organizaciones",
+      "members": "miembros",
+      "classes": "clases",
+      "created": "Creada",
+      "viewDetails": "Ver Detalles"
+    },
+    "users": {
+      "title": "Gestión de Usuarios",
+      "subtitle": "Gestiona todos los usuarios del sistema",
+      "create": "Crear Usuario",
+      "search": "Buscar usuarios...",
+      "noUsers": "No se encontraron usuarios",
+      "role": "Rol",
+      "organization": "Organización",
+      "status": "Estado",
+      "lastActive": "Última Actividad",
+      "actions": "Acciones"
+    },
+    "billing": {
+      "title": "Facturación y Suscripciones",
+      "subtitle": "Gestiona la facturación y planes de suscripción",
+      "currentPlan": "Plan Actual",
+      "usage": "Uso",
+      "paymentHistory": "Historial de Pagos",
+      "invoices": "Facturas"
+    },
+    "settings": {
+      "title": "Configuración del Sistema",
+      "subtitle": "Configura opciones del sistema",
+      "breadcrumb": {
+        "admin": "Admin"
+      },
+      "sections": {
+        "general": "General",
+        "security": "Seguridad",
+        "notifications": "Notificaciones",
+        "integrations": "Integraciones"
+      },
+      "general": {
+        "title": "Configuración General",
+        "description": "Opciones básicas de configuración de la plataforma",
+        "siteName": "Nombre del Sitio",
+        "defaultLanguage": "Idioma Predeterminado",
+        "timezone": "Zona Horaria"
+      },
+      "security": {
+        "title": "Configuración de Seguridad",
+        "description": "Opciones de autenticación y control de acceso",
+        "requireMfa": "Requerir Autenticación de Dos Factores",
+        "sessionTimeout": "Tiempo de Sesión (minutos)",
+        "passwordMinLength": "Longitud Mínima de Contraseña"
+      },
+      "notifications": {
+        "title": "Configuración de Notificaciones",
+        "description": "Configura preferencias de email y alertas",
+        "emailNotifications": "Habilitar Notificaciones por Email",
+        "weeklyDigest": "Enviar Resumen Semanal de Actividad",
+        "newUserAlerts": "Alertar sobre Registro de Nuevos Usuarios"
+      },
+      "integrations": {
+        "title": "Integraciones",
+        "description": "Conecta servicios externos y APIs",
+        "connected": "Conectado",
+        "configure": "Configurar"
+      },
+      "save": "Guardar Configuración",
+      "saving": "Guardando..."
+    }
+  },
+  "teachers": {
+    "title": "Profesores",
+    "loading": "Cargando profesores...",
+    "empty": "No hay profesores registrados.",
+    "error": "Error",
+    "table": {
+      "photo": "Foto",
+      "name": "Nombre",
+      "email": "Email",
+      "phone": "Teléfono",
+      "department": "Departamento",
+      "type": "Tipo",
+      "hireDate": "Fecha de Contratación"
+    }
   }
 }

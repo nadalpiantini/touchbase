@@ -7,13 +7,14 @@ export interface BadgeProps extends HTMLAttributes<HTMLSpanElement> {
 
 const Badge = memo(forwardRef<HTMLSpanElement, BadgeProps>(
   ({ className, variant = 'info', children, ...props }, ref) => {
+    // Using TB design tokens with semantic color support
     const variants = {
       live: 'bg-tb-stitch/10 text-tb-stitch ring-1 ring-tb-stitch/30',
       status: 'bg-tb-navy/10 text-tb-navy',
       info: 'bg-tb-beige text-tb-shadow ring-1 ring-tb-line',
-      success: 'bg-green-50 text-green-700 ring-1 ring-green-600/20',
-      warning: 'bg-yellow-50 text-yellow-700 ring-1 ring-yellow-600/20',
-      error: 'bg-red-50 text-red-700 ring-1 ring-red-600/20',
+      success: 'bg-emerald-50 text-emerald-700 ring-1 ring-emerald-600/20',
+      warning: 'bg-amber-50 text-amber-700 ring-1 ring-amber-600/20',
+      error: 'bg-tb-stitch/10 text-tb-stitch ring-1 ring-tb-stitch/30',
     };
 
     return (

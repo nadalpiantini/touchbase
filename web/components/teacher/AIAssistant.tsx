@@ -110,7 +110,7 @@ export default function AIAssistant({ context }: AIAssistantProps) {
   }
 
   return (
-    <Card className="fixed bottom-4 right-4 w-96 h-[500px] z-50 flex flex-col shadow-2xl">
+    <Card className="fixed bottom-4 right-4 left-4 sm:left-auto w-auto sm:w-96 h-[500px] z-50 flex flex-col shadow-2xl">
       <CardHeader className="flex-shrink-0">
         <div className="flex items-center justify-between">
           <CardTitle className="text-lg">{t('title')}</CardTitle>

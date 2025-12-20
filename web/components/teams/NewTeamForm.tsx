@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import { Input, Button, Alert } from '@/components/ui';
 
 export default function NewTeamForm() {
   const [name, setName] = useState("");
@@ -10,7 +11,7 @@ export default function NewTeamForm() {
     e.preventDefault();
     setMsg(null);
     setLoading(true);
-    
+
     const res = await fetch("/api/teams/create", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -18,32 +19,45 @@ export default function NewTeamForm() {
     });
     const json = await res.json();
     setLoading(false);
-    
+
     if (!res.ok) {
-      setMsg(`⚠ ${json?.error || "No se pudo crear"}`);
+      setMsg(json?.error || "No se pudo crear");
     } else {
-      setMsg("✅ Equipo creado");
+      setMsg("Equipo creado exitosamente");
       setName("");
       setTimeout(() => location.reload(), 500);
     }
   };
 
   return (
-    <form onSubmit={onSubmit} className="flex gap-2 items-center">
-      <input
-        className="border border-tb-line p-2 rounded-lg w-64 font-sans text-tb-navy placeholder:text-tb-shadow/50 focus:ring-2 focus:ring-tb-stitch/60 focus:border-tb-stitch transition"
-        placeholder="Nombre del equipo"
-        value={name}
-        onChange={(e) => setName(e.target.value)}
-        required
-      />
-      <button 
-        disabled={loading} 
-        className="bg-tb-red text-white px-4 py-2 rounded-xl font-display hover:bg-tb-stitch shadow-dugout disabled:opacity-50 transition-all active:translate-y-[1px]"
+    <form onSubmit={onSubmit} className="flex flex-wrap gap-3 items-end">
+      <div className="w-full sm:w-auto">
+        <Input
+          label="Nombre del equipo"
+          placeholder="Nombre del equipo"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          required
+          className="w-full sm:w-64"
+        />
+      </div>
+      <Button
+        type="submit"
+        variant="primary"
+        disabled={loading}
       >
         {loading ? "Creando..." : "Crear equipo"}
-      </button>
-      {msg && <span className="text-sm font-sans">{msg}</span>}
+      </Button>
+      {msg && (
+        <div className="w-full">
+          <Alert
+            variant={msg.includes("exitosamente") ? "success" : "error"}
+            className="text-sm"
+          >
+            {msg}
+          </Alert>
+        </div>
+      )}
     </form>
   );
 }

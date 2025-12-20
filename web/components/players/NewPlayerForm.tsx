@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
-import { Alert } from '@/components/ui';
+import { Alert, Input, Select, Button } from '@/components/ui';
 
 type Team = { id: string; name: string };
 
@@ -22,7 +22,7 @@ export default function NewPlayerForm() {
     e.preventDefault();
     setMsg(null);
     setLoading(true);
-    
+
     const res = await fetch("/api/players/create", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -30,11 +30,11 @@ export default function NewPlayerForm() {
     });
     const json = await res.json();
     setLoading(false);
-    
+
     if (!res.ok) {
-      setMsg(`⚠ ${json?.error || "No se pudo crear"}`);
+      setMsg(`${json?.error || "No se pudo crear"}`);
     } else {
-      setMsg("✅ Jugador creado");
+      setMsg("Jugador creado exitosamente");
       setFullName("");
       setTeamId("");
       setTimeout(() => location.reload(), 500);
@@ -42,41 +42,47 @@ export default function NewPlayerForm() {
   };
 
   return (
-    <form onSubmit={onSubmit} className="flex flex-wrap gap-2 items-center" aria-label="Formulario de nuevo jugador">
-      <input
-        className="border border-tb-line p-2 rounded-lg w-64 font-sans text-tb-navy placeholder:text-tb-shadow/50 focus:ring-2 focus:ring-tb-stitch/60 focus:border-tb-stitch transition"
-        placeholder="Nombre completo"
-        value={fullName}
-        onChange={(e) => setFullName(e.target.value)}
-        required
-        aria-label="Nombre completo del jugador"
-        aria-required="true"
-      />
-      <select
-        className="border border-tb-line p-2 rounded-lg bg-white font-sans text-tb-navy focus:ring-2 focus:ring-tb-stitch/60 focus:border-tb-stitch transition"
-        value={teamId}
-        onChange={(e) => setTeamId(e.target.value)}
-        aria-label="Equipo del jugador"
-      >
-        <option value="">Sin equipo</option>
-        {teams.map(t => <option key={t.id} value={t.id}>{t.name}</option>)}
-      </select>
-      <button 
-        disabled={loading}
+    <form onSubmit={onSubmit} className="flex flex-wrap gap-3 items-end" aria-label="Formulario de nuevo jugador">
+      <div className="w-full sm:w-auto">
+        <Input
+          label="Nombre completo"
+          placeholder="Nombre completo"
+          value={fullName}
+          onChange={(e) => setFullName(e.target.value)}
+          required
+          className="w-full sm:w-64"
+          aria-required="true"
+        />
+      </div>
+      <div className="w-full sm:w-auto">
+        <Select
+          label="Equipo"
+          value={teamId}
+          onChange={(e) => setTeamId(e.target.value)}
+          className="w-full sm:w-48"
+        >
+          <option value="">Sin equipo</option>
+          {teams.map(t => <option key={t.id} value={t.id}>{t.name}</option>)}
+        </Select>
+      </div>
+      <Button
         type="submit"
+        variant="primary"
+        disabled={loading}
         aria-busy={loading}
         aria-label={loading ? "Creando jugador..." : "Crear jugador"}
-        className="bg-tb-red text-white px-4 py-2 rounded-xl font-display hover:bg-tb-stitch shadow-dugout disabled:opacity-50 transition-all active:translate-y-[1px]"
       >
         {loading ? "Creando..." : "Crear jugador"}
-      </button>
+      </Button>
       {msg && (
-        <Alert 
-          variant={msg.startsWith("✅") ? "success" : "error"} 
-          className="text-sm py-2 px-3"
-        >
-          {msg}
-        </Alert>
+        <div className="w-full">
+          <Alert
+            variant={msg.includes("exitosamente") ? "success" : "error"}
+            className="text-sm"
+          >
+            {msg}
+          </Alert>
+        </div>
       )}
     </form>
   );

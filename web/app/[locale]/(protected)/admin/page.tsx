@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import Link from "next/link";
 import {
   Card,
@@ -34,6 +34,7 @@ type RecentActivity = {
 
 export default function AdminDashboardPage() {
   const t = useTranslations("admin");
+  const locale = useLocale();
   const [stats, setStats] = useState<SystemStats | null>(null);
   const [activities, setActivities] = useState<RecentActivity[]>([]);
   const [loading, setLoading] = useState(true);
@@ -194,7 +195,7 @@ export default function AdminDashboardPage() {
 
         {/* Quick Actions */}
         <div className="mb-8 flex flex-wrap gap-4">
-          <Link href="/admin/organizations">
+          <Link href={`/${locale}/admin/organizations`}>
             <Button variant="primary">
               <svg
                 className="w-5 h-5 mr-2"
@@ -212,7 +213,7 @@ export default function AdminDashboardPage() {
               {t("dashboard.manageOrgs") || "Manage Organizations"}
             </Button>
           </Link>
-          <Link href="/admin/users">
+          <Link href={`/${locale}/admin/users`}>
             <Button variant="outline">
               <svg
                 className="w-5 h-5 mr-2"
@@ -230,7 +231,7 @@ export default function AdminDashboardPage() {
               {t("dashboard.manageUsers") || "Manage Users"}
             </Button>
           </Link>
-          <Link href="/admin/billing">
+          <Link href={`/${locale}/admin/billing`}>
             <Button variant="outline">
               <svg
                 className="w-5 h-5 mr-2"
@@ -248,7 +249,7 @@ export default function AdminDashboardPage() {
               {t("dashboard.billing") || "Billing"}
             </Button>
           </Link>
-          <Link href="/admin/settings">
+          <Link href={`/${locale}/admin/settings`}>
             <Button variant="outline">
               <svg
                 className="w-5 h-5 mr-2"
@@ -434,7 +435,7 @@ export default function AdminDashboardPage() {
               <CardTitle>
                 {t("activity.title") || "Recent Activity"}
               </CardTitle>
-              <Link href="/dashboard/audit">
+              <Link href={`/${locale}/dashboard/audit`}>
                 <Button variant="ghost" size="sm">
                   {t("activity.viewAll") || "View All"}
                 </Button>
