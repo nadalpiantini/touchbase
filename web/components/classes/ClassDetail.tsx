@@ -12,6 +12,7 @@ import {
   useToast,
 } from "@/components/ui";
 import { usePermissions } from "@/lib/hooks/usePermissions";
+import ClassForm from "./ClassForm";
 
 type ClassStatus = "active" | "inactive" | "completed" | "cancelled";
 
@@ -62,6 +63,14 @@ export default function ClassDetail({
     setIsEditing(false);
   };
 
+  const handleUpdateSuccess = (updatedClass: Class) => {
+    setIsEditing(false);
+    addToast(t("success.updated"), "success");
+    if (onUpdate) {
+      onUpdate(updatedClass);
+    }
+  };
+
   const handleDelete = async () => {
     if (!window.confirm(t("confirm.delete", { name: classItem.name }))) return;
 
@@ -99,15 +108,12 @@ export default function ClassDetail({
             {t("title.edit")}
           </h2>
         </div>
-        {/* TODO: Integrate ClassForm component when available */}
-        <div className="p-4 bg-yellow-50 border border-yellow-200 rounded-lg">
-          <p className="text-sm text-yellow-800">
-            ClassForm component will be integrated in Sprint 3.4.3
-          </p>
-          <Button onClick={handleCancelEdit} variant="secondary" className="mt-2">
-            {tCommon("actions.cancel")}
-          </Button>
-        </div>
+        <ClassForm
+          classItem={classItem}
+          mode="edit"
+          onSuccess={handleUpdateSuccess}
+          onCancel={handleCancelEdit}
+        />
       </div>
     );
   }

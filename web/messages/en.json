@@ -1209,6 +1209,10 @@
   },
   "classes": {
     "title": "Classes",
+    "description": "Manage your educational classes and enrollments",
+    "create": "Create Class",
+    "edit": "Edit Class",
+    "delete": "Delete Class",
     "loading": "Loading classes...",
     "empty": "No classes available.",
     "error": "Error",
