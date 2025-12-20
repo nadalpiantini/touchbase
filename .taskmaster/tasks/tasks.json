@@ -353,7 +353,7 @@
         "description": "Create teachers/staff table mirroring players structure with certifications and specializations",
         "details": "Migration for teachers table with fields: name, email, certifications[], specializations[], years_experience, bio, department, status. Add RLS policies.",
         "testStrategy": "Migration tests, CRUD API tests",
-        "status": "pending",
+        "status": "done",
         "dependencies": [],
         "priority": "high",
         "subtasks": []
@@ -427,7 +427,7 @@
     ],
     "metadata": {
       "created": "2025-12-15T17:52:29.573Z",
-      "updated": "2025-12-20T18:49:09.005Z",
+      "updated": "2025-12-20T18:55:08.047Z",
       "description": "QA Testing sistemático de todas las secciones"
     }
   }
