@@ -32,3 +32,17 @@ export {
   withRBAC,
   getOrgIdFromRequest,
 } from "./middleware";
+
+// Guards (Client-side only)
+export type { GuardConfig } from "./guards";
+export {
+  withPermissionGuard,
+  withRoleGuard,
+  useCanPerformAction,
+  useHasRole,
+  useHasAnyRole,
+  useUserRole,
+  useIsOwner,
+  useIsAdminOrOwner,
+  useCanManageContent,
+} from "./guards";

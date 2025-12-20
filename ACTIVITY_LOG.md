@@ -343,9 +343,85 @@ SELECT touchbase_is_module_enabled('teachers'); -- returns boolean
 
 ---
 
+### ✅ Task 17 COMPLETADA (2024-12-20)
+
+**SPRINT 2.5**: Permission Hooks & Guards - ✅ DONE
+
+**Archivos Creados** (5):
+- `web/components/auth/RequirePermission.tsx` (108 líneas)
+- `web/components/auth/RequireRole.tsx` (61 líneas)
+- `web/components/auth/ProtectedRoute.tsx` (173 líneas)
+- `web/lib/rbac/guards.tsx` (264 líneas)
+- `web/components/auth/index.ts` (12 líneas)
+
+**Archivos Modificados** (1):
+- `web/lib/rbac/index.ts` - Added guards exports
+
+**React Components (3)**:
+- ✅ RequirePermission - Conditional rendering con permission/role checks
+- ✅ RequireRole - Simplified role-based rendering
+- ✅ ProtectedRoute - Route-level protection con auto-redirect
+
+**Guard Utilities (9 hooks + 2 HOCs)**:
+- ✅ withPermissionGuard() - HOC para component protection
+- ✅ withRoleGuard() - HOC simplificado para roles
+- ✅ useCanPerformAction() - Check permission preset
+- ✅ useHasRole() - Check specific role
+- ✅ useHasAnyRole() - Check multiple roles
+- ✅ useUserRole() - Get current user role
+- ✅ useIsOwner() - Owner check hook
+- ✅ useIsAdminOrOwner() - Admin/Owner check hook
+- ✅ useCanManageContent() - Content management check
+
+**Features Implementadas**:
+- ✅ Component-level permission guards
+- ✅ Route-level protection with redirects
+- ✅ Conditional rendering based on permissions
+- ✅ Loading states durante permission checks
+- ✅ Error handling y fallback content
+- ✅ HOCs para component wrapping
+- ✅ Utility hooks para permission checks
+- ✅ Type-safe permission checking
+- ✅ Integration con existing usePermissions hook
+
+**Usage Examples**:
+```typescript
+// Conditional Rendering
+<RequirePermission permission="MANAGE_THEME">
+  <ThemeSettings />
+</RequirePermission>
+
+// Role-based Rendering
+<RequireRole role={['owner', 'admin']}>
+  <AdminPanel />
+</RequireRole>
+
+// Route Protection
+<ProtectedRoute role="admin" redirectTo="/dashboard">
+  <AdminDashboard />
+</ProtectedRoute>
+
+// HOC Protection
+const ProtectedSettings = withRoleGuard(Settings, 'owner');
+
+// Hook Usage
+const canManage = useCanManageContent();
+if (canManage) {
+  // Show management UI
+}
+```
+
+**Commit**: [pending] - feat(rbac): implement permission guards and protected components
+**Push**: [pending] - Will push after validation
+**Validaciones**: ✅ ESLint OK, TypeScript OK
+
+**Progreso**: 17/24 tasks done (70.8%)
+
+---
+
 ### 📝 Próximo Paso
 
-**Siguiente acción**: Task 17 - Permission Hooks & Guards
+**Siguiente acción**: SPRINT 3 - Task 18 - Teachers Module Database Schema
 
 **Comandos sugeridos**:
 ```bash
