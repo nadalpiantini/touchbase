@@ -411,9 +411,9 @@ if (canManage) {
 }
 ```
 
-**Commit**: [pending] - feat(rbac): implement permission guards and protected components
-**Push**: [pending] - Will push after validation
-**Validaciones**: ✅ ESLint OK, TypeScript OK
+**Commit**: 7049f23ba0 - feat(rbac): implement permission guards and protected components
+**Push**: ✅ Successful to GitHub
+**Validaciones**: ✅ ESLint OK, TypeScript OK, Pre-commit hooks passed
 
 **Progreso**: 17/24 tasks done (70.8%)
 
