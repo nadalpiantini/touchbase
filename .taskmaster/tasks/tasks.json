@@ -375,7 +375,7 @@
         "description": "Create classes table with enrollment system and scheduling integration",
         "details": "Migration for classes table (name, level, schedule, teacher_id, max_students) and enrollments junction table (class_id, student_id, enrolled_date, status). API routes for CRUD.",
         "testStrategy": "Database tests, enrollment API tests",
-        "status": "in-progress",
+        "status": "done",
         "dependencies": [],
         "priority": "high",
         "subtasks": []
@@ -386,7 +386,7 @@
         "description": "Build classes list view, class detail, enrollment management UI",
         "details": "Create ClassesList, ClassDetail, EnrollmentManager components using Table, Card, Badge primitives. Add class creation wizard.",
         "testStrategy": "E2E tests for class creation and enrollment",
-        "status": "pending",
+        "status": "in-progress",
         "dependencies": [],
         "priority": "high",
         "subtasks": []
@@ -427,7 +427,7 @@
     ],
     "metadata": {
       "created": "2025-12-15T17:52:29.573Z",
-      "updated": "2025-12-20T20:39:44.006Z",
+      "updated": "2025-12-20T21:15:14.563Z",
       "description": "QA Testing sistemático de todas las secciones"
     }
   }
