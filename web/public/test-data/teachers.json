@@ -1,0 +1,471 @@
+{
+  "teachers": [
+    {
+      "id": "teacher_001",
+      "firstName": "Carlos",
+      "lastName": "Mendoza",
+      "fullName": "Carlos Mendoza",
+      "email": "carlos.mendoza@touchbase.edu",
+      "profileAvatar": "https://i.pravatar.cc/150?img=12",
+      "specializations": [
+        "Life Skills",
+        "Leadership Development",
+        "Communication"
+      ],
+      "yearsOfExperience": 12,
+      "certifications": [
+        "Master in Education",
+        "Certified Life Coach",
+        "TESOL Certification"
+      ],
+      "certificationLevel": "Advanced",
+      "joiningDate": "2019-08-15",
+      "classesCount": 5,
+      "classesTaught": [
+        {
+          "classId": "cls_101",
+          "className": "Leadership Fundamentals A",
+          "level": "Intermediate",
+          "schedule": "Monday, Wednesday, Friday 9:00 AM"
+        },
+        {
+          "classId": "cls_102",
+          "className": "Life Skills 101 - Group A",
+          "level": "Beginner",
+          "schedule": "Tuesday, Thursday 10:30 AM"
+        },
+        {
+          "classId": "cls_103",
+          "className": "Advanced Communication",
+          "level": "Advanced",
+          "schedule": "Monday, Wednesday 2:00 PM"
+        },
+        {
+          "classId": "cls_104",
+          "className": "Team Dynamics Workshop",
+          "level": "Intermediate",
+          "schedule": "Friday 1:00 PM"
+        },
+        {
+          "classId": "cls_105",
+          "className": "Conflict Resolution",
+          "level": "Intermediate",
+          "schedule": "Tuesday 3:30 PM"
+        }
+      ],
+      "totalStudents": 128,
+      "averageRating": 4.8,
+      "bio": "Experienced educator with a passion for developing young leaders. Specializes in practical life skills and communication techniques.",
+      "department": "Life Skills",
+      "status": "active"
+    },
+    {
+      "id": "teacher_002",
+      "firstName": "María",
+      "lastName": "García López",
+      "fullName": "María García López",
+      "email": "maria.garcia@touchbase.edu",
+      "profileAvatar": "https://i.pravatar.cc/150?img=47",
+      "specializations": [
+        "Character Development",
+        "Ethics",
+        "Emotional Intelligence"
+      ],
+      "yearsOfExperience": 8,
+      "certifications": [
+        "Bachelor in Psychology",
+        "Certified Character Educator",
+        "SEL (Social-Emotional Learning) Trainer"
+      ],
+      "certificationLevel": "Professional",
+      "joiningDate": "2021-01-20",
+      "classesCount": 4,
+      "classesTaught": [
+        {
+          "classId": "cls_201",
+          "className": "Character Development 101",
+          "level": "Beginner",
+          "schedule": "Monday, Wednesday, Friday 11:00 AM"
+        },
+        {
+          "classId": "cls_202",
+          "className": "Emotional Intelligence Workshop",
+          "level": "Intermediate",
+          "schedule": "Tuesday, Thursday 1:00 PM"
+        },
+        {
+          "classId": "cls_203",
+          "className": "Ethics & Decision Making",
+          "level": "Intermediate",
+          "schedule": "Wednesday 3:00 PM"
+        },
+        {
+          "classId": "cls_204",
+          "className": "Self-Awareness & Growth",
+          "level": "Beginner",
+          "schedule": "Friday 10:00 AM"
+        }
+      ],
+      "totalStudents": 95,
+      "averageRating": 4.7,
+      "bio": "Passionate psychologist dedicated to fostering emotional intelligence and character development in students. Creates engaging, supportive learning environments.",
+      "department": "Character Development",
+      "status": "active"
+    },
+    {
+      "id": "teacher_003",
+      "firstName": "Juan",
+      "lastName": "Rodríguez Sánchez",
+      "fullName": "Juan Rodríguez Sánchez",
+      "email": "juan.rodriguez@touchbase.edu",
+      "profileAvatar": "https://i.pravatar.cc/150?img=33",
+      "specializations": [
+        "Professional Development",
+        "Career Planning",
+        "Entrepreneurship"
+      ],
+      "yearsOfExperience": 15,
+      "certifications": [
+        "MBA - Business Administration",
+        "Certified Career Counselor",
+        "Entrepreneurship Trainer"
+      ],
+      "certificationLevel": "Advanced",
+      "joiningDate": "2018-09-10",
+      "classesCount": 6,
+      "classesTaught": [
+        {
+          "classId": "cls_301",
+          "className": "Career Planning Essentials",
+          "level": "Intermediate",
+          "schedule": "Monday, Wednesday 2:00 PM"
+        },
+        {
+          "classId": "cls_302",
+          "className": "Entrepreneurship 101",
+          "level": "Beginner",
+          "schedule": "Tuesday, Thursday 10:00 AM"
+        },
+        {
+          "classId": "cls_303",
+          "className": "Resume & Interview Skills",
+          "level": "Intermediate",
+          "schedule": "Friday 11:00 AM"
+        },
+        {
+          "classId": "cls_304",
+          "className": "Business Planning Workshop",
+          "level": "Advanced",
+          "schedule": "Tuesday 1:00 PM"
+        },
+        {
+          "classId": "cls_305",
+          "className": "Professional Networking",
+          "level": "Intermediate",
+          "schedule": "Thursday 3:00 PM"
+        },
+        {
+          "classId": "cls_306",
+          "className": "Finance Fundamentals",
+          "level": "Beginner",
+          "schedule": "Wednesday 10:00 AM"
+        }
+      ],
+      "totalStudents": 156,
+      "averageRating": 4.6,
+      "bio": "Business leader and mentor with extensive experience in career development and entrepreneurship. Helps students envision and plan their professional futures.",
+      "department": "Professional Development",
+      "status": "active"
+    },
+    {
+      "id": "teacher_004",
+      "firstName": "Sofia",
+      "lastName": "Reyes Moreno",
+      "fullName": "Sofia Reyes Moreno",
+      "email": "sofia.reyes@touchbase.edu",
+      "profileAvatar": "https://i.pravatar.cc/150?img=28",
+      "specializations": [
+        "Critical Thinking",
+        "Problem Solving",
+        "Digital Literacy"
+      ],
+      "yearsOfExperience": 7,
+      "certifications": [
+        "Master in Information Technology",
+        "Certified Critical Thinking Coach",
+        "Digital Transformation Specialist"
+      ],
+      "certificationLevel": "Professional",
+      "joiningDate": "2020-06-01",
+      "classesCount": 5,
+      "classesTaught": [
+        {
+          "classId": "cls_401",
+          "className": "Critical Thinking 101",
+          "level": "Beginner",
+          "schedule": "Monday, Wednesday, Friday 9:30 AM"
+        },
+        {
+          "classId": "cls_402",
+          "className": "Digital Literacy Fundamentals",
+          "level": "Beginner",
+          "schedule": "Tuesday, Thursday 11:00 AM"
+        },
+        {
+          "classId": "cls_403",
+          "className": "Problem Solving Strategies",
+          "level": "Intermediate",
+          "schedule": "Monday, Wednesday 1:30 PM"
+        },
+        {
+          "classId": "cls_404",
+          "className": "Data Analysis for Students",
+          "level": "Intermediate",
+          "schedule": "Friday 2:00 PM"
+        },
+        {
+          "classId": "cls_405",
+          "className": "Online Safety & Ethics",
+          "level": "Beginner",
+          "schedule": "Thursday 1:00 PM"
+        }
+      ],
+      "totalStudents": 114,
+      "averageRating": 4.9,
+      "bio": "Tech-savvy educator passionate about developing critical thinking and digital literacy skills in modern learners. Makes complex concepts accessible and engaging.",
+      "department": "Critical Thinking & Tech",
+      "status": "active"
+    },
+    {
+      "id": "teacher_005",
+      "firstName": "Diego",
+      "lastName": "Escobar Vargas",
+      "fullName": "Diego Escobar Vargas",
+      "email": "diego.escobar@touchbase.edu",
+      "profileAvatar": "https://i.pravatar.cc/150?img=15",
+      "specializations": [
+        "Health & Wellness",
+        "Stress Management",
+        "Mindfulness"
+      ],
+      "yearsOfExperience": 10,
+      "certifications": [
+        "Bachelor in Sports Science",
+        "Certified Wellness Coach",
+        "Mindfulness Instructor (200-hour)"
+      ],
+      "certificationLevel": "Professional",
+      "joiningDate": "2019-02-15",
+      "classesCount": 4,
+      "classesTaught": [
+        {
+          "classId": "cls_501",
+          "className": "Health & Wellness 101",
+          "level": "Beginner",
+          "schedule": "Monday, Wednesday, Friday 10:00 AM"
+        },
+        {
+          "classId": "cls_502",
+          "className": "Stress Management Techniques",
+          "level": "Intermediate",
+          "schedule": "Tuesday, Thursday 2:00 PM"
+        },
+        {
+          "classId": "cls_503",
+          "className": "Mindfulness & Meditation",
+          "level": "Beginner",
+          "schedule": "Wednesday 3:30 PM"
+        },
+        {
+          "classId": "cls_504",
+          "className": "Nutrition & Lifestyle",
+          "level": "Intermediate",
+          "schedule": "Friday 1:00 PM"
+        }
+      ],
+      "totalStudents": 87,
+      "averageRating": 4.8,
+      "bio": "Holistic wellness expert dedicated to helping students develop healthy physical and mental practices. Creates calm, supportive classroom environments.",
+      "department": "Health & Wellness",
+      "status": "active"
+    },
+    {
+      "id": "teacher_006",
+      "firstName": "Alejandra",
+      "lastName": "Castillo Domínguez",
+      "fullName": "Alejandra Castillo Domínguez",
+      "email": "alejandra.castillo@touchbase.edu",
+      "profileAvatar": "https://i.pravatar.cc/150?img=52",
+      "specializations": [
+        "Social Skills",
+        "Teamwork",
+        "Interpersonal Relations"
+      ],
+      "yearsOfExperience": 6,
+      "certifications": [
+        "Degree in Social Work",
+        "Certified Group Facilitator",
+        "Social-Emotional Development Specialist"
+      ],
+      "certificationLevel": "Professional",
+      "joiningDate": "2021-08-20",
+      "classesCount": 5,
+      "classesTaught": [
+        {
+          "classId": "cls_601",
+          "className": "Social Skills Development",
+          "level": "Beginner",
+          "schedule": "Monday, Wednesday, Friday 2:00 PM"
+        },
+        {
+          "classId": "cls_602",
+          "className": "Teamwork & Collaboration",
+          "level": "Intermediate",
+          "schedule": "Tuesday, Thursday 10:30 AM"
+        },
+        {
+          "classId": "cls_603",
+          "className": "Relationship Building",
+          "level": "Beginner",
+          "schedule": "Wednesday 11:00 AM"
+        },
+        {
+          "classId": "cls_604",
+          "className": "Empathy & Active Listening",
+          "level": "Intermediate",
+          "schedule": "Friday 10:00 AM"
+        },
+        {
+          "classId": "cls_605",
+          "className": "Peer Mediation Workshop",
+          "level": "Intermediate",
+          "schedule": "Thursday 1:30 PM"
+        }
+      ],
+      "totalStudents": 106,
+      "averageRating": 4.7,
+      "bio": "Compassionate social work professional who excels at building inclusive classroom communities and facilitating meaningful peer interactions among students.",
+      "department": "Social Skills",
+      "status": "active"
+    },
+    {
+      "id": "teacher_007",
+      "firstName": "Roberto",
+      "lastName": "Hernández Luna",
+      "fullName": "Roberto Hernández Luna",
+      "email": "roberto.hernandez@touchbase.edu",
+      "profileAvatar": "https://i.pravatar.cc/150?img=8",
+      "specializations": [
+        "Public Speaking",
+        "Presentation Skills",
+        "Confidence Building"
+      ],
+      "yearsOfExperience": 9,
+      "certifications": [
+        "Master in Communication",
+        "Professional Speaking Coach",
+        "Toastmasters Certified Mentor"
+      ],
+      "certificationLevel": "Advanced",
+      "joiningDate": "2019-11-01",
+      "classesCount": 4,
+      "classesTaught": [
+        {
+          "classId": "cls_701",
+          "className": "Public Speaking Fundamentals",
+          "level": "Beginner",
+          "schedule": "Monday, Wednesday, Friday 1:00 PM"
+        },
+        {
+          "classId": "cls_702",
+          "className": "Advanced Presentation Skills",
+          "level": "Advanced",
+          "schedule": "Tuesday, Thursday 3:00 PM"
+        },
+        {
+          "classId": "cls_703",
+          "className": "Confidence & Stage Presence",
+          "level": "Intermediate",
+          "schedule": "Wednesday 10:00 AM"
+        },
+        {
+          "classId": "cls_704",
+          "className": "Storytelling & Narrative",
+          "level": "Intermediate",
+          "schedule": "Friday 11:00 AM"
+        }
+      ],
+      "totalStudents": 98,
+      "averageRating": 4.9,
+      "bio": "Accomplished speaker and communication expert who transforms nervous presenters into confident communicators. Known for energetic, interactive teaching style.",
+      "department": "Communication",
+      "status": "active"
+    },
+    {
+      "id": "teacher_008",
+      "firstName": "Valentina",
+      "lastName": "Ortiz Silva",
+      "fullName": "Valentina Ortiz Silva",
+      "email": "valentina.ortiz@touchbase.edu",
+      "profileAvatar": "https://i.pravatar.cc/150?img=64",
+      "specializations": [
+        "Goal Setting",
+        "Motivation & Performance",
+        "Personal Development"
+      ],
+      "yearsOfExperience": 11,
+      "certifications": [
+        "Master in Organizational Psychology",
+        "Certified Life Coach",
+        "Performance Coach Certification"
+      ],
+      "certificationLevel": "Advanced",
+      "joiningDate": "2018-05-10",
+      "classesCount": 5,
+      "classesTaught": [
+        {
+          "classId": "cls_801",
+          "className": "Goal Setting Mastery",
+          "level": "Intermediate",
+          "schedule": "Monday, Wednesday, Friday 11:00 AM"
+        },
+        {
+          "classId": "cls_802",
+          "className": "Personal Development Journey",
+          "level": "Beginner",
+          "schedule": "Tuesday, Thursday 9:00 AM"
+        },
+        {
+          "classId": "cls_803",
+          "className": "Motivation & Performance",
+          "level": "Advanced",
+          "schedule": "Wednesday 2:00 PM"
+        },
+        {
+          "classId": "cls_804",
+          "className": "Habit Formation & Change",
+          "level": "Intermediate",
+          "schedule": "Friday 3:00 PM"
+        },
+        {
+          "classId": "cls_805",
+          "className": "Success Principles",
+          "level": "Intermediate",
+          "schedule": "Thursday 2:00 PM"
+        }
+      ],
+      "totalStudents": 118,
+      "averageRating": 4.8,
+      "bio": "Motivational coach and organizational psychologist dedicated to unlocking student potential through strategic goal setting and personal development strategies.",
+      "department": "Personal Development",
+      "status": "active"
+    }
+  ],
+  "metadata": {
+    "totalTeachers": 8,
+    "totalStudents": 902,
+    "averageExperience": 9.75,
+    "generatedDate": "2024-12-20",
+    "version": "1.0.0"
+  }
+}

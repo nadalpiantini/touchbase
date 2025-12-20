@@ -1,0 +1,817 @@
+{
+  "modules": [
+    {
+      "id": "mod_001",
+      "title": "Leadership Fundamentals",
+      "description": "Learn core leadership principles including decision-making, delegation, and team motivation. This module covers how to inspire others and lead by example in any situation.",
+      "skills": ["leadership", "decision_making", "motivation", "strategic_thinking"],
+      "difficulty": "beginner",
+      "duration_minutes": 180,
+      "cover_image": "https://picsum.photos/400/300?random=1",
+      "learning_objectives": [
+        "Understand core leadership principles",
+        "Develop decision-making skills",
+        "Learn delegation techniques",
+        "Practice motivating team members"
+      ],
+      "badge_reward": {
+        "name": "Emerging Leader",
+        "description": "Completed Leadership Fundamentals module",
+        "xp_reward": 250
+      },
+      "is_active": true,
+      "created_at": "2024-09-01T10:00:00Z"
+    },
+    {
+      "id": "mod_002",
+      "title": "Teamwork & Collaboration",
+      "description": "Master the art of working effectively with others. Explore communication styles, conflict resolution, and building trust within teams for maximum productivity.",
+      "skills": ["teamwork", "communication", "collaboration", "conflict_resolution"],
+      "difficulty": "beginner",
+      "duration_minutes": 150,
+      "cover_image": "https://picsum.photos/400/300?random=2",
+      "learning_objectives": [
+        "Identify different communication styles",
+        "Develop conflict resolution strategies",
+        "Build and maintain trust",
+        "Enhance collaborative problem-solving"
+      ],
+      "badge_reward": {
+        "name": "Team Player",
+        "description": "Mastered teamwork and collaboration skills",
+        "xp_reward": 230
+      },
+      "is_active": true,
+      "created_at": "2024-09-01T10:30:00Z"
+    },
+    {
+      "id": "mod_003",
+      "title": "Communication Excellence",
+      "description": "Develop powerful communication skills including active listening, public speaking, and persuasion. Learn to articulate ideas clearly and connect meaningfully with audiences.",
+      "skills": ["communication", "active_listening", "public_speaking", "persuasion"],
+      "difficulty": "intermediate",
+      "duration_minutes": 210,
+      "cover_image": "https://picsum.photos/400/300?random=3",
+      "learning_objectives": [
+        "Master active listening techniques",
+        "Overcome public speaking anxiety",
+        "Develop persuasive communication",
+        "Improve written communication"
+      ],
+      "badge_reward": {
+        "name": "Voice of Leadership",
+        "description": "Achieved excellence in communication skills",
+        "xp_reward": 280
+      },
+      "is_active": true,
+      "created_at": "2024-09-02T09:00:00Z"
+    },
+    {
+      "id": "mod_004",
+      "title": "Emotional Intelligence",
+      "description": "Understand and manage emotions effectively. Learn self-awareness, empathy, and relationship management to enhance personal and professional interactions.",
+      "skills": ["emotional_intelligence", "self_awareness", "empathy", "relationship_management"],
+      "difficulty": "intermediate",
+      "duration_minutes": 180,
+      "cover_image": "https://picsum.photos/400/300?random=4",
+      "learning_objectives": [
+        "Develop self-awareness and emotional regulation",
+        "Cultivate empathy for others",
+        "Manage relationships effectively",
+        "Navigate social dynamics"
+      ],
+      "badge_reward": {
+        "name": "Emotionally Intelligent",
+        "description": "Mastered emotional intelligence concepts",
+        "xp_reward": 260
+      },
+      "is_active": true,
+      "created_at": "2024-09-02T14:00:00Z"
+    },
+    {
+      "id": "mod_005",
+      "title": "Time Management & Productivity",
+      "description": "Maximize your productivity by mastering time management techniques. Learn prioritization, goal-setting, and strategies to eliminate procrastination.",
+      "skills": ["time_management", "productivity", "prioritization", "goal_setting"],
+      "difficulty": "beginner",
+      "duration_minutes": 120,
+      "cover_image": "https://picsum.photos/400/300?random=5",
+      "learning_objectives": [
+        "Master time prioritization frameworks",
+        "Set and track meaningful goals",
+        "Overcome procrastination habits",
+        "Optimize daily routines"
+      ],
+      "badge_reward": {
+        "name": "Time Master",
+        "description": "Developed time management expertise",
+        "xp_reward": 200
+      },
+      "is_active": true,
+      "created_at": "2024-09-03T11:00:00Z"
+    },
+    {
+      "id": "mod_006",
+      "title": "Problem Solving & Critical Thinking",
+      "description": "Learn systematic approaches to complex problems. Develop analytical skills, creative thinking, and evidence-based decision-making for real-world challenges.",
+      "skills": ["problem_solving", "critical_thinking", "analytical_thinking", "creativity"],
+      "difficulty": "advanced",
+      "duration_minutes": 240,
+      "cover_image": "https://picsum.photos/400/300?random=6",
+      "learning_objectives": [
+        "Apply structured problem-solving frameworks",
+        "Analyze problems from multiple perspectives",
+        "Generate innovative solutions",
+        "Evaluate options systematically"
+      ],
+      "badge_reward": {
+        "name": "Strategic Thinker",
+        "description": "Mastered problem-solving and critical thinking",
+        "xp_reward": 320
+      },
+      "is_active": true,
+      "created_at": "2024-09-03T15:00:00Z"
+    },
+    {
+      "id": "mod_007",
+      "title": "Resilience & Growth Mindset",
+      "description": "Build mental resilience and cultivate a growth mindset. Learn to embrace challenges, recover from setbacks, and maintain motivation toward personal growth.",
+      "skills": ["resilience", "growth_mindset", "adaptability", "perseverance"],
+      "difficulty": "intermediate",
+      "duration_minutes": 160,
+      "cover_image": "https://picsum.photos/400/300?random=7",
+      "learning_objectives": [
+        "Develop resilience strategies",
+        "Adopt growth mindset principles",
+        "Handle failure constructively",
+        "Build adaptive capacity"
+      ],
+      "badge_reward": {
+        "name": "Resilient Spirit",
+        "description": "Developed resilience and growth mindset",
+        "xp_reward": 270
+      },
+      "is_active": true,
+      "created_at": "2024-09-04T08:00:00Z"
+    },
+    {
+      "id": "mod_008",
+      "title": "Ethical Decision-Making",
+      "description": "Navigate ethical dilemmas with confidence. Learn moral reasoning frameworks, recognize bias, and make decisions aligned with personal and organizational values.",
+      "skills": ["ethics", "moral_reasoning", "integrity", "values_alignment"],
+      "difficulty": "advanced",
+      "duration_minutes": 200,
+      "cover_image": "https://picsum.photos/400/300?random=8",
+      "learning_objectives": [
+        "Apply ethical decision-making frameworks",
+        "Recognize ethical dilemmas",
+        "Identify and mitigate bias",
+        "Build personal integrity"
+      ],
+      "badge_reward": {
+        "name": "Ethical Leader",
+        "description": "Mastered ethical decision-making",
+        "xp_reward": 290
+      },
+      "is_active": true,
+      "created_at": "2024-09-04T13:00:00Z"
+    },
+    {
+      "id": "mod_009",
+      "title": "Diversity & Inclusion",
+      "description": "Understand and appreciate diverse perspectives. Learn to create inclusive environments where everyone feels valued and can contribute their unique strengths.",
+      "skills": ["diversity", "inclusion", "cultural_awareness", "empathy"],
+      "difficulty": "beginner",
+      "duration_minutes": 140,
+      "cover_image": "https://picsum.photos/400/300?random=9",
+      "learning_objectives": [
+        "Develop cultural awareness",
+        "Recognize unconscious bias",
+        "Create inclusive communication",
+        "Build diverse teams"
+      ],
+      "badge_reward": {
+        "name": "Inclusive Ally",
+        "description": "Committed to diversity and inclusion",
+        "xp_reward": 220
+      },
+      "is_active": true,
+      "created_at": "2024-09-05T10:00:00Z"
+    },
+    {
+      "id": "mod_010",
+      "title": "Career Development & Personal Branding",
+      "description": "Plan your career trajectory and build a strong personal brand. Learn networking, resume development, interview skills, and strategies for professional growth.",
+      "skills": ["career_planning", "networking", "personal_branding", "professional_development"],
+      "difficulty": "intermediate",
+      "duration_minutes": 190,
+      "cover_image": "https://picsum.photos/400/300?random=10",
+      "learning_objectives": [
+        "Develop a career roadmap",
+        "Build a powerful personal brand",
+        "Master networking skills",
+        "Excel in interviews and negotiations"
+      ],
+      "badge_reward": {
+        "name": "Career Champion",
+        "description": "Developed career planning expertise",
+        "xp_reward": 275
+      },
+      "is_active": true,
+      "created_at": "2024-09-05T14:30:00Z"
+    }
+  ],
+  "classes": [
+    {
+      "id": "class_001",
+      "org_id": "org_001",
+      "teacher_id": "teacher_001",
+      "name": "Leadership 101 - Morning Session",
+      "code": "LEAD101-M",
+      "grade_level": "9-12",
+      "description": "Introductory leadership course covering fundamentals and practical applications for high school students.",
+      "schedule": {
+        "timezone": "America/New_York",
+        "entries": [
+          {
+            "dayOfWeek": 1,
+            "startTime": "09:00",
+            "endTime": "10:30"
+          },
+          {
+            "dayOfWeek": 3,
+            "startTime": "09:00",
+            "endTime": "10:30"
+          },
+          {
+            "dayOfWeek": 5,
+            "startTime": "09:00",
+            "endTime": "10:30"
+          }
+        ]
+      },
+      "current_module": "mod_001",
+      "progress_percentage": 65,
+      "student_count": 18,
+      "students": [
+        "student_001",
+        "student_002",
+        "student_003",
+        "student_004",
+        "student_005",
+        "student_006",
+        "student_007",
+        "student_008",
+        "student_009",
+        "student_010",
+        "student_011",
+        "student_012",
+        "student_013",
+        "student_014",
+        "student_015",
+        "student_016",
+        "student_017",
+        "student_018"
+      ],
+      "created_at": "2024-08-15T08:00:00Z",
+      "updated_at": "2024-12-18T14:30:00Z"
+    },
+    {
+      "id": "class_002",
+      "org_id": "org_001",
+      "teacher_id": "teacher_001",
+      "name": "Leadership 101 - Afternoon Session",
+      "code": "LEAD101-A",
+      "grade_level": "9-12",
+      "description": "Introductory leadership course - afternoon cohort for high school students.",
+      "schedule": {
+        "timezone": "America/New_York",
+        "entries": [
+          {
+            "dayOfWeek": 1,
+            "startTime": "14:00",
+            "endTime": "15:30"
+          },
+          {
+            "dayOfWeek": 3,
+            "startTime": "14:00",
+            "endTime": "15:30"
+          },
+          {
+            "dayOfWeek": 5,
+            "startTime": "14:00",
+            "endTime": "15:30"
+          }
+        ]
+      },
+      "current_module": "mod_001",
+      "progress_percentage": 52,
+      "student_count": 16,
+      "students": [
+        "student_019",
+        "student_020",
+        "student_021",
+        "student_022",
+        "student_023",
+        "student_024",
+        "student_025",
+        "student_026",
+        "student_027",
+        "student_028",
+        "student_029",
+        "student_030",
+        "student_031",
+        "student_032",
+        "student_033",
+        "student_034"
+      ],
+      "created_at": "2024-08-15T08:30:00Z",
+      "updated_at": "2024-12-18T14:30:00Z"
+    },
+    {
+      "id": "class_003",
+      "org_id": "org_001",
+      "teacher_id": "teacher_002",
+      "name": "Teamwork Essentials",
+      "code": "TEAM201",
+      "grade_level": "10-12",
+      "description": "Advanced teamwork course focusing on collaboration, conflict resolution, and team dynamics.",
+      "schedule": {
+        "timezone": "America/New_York",
+        "entries": [
+          {
+            "dayOfWeek": 2,
+            "startTime": "10:00",
+            "endTime": "11:30"
+          },
+          {
+            "dayOfWeek": 4,
+            "startTime": "10:00",
+            "endTime": "11:30"
+          }
+        ]
+      },
+      "current_module": "mod_002",
+      "progress_percentage": 78,
+      "student_count": 14,
+      "students": [
+        "student_035",
+        "student_036",
+        "student_037",
+        "student_038",
+        "student_039",
+        "student_040",
+        "student_041",
+        "student_042",
+        "student_043",
+        "student_044",
+        "student_045",
+        "student_046",
+        "student_047",
+        "student_048"
+      ],
+      "created_at": "2024-08-20T09:00:00Z",
+      "updated_at": "2024-12-18T14:30:00Z"
+    },
+    {
+      "id": "class_004",
+      "org_id": "org_001",
+      "teacher_id": "teacher_002",
+      "name": "Communication Skills Workshop",
+      "code": "COMM301",
+      "grade_level": "11-12",
+      "description": "Intensive communication course covering public speaking, active listening, and professional communication.",
+      "schedule": {
+        "timezone": "America/New_York",
+        "entries": [
+          {
+            "dayOfWeek": 1,
+            "startTime": "13:00",
+            "endTime": "14:45"
+          },
+          {
+            "dayOfWeek": 4,
+            "startTime": "13:00",
+            "endTime": "14:45"
+          }
+        ]
+      },
+      "current_module": "mod_003",
+      "progress_percentage": 42,
+      "student_count": 12,
+      "students": [
+        "student_049",
+        "student_050",
+        "student_051",
+        "student_052",
+        "student_053",
+        "student_054",
+        "student_055",
+        "student_056",
+        "student_057",
+        "student_058",
+        "student_059",
+        "student_060"
+      ],
+      "created_at": "2024-08-22T10:00:00Z",
+      "updated_at": "2024-12-18T14:30:00Z"
+    },
+    {
+      "id": "class_005",
+      "org_id": "org_001",
+      "teacher_id": "teacher_003",
+      "name": "Emotional Intelligence Development",
+      "code": "EMOT201",
+      "grade_level": "9-11",
+      "description": "Course focused on understanding emotions, self-awareness, and interpersonal effectiveness.",
+      "schedule": {
+        "timezone": "America/New_York",
+        "entries": [
+          {
+            "dayOfWeek": 2,
+            "startTime": "14:30",
+            "endTime": "16:00"
+          },
+          {
+            "dayOfWeek": 5,
+            "startTime": "14:30",
+            "endTime": "16:00"
+          }
+        ]
+      },
+      "current_module": "mod_004",
+      "progress_percentage": 71,
+      "student_count": 15,
+      "students": [
+        "student_061",
+        "student_062",
+        "student_063",
+        "student_064",
+        "student_065",
+        "student_066",
+        "student_067",
+        "student_068",
+        "student_069",
+        "student_070",
+        "student_071",
+        "student_072",
+        "student_073",
+        "student_074",
+        "student_075"
+      ],
+      "created_at": "2024-08-25T08:00:00Z",
+      "updated_at": "2024-12-18T14:30:00Z"
+    },
+    {
+      "id": "class_006",
+      "org_id": "org_001",
+      "teacher_id": "teacher_003",
+      "name": "Time & Productivity Mastery",
+      "code": "TIME101",
+      "grade_level": "9-10",
+      "description": "Essential skills for managing time effectively and maximizing personal productivity.",
+      "schedule": {
+        "timezone": "America/New_York",
+        "entries": [
+          {
+            "dayOfWeek": 1,
+            "startTime": "11:00",
+            "endTime": "12:00"
+          },
+          {
+            "dayOfWeek": 3,
+            "startTime": "11:00",
+            "endTime": "12:00"
+          },
+          {
+            "dayOfWeek": 5,
+            "startTime": "11:00",
+            "endTime": "12:00"
+          }
+        ]
+      },
+      "current_module": "mod_005",
+      "progress_percentage": 88,
+      "student_count": 20,
+      "students": [
+        "student_076",
+        "student_077",
+        "student_078",
+        "student_079",
+        "student_080",
+        "student_081",
+        "student_082",
+        "student_083",
+        "student_084",
+        "student_085",
+        "student_086",
+        "student_087",
+        "student_088",
+        "student_089",
+        "student_090",
+        "student_091",
+        "student_092",
+        "student_093",
+        "student_094",
+        "student_095"
+      ],
+      "created_at": "2024-09-01T09:00:00Z",
+      "updated_at": "2024-12-18T14:30:00Z"
+    },
+    {
+      "id": "class_007",
+      "org_id": "org_001",
+      "teacher_id": "teacher_004",
+      "name": "Problem Solving & Critical Thinking",
+      "code": "PROB301",
+      "grade_level": "11-12",
+      "description": "Advanced course on analytical thinking and systematic problem-solving methodologies.",
+      "schedule": {
+        "timezone": "America/New_York",
+        "entries": [
+          {
+            "dayOfWeek": 2,
+            "startTime": "09:30",
+            "endTime": "11:30"
+          },
+          {
+            "dayOfWeek": 4,
+            "startTime": "09:30",
+            "endTime": "11:30"
+          }
+        ]
+      },
+      "current_module": "mod_006",
+      "progress_percentage": 34,
+      "student_count": 10,
+      "students": [
+        "student_096",
+        "student_097",
+        "student_098",
+        "student_099",
+        "student_100",
+        "student_101",
+        "student_102",
+        "student_103",
+        "student_104",
+        "student_105"
+      ],
+      "created_at": "2024-09-05T10:00:00Z",
+      "updated_at": "2024-12-18T14:30:00Z"
+    },
+    {
+      "id": "class_008",
+      "org_id": "org_001",
+      "teacher_id": "teacher_004",
+      "name": "Building Resilience",
+      "code": "RESIL201",
+      "grade_level": "10-12",
+      "description": "Course on developing resilience, managing stress, and maintaining wellbeing.",
+      "schedule": {
+        "timezone": "America/New_York",
+        "entries": [
+          {
+            "dayOfWeek": 1,
+            "startTime": "15:00",
+            "endTime": "16:00"
+          },
+          {
+            "dayOfWeek": 3,
+            "startTime": "15:00",
+            "endTime": "16:00"
+          },
+          {
+            "dayOfWeek": 5,
+            "startTime": "15:00",
+            "endTime": "16:00"
+          }
+        ]
+      },
+      "current_module": "mod_007",
+      "progress_percentage": 55,
+      "student_count": 13,
+      "students": [
+        "student_106",
+        "student_107",
+        "student_108",
+        "student_109",
+        "student_110",
+        "student_111",
+        "student_112",
+        "student_113",
+        "student_114",
+        "student_115",
+        "student_116",
+        "student_117",
+        "student_118"
+      ],
+      "created_at": "2024-09-08T08:00:00Z",
+      "updated_at": "2024-12-18T14:30:00Z"
+    },
+    {
+      "id": "class_009",
+      "org_id": "org_001",
+      "teacher_id": "teacher_005",
+      "name": "Ethics & Responsible Leadership",
+      "code": "ETHIC301",
+      "grade_level": "11-12",
+      "description": "Exploration of ethical frameworks, values-based decision making, and responsible leadership.",
+      "schedule": {
+        "timezone": "America/New_York",
+        "entries": [
+          {
+            "dayOfWeek": 2,
+            "startTime": "12:00",
+            "endTime": "13:30"
+          },
+          {
+            "dayOfWeek": 4,
+            "startTime": "12:00",
+            "endTime": "13:30"
+          }
+        ]
+      },
+      "current_module": "mod_008",
+      "progress_percentage": 29,
+      "student_count": 11,
+      "students": [
+        "student_119",
+        "student_120",
+        "student_121",
+        "student_122",
+        "student_123",
+        "student_124",
+        "student_125",
+        "student_126",
+        "student_127",
+        "student_128",
+        "student_129"
+      ],
+      "created_at": "2024-09-10T09:00:00Z",
+      "updated_at": "2024-12-18T14:30:00Z"
+    },
+    {
+      "id": "class_010",
+      "org_id": "org_001",
+      "teacher_id": "teacher_005",
+      "name": "Diversity & Inclusion Foundations",
+      "code": "DIVER101",
+      "grade_level": "9-11",
+      "description": "Introduction to diversity concepts, cultural awareness, and creating inclusive communities.",
+      "schedule": {
+        "timezone": "America/New_York",
+        "entries": [
+          {
+            "dayOfWeek": 1,
+            "startTime": "10:00",
+            "endTime": "11:00"
+          },
+          {
+            "dayOfWeek": 3,
+            "startTime": "10:00",
+            "endTime": "11:00"
+          },
+          {
+            "dayOfWeek": 5,
+            "startTime": "10:00",
+            "endTime": "11:00"
+          }
+        ]
+      },
+      "current_module": "mod_009",
+      "progress_percentage": 81,
+      "student_count": 17,
+      "students": [
+        "student_130",
+        "student_131",
+        "student_132",
+        "student_133",
+        "student_134",
+        "student_135",
+        "student_136",
+        "student_137",
+        "student_138",
+        "student_139",
+        "student_140",
+        "student_141",
+        "student_142",
+        "student_143",
+        "student_144",
+        "student_145",
+        "student_146"
+      ],
+      "created_at": "2024-09-12T10:00:00Z",
+      "updated_at": "2024-12-18T14:30:00Z"
+    },
+    {
+      "id": "class_011",
+      "org_id": "org_001",
+      "teacher_id": "teacher_006",
+      "name": "Career Pathways & Personal Branding",
+      "code": "CAREER301",
+      "grade_level": "11-12",
+      "description": "Senior course on career exploration, professional development, and personal branding for college and career readiness.",
+      "schedule": {
+        "timezone": "America/New_York",
+        "entries": [
+          {
+            "dayOfWeek": 2,
+            "startTime": "13:00",
+            "endTime": "14:30"
+          },
+          {
+            "dayOfWeek": 4,
+            "startTime": "13:00",
+            "endTime": "14:30"
+          }
+        ]
+      },
+      "current_module": "mod_010",
+      "progress_percentage": 45,
+      "student_count": 19,
+      "students": [
+        "student_147",
+        "student_148",
+        "student_149",
+        "student_150",
+        "student_151",
+        "student_152",
+        "student_153",
+        "student_154",
+        "student_155",
+        "student_156",
+        "student_157",
+        "student_158",
+        "student_159",
+        "student_160",
+        "student_161",
+        "student_162",
+        "student_163",
+        "student_164",
+        "student_165"
+      ],
+      "created_at": "2024-09-15T08:00:00Z",
+      "updated_at": "2024-12-18T14:30:00Z"
+    },
+    {
+      "id": "class_012",
+      "org_id": "org_001",
+      "teacher_id": "teacher_006",
+      "name": "Advanced Leadership Capstone",
+      "code": "LEAD401",
+      "grade_level": "12",
+      "description": "Capstone course integrating all leadership modules with real-world projects and mentorship.",
+      "schedule": {
+        "timezone": "America/New_York",
+        "entries": [
+          {
+            "dayOfWeek": 1,
+            "startTime": "14:30",
+            "endTime": "16:00"
+          },
+          {
+            "dayOfWeek": 4,
+            "startTime": "14:30",
+            "endTime": "16:00"
+          }
+        ]
+      },
+      "current_module": "mod_001",
+      "progress_percentage": 92,
+      "student_count": 8,
+      "students": [
+        "student_166",
+        "student_167",
+        "student_168",
+        "student_169",
+        "student_170",
+        "student_171",
+        "student_172",
+        "student_173"
+      ],
+      "created_at": "2024-09-20T09:00:00Z",
+      "updated_at": "2024-12-18T14:30:00Z"
+    }
+  ],
+  "metadata": {
+    "generated_at": "2024-12-20T14:30:00Z",
+    "version": "1.0.0",
+    "total_modules": 10,
+    "total_classes": 12,
+    "total_unique_students": 173,
+    "statistics": {
+      "modules_by_difficulty": {
+        "beginner": 5,
+        "intermediate": 4,
+        "advanced": 2
+      },
+      "average_class_size": 14.08,
+      "class_size_range": {
+        "min": 8,
+        "max": 20
+      },
+      "total_class_hours_per_week": 45.5,
+      "modules_average_duration_minutes": 172.5
+    }
+  }
+}

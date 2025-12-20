@@ -1,0 +1,191 @@
+{
+  "students": [
+    {
+      "id": "std_001",
+      "fullName": "Carlos Méndez Rodríguez",
+      "email": "carlos.mendez@touchbase.academy",
+      "avatar": "https://i.pravatar.cc/150?img=1",
+      "gradeLevel": 9,
+      "sportInterests": ["baseball", "pitcher"],
+      "learningStyle": "visual",
+      "moduleProgress": 75,
+      "badgeCount": 5,
+      "joiningDate": "2023-09-15"
+    },
+    {
+      "id": "std_002",
+      "fullName": "María García López",
+      "email": "maria.garcia@touchbase.academy",
+      "avatar": "https://i.pravatar.cc/150?img=2",
+      "gradeLevel": 10,
+      "sportInterests": ["baseball", "infield"],
+      "learningStyle": "kinesthetic",
+      "moduleProgress": 88,
+      "badgeCount": 8,
+      "joiningDate": "2023-09-20"
+    },
+    {
+      "id": "std_003",
+      "fullName": "Diego Ramírez Contreras",
+      "email": "diego.ramirez@touchbase.academy",
+      "avatar": "https://i.pravatar.cc/150?img=3",
+      "gradeLevel": 8,
+      "sportInterests": ["baseball", "catcher"],
+      "learningStyle": "auditory",
+      "moduleProgress": 62,
+      "badgeCount": 3,
+      "joiningDate": "2023-10-02"
+    },
+    {
+      "id": "std_004",
+      "fullName": "Alejandra Flores Martínez",
+      "email": "alejandra.flores@touchbase.academy",
+      "avatar": "https://i.pravatar.cc/150?img=4",
+      "gradeLevel": 11,
+      "sportInterests": ["baseball", "outfield"],
+      "learningStyle": "visual",
+      "moduleProgress": 92,
+      "badgeCount": 12,
+      "joiningDate": "2023-08-25"
+    },
+    {
+      "id": "std_005",
+      "fullName": "Miguel Ángel Torres Vega",
+      "email": "miguel.torres@touchbase.academy",
+      "avatar": "https://i.pravatar.cc/150?img=5",
+      "gradeLevel": 9,
+      "sportInterests": ["baseball", "pitcher", "infield"],
+      "learningStyle": "reading/writing",
+      "moduleProgress": 58,
+      "badgeCount": 4,
+      "joiningDate": "2023-10-10"
+    },
+    {
+      "id": "std_006",
+      "fullName": "Lucia Pacheco Ruiz",
+      "email": "lucia.pacheco@touchbase.academy",
+      "avatar": "https://i.pravatar.cc/150?img=6",
+      "gradeLevel": 7,
+      "sportInterests": ["baseball", "outfield"],
+      "learningStyle": "kinesthetic",
+      "moduleProgress": 45,
+      "badgeCount": 2,
+      "joiningDate": "2023-10-18"
+    },
+    {
+      "id": "std_007",
+      "fullName": "Javier Morales Gutiérrez",
+      "email": "javier.morales@touchbase.academy",
+      "avatar": "https://i.pravatar.cc/150?img=7",
+      "gradeLevel": 10,
+      "sportInterests": ["baseball", "infield", "shortshop"],
+      "learningStyle": "visual",
+      "moduleProgress": 81,
+      "badgeCount": 9,
+      "joiningDate": "2023-09-05"
+    },
+    {
+      "id": "std_008",
+      "fullName": "Catalina Reyes Navarro",
+      "email": "catalina.reyes@touchbase.academy",
+      "avatar": "https://i.pravatar.cc/150?img=8",
+      "gradeLevel": 12,
+      "sportInterests": ["baseball", "pitcher"],
+      "learningStyle": "auditory",
+      "moduleProgress": 95,
+      "badgeCount": 15,
+      "joiningDate": "2023-08-10"
+    },
+    {
+      "id": "std_009",
+      "fullName": "Roberto Sánchez Delgado",
+      "email": "roberto.sanchez@touchbase.academy",
+      "avatar": "https://i.pravatar.cc/150?img=9",
+      "gradeLevel": 8,
+      "sportInterests": ["baseball", "outfield", "center field"],
+      "learningStyle": "reading/writing",
+      "moduleProgress": 52,
+      "badgeCount": 3,
+      "joiningDate": "2023-10-25"
+    },
+    {
+      "id": "std_010",
+      "fullName": "Valentina Castro Ibáñez",
+      "email": "valentina.castro@touchbase.academy",
+      "avatar": "https://i.pravatar.cc/150?img=10",
+      "gradeLevel": 9,
+      "sportInterests": ["baseball", "catcher"],
+      "learningStyle": "kinesthetic",
+      "moduleProgress": 70,
+      "badgeCount": 6,
+      "joiningDate": "2023-09-28"
+    },
+    {
+      "id": "std_011",
+      "fullName": "Fernando Vargas Espinoza",
+      "email": "fernando.vargas@touchbase.academy",
+      "avatar": "https://i.pravatar.cc/150?img=11",
+      "gradeLevel": 11,
+      "sportInterests": ["baseball", "pitcher", "relief"],
+      "learningStyle": "visual",
+      "moduleProgress": 86,
+      "badgeCount": 11,
+      "joiningDate": "2023-09-01"
+    },
+    {
+      "id": "std_012",
+      "fullName": "Isabella Rojas Montoya",
+      "email": "isabella.rojas@touchbase.academy",
+      "avatar": "https://i.pravatar.cc/150?img=12",
+      "gradeLevel": 10,
+      "sportInterests": ["baseball", "infield", "second base"],
+      "learningStyle": "auditory",
+      "moduleProgress": 77,
+      "badgeCount": 7,
+      "joiningDate": "2023-10-08"
+    },
+    {
+      "id": "std_013",
+      "fullName": "Andrés Herrera Quintero",
+      "email": "andres.herrera@touchbase.academy",
+      "avatar": "https://i.pravatar.cc/150?img=13",
+      "gradeLevel": 9,
+      "sportInterests": ["baseball", "outfield"],
+      "learningStyle": "reading/writing",
+      "moduleProgress": 64,
+      "badgeCount": 5,
+      "joiningDate": "2023-10-12"
+    },
+    {
+      "id": "std_014",
+      "fullName": "Sophia Domínguez Acosta",
+      "email": "sophia.dominguez@touchbase.academy",
+      "avatar": "https://i.pravatar.cc/150?img=14",
+      "gradeLevel": 12,
+      "sportInterests": ["baseball", "pitcher", "starter"],
+      "learningStyle": "kinesthetic",
+      "moduleProgress": 98,
+      "badgeCount": 18,
+      "joiningDate": "2023-08-20"
+    },
+    {
+      "id": "std_015",
+      "fullName": "Emilio Campos Rivera",
+      "email": "emilio.campos@touchbase.academy",
+      "avatar": "https://i.pravatar.cc/150?img=15",
+      "gradeLevel": 8,
+      "sportInterests": ["baseball", "infield", "third base"],
+      "learningStyle": "visual",
+      "moduleProgress": 55,
+      "badgeCount": 2,
+      "joiningDate": "2023-11-01"
+    }
+  ],
+  "metadata": {
+    "totalStudents": 15,
+    "generatedDate": "2024-12-20",
+    "gradeLevels": "6th-12th (7-12)",
+    "sportFocus": "Baseball with diverse positions",
+    "testingNote": "This data is designed to test Avatar, Toast, DropdownMenu UI components with realistic student profiles, diverse learning styles, and varied progress levels."
+  }
+}
