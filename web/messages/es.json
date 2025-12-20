@@ -1025,7 +1025,86 @@
       "phone": "Teléfono",
       "department": "Departamento",
       "type": "Tipo",
-      "hireDate": "Fecha de Contratación"
+      "hireDate": "Fecha de Contratación",
+      "position": "Posición",
+      "experience": "Experiencia",
+      "status": "Estado",
+      "actions": "Acciones",
+      "years": "años"
+    },
+    "status": {
+      "active": "Activo",
+      "inactive": "Inactivo",
+      "on_leave": "De Licencia",
+      "terminated": "Terminado"
+    },
+    "filters": {
+      "search": "Buscar",
+      "searchPlaceholder": "Buscar por nombre o email...",
+      "searchButton": "Buscar",
+      "status": "Estado",
+      "allStatuses": "Todos los Estados",
+      "department": "Departamento",
+      "allDepartments": "Todos los Departamentos"
+    },
+    "actions": {
+      "view": "Ver",
+      "edit": "Editar",
+      "delete": "Eliminar",
+      "add": "Agregar",
+      "remove": "Remover",
+      "cancel": "Cancelar",
+      "create": "Crear Profesor",
+      "update": "Actualizar Profesor"
+    },
+    "resultsCount": "{count} profesores encontrados",
+    "confirmDelete": "¿Estás seguro que deseas eliminar a {name}?",
+    "success": {
+      "created": "Profesor creado exitosamente",
+      "updated": "Profesor actualizado exitosamente",
+      "deleted": "Profesor eliminado exitosamente"
+    },
+    "errors": {
+      "loadFailed": "Error al cargar profesores",
+      "deleteFailed": "Error al eliminar profesor",
+      "validationFailed": "Por favor corrige los errores de validación",
+      "submitFailed": "Error al enviar el formulario",
+      "generic": "Ocurrió un error"
+    },
+    "form": {
+      "submitting": "Enviando...",
+      "sections": {
+        "personal": "Información Personal",
+        "professional": "Información Profesional",
+        "employment": "Detalles de Empleo",
+        "emergency": "Contacto de Emergencia"
+      },
+      "fields": {
+        "firstName": "Nombre",
+        "lastName": "Apellido",
+        "email": "Email",
+        "phone": "Teléfono",
+        "dateOfBirth": "Fecha de Nacimiento",
+        "address": "Dirección",
+        "department": "Departamento",
+        "position": "Posición",
+        "yearsExperience": "Años de Experiencia",
+        "bio": "Biografía",
+        "certifications": "Certificaciones",
+        "specializations": "Especializaciones",
+        "hireDate": "Fecha de Contratación",
+        "status": "Estado",
+        "employmentType": "Tipo de Empleo",
+        "emergencyName": "Nombre del Contacto de Emergencia",
+        "emergencyPhone": "Teléfono de Emergencia",
+        "emergencyRelationship": "Relación"
+      },
+      "placeholders": {
+        "addCertification": "Agregar certificación...",
+        "addSpecialization": "Agregar especialización...",
+        "employmentType": "ej., Tiempo completo, Medio tiempo, Contrato",
+        "emergencyRelationship": "ej., Cónyuge, Padre/Madre, Hermano/a"
+      }
     }
   }
 }

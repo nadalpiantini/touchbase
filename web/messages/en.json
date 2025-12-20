@@ -1025,7 +1025,86 @@
       "phone": "Phone",
       "department": "Department",
       "type": "Type",
-      "hireDate": "Hire Date"
+      "hireDate": "Hire Date",
+      "position": "Position",
+      "experience": "Experience",
+      "status": "Status",
+      "actions": "Actions",
+      "years": "years"
+    },
+    "status": {
+      "active": "Active",
+      "inactive": "Inactive",
+      "on_leave": "On Leave",
+      "terminated": "Terminated"
+    },
+    "filters": {
+      "search": "Search",
+      "searchPlaceholder": "Search by name or email...",
+      "searchButton": "Search",
+      "status": "Status",
+      "allStatuses": "All Statuses",
+      "department": "Department",
+      "allDepartments": "All Departments"
+    },
+    "actions": {
+      "view": "View",
+      "edit": "Edit",
+      "delete": "Delete",
+      "add": "Add",
+      "remove": "Remove",
+      "cancel": "Cancel",
+      "create": "Create Teacher",
+      "update": "Update Teacher"
+    },
+    "resultsCount": "{count} teachers found",
+    "confirmDelete": "Are you sure you want to delete {name}?",
+    "success": {
+      "created": "Teacher created successfully",
+      "updated": "Teacher updated successfully",
+      "deleted": "Teacher deleted successfully"
+    },
+    "errors": {
+      "loadFailed": "Failed to load teachers",
+      "deleteFailed": "Failed to delete teacher",
+      "validationFailed": "Please fix validation errors",
+      "submitFailed": "Failed to submit form",
+      "generic": "An error occurred"
+    },
+    "form": {
+      "submitting": "Submitting...",
+      "sections": {
+        "personal": "Personal Information",
+        "professional": "Professional Information",
+        "employment": "Employment Details",
+        "emergency": "Emergency Contact"
+      },
+      "fields": {
+        "firstName": "First Name",
+        "lastName": "Last Name",
+        "email": "Email",
+        "phone": "Phone",
+        "dateOfBirth": "Date of Birth",
+        "address": "Address",
+        "department": "Department",
+        "position": "Position",
+        "yearsExperience": "Years of Experience",
+        "bio": "Biography",
+        "certifications": "Certifications",
+        "specializations": "Specializations",
+        "hireDate": "Hire Date",
+        "status": "Status",
+        "employmentType": "Employment Type",
+        "emergencyName": "Emergency Contact Name",
+        "emergencyPhone": "Emergency Contact Phone",
+        "emergencyRelationship": "Relationship"
+      },
+      "placeholders": {
+        "addCertification": "Add certification...",
+        "addSpecialization": "Add specialization...",
+        "employmentType": "e.g., Full-time, Part-time, Contract",
+        "emergencyRelationship": "e.g., Spouse, Parent, Sibling"
+      }
     }
   }
 }
