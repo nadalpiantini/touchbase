@@ -5,6 +5,7 @@ import Image from "next/image";
 import { useTranslations } from 'next-intl';
 import { Badge, LoadingSpinner, Alert } from "@/components/ui";
 import { CSVExportButton } from '@/components/export/CSVExportButton';
+import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from '@/components/ui/Table';
 
 type Teacher = {
   id: string;
@@ -45,6 +46,21 @@ export default function TeachersTable() {
     }
   };
 
+  const deleteTeacher = async (id: string) => {
+    if (!confirm(t('confirmDelete'))) return;
+    const res = await fetch("/api/teachers/soft-delete", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ id })
+    });
+    if (!res.ok) {
+      const json = await res.json();
+      alert(json.error || t('deleteFailed'));
+      return;
+    }
+    loadTeachers();
+  };
+
   if (loading) {
     return (
       <div className="flex justify-center py-12">
@@ -74,60 +90,75 @@ export default function TeachersTable() {
       <div className="flex justify-end">
         <CSVExportButton type="teachers" />
       </div>
-      <div className="bg-white border border-tb-line rounded-xl overflow-hidden shadow-sm">
-        <div className="overflow-x-auto">
-        <table className="w-full font-sans">
-          <thead className="bg-tb-beige border-b border-tb-line">
-            <tr>
-              <th className="text-left p-4 font-display font-semibold text-tb-navy">{t('table.photo')}</th>
-              <th className="text-left p-4 font-display font-semibold text-tb-navy">{t('table.name')}</th>
-              <th className="text-left p-4 font-display font-semibold text-tb-navy">{t('table.email')}</th>
-              <th className="text-left p-4 font-display font-semibold text-tb-navy">{t('table.phone')}</th>
-              <th className="text-left p-4 font-display font-semibold text-tb-navy">{t('table.department')}</th>
-              <th className="text-left p-4 font-display font-semibold text-tb-navy">{t('table.type')}</th>
-              <th className="text-left p-4 font-display font-semibold text-tb-navy">{t('table.hireDate')}</th>
-            </tr>
-          </thead>
-          <tbody>
-            {teachers.map((teacher) => (
-              <tr key={teacher.id} className="border-b border-tb-line hover:bg-tb-bone transition">
-                <td className="p-4">
-                  {teacher.photo_url ? (
-                    <Image
-                      src={teacher.photo_url}
-                      alt={teacher.full_name}
-                      width={40}
-                      height={40}
-                      className="rounded-full object-cover"
-                    />
-                  ) : (
-                    <div className="w-10 h-10 rounded-full bg-tb-navy/10 flex items-center justify-center">
-                      <span className="text-tb-navy font-display font-semibold text-sm">
-                        {teacher.full_name.charAt(0).toUpperCase()}
-                      </span>
-                    </div>
-                  )}
-                </td>
-                <td className="p-4 font-sans font-medium text-tb-ink">{teacher.full_name}</td>
-                <td className="p-4 font-sans text-tb-shadow">{teacher.email || "—"}</td>
-                <td className="p-4 font-sans text-tb-shadow">{teacher.phone || "—"}</td>
-                <td className="p-4">
-                  {teacher.department ? (
-                    <Badge variant="info">{teacher.department}</Badge>
-                  ) : (
-                    <span className="font-sans text-tb-shadow">—</span>
-                  )}
-                </td>
-                <td className="p-4 font-sans text-tb-shadow">{teacher.employment_type || "—"}</td>
-                <td className="p-4 font-sans text-tb-shadow">
-                  {teacher.hire_date ? new Date(teacher.hire_date).toLocaleDateString("es-ES") : "—"}
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-    </div>
+      <Table className="font-sans">
+        <TableHeader>
+          <TableRow>
+            <TableHead className="font-display font-semibold text-tb-navy">{t('table.photo')}</TableHead>
+            <TableHead className="font-display font-semibold text-tb-navy">{t('table.name')}</TableHead>
+            <TableHead className="font-display font-semibold text-tb-navy">{t('table.email')}</TableHead>
+            <TableHead className="font-display font-semibold text-tb-navy">{t('table.phone')}</TableHead>
+            <TableHead className="font-display font-semibold text-tb-navy">{t('table.department')}</TableHead>
+            <TableHead className="font-display font-semibold text-tb-navy">{t('table.type')}</TableHead>
+            <TableHead className="font-display font-semibold text-tb-navy">{t('table.hireDate')}</TableHead>
+            <TableHead className="text-right font-display font-semibold text-tb-navy">{t('table.actions')}</TableHead>
+          </TableRow>
+        </TableHeader>
+        <TableBody>
+          {teachers.map((teacher) => (
+            <TableRow key={teacher.id}>
+              <TableCell>
+                {teacher.photo_url ? (
+                  <Image
+                    src={teacher.photo_url}
+                    alt={teacher.full_name}
+                    width={40}
+                    height={40}
+                    className="rounded-full object-cover"
+                  />
+                ) : (
+                  <div className="w-10 h-10 rounded-full bg-tb-navy/10 flex items-center justify-center">
+                    <span className="text-tb-navy font-display font-semibold text-sm">
+                      {teacher.full_name.charAt(0).toUpperCase()}
+                    </span>
+                  </div>
+                )}
+              </TableCell>
+              <TableCell className="font-sans font-medium text-tb-ink">{teacher.full_name}</TableCell>
+              <TableCell className="font-sans text-tb-shadow">{teacher.email || "—"}</TableCell>
+              <TableCell className="font-sans text-tb-shadow">{teacher.phone || "—"}</TableCell>
+              <TableCell>
+                {teacher.department ? (
+                  <Badge variant="info">{teacher.department}</Badge>
+                ) : (
+                  <span className="font-sans text-tb-shadow">—</span>
+                )}
+              </TableCell>
+              <TableCell className="font-sans text-tb-shadow">{teacher.employment_type || "—"}</TableCell>
+              <TableCell className="font-sans text-tb-shadow">
+                {teacher.hire_date ? new Date(teacher.hire_date).toLocaleDateString("es-ES") : "—"}
+              </TableCell>
+              <TableCell className="text-right space-x-2">
+                <button
+                  type="button"
+                  className="text-sm font-sans text-tb-navy hover:text-tb-stitch transition"
+                  onClick={() => alert(t('editNotImplemented'))}
+                  aria-label={`Editar ${teacher.full_name}`}
+                >
+                  {t('actions.edit')}
+                </button>
+                <button
+                  type="button"
+                  className="text-sm font-sans text-tb-stitch hover:text-tb-red transition"
+                  onClick={() => deleteTeacher(teacher.id)}
+                  aria-label={`Eliminar ${teacher.full_name}`}
+                >
+                  {t('actions.delete')}
+                </button>
+              </TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
     </div>
   );
 }

@@ -199,7 +199,7 @@
         "description": "Migrate TeamsTable.tsx from raw HTML table to use the new Table component library created in SPRINT_FRONTEND_REMEDIATION",
         "details": "",
         "testStrategy": "",
-        "status": "pending",
+        "status": "done",
         "dependencies": [],
         "priority": "high",
         "subtasks": []
@@ -210,7 +210,7 @@
         "description": "Migrate GamesTable.tsx from raw HTML table to use the new Table component library (already uses correct design tokens)",
         "details": "",
         "testStrategy": "",
-        "status": "pending",
+        "status": "done",
         "dependencies": [],
         "priority": "high",
         "subtasks": []
@@ -221,7 +221,7 @@
         "description": "Migrate TeachersTable.tsx from raw HTML table to use the new Table component library. Also add edit/delete actions.",
         "details": "",
         "testStrategy": "",
-        "status": "pending",
+        "status": "done",
         "dependencies": [],
         "priority": "high",
         "subtasks": []
@@ -295,7 +295,7 @@
     ],
     "metadata": {
       "created": "2025-12-15T17:52:29.573Z",
-      "updated": "2025-12-20T16:24:27.234Z",
+      "updated": "2025-12-20T16:31:27.100Z",
       "description": "QA Testing sistemático de todas las secciones"
     }
   }

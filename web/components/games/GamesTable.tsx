@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useMemo, useState } from "react";
 import { useTranslations } from 'next-intl';
+import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from '@/components/ui/Table';
 
 type Game = {
   id: string;
@@ -89,76 +90,74 @@ export default function GamesTable() {
         </select>
       </div>
 
-      <div className="bg-white border border-tb-line rounded-xl overflow-hidden shadow-sm">
-        <table className="w-full text-sm font-sans">
-          <thead className="bg-tb-beige border-b border-tb-line">
-            <tr>
-              <th className="p-3 text-left font-display font-semibold text-tb-navy">{t('table.date')}</th>
-              <th className="p-3 text-left font-display font-semibold text-tb-navy">{t('table.match')}</th>
-              <th className="p-3 text-left font-display font-semibold text-tb-navy">{t('table.venue')}</th>
-              <th className="p-3 text-left font-display font-semibold text-tb-navy">{t('table.status')}</th>
-              <th className="p-3 text-left font-display font-semibold text-tb-navy">{t('table.score')}</th>
-              <th className="p-3 text-left font-display font-semibold text-tb-navy">{t('table.actions')}</th>
-            </tr>
-          </thead>
-          <tbody>
-            {games.map(g => (
-              <tr key={g.id} className="border-b border-tb-line hover:bg-tb-bone transition">
-                <td className="p-3 font-sans text-tb-ink">
-                  {new Date(g.starts_at).toLocaleString('es-ES', {
-                    dateStyle: 'short',
-                    timeStyle: 'short'
-                  })}
-                </td>
-                <td className="p-3">
-                  <div className="font-sans font-medium text-tb-ink">
-                    {mapTeam.get(g.home_team_id) || t('noVenue')}
-                  </div>
-                  <div className="text-tb-shadow text-xs">{t('vs')}</div>
-                  <div className="font-sans font-medium text-tb-ink">
-                    {mapTeam.get(g.away_team_id) || t('noVenue')}
-                  </div>
-                </td>
-                <td className="p-3 font-sans text-tb-shadow">{g.venue ?? t('noVenue')}</td>
-                <td className="p-3">
-                  <select
-                    className={`text-xs px-2 py-1 rounded-full border-0 font-sans font-medium ${STATUS_COLORS[g.status] || 'bg-tb-beige text-tb-shadow'}`}
-                    value={g.status}
-                    onChange={e=>changeStatus(g.id, e.target.value)}
-                  >
-                    <option value="scheduled">{t('status.scheduled')}</option>
-                    <option value="live">{t('status.live')}</option>
-                    <option value="final">{t('status.final')}</option>
-                    <option value="canceled">{t('status.canceled')}</option>
-                  </select>
-                </td>
-                <td className="p-3">
-                  <ScoreEditor
-                    home={g.home_score}
-                    away={g.away_score}
-                    onSave={(hs,as)=>saveScore(g.id, hs, as)}
-                  />
-                </td>
-                <td className="p-3">
-                  <button
-                    onClick={() => deleteGame(g.id)}
-                    className="text-tb-stitch hover:text-tb-red text-xs font-sans font-medium transition"
-                  >
-                    {t('actions.delete')}
-                  </button>
-                </td>
-              </tr>
-            ))}
-            {games.length===0 && (
-              <tr>
-                <td className="p-8 text-center font-sans text-tb-shadow" colSpan={6}>
-                  {t('empty')}
-                </td>
-              </tr>
-            )}
-          </tbody>
-        </table>
-      </div>
+      <Table className="font-sans">
+        <TableHeader>
+          <TableRow>
+            <TableHead className="font-display font-semibold text-tb-navy">{t('table.date')}</TableHead>
+            <TableHead className="font-display font-semibold text-tb-navy">{t('table.match')}</TableHead>
+            <TableHead className="font-display font-semibold text-tb-navy">{t('table.venue')}</TableHead>
+            <TableHead className="font-display font-semibold text-tb-navy">{t('table.status')}</TableHead>
+            <TableHead className="font-display font-semibold text-tb-navy">{t('table.score')}</TableHead>
+            <TableHead className="font-display font-semibold text-tb-navy">{t('table.actions')}</TableHead>
+          </TableRow>
+        </TableHeader>
+        <TableBody>
+          {games.map(g => (
+            <TableRow key={g.id}>
+              <TableCell className="font-sans text-tb-ink">
+                {new Date(g.starts_at).toLocaleString('es-ES', {
+                  dateStyle: 'short',
+                  timeStyle: 'short'
+                })}
+              </TableCell>
+              <TableCell>
+                <div className="font-sans font-medium text-tb-ink">
+                  {mapTeam.get(g.home_team_id) || t('noVenue')}
+                </div>
+                <div className="text-tb-shadow text-xs">{t('vs')}</div>
+                <div className="font-sans font-medium text-tb-ink">
+                  {mapTeam.get(g.away_team_id) || t('noVenue')}
+                </div>
+              </TableCell>
+              <TableCell className="font-sans text-tb-shadow">{g.venue ?? t('noVenue')}</TableCell>
+              <TableCell>
+                <select
+                  className={`text-xs px-2 py-1 rounded-full border-0 font-sans font-medium ${STATUS_COLORS[g.status] || 'bg-tb-beige text-tb-shadow'}`}
+                  value={g.status}
+                  onChange={e=>changeStatus(g.id, e.target.value)}
+                >
+                  <option value="scheduled">{t('status.scheduled')}</option>
+                  <option value="live">{t('status.live')}</option>
+                  <option value="final">{t('status.final')}</option>
+                  <option value="canceled">{t('status.canceled')}</option>
+                </select>
+              </TableCell>
+              <TableCell>
+                <ScoreEditor
+                  home={g.home_score}
+                  away={g.away_score}
+                  onSave={(hs,as)=>saveScore(g.id, hs, as)}
+                />
+              </TableCell>
+              <TableCell>
+                <button
+                  onClick={() => deleteGame(g.id)}
+                  className="text-tb-stitch hover:text-tb-red text-xs font-sans font-medium transition"
+                >
+                  {t('actions.delete')}
+                </button>
+              </TableCell>
+            </TableRow>
+          ))}
+          {games.length===0 && (
+            <TableRow>
+              <TableCell className="p-8 text-center font-sans text-tb-shadow" colSpan={6}>
+                {t('empty')}
+              </TableCell>
+            </TableRow>
+          )}
+        </TableBody>
+      </Table>
     </div>
   );
 }
