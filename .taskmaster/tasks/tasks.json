@@ -298,7 +298,7 @@
         "description": "Implement Theme Provider component for whitelabel theming with CSS variables and context",
         "details": "Create ThemeProvider component that wraps app and provides tenant-specific theme via CSS variables. Support light/dark modes and custom brand colors.",
         "testStrategy": "Unit tests for theme context, visual tests for color switching",
-        "status": "in-progress",
+        "status": "done",
         "dependencies": [],
         "priority": "high",
         "subtasks": []
@@ -309,7 +309,7 @@
         "description": "Create database schema for tenant_themes table with color palettes, fonts, and branding assets",
         "details": "Migration for tenant_themes table with columns: org_id, primary_color, secondary_color, accent_color, logo_url, font_family, dark_mode_enabled",
         "testStrategy": "Database migration tests, RLS policy tests",
-        "status": "pending",
+        "status": "done",
         "dependencies": [],
         "priority": "high",
         "subtasks": []
@@ -320,7 +320,7 @@
         "description": "Implement Role-Based Access Control middleware for owner, admin, coach, viewer roles",
         "details": "Create middleware to enforce role permissions at route level. Add roles table and user_roles junction table. Implement permission checks in API routes.",
         "testStrategy": "E2E tests for role access control, unit tests for permission logic",
-        "status": "pending",
+        "status": "done",
         "dependencies": [],
         "priority": "high",
         "subtasks": []
@@ -427,7 +427,7 @@
     ],
     "metadata": {
       "created": "2025-12-15T17:52:29.573Z",
-      "updated": "2025-12-20T17:47:25.605Z",
+      "updated": "2025-12-20T18:16:49.418Z",
       "description": "QA Testing sistemático de todas las secciones"
     }
   }
