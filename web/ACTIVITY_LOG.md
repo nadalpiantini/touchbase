@@ -1,3 +1,111 @@
+## 📅 Sesión: 2025-12-20 (Sprint 3.4.3 - ClassForm Component)
+
+### 🎯 Objetivo
+Implementar Sprint 3.4.3 - ClassForm component con Zod schema y i18n completo (Task 21 - Classes UI)
+
+### ✅ Completado (Sprint 3.4.3)
+- [x] Zod schema completo (~165 líneas) - lib/schemas/class.ts
+- [x] ClassForm component (~392 líneas) - Create/Update form con 3 secciones
+- [x] i18n completo (EN/ES) - 47 translation keys por idioma
+- [x] Form validation con Zod schema
+- [x] API integration (POST create, PUT update)
+- [x] Error handling con field-level display
+- [x] Card-based UI con responsive layout
+- [x] Commit: a2f88f6671 (ClassForm + Zod schema)
+
+### 📋 Detalles Técnicos
+
+**Zod Schema** (lib/schemas/class.ts - 165 líneas):
+- **classStatusSchema**: enum validation (active/inactive/completed/cancelled)
+- **classSchema**: Base schema con todos los campos
+  - Required fields: name, max_students
+  - Optional fields: code, level, description, start_date, end_date, schedule_description, location, room
+  - Date validation helper: ISO format (YYYY-MM-DD) validation regex
+  - Cross-field validation: end_date >= start_date constraint
+- **createClassSchema**: Required fields only (name, max_students + all optional)
+- **updateClassSchema**: Partial schema con same validations
+- **Type inference**: ClassFormData, CreateClassFormData, UpdateClassFormData
+- **Default values**: classFormDefaults con max_students=20 default
+
+**ClassForm Component** (components/classes/ClassForm.tsx - 392 líneas):
+- Props: classItem?, onSuccess?, onCancel?, mode? (create/edit)
+- State management:
+  - formData: ClassFormData initialized from props or defaults
+  - errors: Record<string, string> for field-level validation errors
+  - loading: boolean for submission state
+- Form validation:
+  - validateForm(): boolean usando classSchema.parse()
+  - Captura Zod errors y mapea a errorMap
+  - setErrors() para mostrar errores por campo
+- handleSubmit:
+  - POST /api/classes para create mode
+  - PUT /api/classes/:id para edit mode
+  - Success/error toast notifications
+  - onSuccess callback con response data
+
+**3 Secciones del Form**:
+1. **Basic Information Card**:
+   - name* (Input required, max 200 chars)
+   - code (Input optional, max 50 chars)
+   - level (Input optional, max 100 chars)
+   - description (textarea, max 1000 chars)
+   - status (Select dropdown: active/inactive/completed/cancelled)
+
+2. **Schedule Card**:
+   - start_date (Input type="date")
+   - end_date (Input type="date", validated >= start_date)
+   - schedule_description (textarea, max 500 chars)
+
+3. **Capacity & Location Card**:
+   - max_students* (Input type="number", min=1, max=500, required)
+   - location (Input optional, max 200 chars)
+   - room (Input optional, max 100 chars)
+
+**i18n Translations** (messages/en.json, messages/es.json - +47 líneas cada uno):
+- Namespace "classes.form.*" completo
+- submitting: Loading text
+- sections: basic, schedule, capacityLocation
+- fields: name, code, level, description, status, dates, max_students, location, room
+- placeholders: Ejemplos útiles para cada campo
+- hints: maxStudents helper text (1-500)
+- status: active, inactive, completed, cancelled
+- actions: create, update
+- success: created, updated
+- errors: validationFailed, submitFailed
+- Patrón consistente con teachers.form
+
+**Pattern Following**:
+- Siguió exactamente el patrón de TeacherForm.tsx (557 líneas)
+- Misma estructura de Cards con CardHeader/CardContent
+- Misma validación con Zod schema
+- Mismo pattern de state management y error handling
+- Mismo handleSubmit pattern con POST/PUT
+- Responsive grid layout (grid-cols-1 md:grid-cols-2)
+
+### 📊 Estado Task Master
+- Task 21 (Classes UI): 🔄 En progreso (75% completado)
+  - Sprint 3.4.1: ✅ Completado (ClassesList)
+  - Sprint 3.4.2: ✅ Completado (ClassDetail)
+  - Sprint 3.4.3: ✅ Completado (ClassForm)
+  - Sprint 3.4.4: ⏳ Pendiente (EnrollmentManager)
+
+### 🔧 Validaciones Implementadas
+- name: required, min 1, max 200 chars
+- max_students: required, integer, min 1, max 500
+- code: optional, max 50 chars
+- level: optional, max 100 chars
+- description: optional, max 1000 chars
+- start_date: optional, ISO format (YYYY-MM-DD)
+- end_date: optional, ISO format, >= start_date
+- schedule_description: optional, max 500 chars
+- location: optional, max 200 chars
+- room: optional, max 100 chars
+- status: enum (active/inactive/completed/cancelled)
+
+**Tiempo invertido**: ~3 horas
+
+---
+
 ## 📅 Sesión: 2025-12-20 (Sprint 3.4.2 - ClassDetail Component)
 
 ### 🎯 Objetivo
