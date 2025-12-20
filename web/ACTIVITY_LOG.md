@@ -1,3 +1,72 @@
+## 📅 Sesión: 2025-12-20 (Sprint 3.4.2 - ClassDetail Component)
+
+### 🎯 Objetivo
+Implementar Sprint 3.4.2 - ClassDetail component con i18n completo (Task 21 - Classes UI)
+
+### ✅ Completado (Sprint 3.4.2)
+- [x] ClassDetail component (~440 líneas) - Vista detallada de clase con 4 cards principales
+- [x] i18n completo (EN/ES) - 46 translation keys por idioma
+- [x] Visual capacity indicator con progress bar y color coding
+- [x] RBAC integration con usePermissions hook
+- [x] Edit mode toggle con ClassForm placeholder
+- [x] Delete functionality con confirmación
+- [x] Status badges con colores diferenciados
+- [x] Responsive grid layout (4 cards)
+- [x] Commit: 8382d5cd0d (ClassDetail component)
+
+### 📋 Detalles Técnicos
+
+**ClassDetail Component** (web/components/classes/ClassDetail.tsx - 440 líneas):
+- Card-based UI con 4 secciones principales:
+  1. **Class Information Card**: name, code, level, status
+  2. **Schedule Card**: start_date, end_date, schedule_description
+  3. **Capacity Card**: current_enrollment, max_students, percentage con visual progress bar
+  4. **Location Card**: location, room
+  5. **Enrollment Section**: placeholder para Sprint 3.4.4 (EnrollmentManager)
+- Visual capacity indicator:
+  - Progress bar dinámico con width basado en percentage
+  - Color coding: Green (<80%), Yellow (80-99%), Red (100%+)
+  - Available spots calculation con labels
+- Actions con RBAC:
+  - Edit button (UPDATE_CONTENT permission) → placeholder para ClassForm (Sprint 3.4.3)
+  - Delete button (DELETE_CONTENT permission) → confirmación + API call
+- Status color mapping: active (green), inactive (gray), completed (blue), cancelled (red)
+- Date formatting utility para start_date/end_date
+- useToast para notifications (delete success/error)
+
+**i18n Translations** (messages/en.json, messages/es.json - +46 líneas cada uno):
+- Namespace "classes.detail.*" completo
+- Secciones: info, schedule, capacity, location, enrollment
+- Fields: name, code, level, status, dates, capacity metrics, location, room
+- Labels: full, spotsAvailable, enrollmentPlaceholder
+- Status: active, inactive, completed, cancelled
+- Actions: edit, delete
+- Messages: confirm.delete, success.deleted, errors.deleteFailed
+- Patrón consistente con módulo "teachers"
+
+**Pattern Following**:
+- Siguió exactamente el patrón de TeacherDetail.tsx (400 líneas)
+- Misma estructura de Cards con CardHeader/CardContent
+- Misma integración de RBAC
+- Mismo manejo de delete con confirmación
+- Mismo pattern de edit mode toggle
+
+### 📊 Estado Task Master
+- Task 21 (Classes UI): 🔄 En progreso
+  - Sprint 3.4.1: ✅ Completado (ClassesList)
+  - Sprint 3.4.2: ✅ Completado (ClassDetail)
+  - Sprint 3.4.3: ⏳ Pendiente (ClassForm)
+  - Sprint 3.4.4: ⏳ Pendiente (EnrollmentManager)
+
+### 🔧 Issues Resueltos
+- Git staging error: pathspec 'web/components/classes/ClassDetail.tsx' did not match any files
+  - Root cause: Estábamos en /web/ directory, no necesitaba prefijo 'web/'
+  - Fix: `git add components/classes/ClassDetail.tsx messages/en.json messages/es.json`
+
+**Tiempo invertido**: ~2 horas
+
+---
+
 ## 📅 Sesión: 2025-12-20 (Sprint 3.4.1 - ClassesList Component)
 
 ### 🎯 Objetivo
