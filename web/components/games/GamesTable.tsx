@@ -15,9 +15,9 @@ type Game = {
 type Team = { id: string; name: string };
 
 const STATUS_COLORS: Record<string, string> = {
-  scheduled: "bg-[--color-tb-navy]/10 text-[--color-tb-navy]",
-  live: "bg-[--color-tb-stitch]/10 text-[--color-tb-stitch]",
-  final: "bg-[--color-tb-beige] text-[--color-tb-shadow]",
+  scheduled: "bg-tb-navy/10 text-tb-navy",
+  live: "bg-tb-stitch/10 text-tb-stitch",
+  final: "bg-tb-beige text-tb-shadow",
   canceled: "bg-red-50 text-red-700"
 };
 
@@ -75,9 +75,9 @@ export default function GamesTable() {
   return (
     <div className="space-y-4">
       <div className="flex items-center gap-2">
-        <label className="text-sm font-sans font-medium text-[--color-tb-navy]">{t('filter.label')}</label>
+        <label className="text-sm font-sans font-medium text-tb-navy">{t('filter.label')}</label>
         <select
-          className="border border-[--color-tb-line] rounded-lg p-2 font-sans text-[--color-tb-navy] bg-white focus:ring-2 focus:ring-[--color-tb-stitch]/60 focus:border-[--color-tb-stitch] transition"
+          className="border border-tb-line rounded-lg p-2 font-sans text-tb-navy bg-white focus:ring-2 focus:ring-tb-stitch/60 focus:border-tb-stitch transition"
           value={status}
           onChange={e=>setStatus(e.target.value)}
         >
@@ -89,40 +89,40 @@ export default function GamesTable() {
         </select>
       </div>
 
-      <div className="bg-white border border-[--color-tb-line] rounded-xl overflow-hidden shadow-sm">
+      <div className="bg-white border border-tb-line rounded-xl overflow-hidden shadow-sm">
         <table className="w-full text-sm font-sans">
-          <thead className="bg-[--color-tb-beige] border-b border-[--color-tb-line]">
+          <thead className="bg-tb-beige border-b border-tb-line">
             <tr>
-              <th className="p-3 text-left font-display font-semibold text-[--color-tb-navy]">{t('table.date')}</th>
-              <th className="p-3 text-left font-display font-semibold text-[--color-tb-navy]">{t('table.match')}</th>
-              <th className="p-3 text-left font-display font-semibold text-[--color-tb-navy]">{t('table.venue')}</th>
-              <th className="p-3 text-left font-display font-semibold text-[--color-tb-navy]">{t('table.status')}</th>
-              <th className="p-3 text-left font-display font-semibold text-[--color-tb-navy]">{t('table.score')}</th>
-              <th className="p-3 text-left font-display font-semibold text-[--color-tb-navy]">{t('table.actions')}</th>
+              <th className="p-3 text-left font-display font-semibold text-tb-navy">{t('table.date')}</th>
+              <th className="p-3 text-left font-display font-semibold text-tb-navy">{t('table.match')}</th>
+              <th className="p-3 text-left font-display font-semibold text-tb-navy">{t('table.venue')}</th>
+              <th className="p-3 text-left font-display font-semibold text-tb-navy">{t('table.status')}</th>
+              <th className="p-3 text-left font-display font-semibold text-tb-navy">{t('table.score')}</th>
+              <th className="p-3 text-left font-display font-semibold text-tb-navy">{t('table.actions')}</th>
             </tr>
           </thead>
           <tbody>
             {games.map(g => (
-              <tr key={g.id} className="border-b border-[--color-tb-line] hover:bg-[--color-tb-bone] transition">
-                <td className="p-3 font-sans text-[--color-tb-ink]">
+              <tr key={g.id} className="border-b border-tb-line hover:bg-tb-bone transition">
+                <td className="p-3 font-sans text-tb-ink">
                   {new Date(g.starts_at).toLocaleString('es-ES', {
                     dateStyle: 'short',
                     timeStyle: 'short'
                   })}
                 </td>
                 <td className="p-3">
-                  <div className="font-sans font-medium text-[--color-tb-ink]">
+                  <div className="font-sans font-medium text-tb-ink">
                     {mapTeam.get(g.home_team_id) || t('noVenue')}
                   </div>
-                  <div className="text-[--color-tb-shadow] text-xs">{t('vs')}</div>
-                  <div className="font-sans font-medium text-[--color-tb-ink]">
+                  <div className="text-tb-shadow text-xs">{t('vs')}</div>
+                  <div className="font-sans font-medium text-tb-ink">
                     {mapTeam.get(g.away_team_id) || t('noVenue')}
                   </div>
                 </td>
-                <td className="p-3 font-sans text-[--color-tb-shadow]">{g.venue ?? t('noVenue')}</td>
+                <td className="p-3 font-sans text-tb-shadow">{g.venue ?? t('noVenue')}</td>
                 <td className="p-3">
                   <select
-                    className={`text-xs px-2 py-1 rounded-full border-0 font-sans font-medium ${STATUS_COLORS[g.status] || 'bg-[--color-tb-beige] text-[--color-tb-shadow]'}`}
+                    className={`text-xs px-2 py-1 rounded-full border-0 font-sans font-medium ${STATUS_COLORS[g.status] || 'bg-tb-beige text-tb-shadow'}`}
                     value={g.status}
                     onChange={e=>changeStatus(g.id, e.target.value)}
                   >
@@ -142,7 +142,7 @@ export default function GamesTable() {
                 <td className="p-3">
                   <button
                     onClick={() => deleteGame(g.id)}
-                    className="text-[--color-tb-stitch] hover:text-[--color-tb-red] text-xs font-sans font-medium transition"
+                    className="text-tb-stitch hover:text-tb-red text-xs font-sans font-medium transition"
                   >
                     {t('actions.delete')}
                   </button>
@@ -151,7 +151,7 @@ export default function GamesTable() {
             ))}
             {games.length===0 && (
               <tr>
-                <td className="p-8 text-center font-sans text-[--color-tb-shadow]" colSpan={6}>
+                <td className="p-8 text-center font-sans text-tb-shadow" colSpan={6}>
                   {t('empty')}
                 </td>
               </tr>
@@ -178,12 +178,12 @@ function ScoreEditor({home, away, onSave}:{home:number; away:number; onSave:(hs:
   if (!editing) {
     return (
       <div 
-        className="flex items-center gap-2 cursor-pointer hover:bg-[--color-tb-beige] p-1 rounded-lg transition"
+        className="flex items-center gap-2 cursor-pointer hover:bg-tb-beige p-1 rounded-lg transition"
         onClick={() => setEditing(true)}
       >
-        <span className="font-display font-bold text-lg text-[--color-tb-navy]">{hs}</span>
-        <span className="text-[--color-tb-shadow]/50">-</span>
-        <span className="font-display font-bold text-lg text-[--color-tb-navy]">{as}</span>
+        <span className="font-display font-bold text-lg text-tb-navy">{hs}</span>
+        <span className="text-tb-shadow/50">-</span>
+        <span className="font-display font-bold text-lg text-tb-navy">{as}</span>
       </div>
     );
   }
@@ -192,27 +192,27 @@ function ScoreEditor({home, away, onSave}:{home:number; away:number; onSave:(hs:
     <div className="flex items-center gap-1">
       <input 
         type="number" 
-        className="border border-[--color-tb-line] p-1 w-14 rounded-lg text-center font-sans text-[--color-tb-navy] focus:ring-2 focus:ring-[--color-tb-stitch]/60 focus:border-[--color-tb-stitch] transition" 
+        className="border border-tb-line p-1 w-14 rounded-lg text-center font-sans text-tb-navy focus:ring-2 focus:ring-tb-stitch/60 focus:border-tb-stitch transition" 
         value={hs} 
         onChange={e=>setHs(Number(e.target.value))}
         min="0"
       />
-      <span className="px-1 text-[--color-tb-shadow]/50">-</span>
+      <span className="px-1 text-tb-shadow/50">-</span>
       <input 
         type="number" 
-        className="border border-[--color-tb-line] p-1 w-14 rounded-lg text-center font-sans text-[--color-tb-navy] focus:ring-2 focus:ring-[--color-tb-stitch]/60 focus:border-[--color-tb-stitch] transition" 
+        className="border border-tb-line p-1 w-14 rounded-lg text-center font-sans text-tb-navy focus:ring-2 focus:ring-tb-stitch/60 focus:border-tb-stitch transition" 
         value={as} 
         onChange={e=>setAs(Number(e.target.value))}
         min="0"
       />
       <button 
-        className="bg-[--color-tb-red] text-white px-2 py-1 rounded-lg text-xs font-sans hover:bg-[--color-tb-stitch] transition" 
+        className="bg-tb-red text-white px-2 py-1 rounded-lg text-xs font-sans hover:bg-tb-stitch transition" 
         onClick={handleSave}
       >
         ✓
       </button>
       <button 
-        className="bg-[--color-tb-line] text-[--color-tb-shadow] px-2 py-1 rounded-lg text-xs font-sans hover:bg-[--color-tb-shadow]/20 transition" 
+        className="bg-tb-line text-tb-shadow px-2 py-1 rounded-lg text-xs font-sans hover:bg-tb-shadow/20 transition" 
         onClick={() => { setHs(home); setAs(away); setEditing(false); }}
       >
         ✕

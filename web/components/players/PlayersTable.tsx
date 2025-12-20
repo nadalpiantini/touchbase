@@ -86,7 +86,7 @@ export default function PlayersTable() {
   };
 
   if (loading) return <p className="text-gray-500">{t('loading')}</p>;
-  if (err) return <p className="text-sm font-sans text-[--color-tb-stitch]">{t('error')} {err}</p>;
+  if (err) return <p className="text-sm font-sans text-tb-stitch">{t('error')} {err}</p>;
   if (!players.length) return <p className="text-gray-500">{t('empty')}</p>;
 
   const mapTeam = new Map(teams.map(t => [t.id, t.name]));
@@ -97,7 +97,7 @@ export default function PlayersTable() {
         <div className="flex items-center gap-2">
           <label className="text-sm font-medium text-gray-700">{t('filter.label')}</label>
           <select
-            className="border border-[--color-tb-line] p-2 rounded bg-white font-sans"
+            className="border border-tb-line p-2 rounded bg-white font-sans"
             value={teamFilter}
             onChange={e => setTeamFilter(e.target.value)}
           >
@@ -160,7 +160,7 @@ export default function PlayersTable() {
                     <>
                       <button
                         type="button"
-                        className="text-sm font-sans border border-[--color-tb-line] px-3 py-1 rounded-lg hover:bg-[--color-tb-beige] transition"
+                        className="text-sm font-sans border border-tb-line px-3 py-1 rounded-lg hover:bg-tb-beige transition"
                         onClick={saveEdit}
                         aria-label={`Guardar cambios para ${p.full_name}`}
                       >
@@ -168,7 +168,7 @@ export default function PlayersTable() {
                       </button>
                       <button
                         type="button"
-                        className="text-sm font-sans border border-[--color-tb-line] px-3 py-1 rounded-lg hover:bg-[--color-tb-beige] transition"
+                        className="text-sm font-sans border border-tb-line px-3 py-1 rounded-lg hover:bg-tb-beige transition"
                         onClick={cancelEdit}
                         aria-label={`Cancelar edición de ${p.full_name}`}
                       >
@@ -179,7 +179,7 @@ export default function PlayersTable() {
                     <>
                       <button
                         type="button"
-                        className="text-sm font-sans text-[--color-tb-navy] hover:text-[--color-tb-stitch] transition"
+                        className="text-sm font-sans text-tb-navy hover:text-tb-stitch transition"
                         onClick={() => startEdit(p)}
                         aria-label={`Editar ${p.full_name}`}
                       >
@@ -187,7 +187,7 @@ export default function PlayersTable() {
                       </button>
                       <button
                         type="button"
-                        className="text-sm font-sans text-[--color-tb-stitch] hover:text-[--color-tb-red] transition"
+                        className="text-sm font-sans text-tb-stitch hover:text-tb-red transition"
                         onClick={() => softDelete(p.id)}
                       >
                         {t('actions.delete')}

@@ -4,12 +4,26 @@
  */
 
 // Consistent UUIDs for dev mode - must match seed data
-export const DEV_USER_ID = "00000000-0000-0000-0000-000000000002";
+export const DEV_USER_ID = "00000000-0000-0000-0000-000000000002"; // Owner
+export const DEV_TEACHER_ID = "00000000-0000-0000-0000-000000000003";
+export const DEV_STUDENT_ID = "00000000-0000-0000-0000-000000000004";
 export const DEV_ORG_ID = "00000000-0000-0000-0000-000000000001";
+export const DEV_CLASS_ID = "00000000-0000-0000-0000-000000000010";
+export const DEV_MODULE_ID = "00000000-0000-0000-0000-000000000020";
 
 export const DEV_USER = {
   id: DEV_USER_ID,
   email: "dev@touchbase.local",
+};
+
+export const DEV_TEACHER = {
+  id: DEV_TEACHER_ID,
+  email: "teacher@touchbase.local",
+};
+
+export const DEV_STUDENT = {
+  id: DEV_STUDENT_ID,
+  email: "student@touchbase.local",
 };
 
 export const DEV_ORG = {
@@ -23,6 +37,13 @@ export const DEV_MEMBERSHIP = {
   user_id: DEV_USER_ID,
   role: "owner" as const,
 };
+
+// All test users for easy reference
+export const DEV_TEST_USERS = {
+  owner: { id: DEV_USER_ID, email: "dev@touchbase.local", role: "owner" },
+  teacher: { id: DEV_TEACHER_ID, email: "teacher@touchbase.local", role: "teacher" },
+  student: { id: DEV_STUDENT_ID, email: "student@touchbase.local", role: "student" },
+} as const;
 
 export function isDevMode(): boolean {
   return process.env.NODE_ENV === "development";

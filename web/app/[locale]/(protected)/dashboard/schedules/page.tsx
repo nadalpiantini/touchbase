@@ -92,8 +92,8 @@ export default function SchedulesPage() {
   return (
     <main className="space-y-6">
       <div>
-        <h1 className="text-2xl font-bold text-[--color-tb-navy]">Horarios</h1>
-        <p className="text-[--color-tb-shadow] mt-1 font-sans">
+        <h1 className="text-2xl font-bold text-tb-navy">Horarios</h1>
+        <p className="text-tb-shadow mt-1 font-sans">
           Visualiza y gestiona los horarios de clases
         </p>
       </div>
@@ -111,7 +111,7 @@ export default function SchedulesPage() {
           {selectedDate && (
             <Card>
               <CardContent className="p-4">
-                <h3 className="font-semibold text-[--color-tb-navy] mb-2">
+                <h3 className="font-semibold text-tb-navy mb-2">
                   {selectedDate.toLocaleDateString("es-ES", {
                     weekday: "long",
                     year: "numeric",
@@ -130,13 +130,13 @@ export default function SchedulesPage() {
                     .map((event) => (
                       <div
                         key={event.id}
-                        className="p-2 border border-[--color-tb-line] rounded-lg cursor-pointer hover:bg-[--color-tb-bone]"
+                        className="p-2 border border-tb-line rounded-lg cursor-pointer hover:bg-tb-bone"
                         onClick={() => handleEventClick(event)}
                       >
-                        <div className="font-medium text-sm text-[--color-tb-navy]">
+                        <div className="font-medium text-sm text-tb-navy">
                           {event.title}
                         </div>
-                        <div className="text-xs text-[--color-tb-shadow]">
+                        <div className="text-xs text-tb-shadow">
                           {event.start.toLocaleTimeString("es-ES", {
                             hour: "2-digit",
                             minute: "2-digit",
@@ -155,7 +155,7 @@ export default function SchedulesPage() {
                       e.start.getMonth() === selectedDate.getMonth() &&
                       e.start.getFullYear() === selectedDate.getFullYear()
                   ).length === 0 && (
-                    <p className="text-sm text-[--color-tb-shadow]">Sin eventos este día</p>
+                    <p className="text-sm text-tb-shadow">Sin eventos este día</p>
                   )}
                 </div>
               </CardContent>
@@ -165,7 +165,7 @@ export default function SchedulesPage() {
           {selectedEvent && (
             <Card>
               <CardContent className="p-4">
-                <h3 className="font-semibold text-[--color-tb-navy] mb-2">
+                <h3 className="font-semibold text-tb-navy mb-2">
                   Detalles del Evento
                 </h3>
                 <div className="space-y-2 text-sm">
@@ -197,7 +197,7 @@ export default function SchedulesPage() {
           {!selectedDate && !selectedEvent && (
             <Card>
               <CardContent className="p-4">
-                <p className="text-sm text-[--color-tb-shadow] text-center">
+                <p className="text-sm text-tb-shadow text-center">
                   Selecciona una fecha o evento para ver detalles
                 </p>
               </CardContent>

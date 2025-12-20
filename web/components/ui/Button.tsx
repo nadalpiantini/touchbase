@@ -13,10 +13,10 @@ const Button = memo(forwardRef<HTMLButtonElement, ButtonProps>(
     const baseStyles = 'inline-flex items-center justify-center gap-2 rounded-xl font-display tracking-wide transition-all duration-150 active:translate-y-[1px] disabled:opacity-50 disabled:cursor-not-allowed';
 
     const variants = {
-      primary: 'bg-[--color-tb-red] text-white shadow-dugout hover:bg-[--color-tb-stitch]',
-      secondary: 'bg-[--color-tb-navy] text-white shadow-sm hover:bg-[--color-tb-navy]/90',
-      outline: 'border-2 border-[--color-tb-red] text-[--color-tb-red] hover:bg-[--color-tb-red] hover:text-white',
-      ghost: 'text-[--color-tb-navy] hover:bg-[--color-tb-navy]/10',
+      primary: 'bg-tb-red text-white shadow-dugout hover:bg-tb-stitch',
+      secondary: 'bg-tb-navy text-white shadow-sm hover:bg-tb-navy/90',
+      outline: 'border-2 border-tb-red text-tb-red hover:bg-tb-red hover:text-white',
+      ghost: 'text-tb-navy hover:bg-tb-navy/10',
     };
 
     const sizes = {

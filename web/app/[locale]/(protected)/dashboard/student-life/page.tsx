@@ -103,18 +103,18 @@ export default function StudentLifePage() {
   return (
     <main className="space-y-6">
       <div>
-        <h1 className="text-2xl font-bold text-[--color-tb-navy]">Vida Estudiantil</h1>
-        <p className="text-[--color-tb-shadow] mt-1">Programas de bienestar, actividades extracurriculares y desarrollo personal</p>
+        <h1 className="text-2xl font-bold text-tb-navy">Vida Estudiantil</h1>
+        <p className="text-tb-shadow mt-1">Programas de bienestar, actividades extracurriculares y desarrollo personal</p>
       </div>
 
       {/* Tabs */}
-      <div className="flex gap-2 border-b border-[--color-tb-line]">
+      <div className="flex gap-2 border-b border-tb-line">
         <button
           onClick={() => setActiveTab("wellness")}
           className={`px-4 py-2 font-medium transition ${
             activeTab === "wellness"
-              ? "text-[--color-tb-red] border-b-2 border-[--color-tb-red]"
-              : "text-[--color-tb-shadow] hover:text-[--color-tb-navy]"
+              ? "text-tb-red border-b-2 border-tb-red"
+              : "text-tb-shadow hover:text-tb-navy"
           }`}
         >
           Bienestar
@@ -123,8 +123,8 @@ export default function StudentLifePage() {
           onClick={() => setActiveTab("activities")}
           className={`px-4 py-2 font-medium transition ${
             activeTab === "activities"
-              ? "text-[--color-tb-red] border-b-2 border-[--color-tb-red]"
-              : "text-[--color-tb-shadow] hover:text-[--color-tb-navy]"
+              ? "text-tb-red border-b-2 border-tb-red"
+              : "text-tb-shadow hover:text-tb-navy"
           }`}
         >
           Actividades
@@ -133,8 +133,8 @@ export default function StudentLifePage() {
           onClick={() => setActiveTab("logs")}
           className={`px-4 py-2 font-medium transition ${
             activeTab === "logs"
-              ? "text-[--color-tb-red] border-b-2 border-[--color-tb-red]"
-              : "text-[--color-tb-shadow] hover:text-[--color-tb-navy]"
+              ? "text-tb-red border-b-2 border-tb-red"
+              : "text-tb-shadow hover:text-tb-navy"
           }`}
         >
           Desarrollo Personal
@@ -164,7 +164,7 @@ export default function StudentLifePage() {
               {wellnessPrograms.length === 0 ? (
                 <Card>
                   <CardContent className="text-center py-12">
-                    <p className="text-[--color-tb-shadow]">No hay programas de bienestar configurados.</p>
+                    <p className="text-tb-shadow">No hay programas de bienestar configurados.</p>
                   </CardContent>
                 </Card>
               ) : (
@@ -177,9 +177,9 @@ export default function StudentLifePage() {
                       </CardHeader>
                       <CardContent>
                         {program.description && (
-                          <p className="text-sm text-[--color-tb-shadow] mb-4">{program.description}</p>
+                          <p className="text-sm text-tb-shadow mb-4">{program.description}</p>
                         )}
-                        <div className="text-sm text-[--color-tb-shadow]">
+                        <div className="text-sm text-tb-shadow">
                           <p>Inicio: {new Date(program.start_date).toLocaleDateString("es-ES")}</p>
                           {program.end_date && (
                             <p>Fin: {new Date(program.end_date).toLocaleDateString("es-ES")}</p>
@@ -204,7 +204,7 @@ export default function StudentLifePage() {
           {activities.length === 0 ? (
             <Card>
               <CardContent className="text-center py-12">
-                <p className="text-[--color-tb-shadow]">No hay actividades extracurriculares programadas.</p>
+                <p className="text-tb-shadow">No hay actividades extracurriculares programadas.</p>
               </CardContent>
             </Card>
           ) : (
@@ -221,9 +221,9 @@ export default function StudentLifePage() {
                   </CardHeader>
                   <CardContent>
                     {activity.description && (
-                      <p className="text-sm text-[--color-tb-shadow] mb-2">{activity.description}</p>
+                      <p className="text-sm text-tb-shadow mb-2">{activity.description}</p>
                     )}
-                    <div className="text-sm text-[--color-tb-shadow]">
+                    <div className="text-sm text-tb-shadow">
                       <p>Fecha: {new Date(activity.activity_date).toLocaleDateString("es-ES")}</p>
                       {activity.location && <p>Ubicación: {activity.location}</p>}
                     </div>
@@ -247,7 +247,7 @@ export default function StudentLifePage() {
           {logs.length === 0 ? (
             <Card>
               <CardContent className="text-center py-12">
-                <p className="text-[--color-tb-shadow]">No hay logs de desarrollo personal.</p>
+                <p className="text-tb-shadow">No hay logs de desarrollo personal.</p>
               </CardContent>
             </Card>
           ) : (
@@ -261,8 +261,8 @@ export default function StudentLifePage() {
                     </div>
                   </CardHeader>
                   <CardContent>
-                    <p className="text-sm text-[--color-tb-shadow] mb-2">{log.content}</p>
-                    <div className="text-xs text-[--color-tb-shadow]">
+                    <p className="text-sm text-tb-shadow mb-2">{log.content}</p>
+                    <div className="text-xs text-tb-shadow">
                       {new Date(log.logged_at).toLocaleDateString("es-ES")}
                     </div>
                   </CardContent>

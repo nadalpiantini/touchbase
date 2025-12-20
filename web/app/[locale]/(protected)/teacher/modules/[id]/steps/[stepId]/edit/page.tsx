@@ -193,7 +193,7 @@ export default function EditStepPage() {
       <div className="max-w-3xl mx-auto">
         <Card>
           <CardContent className="text-center py-12">
-            <p className="text-[--color-tb-shadow]">{t('loading')}</p>
+            <p className="text-tb-shadow">{t('loading')}</p>
           </CardContent>
         </Card>
       </div>
@@ -229,13 +229,13 @@ export default function EditStepPage() {
           <form onSubmit={handleSubmit} className="space-y-6">
             {/* Step Type (read-only in edit mode) */}
             <div>
-              <label className="block text-sm font-medium text-[--color-tb-navy] mb-2">
+              <label className="block text-sm font-medium text-tb-navy mb-2">
                 {t('stepTypeLabel')}
               </label>
-              <div className="flex h-10 w-full rounded-md border border-[--color-tb-line] bg-[--color-tb-beige]/50 px-3 py-2 text-sm text-[--color-tb-navy] items-center">
+              <div className="flex h-10 w-full rounded-md border border-tb-line bg-tb-beige/50 px-3 py-2 text-sm text-tb-navy items-center">
                 {stepType === "content" ? t('stepTypeContent') : stepType === "quiz" ? t('stepTypeQuiz') : t('stepTypeScenario')}
               </div>
-              <p className="text-xs text-[--color-tb-shadow] mt-1">{t('stepTypeReadOnly')}</p>
+              <p className="text-xs text-tb-shadow mt-1">{t('stepTypeReadOnly')}</p>
             </div>
 
             {/* Order Index */}
@@ -252,13 +252,13 @@ export default function EditStepPage() {
             {stepType === "content" && (
               <>
                 <div>
-                  <label htmlFor="contentText" className="block text-sm font-medium text-[--color-tb-navy] mb-1">
+                  <label htmlFor="contentText" className="block text-sm font-medium text-tb-navy mb-1">
                     {t('contentTextLabel')}
                   </label>
                   <textarea
                     id="contentText"
                     rows={6}
-                    className="flex w-full rounded-md border border-[--color-tb-line] bg-white px-3 py-2 text-sm text-[--color-tb-navy] placeholder:text-[--color-tb-shadow]/60 focus:outline-none focus:ring-2 focus:ring-[--color-tb-red] disabled:cursor-not-allowed disabled:opacity-50"
+                    className="flex w-full rounded-md border border-tb-line bg-white px-3 py-2 text-sm text-tb-navy placeholder:text-tb-shadow/60 focus:outline-none focus:ring-2 focus:ring-tb-red disabled:cursor-not-allowed disabled:opacity-50"
                     placeholder={t('contentTextPlaceholder')}
                     value={contentText}
                     onChange={(e) => setContentText(e.target.value)}
@@ -267,7 +267,7 @@ export default function EditStepPage() {
                   />
                 </div>
                 <div>
-                  <label htmlFor="mediaUrl" className="block text-sm font-medium text-[--color-tb-navy] mb-1">
+                  <label htmlFor="mediaUrl" className="block text-sm font-medium text-tb-navy mb-1">
                     {t('mediaUrlLabel')} ({t('optional')})
                   </label>
                   <Input
@@ -281,12 +281,12 @@ export default function EditStepPage() {
                 </div>
                 {mediaUrl && (
                   <div>
-                    <label htmlFor="mediaType" className="block text-sm font-medium text-[--color-tb-navy] mb-1">
+                    <label htmlFor="mediaType" className="block text-sm font-medium text-tb-navy mb-1">
                       {t('mediaTypeLabel')}
                     </label>
                     <select
                       id="mediaType"
-                      className="flex h-10 w-full rounded-md border border-[--color-tb-line] bg-white px-3 py-2 text-sm text-[--color-tb-navy] focus:outline-none focus:ring-2 focus:ring-[--color-tb-red] disabled:cursor-not-allowed disabled:opacity-50"
+                      className="flex h-10 w-full rounded-md border border-tb-line bg-white px-3 py-2 text-sm text-tb-navy focus:outline-none focus:ring-2 focus:ring-tb-red disabled:cursor-not-allowed disabled:opacity-50"
                       value={mediaType}
                       onChange={(e) => setMediaType(e.target.value as "image" | "video" | "audio")}
                       disabled={saving}
@@ -304,13 +304,13 @@ export default function EditStepPage() {
             {stepType === "quiz" && (
               <>
                 <div>
-                  <label htmlFor="question" className="block text-sm font-medium text-[--color-tb-navy] mb-1">
+                  <label htmlFor="question" className="block text-sm font-medium text-tb-navy mb-1">
                     {t('questionLabel')}
                   </label>
                   <textarea
                     id="question"
                     rows={3}
-                    className="flex w-full rounded-md border border-[--color-tb-line] bg-white px-3 py-2 text-sm text-[--color-tb-navy] placeholder:text-[--color-tb-shadow]/60 focus:outline-none focus:ring-2 focus:ring-[--color-tb-red] disabled:cursor-not-allowed disabled:opacity-50"
+                    className="flex w-full rounded-md border border-tb-line bg-white px-3 py-2 text-sm text-tb-navy placeholder:text-tb-shadow/60 focus:outline-none focus:ring-2 focus:ring-tb-red disabled:cursor-not-allowed disabled:opacity-50"
                     placeholder={t('questionPlaceholder')}
                     value={question}
                     onChange={(e) => setQuestion(e.target.value)}
@@ -319,7 +319,7 @@ export default function EditStepPage() {
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-[--color-tb-navy] mb-2">
+                  <label className="block text-sm font-medium text-tb-navy mb-2">
                     {t('optionsLabel')}
                   </label>
                   {options.map((option, index) => (
@@ -370,13 +370,13 @@ export default function EditStepPage() {
             {stepType === "scenario" && (
               <>
                 <div>
-                  <label htmlFor="prompt" className="block text-sm font-medium text-[--color-tb-navy] mb-1">
+                  <label htmlFor="prompt" className="block text-sm font-medium text-tb-navy mb-1">
                     {t('promptLabel')}
                   </label>
                   <textarea
                     id="prompt"
                     rows={4}
-                    className="flex w-full rounded-md border border-[--color-tb-line] bg-white px-3 py-2 text-sm text-[--color-tb-navy] placeholder:text-[--color-tb-shadow]/60 focus:outline-none focus:ring-2 focus:ring-[--color-tb-red] disabled:cursor-not-allowed disabled:opacity-50"
+                    className="flex w-full rounded-md border border-tb-line bg-white px-3 py-2 text-sm text-tb-navy placeholder:text-tb-shadow/60 focus:outline-none focus:ring-2 focus:ring-tb-red disabled:cursor-not-allowed disabled:opacity-50"
                     placeholder={t('promptPlaceholder')}
                     value={prompt}
                     onChange={(e) => setPrompt(e.target.value)}
@@ -385,13 +385,13 @@ export default function EditStepPage() {
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-[--color-tb-navy] mb-2">
+                  <label className="block text-sm font-medium text-tb-navy mb-2">
                     {t('scenarioOptionsLabel')}
                   </label>
                   {scenarioOptions.map((option, index) => (
-                    <div key={index} className="border border-[--color-tb-line] rounded-lg p-4 mb-3">
+                    <div key={index} className="border border-tb-line rounded-lg p-4 mb-3">
                       <div className="mb-2">
-                        <label className="block text-xs font-medium text-[--color-tb-shadow] mb-1">
+                        <label className="block text-xs font-medium text-tb-shadow mb-1">
                           {t('optionTextLabel')}
                         </label>
                         <Input
@@ -403,12 +403,12 @@ export default function EditStepPage() {
                         />
                       </div>
                       <div>
-                        <label className="block text-xs font-medium text-[--color-tb-shadow] mb-1">
+                        <label className="block text-xs font-medium text-tb-shadow mb-1">
                           {t('consequenceLabel')}
                         </label>
                         <textarea
                           rows={2}
-                          className="flex w-full rounded-md border border-[--color-tb-line] bg-white px-3 py-2 text-sm text-[--color-tb-navy] placeholder:text-[--color-tb-shadow]/60 focus:outline-none focus:ring-2 focus:ring-[--color-tb-red] disabled:cursor-not-allowed disabled:opacity-50"
+                          className="flex w-full rounded-md border border-tb-line bg-white px-3 py-2 text-sm text-tb-navy placeholder:text-tb-shadow/60 focus:outline-none focus:ring-2 focus:ring-tb-red disabled:cursor-not-allowed disabled:opacity-50"
                           placeholder={t('consequencePlaceholder')}
                           value={option.consequence}
                           onChange={(e) => handleScenarioOptionChange(index, "consequence", e.target.value)}

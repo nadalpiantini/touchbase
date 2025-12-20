@@ -88,30 +88,30 @@ export default function TeamsTable() {
 
   if (!teams.length) {
     return (
-      <div className="bg-white border border-[--color-tb-line] rounded-xl p-8 text-center shadow-sm">
-        <p className="font-sans text-[--color-tb-shadow]">{t('empty')}</p>
+      <div className="bg-white border border-tb-line rounded-xl p-8 text-center shadow-sm">
+        <p className="font-sans text-tb-shadow">{t('empty')}</p>
       </div>
     );
   }
 
   return (
-    <div className="border border-[--color-tb-line] rounded-xl overflow-hidden bg-white shadow-sm">
+    <div className="border border-tb-line rounded-xl overflow-hidden bg-white shadow-sm">
       <table className="w-full text-sm font-sans">
-        <thead className="bg-[--color-tb-beige] border-b border-[--color-tb-line]">
+        <thead className="bg-tb-beige border-b border-tb-line">
           <tr>
-            <th className="text-left p-3 font-display font-semibold text-[--color-tb-navy]">{t('table.name')}</th>
-            <th className="text-left p-3 font-display font-semibold text-[--color-tb-navy]">{t('table.created')}</th>
-            <th className="text-right p-3 font-display font-semibold text-[--color-tb-navy]">{t('table.actions')}</th>
+            <th className="text-left p-3 font-display font-semibold text-tb-navy">{t('table.name')}</th>
+            <th className="text-left p-3 font-display font-semibold text-tb-navy">{t('table.created')}</th>
+            <th className="text-right p-3 font-display font-semibold text-tb-navy">{t('table.actions')}</th>
           </tr>
         </thead>
         <tbody>
           {teams.map(team => (
-            <tr key={team.id} className="border-b border-[--color-tb-line] hover:bg-[--color-tb-bone] transition">
+            <tr key={team.id} className="border-b border-tb-line hover:bg-tb-bone transition">
               <td className="p-3">
                 {editId === team.id ? (
                   <input
                     type="text"
-                    className="border border-[--color-tb-line] p-1 rounded-lg w-full font-sans text-[--color-tb-navy] focus:ring-2 focus:ring-[--color-tb-stitch]/60 focus:border-[--color-tb-stitch] transition"
+                    className="border border-tb-line p-1 rounded-lg w-full font-sans text-tb-navy focus:ring-2 focus:ring-tb-stitch/60 focus:border-tb-stitch transition"
                     value={editName}
                     onChange={e => setEditName(e.target.value)}
                     onKeyDown={e => {
@@ -121,10 +121,10 @@ export default function TeamsTable() {
                     aria-label={`Editar nombre del equipo ${team.name}`}
                   />
                 ) : (
-                  <span className="font-sans text-[--color-tb-ink]">{team.name}</span>
+                  <span className="font-sans text-tb-ink">{team.name}</span>
                 )}
               </td>
-              <td className="p-3 font-sans text-[--color-tb-shadow]">
+              <td className="p-3 font-sans text-tb-shadow">
                 {new Date(team.created_at).toLocaleString()}
               </td>
               <td className="p-3 text-right space-x-2">
@@ -132,7 +132,7 @@ export default function TeamsTable() {
                   <>
                     <button
                       type="button"
-                      className="text-sm font-sans border border-[--color-tb-line] px-3 py-1 rounded-lg hover:bg-[--color-tb-beige] transition"
+                      className="text-sm font-sans border border-tb-line px-3 py-1 rounded-lg hover:bg-tb-beige transition"
                       onClick={saveEdit}
                       aria-label={`Guardar cambios para ${team.name}`}
                     >
@@ -140,7 +140,7 @@ export default function TeamsTable() {
                     </button>
                     <button
                       type="button"
-                      className="text-sm font-sans border border-[--color-tb-line] px-3 py-1 rounded-lg hover:bg-[--color-tb-beige] transition"
+                      className="text-sm font-sans border border-tb-line px-3 py-1 rounded-lg hover:bg-tb-beige transition"
                       onClick={cancelEdit}
                       aria-label={`Cancelar edición de ${team.name}`}
                     >
@@ -151,7 +151,7 @@ export default function TeamsTable() {
                   <>
                     <button
                       type="button"
-                      className="text-sm font-sans text-[--color-tb-navy] hover:text-[--color-tb-stitch] transition"
+                      className="text-sm font-sans text-tb-navy hover:text-tb-stitch transition"
                       onClick={() => startEdit(team)}
                       aria-label={`Editar ${team.name}`}
                     >
@@ -159,7 +159,7 @@ export default function TeamsTable() {
                     </button>
                     <button
                       type="button"
-                      className="text-sm font-sans text-[--color-tb-stitch] hover:text-[--color-tb-red] transition"
+                      className="text-sm font-sans text-tb-stitch hover:text-tb-red transition"
                       onClick={() => softDelete(team.id)}
                       aria-label={`Eliminar ${team.name}`}
                     >

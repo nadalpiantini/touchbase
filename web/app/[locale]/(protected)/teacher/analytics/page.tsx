@@ -85,17 +85,17 @@ export default function TeacherAnalyticsPage() {
 
   return (
     <div className="max-w-7xl mx-auto">
-      <h1 className="text-3xl font-display font-bold text-[--color-tb-navy] mb-8">
+      <h1 className="text-3xl font-display font-bold text-tb-navy mb-8">
         {t('title')}
       </h1>
 
       {/* Tabs */}
-      <div className="flex gap-4 mb-6 border-b border-[--color-tb-line]">
+      <div className="flex gap-4 mb-6 border-b border-tb-line">
         <button
           className={`pb-2 px-4 font-medium transition ${
             activeTab === "classes"
-              ? "text-[--color-tb-red] border-b-2 border-[--color-tb-red]"
-              : "text-[--color-tb-shadow] hover:text-[--color-tb-navy]"
+              ? "text-tb-red border-b-2 border-tb-red"
+              : "text-tb-shadow hover:text-tb-navy"
           }`}
           onClick={() => setActiveTab("classes")}
         >
@@ -104,8 +104,8 @@ export default function TeacherAnalyticsPage() {
         <button
           className={`pb-2 px-4 font-medium transition ${
             activeTab === "modules"
-              ? "text-[--color-tb-red] border-b-2 border-[--color-tb-red]"
-              : "text-[--color-tb-shadow] hover:text-[--color-tb-navy]"
+              ? "text-tb-red border-b-2 border-tb-red"
+              : "text-tb-shadow hover:text-tb-navy"
           }`}
           onClick={() => setActiveTab("modules")}
         >
@@ -119,7 +119,7 @@ export default function TeacherAnalyticsPage() {
           {classAnalytics.length === 0 ? (
             <Card>
               <CardContent className="text-center py-12">
-                <p className="text-[--color-tb-shadow]">{t('noClasses')}</p>
+                <p className="text-tb-shadow">{t('noClasses')}</p>
               </CardContent>
             </Card>
           ) : (
@@ -132,18 +132,18 @@ export default function TeacherAnalyticsPage() {
                   <CardContent>
                     <div className="space-y-4">
                       <div>
-                        <div className="flex justify-between text-sm text-[--color-tb-shadow] mb-1">
+                        <div className="flex justify-between text-sm text-tb-shadow mb-1">
                           <span>{t('students')}</span>
-                          <span className="font-semibold text-[--color-tb-navy]">
+                          <span className="font-semibold text-tb-navy">
                             {analytics.enrolledStudents}
                           </span>
                         </div>
                       </div>
 
                       <div>
-                        <div className="flex justify-between text-sm text-[--color-tb-shadow] mb-1">
+                        <div className="flex justify-between text-sm text-tb-shadow mb-1">
                           <span>{t('completionRate')}</span>
-                          <span className="font-semibold text-[--color-tb-navy]">
+                          <span className="font-semibold text-tb-navy">
                             {analytics.completionRate}%
                           </span>
                         </div>
@@ -151,20 +151,20 @@ export default function TeacherAnalyticsPage() {
                       </div>
 
                       <div>
-                        <div className="flex justify-between text-sm text-[--color-tb-shadow] mb-1">
+                        <div className="flex justify-between text-sm text-tb-shadow mb-1">
                           <span>{t('averageScore')}</span>
-                          <span className="font-semibold text-[--color-tb-navy]">
+                          <span className="font-semibold text-tb-navy">
                             {analytics.averageScore}%
                           </span>
                         </div>
                       </div>
 
-                      <div className="pt-2 border-t border-[--color-tb-line]">
-                        <div className="flex justify-between text-xs text-[--color-tb-shadow]">
+                      <div className="pt-2 border-t border-tb-line">
+                        <div className="flex justify-between text-xs text-tb-shadow">
                           <span>{t('modulesAssigned')}</span>
                           <span>{analytics.modulesAssigned}</span>
                         </div>
-                        <div className="flex justify-between text-xs text-[--color-tb-shadow]">
+                        <div className="flex justify-between text-xs text-tb-shadow">
                           <span>{t('modulesCompleted')}</span>
                           <span>{analytics.modulesCompleted}</span>
                         </div>
@@ -184,7 +184,7 @@ export default function TeacherAnalyticsPage() {
           {moduleAnalytics.length === 0 ? (
             <Card>
               <CardContent className="text-center py-12">
-                <p className="text-[--color-tb-shadow]">{t('noModules')}</p>
+                <p className="text-tb-shadow">{t('noModules')}</p>
               </CardContent>
             </Card>
           ) : (
@@ -197,38 +197,38 @@ export default function TeacherAnalyticsPage() {
                   <CardContent>
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                       <div>
-                        <div className="text-sm text-[--color-tb-shadow] mb-1">
+                        <div className="text-sm text-tb-shadow mb-1">
                           {t('completionRate')}
                         </div>
-                        <div className="text-2xl font-bold text-[--color-tb-navy]">
+                        <div className="text-2xl font-bold text-tb-navy">
                           {analytics.completionRate}%
                         </div>
                         <ProgressBar value={analytics.completionRate} color="primary" className="mt-2" />
                       </div>
 
                       <div>
-                        <div className="text-sm text-[--color-tb-shadow] mb-1">
+                        <div className="text-sm text-tb-shadow mb-1">
                           {t('averageScore')}
                         </div>
-                        <div className="text-2xl font-bold text-[--color-tb-navy]">
+                        <div className="text-2xl font-bold text-tb-navy">
                           {analytics.averageScore}%
                         </div>
                       </div>
 
                       <div>
-                        <div className="text-sm text-[--color-tb-shadow] mb-1">
+                        <div className="text-sm text-tb-shadow mb-1">
                           {t('totalAssignments')}
                         </div>
-                        <div className="text-2xl font-bold text-[--color-tb-navy]">
+                        <div className="text-2xl font-bold text-tb-navy">
                           {analytics.totalAssignments}
                         </div>
                       </div>
 
                       <div>
-                        <div className="text-sm text-[--color-tb-shadow] mb-1">
+                        <div className="text-sm text-tb-shadow mb-1">
                           {t('averageTime')}
                         </div>
-                        <div className="text-2xl font-bold text-[--color-tb-navy]">
+                        <div className="text-2xl font-bold text-tb-navy">
                           {analytics.averageTimeMinutes} {t('minutes')}
                         </div>
                       </div>

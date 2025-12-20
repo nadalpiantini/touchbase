@@ -79,13 +79,13 @@ export default function CreateModulePage() {
             />
 
             <div>
-              <label htmlFor="description" className="block text-sm font-medium text-[--color-tb-navy] mb-1">
+              <label htmlFor="description" className="block text-sm font-medium text-tb-navy mb-1">
                 {t('form.descriptionLabel')}
               </label>
               <textarea
                 id="description"
                 rows={4}
-                className="flex w-full rounded-md border border-[--color-tb-line] bg-white px-3 py-2 text-sm text-[--color-tb-navy] placeholder:text-[--color-tb-shadow]/60 focus:outline-none focus:ring-2 focus:ring-[--color-tb-red] disabled:cursor-not-allowed disabled:opacity-50"
+                className="flex w-full rounded-md border border-tb-line bg-white px-3 py-2 text-sm text-tb-navy placeholder:text-tb-shadow/60 focus:outline-none focus:ring-2 focus:ring-tb-red disabled:cursor-not-allowed disabled:opacity-50"
                 placeholder={t('form.descriptionPlaceholder')}
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
@@ -94,12 +94,12 @@ export default function CreateModulePage() {
             </div>
 
             <div>
-              <label htmlFor="difficulty" className="block text-sm font-medium text-[--color-tb-navy] mb-1">
+              <label htmlFor="difficulty" className="block text-sm font-medium text-tb-navy mb-1">
                 {t('form.difficultyLabel')}
               </label>
               <select
                 id="difficulty"
-                className="flex h-10 w-full rounded-md border border-[--color-tb-line] bg-white px-3 py-2 text-sm text-[--color-tb-navy] focus:outline-none focus:ring-2 focus:ring-[--color-tb-red] disabled:cursor-not-allowed disabled:opacity-50"
+                className="flex h-10 w-full rounded-md border border-tb-line bg-white px-3 py-2 text-sm text-tb-navy focus:outline-none focus:ring-2 focus:ring-tb-red disabled:cursor-not-allowed disabled:opacity-50"
                 value={difficulty}
                 onChange={(e) => setDifficulty(e.target.value as ModuleDifficulty)}
                 disabled={loading}
@@ -121,7 +121,7 @@ export default function CreateModulePage() {
             />
 
             <div>
-              <label className="block text-sm font-medium text-[--color-tb-navy] mb-1">
+              <label className="block text-sm font-medium text-tb-navy mb-1">
                 {t('form.skillsLabel')}
               </label>
               <div className="flex gap-2 mb-2">
@@ -146,13 +146,13 @@ export default function CreateModulePage() {
                   {skills.map((skill) => (
                     <span
                       key={skill}
-                      className="inline-flex items-center gap-1 px-3 py-1 bg-[--color-tb-beige] text-[--color-tb-navy] rounded-full text-sm"
+                      className="inline-flex items-center gap-1 px-3 py-1 bg-tb-beige text-tb-navy rounded-full text-sm"
                     >
                       {skill}
                       <button
                         type="button"
                         onClick={() => handleRemoveSkill(skill)}
-                        className="hover:text-[--color-tb-red]"
+                        className="hover:text-tb-red"
                         disabled={loading}
                       >
                         ×

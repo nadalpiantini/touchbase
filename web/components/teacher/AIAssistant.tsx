@@ -100,7 +100,7 @@ export default function AIAssistant({ context }: AIAssistantProps) {
       <div className="fixed bottom-4 right-4 z-50">
         <Button
           onClick={() => setIsOpen(true)}
-          className="bg-[--color-tb-navy] text-white rounded-full p-4 shadow-lg hover:shadow-xl transition"
+          className="bg-tb-navy text-white rounded-full p-4 shadow-lg hover:shadow-xl transition"
           aria-label={t('openAssistant')}
         >
           <span className="text-2xl">🤖</span>
@@ -127,26 +127,26 @@ export default function AIAssistant({ context }: AIAssistantProps) {
       <CardContent className="flex-1 flex flex-col overflow-hidden p-4">
         {/* Quick Actions */}
         <div className="flex-shrink-0 mb-4 space-y-2">
-          <p className="text-sm font-semibold text-[--color-tb-navy]">{t('quickActions.title')}</p>
+          <p className="text-sm font-semibold text-tb-navy">{t('quickActions.title')}</p>
           <div className="flex flex-wrap gap-2">
             <Button
               onClick={() => handleQuickAction("createModule")}
               disabled={loading}
-              className="text-xs bg-[--color-tb-beige] text-[--color-tb-navy] hover:bg-[--color-tb-beige]/80"
+              className="text-xs bg-tb-beige text-tb-navy hover:bg-tb-beige/80"
             >
               {t('quickActions.createModule')}
             </Button>
             <Button
               onClick={() => handleQuickAction("analyzeProgress")}
               disabled={loading}
-              className="text-xs bg-[--color-tb-beige] text-[--color-tb-navy] hover:bg-[--color-tb-beige]/80"
+              className="text-xs bg-tb-beige text-tb-navy hover:bg-tb-beige/80"
             >
               {t('quickActions.analyzeProgress')}
             </Button>
             <Button
               onClick={() => handleQuickAction("suggestContent")}
               disabled={loading}
-              className="text-xs bg-[--color-tb-beige] text-[--color-tb-navy] hover:bg-[--color-tb-beige]/80"
+              className="text-xs bg-tb-beige text-tb-navy hover:bg-tb-beige/80"
             >
               {t('quickActions.suggestContent')}
             </Button>
@@ -156,7 +156,7 @@ export default function AIAssistant({ context }: AIAssistantProps) {
         {/* Messages */}
         <div className="flex-1 overflow-y-auto mb-4 space-y-4">
           {messages.length === 0 ? (
-            <div className="text-center text-[--color-tb-shadow] py-8">
+            <div className="text-center text-tb-shadow py-8">
               <p className="mb-2">{t('welcome')}</p>
               <p className="text-sm">{t('askQuestion')}</p>
             </div>
@@ -169,8 +169,8 @@ export default function AIAssistant({ context }: AIAssistantProps) {
                 <div
                   className={`max-w-[80%] rounded-lg p-3 ${
                     msg.role === "user"
-                      ? "bg-[--color-tb-navy] text-white"
-                      : "bg-[--color-tb-beige] text-[--color-tb-navy]"
+                      ? "bg-tb-navy text-white"
+                      : "bg-tb-beige text-tb-navy"
                   }`}
                 >
                   {msg.content}
@@ -180,7 +180,7 @@ export default function AIAssistant({ context }: AIAssistantProps) {
           )}
           {loading && (
             <div className="flex justify-start">
-              <div className="bg-[--color-tb-beige] rounded-lg p-3">
+              <div className="bg-tb-beige rounded-lg p-3">
                 {t('thinking')}...
               </div>
             </div>
@@ -195,13 +195,13 @@ export default function AIAssistant({ context }: AIAssistantProps) {
             onChange={(e) => setInput(e.target.value)}
             onKeyPress={(e) => e.key === "Enter" && handleSend()}
             placeholder={t('typeMessage')}
-            className="flex-1 px-4 py-2 border border-[--color-tb-line] rounded-lg focus:outline-none focus:ring-2 focus:ring-[--color-tb-stitch]/60 focus:border-[--color-tb-stitch] font-sans transition"
+            className="flex-1 px-4 py-2 border border-tb-line rounded-lg focus:outline-none focus:ring-2 focus:ring-tb-stitch/60 focus:border-tb-stitch font-sans transition"
             disabled={loading}
           />
           <Button
             onClick={handleSend}
             disabled={loading || !input.trim()}
-            className="bg-[--color-tb-navy] text-white"
+            className="bg-tb-navy text-white"
           >
             {t('send')}
           </Button>

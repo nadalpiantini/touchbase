@@ -76,7 +76,7 @@ export default function AttendanceAnalyticsPage() {
   if (loading) {
     return (
       <div className="text-center py-12">
-        <p className="text-[--color-tb-shadow]">Loading analytics...</p>
+        <p className="text-tb-shadow">Loading analytics...</p>
       </div>
     );
   }
@@ -84,7 +84,7 @@ export default function AttendanceAnalyticsPage() {
   if (!stats) {
     return (
       <div className="text-center py-12">
-        <p className="text-[--color-tb-shadow]">No data available</p>
+        <p className="text-tb-shadow">No data available</p>
       </div>
     );
   }
@@ -92,26 +92,26 @@ export default function AttendanceAnalyticsPage() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-3xl font-display font-bold text-[--color-tb-navy] mb-2">
+        <h1 className="text-3xl font-display font-bold text-tb-navy mb-2">
           Attendance Analytics
         </h1>
         <div className="flex items-center gap-4 mt-4">
           <div>
-            <label className="block text-sm font-medium text-[--color-tb-navy] mb-1">Start Date</label>
+            <label className="block text-sm font-medium text-tb-navy mb-1">Start Date</label>
             <input
               type="date"
               value={startDate}
               onChange={(e) => setStartDate(e.target.value)}
-              className="px-3 py-2 border border-[--color-tb-line] rounded-lg"
+              className="px-3 py-2 border border-tb-line rounded-lg"
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-[--color-tb-navy] mb-1">End Date</label>
+            <label className="block text-sm font-medium text-tb-navy mb-1">End Date</label>
             <input
               type="date"
               value={endDate}
               onChange={(e) => setEndDate(e.target.value)}
-              className="px-3 py-2 border border-[--color-tb-line] rounded-lg"
+              className="px-3 py-2 border border-tb-line rounded-lg"
             />
           </div>
         </div>
@@ -124,7 +124,7 @@ export default function AttendanceAnalyticsPage() {
             <CardTitle className="text-lg">Total Days</CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="text-3xl font-display font-bold text-[--color-tb-navy]">
+            <p className="text-3xl font-display font-bold text-tb-navy">
               {stats.total_days}
             </p>
           </CardContent>
@@ -138,7 +138,7 @@ export default function AttendanceAnalyticsPage() {
             <p className="text-3xl font-display font-bold text-green-600">
               {stats.present_count}
             </p>
-            <p className="text-sm text-[--color-tb-shadow] mt-1">
+            <p className="text-sm text-tb-shadow mt-1">
               {stats.total_days > 0
                 ? Math.round((stats.present_count / stats.total_days) * 100)
                 : 0}%
@@ -154,7 +154,7 @@ export default function AttendanceAnalyticsPage() {
             <p className="text-3xl font-display font-bold text-red-600">
               {stats.absent_count}
             </p>
-            <p className="text-sm text-[--color-tb-shadow] mt-1">
+            <p className="text-sm text-tb-shadow mt-1">
               {stats.total_days > 0
                 ? Math.round((stats.absent_count / stats.total_days) * 100)
                 : 0}%
@@ -167,10 +167,10 @@ export default function AttendanceAnalyticsPage() {
             <CardTitle className="text-lg">Attendance Rate</CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="text-3xl font-display font-bold text-[--color-tb-red]">
+            <p className="text-3xl font-display font-bold text-tb-red">
               {Math.round(stats.attendance_rate)}%
             </p>
-            <p className="text-sm text-[--color-tb-shadow] mt-1">
+            <p className="text-sm text-tb-shadow mt-1">
               Present + Late + Excused
             </p>
           </CardContent>

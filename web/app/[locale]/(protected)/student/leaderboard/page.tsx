@@ -69,7 +69,7 @@ export default function StudentLeaderboardPage() {
 
   return (
     <div className="max-w-7xl mx-auto">
-      <h1 className="text-3xl font-display font-bold text-[--color-tb-navy] mb-8">
+      <h1 className="text-3xl font-display font-bold text-tb-navy mb-8">
         {t('title')}
       </h1>
 
@@ -78,8 +78,8 @@ export default function StudentLeaderboardPage() {
         <button
           className={`px-4 py-2 rounded-lg font-medium transition ${
             type === "xp"
-              ? "bg-[--color-tb-red] text-white"
-              : "bg-white text-[--color-tb-navy] border border-[--color-tb-line] hover:bg-[--color-tb-beige]"
+              ? "bg-tb-red text-white"
+              : "bg-white text-tb-navy border border-tb-line hover:bg-tb-beige"
           }`}
           onClick={() => setType("xp")}
         >
@@ -88,8 +88,8 @@ export default function StudentLeaderboardPage() {
         <button
           className={`px-4 py-2 rounded-lg font-medium transition ${
             type === "streak"
-              ? "bg-[--color-tb-red] text-white"
-              : "bg-white text-[--color-tb-navy] border border-[--color-tb-line] hover:bg-[--color-tb-beige]"
+              ? "bg-tb-red text-white"
+              : "bg-white text-tb-navy border border-tb-line hover:bg-tb-beige"
           }`}
           onClick={() => setType("streak")}
         >
@@ -98,8 +98,8 @@ export default function StudentLeaderboardPage() {
         <button
           className={`px-4 py-2 rounded-lg font-medium transition ${
             type === "modules"
-              ? "bg-[--color-tb-red] text-white"
-              : "bg-white text-[--color-tb-navy] border border-[--color-tb-line] hover:bg-[--color-tb-beige]"
+              ? "bg-tb-red text-white"
+              : "bg-white text-tb-navy border border-tb-line hover:bg-tb-beige"
           }`}
           onClick={() => setType("modules")}
         >
@@ -114,7 +114,7 @@ export default function StudentLeaderboardPage() {
         </CardHeader>
         <CardContent>
           {leaderboard.length === 0 ? (
-            <div className="text-center py-12 text-[--color-tb-shadow]">
+            <div className="text-center py-12 text-tb-shadow">
               {t('noEntries')}
             </div>
           ) : (
@@ -122,17 +122,17 @@ export default function StudentLeaderboardPage() {
               {leaderboard.map((entry) => (
                 <div
                   key={entry.user_id}
-                  className="flex items-center justify-between p-4 bg-[--color-tb-beige]/50 rounded-lg hover:bg-[--color-tb-beige] transition"
+                  className="flex items-center justify-between p-4 bg-tb-beige/50 rounded-lg hover:bg-tb-beige transition"
                 >
                   <div className="flex items-center gap-4">
-                    <div className="text-2xl font-bold text-[--color-tb-navy] w-12 text-center">
+                    <div className="text-2xl font-bold text-tb-navy w-12 text-center">
                       {getRankIcon(entry.rank)}
                     </div>
                     <div>
-                      <div className="font-semibold text-[--color-tb-navy]">
+                      <div className="font-semibold text-tb-navy">
                         {entry.user_name || entry.user_email || "Anonymous"}
                       </div>
-                      <div className="text-sm text-[--color-tb-shadow]">
+                      <div className="text-sm text-tb-shadow">
                         Level {entry.level}
                       </div>
                     </div>

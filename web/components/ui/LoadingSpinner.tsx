@@ -26,7 +26,7 @@ const LoadingSpinner = memo(function LoadingSpinner({
       {...props}
     >
       <svg 
-        className={cn('animate-spin text-[--color-tb-navy]', sizes[size])}
+        className={cn('animate-spin text-tb-navy', sizes[size])}
         xmlns="http://www.w3.org/2000/svg" 
         fill="none" 
         viewBox="0 0 24 24"
@@ -47,7 +47,7 @@ const LoadingSpinner = memo(function LoadingSpinner({
         />
       </svg>
       {text && (
-        <span className="text-sm font-sans text-[--color-tb-shadow]">
+        <span className="text-sm font-sans text-tb-shadow">
           {text}
         </span>
       )}

@@ -75,11 +75,11 @@ export default async function ClassDetailPage({
   return (
     <div>
       <div className="mb-6">
-        <h1 className="text-3xl font-display font-bold text-[--color-tb-navy] mb-2">
+        <h1 className="text-3xl font-display font-bold text-tb-navy mb-2">
           {classItem.name}
         </h1>
         {classItem.grade_level && (
-          <p className="text-[--color-tb-shadow]">{classItem.grade_level}</p>
+          <p className="text-tb-shadow">{classItem.grade_level}</p>
         )}
       </div>
 
@@ -90,12 +90,12 @@ export default async function ClassDetailPage({
         </CardHeader>
         <CardContent>
           <div className="flex items-center gap-4">
-            <p className="font-mono font-bold text-2xl text-[--color-tb-navy]">
+            <p className="font-mono font-bold text-2xl text-tb-navy">
               {classItem.code}
             </p>
             <CopyCodeButton code={classItem.code} />
           </div>
-          <p className="text-sm text-[--color-tb-shadow] mt-2">
+          <p className="text-sm text-tb-shadow mt-2">
             {t('codeDescription')}
           </p>
         </CardContent>
@@ -108,7 +108,7 @@ export default async function ClassDetailPage({
             <CardTitle>{t('description')}</CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="text-[--color-tb-shadow]">{classItem.description}</p>
+            <p className="text-tb-shadow">{classItem.description}</p>
           </CardContent>
         </Card>
       )}
@@ -130,22 +130,22 @@ export default async function ClassDetailPage({
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
         <Card>
           <CardContent className="pt-6">
-            <p className="text-sm text-[--color-tb-shadow] mb-1">{t('totalStudents')}</p>
-            <p className="text-3xl font-display font-bold text-[--color-tb-navy]">
+            <p className="text-sm text-tb-shadow mb-1">{t('totalStudents')}</p>
+            <p className="text-3xl font-display font-bold text-tb-navy">
               {students.length}
             </p>
           </CardContent>
         </Card>
         <Card>
           <CardContent className="pt-6">
-            <p className="text-sm text-[--color-tb-shadow] mb-1">{t('assignments')}</p>
-            <p className="text-3xl font-display font-bold text-[--color-tb-navy]">{assignments.length}</p>
+            <p className="text-sm text-tb-shadow mb-1">{t('assignments')}</p>
+            <p className="text-3xl font-display font-bold text-tb-navy">{assignments.length}</p>
           </CardContent>
         </Card>
         <Card>
           <CardContent className="pt-6">
-            <p className="text-sm text-[--color-tb-shadow] mb-1">{t('avgProgress')}</p>
-            <p className="text-3xl font-display font-bold text-[--color-tb-navy]">
+            <p className="text-sm text-tb-shadow mb-1">{t('avgProgress')}</p>
+            <p className="text-3xl font-display font-bold text-tb-navy">
               {avgProgress}%
             </p>
           </CardContent>
@@ -176,9 +176,9 @@ export default async function ClassDetailPage({
         <CardContent>
           {students.length === 0 ? (
             <div className="text-center py-12">
-              <p className="text-[--color-tb-shadow] mb-4">{t('noStudents')}</p>
-              <p className="text-sm text-[--color-tb-shadow]">
-                {t('shareCode')} <span className="font-mono font-bold text-[--color-tb-red]">{classItem.code}</span>
+              <p className="text-tb-shadow mb-4">{t('noStudents')}</p>
+              <p className="text-sm text-tb-shadow">
+                {t('shareCode')} <span className="font-mono font-bold text-tb-red">{classItem.code}</span>
               </p>
             </div>
           ) : (
@@ -186,19 +186,19 @@ export default async function ClassDetailPage({
               {students.map(({ enrollment, student }) => (
                 <div
                   key={enrollment.id}
-                  className="flex items-center justify-between p-3 border border-[--color-tb-line] rounded-lg hover:bg-[--color-tb-bone] transition"
+                  className="flex items-center justify-between p-3 border border-tb-line rounded-lg hover:bg-tb-bone transition"
                 >
                   <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-full bg-[--color-tb-red]/10 flex items-center justify-center">
-                      <span className="text-[--color-tb-red] font-semibold">
+                    <div className="w-10 h-10 rounded-full bg-tb-red/10 flex items-center justify-center">
+                      <span className="text-tb-red font-semibold">
                         {(student.full_name || student.email).charAt(0).toUpperCase()}
                       </span>
                     </div>
                     <div>
-                      <p className="font-medium text-[--color-tb-navy]">
+                      <p className="font-medium text-tb-navy">
                         {student.full_name || student.email}
                       </p>
-                      <p className="text-sm text-[--color-tb-shadow]">
+                      <p className="text-sm text-tb-shadow">
                         {student.email}
                       </p>
                     </div>

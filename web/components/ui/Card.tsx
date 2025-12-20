@@ -11,7 +11,7 @@ const Card = memo(forwardRef<HTMLDivElement, CardProps>(
       <div
         ref={ref}
         className={cn(
-          'rounded-2xl border border-[--color-tb-line] bg-white p-6',
+          'rounded-2xl border border-tb-line bg-white p-6',
           elevated ? 'shadow-dugout' : 'shadow-sm',
           className
         )}
@@ -37,7 +37,7 @@ export const CardTitle = forwardRef<HTMLHeadingElement, HTMLAttributes<HTMLHeadi
   ({ className, ...props }, ref) => (
     <h3
       ref={ref}
-      className={cn('font-display text-lg text-[--color-tb-navy] font-semibold', className)}
+      className={cn('font-display text-lg text-tb-navy font-semibold', className)}
       {...props}
     />
   )
@@ -49,7 +49,7 @@ export const CardDescription = forwardRef<HTMLParagraphElement, HTMLAttributes<H
   ({ className, ...props }, ref) => (
     <p
       ref={ref}
-      className={cn('text-sm font-sans text-[--color-tb-shadow]/80 mt-1', className)}
+      className={cn('text-sm font-sans text-tb-shadow/80 mt-1', className)}
       {...props}
     />
   )

@@ -70,15 +70,15 @@ export default function LoginPage() {
   };
 
   return (
-    <main className="thirds-auth-layout bg-[--color-tb-bone]">
+    <main className="thirds-auth-layout bg-tb-bone">
       {/* Left Third - Branding panel (hidden on mobile) */}
       <div className="thirds-auth-brand">
-        <div className="w-32 h-32 rounded-full bg-[--color-tb-red]/10 border-4 border-[--color-tb-red] flex items-center justify-center shadow-dugout mb-6">
-          <svg className="w-16 h-16 text-[--color-tb-red]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <div className="w-32 h-32 rounded-full bg-tb-red/10 border-4 border-tb-red flex items-center justify-center shadow-dugout mb-6">
+          <svg className="w-16 h-16 text-tb-red" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1" />
           </svg>
         </div>
-        <p className="text-center text-[--color-tb-bone]/80 font-sans text-sm max-w-[200px]">
+        <p className="text-center text-tb-bone/80 font-sans text-sm max-w-[200px]">
           {locale === 'es' ? 'Gestiona tu equipo deportivo de forma profesional' : 'Manage your sports team professionally'}
         </p>
       </div>
@@ -86,7 +86,7 @@ export default function LoginPage() {
       {/* Right 2/3 - Login Form */}
       <div className="thirds-auth-content">
         <div className="max-w-sm mx-auto w-full">
-            <div className="bg-white rounded-2xl shadow-dugout border border-[--color-tb-line] p-8 space-y-8 max-w-sm mx-auto lg:mx-0 lg:ml-auto">
+            <div className="bg-white rounded-2xl shadow-dugout border border-tb-line p-8 space-y-8 max-w-sm mx-auto lg:mx-0 lg:ml-auto">
               {/* Logo - Small */}
               <div className="flex justify-center">
                 <Image
@@ -101,7 +101,7 @@ export default function LoginPage() {
 
               {/* Title - Large, centered */}
               <div className="text-center">
-                <h2 className="text-3xl sm:text-4xl font-display font-bold text-[--color-tb-navy]">
+                <h2 className="text-3xl sm:text-4xl font-display font-bold text-tb-navy">
                   {t('title')}
                 </h2>
               </div>
@@ -115,7 +115,7 @@ export default function LoginPage() {
                   type="email"
                   autoComplete="email"
                   required
-                  className="appearance-none relative block w-full px-4 py-3 text-lg border border-[--color-tb-line] placeholder-[--color-tb-shadow]/50 text-[--color-tb-ink] rounded-lg focus:outline-none focus:ring-2 focus:ring-[--color-tb-stitch]/60 focus:border-[--color-tb-stitch] transition font-sans"
+                  className="appearance-none relative block w-full px-4 py-3 text-lg border border-tb-line placeholder-tb-shadow/50 text-tb-ink rounded-lg focus:outline-none focus:ring-2 focus:ring-tb-stitch/60 focus:border-tb-stitch transition font-sans"
                   placeholder={t('form.emailPlaceholder')}
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
@@ -128,7 +128,7 @@ export default function LoginPage() {
                   type="password"
                   autoComplete="current-password"
                   required
-                  className="appearance-none relative block w-full px-4 py-3 text-lg border border-[--color-tb-line] placeholder-[--color-tb-shadow]/50 text-[--color-tb-ink] rounded-lg focus:outline-none focus:ring-2 focus:ring-[--color-tb-stitch]/60 focus:border-[--color-tb-stitch] transition font-sans"
+                  className="appearance-none relative block w-full px-4 py-3 text-lg border border-tb-line placeholder-tb-shadow/50 text-tb-ink rounded-lg focus:outline-none focus:ring-2 focus:ring-tb-stitch/60 focus:border-tb-stitch transition font-sans"
                   placeholder={t('form.passwordPlaceholder')}
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
@@ -146,20 +146,20 @@ export default function LoginPage() {
               <button
                 type="submit"
                 disabled={loading}
-                className="group relative w-full flex justify-center py-4 px-4 border border-transparent font-display font-bold text-lg tracking-wide rounded-xl text-white bg-[--color-tb-red] hover:bg-[--color-tb-stitch] shadow-dugout focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[--color-tb-red]/50 disabled:opacity-50 disabled:cursor-not-allowed transition-all active:translate-y-[1px]"
+                className="group relative w-full flex justify-center py-4 px-4 border border-transparent font-display font-bold text-lg tracking-wide rounded-xl text-white bg-tb-red hover:bg-tb-stitch shadow-dugout focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-tb-red/50 disabled:opacity-50 disabled:cursor-not-allowed transition-all active:translate-y-[1px]"
               >
                 {loading ? t('form.submittingButton') : t('form.submitButton')}
               </button>
             </div>
 
             <div className="text-center space-y-3">
-              <p className="text-sm font-sans text-[--color-tb-shadow]">
-                <Link href={`/${locale}/forgot-password`} className="font-medium text-[--color-tb-navy] hover:text-[--color-tb-stitch] transition">
+              <p className="text-sm font-sans text-tb-shadow">
+                <Link href={`/${locale}/forgot-password`} className="font-medium text-tb-navy hover:text-tb-stitch transition">
                   {t('footer.forgotPassword')}
                 </Link>
               </p>
-              <p className="text-base font-sans text-[--color-tb-shadow]">
-                {t('footer.firstTime')} <Link href={`/${locale}/signup`} className="font-medium text-[--color-tb-navy] hover:text-[--color-tb-stitch] transition">{t('footer.createAccount')}</Link>
+              <p className="text-base font-sans text-tb-shadow">
+                {t('footer.firstTime')} <Link href={`/${locale}/signup`} className="font-medium text-tb-navy hover:text-tb-stitch transition">{t('footer.createAccount')}</Link>
               </p>
             </div>
           </form>

@@ -59,7 +59,7 @@ export default function ModuleDetailPage() {
   }
 
   if (error || !module) {
-    return <div className="text-center py-12 text-[--color-tb-stitch]">{error || t('notFound')}</div>;
+    return <div className="text-center py-12 text-tb-stitch">{error || t('notFound')}</div>;
   }
 
   const stepTypeLabels: Record<StepType, string> = {
@@ -73,20 +73,20 @@ export default function ModuleDetailPage() {
       {/* Header */}
       <div className="mb-6">
         <div className="flex items-center justify-between mb-4">
-          <h1 className="text-3xl font-display font-bold text-[--color-tb-navy]">
+          <h1 className="text-3xl font-display font-bold text-tb-navy">
             {module.title}
           </h1>
           <Badge variant="info">{module.difficulty}</Badge>
         </div>
         {module.description && (
-          <p className="text-[--color-tb-shadow]">{module.description}</p>
+          <p className="text-tb-shadow">{module.description}</p>
         )}
-        <div className="flex items-center gap-4 mt-4 text-sm text-[--color-tb-shadow]">
+        <div className="flex items-center gap-4 mt-4 text-sm text-tb-shadow">
           <span>{module.duration_minutes} {t('minutes')}</span>
           {module.skills && module.skills.length > 0 && (
             <div className="flex gap-2">
               {module.skills.map((skill, idx) => (
-                <span key={idx} className="px-2 py-1 bg-[--color-tb-beige] text-[--color-tb-navy] rounded">
+                <span key={idx} className="px-2 py-1 bg-tb-beige text-tb-navy rounded">
                   {skill}
                 </span>
               ))}
@@ -106,7 +106,7 @@ export default function ModuleDetailPage() {
         <CardContent>
           {steps.length === 0 ? (
             <div className="text-center py-12">
-              <p className="text-[--color-tb-shadow] mb-4">{t('noSteps')}</p>
+              <p className="text-tb-shadow mb-4">{t('noSteps')}</p>
               <Button onClick={handleAddStep} variant="secondary">
                 {t('addFirstStep')}
               </Button>
@@ -116,17 +116,17 @@ export default function ModuleDetailPage() {
               {steps.map((step, index) => (
                 <div
                   key={step.id}
-                  className="flex items-center justify-between p-4 bg-[--color-tb-beige]/50 rounded-lg"
+                  className="flex items-center justify-between p-4 bg-tb-beige/50 rounded-lg"
                 >
                   <div className="flex items-center gap-4">
-                    <div className="w-8 h-8 rounded-full bg-[--color-tb-red] text-white flex items-center justify-center font-bold">
+                    <div className="w-8 h-8 rounded-full bg-tb-red text-white flex items-center justify-center font-bold">
                       {index + 1}
                     </div>
                     <div>
-                      <div className="font-semibold text-[--color-tb-navy]">
+                      <div className="font-semibold text-tb-navy">
                         {stepTypeLabels[step.step_type]}
                       </div>
-                      <div className="text-sm text-[--color-tb-shadow]">
+                      <div className="text-sm text-tb-shadow">
                         {t('order')}: {step.order_index}
                       </div>
                     </div>

@@ -86,15 +86,15 @@ export default function StudentModulesPage() {
 
   return (
     <div className="max-w-7xl mx-auto">
-      <h1 className="text-3xl font-display font-bold text-[--color-tb-navy] mb-8">
+      <h1 className="text-3xl font-display font-bold text-tb-navy mb-8">
         {t('title')}
       </h1>
 
       {modules.length === 0 ? (
         <Card>
           <CardContent className="text-center py-12">
-            <p className="text-[--color-tb-shadow] mb-4">{t('noModules')}</p>
-            <p className="text-sm text-[--color-tb-shadow]">{t('noModulesDesc')}</p>
+            <p className="text-tb-shadow mb-4">{t('noModules')}</p>
+            <p className="text-sm text-tb-shadow">{t('noModulesDesc')}</p>
           </CardContent>
         </Card>
       ) : (
@@ -116,7 +116,7 @@ export default function StudentModulesPage() {
                     )}
                   </div>
                   {module.description && (
-                    <p className="text-sm text-[--color-tb-shadow] mt-2">
+                    <p className="text-sm text-tb-shadow mt-2">
                       {module.description}
                     </p>
                   )}
@@ -124,7 +124,7 @@ export default function StudentModulesPage() {
                 <CardContent>
                   {moduleProgress && (
                     <div className="mb-4">
-                      <div className="flex justify-between text-sm text-[--color-tb-shadow] mb-2">
+                      <div className="flex justify-between text-sm text-tb-shadow mb-2">
                         <span>{t('progress')}</span>
                         <span>{moduleProgress.completion_percentage}%</span>
                       </div>
@@ -135,7 +135,7 @@ export default function StudentModulesPage() {
                       />
                     </div>
                   )}
-                  <div className="flex items-center justify-between text-sm text-[--color-tb-shadow] mb-4">
+                  <div className="flex items-center justify-between text-sm text-tb-shadow mb-4">
                     {module.duration_minutes && (
                       <span>{module.duration_minutes} {t('minutes')}</span>
                     )}

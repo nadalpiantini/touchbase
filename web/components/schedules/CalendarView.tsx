@@ -43,11 +43,11 @@ export default function CalendarView({ events, onDateClick, onEventClick }: Cale
   const getEventColor = (type: string) => {
     switch (type) {
       case "class":
-        return "bg-[--color-tb-navy] text-white";
+        return "bg-tb-navy text-white";
       case "game":
-        return "bg-[--color-tb-red] text-white";
+        return "bg-tb-red text-white";
       case "practice":
-        return "bg-[--color-tb-stitch] text-white";
+        return "bg-tb-stitch text-white";
       default:
         return "bg-gray-500 text-white";
     }
@@ -119,7 +119,7 @@ export default function CalendarView({ events, onDateClick, onEventClick }: Cale
             {weekDays.map(day => (
               <div
                 key={day}
-                className="p-2 text-center text-sm font-semibold text-[--color-tb-navy]"
+                className="p-2 text-center text-sm font-semibold text-tb-navy"
               >
                 {day}
               </div>
@@ -143,12 +143,12 @@ export default function CalendarView({ events, onDateClick, onEventClick }: Cale
               return (
                 <div
                   key={day}
-                  className={`aspect-square border border-[--color-tb-line] rounded-lg p-1 cursor-pointer hover:bg-[--color-tb-bone] transition ${
-                    isToday ? "ring-2 ring-[--color-tb-red]" : ""
+                  className={`aspect-square border border-tb-line rounded-lg p-1 cursor-pointer hover:bg-tb-bone transition ${
+                    isToday ? "ring-2 ring-tb-red" : ""
                   }`}
                   onClick={() => onDateClick?.(date)}
                 >
-                  <div className={`text-sm font-semibold mb-1 ${isToday ? "text-[--color-tb-red]" : "text-[--color-tb-navy]"}`}>
+                  <div className={`text-sm font-semibold mb-1 ${isToday ? "text-tb-red" : "text-tb-navy"}`}>
                     {day}
                   </div>
                   <div className="space-y-0.5">
@@ -166,7 +166,7 @@ export default function CalendarView({ events, onDateClick, onEventClick }: Cale
                       </div>
                     ))}
                     {dayEvents.length > 3 && (
-                      <div className="text-xs text-[--color-tb-shadow]">
+                      <div className="text-xs text-tb-shadow">
                         +{dayEvents.length - 3} más
                       </div>
                     )}
@@ -184,13 +184,13 @@ export default function CalendarView({ events, onDateClick, onEventClick }: Cale
               const dayEvents = getEventsForDate(date);
 
               return (
-                <div key={idx} className="border border-[--color-tb-line] rounded-lg p-4">
-                  <div className="font-semibold text-[--color-tb-navy] mb-2">
+                <div key={idx} className="border border-tb-line rounded-lg p-4">
+                  <div className="font-semibold text-tb-navy mb-2">
                     {weekDays[date.getDay()]} {date.getDate()}
                   </div>
                   <div className="space-y-2">
                     {dayEvents.length === 0 ? (
-                      <p className="text-sm text-[--color-tb-shadow]">Sin eventos</p>
+                      <p className="text-sm text-tb-shadow">Sin eventos</p>
                     ) : (
                       dayEvents.map(event => (
                         <div

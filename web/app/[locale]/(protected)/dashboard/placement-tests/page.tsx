@@ -65,8 +65,8 @@ export default function PlacementTestsPage() {
   return (
     <main className="space-y-6">
       <div>
-        <h1 className="text-2xl font-bold text-[--color-tb-navy]">Pruebas de Colocación</h1>
-        <p className="text-[--color-tb-shadow] mt-1">Evalúa y asigna niveles académicos a estudiantes</p>
+        <h1 className="text-2xl font-bold text-tb-navy">Pruebas de Colocación</h1>
+        <p className="text-tb-shadow mt-1">Evalúa y asigna niveles académicos a estudiantes</p>
       </div>
 
       <div className="flex justify-end mb-4">
@@ -78,7 +78,7 @@ export default function PlacementTestsPage() {
         {tests.length === 0 ? (
           <Card className="col-span-full">
             <CardContent className="text-center py-12">
-              <p className="text-[--color-tb-shadow]">
+              <p className="text-tb-shadow">
                 No hay pruebas de colocación. Crea una para comenzar.
               </p>
             </CardContent>
@@ -92,9 +92,9 @@ export default function PlacementTestsPage() {
               </CardHeader>
               <CardContent>
                 {test.description && (
-                  <p className="text-sm text-[--color-tb-shadow] mb-4">{test.description}</p>
+                  <p className="text-sm text-tb-shadow mb-4">{test.description}</p>
                 )}
-                <div className="text-sm text-[--color-tb-shadow] mb-4">
+                <div className="text-sm text-tb-shadow mb-4">
                   Puntuación mínima: {test.passing_score}%
                 </div>
                 <div className="flex gap-2">

@@ -62,14 +62,14 @@ export default function CreateClassPage() {
             />
 
             <div>
-              <label className="block text-sm font-medium text-[--color-tb-navy] mb-2">
+              <label className="block text-sm font-medium text-tb-navy mb-2">
                 {t('description')}
               </label>
               <textarea
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
                 rows={4}
-                className="w-full px-4 py-2.5 rounded-xl border-2 border-[--color-tb-line] focus:border-[--color-tb-red] focus:outline-none"
+                className="w-full px-4 py-2.5 rounded-xl border-2 border-tb-line focus:border-tb-red focus:outline-none"
                 placeholder={t('descriptionPlaceholder')}
               />
             </div>

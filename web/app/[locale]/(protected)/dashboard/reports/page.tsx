@@ -62,8 +62,8 @@ export default function ReportsPage() {
   return (
     <main className="space-y-6">
       <div>
-        <h1 className="text-2xl font-bold text-[--color-tb-navy]">Reportes</h1>
-        <p className="text-[--color-tb-shadow] mt-1">Genera y exporta reportes de tu organización</p>
+        <h1 className="text-2xl font-bold text-tb-navy">Reportes</h1>
+        <p className="text-tb-shadow mt-1">Genera y exporta reportes de tu organización</p>
       </div>
 
       <Card>
@@ -72,13 +72,13 @@ export default function ReportsPage() {
         </CardHeader>
         <CardContent className="space-y-4">
           <div>
-            <label className="block text-sm font-medium text-[--color-tb-navy] mb-2">
+            <label className="block text-sm font-medium text-tb-navy mb-2">
               Tipo de Reporte
             </label>
             <select
               value={reportType}
               onChange={(e) => setReportType(e.target.value as ReportType)}
-              className="w-full px-3 py-2 border border-[--color-tb-line] rounded-lg focus:outline-none focus:ring-2 focus:ring-[--color-tb-stitch]/60"
+              className="w-full px-3 py-2 border border-tb-line rounded-lg focus:outline-none focus:ring-2 focus:ring-tb-stitch/60"
             >
               <option value="attendance">Asistencia</option>
               <option value="performance">Rendimiento Académico</option>
@@ -88,31 +88,31 @@ export default function ReportsPage() {
 
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <label className="block text-sm font-medium text-[--color-tb-navy] mb-2">
+              <label className="block text-sm font-medium text-tb-navy mb-2">
                 Fecha Inicio
               </label>
               <input
                 type="date"
                 value={startDate}
                 onChange={(e) => setStartDate(e.target.value)}
-                className="w-full px-3 py-2 border border-[--color-tb-line] rounded-lg focus:outline-none focus:ring-2 focus:ring-[--color-tb-stitch]/60"
+                className="w-full px-3 py-2 border border-tb-line rounded-lg focus:outline-none focus:ring-2 focus:ring-tb-stitch/60"
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-[--color-tb-navy] mb-2">
+              <label className="block text-sm font-medium text-tb-navy mb-2">
                 Fecha Fin
               </label>
               <input
                 type="date"
                 value={endDate}
                 onChange={(e) => setEndDate(e.target.value)}
-                className="w-full px-3 py-2 border border-[--color-tb-line] rounded-lg focus:outline-none focus:ring-2 focus:ring-[--color-tb-stitch]/60"
+                className="w-full px-3 py-2 border border-tb-line rounded-lg focus:outline-none focus:ring-2 focus:ring-tb-stitch/60"
               />
             </div>
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-[--color-tb-navy] mb-2">
+            <label className="block text-sm font-medium text-tb-navy mb-2">
               Formato
             </label>
             <div className="flex gap-4">

@@ -186,9 +186,9 @@ export default function TeacherRegistrationWizard({ onComplete, onCancel }: { on
               <div
                 className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-semibold ${
                   s === step
-                    ? "bg-[--color-tb-red] text-white"
+                    ? "bg-tb-red text-white"
                     : s < step
-                    ? "bg-[--color-tb-navy] text-white"
+                    ? "bg-tb-navy text-white"
                     : "bg-gray-200 text-gray-600"
                 }`}
               >
@@ -197,7 +197,7 @@ export default function TeacherRegistrationWizard({ onComplete, onCancel }: { on
               {s < 5 && (
                 <div
                   className={`w-12 h-1 ${
-                    s < step ? "bg-[--color-tb-navy]" : "bg-gray-200"
+                    s < step ? "bg-tb-navy" : "bg-gray-200"
                   }`}
                 />
               )}
@@ -215,10 +215,10 @@ export default function TeacherRegistrationWizard({ onComplete, onCancel }: { on
         {/* Step 1: Photo & Personal Info */}
         {step === 1 && (
           <div className="space-y-4">
-            <h3 className="text-lg font-semibold text-[--color-tb-navy]">Información Personal</h3>
+            <h3 className="text-lg font-semibold text-tb-navy">Información Personal</h3>
             
             <div>
-              <label className="block text-sm font-medium text-[--color-tb-navy] mb-2">
+              <label className="block text-sm font-medium text-tb-navy mb-2">
                 Foto de Perfil
               </label>
               <div className="flex items-center gap-4">
@@ -234,79 +234,79 @@ export default function TeacherRegistrationWizard({ onComplete, onCancel }: { on
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-[--color-tb-navy] mb-2">
+              <label className="block text-sm font-medium text-tb-navy mb-2">
                 Nombre Completo *
               </label>
               <input
                 type="text"
                 value={formData.full_name}
                 onChange={(e) => updateFormData("full_name", e.target.value)}
-                className="w-full px-3 py-2 border border-[--color-tb-line] rounded-lg focus:outline-none focus:ring-2 focus:ring-[--color-tb-stitch]/60"
+                className="w-full px-3 py-2 border border-tb-line rounded-lg focus:outline-none focus:ring-2 focus:ring-tb-stitch/60"
                 required
               />
             </div>
 
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <label className="block text-sm font-medium text-[--color-tb-navy] mb-2">
+                <label className="block text-sm font-medium text-tb-navy mb-2">
                   Fecha de Nacimiento *
                 </label>
                 <input
                   type="date"
                   value={formData.birthdate}
                   onChange={(e) => updateFormData("birthdate", e.target.value)}
-                  className="w-full px-3 py-2 border border-[--color-tb-line] rounded-lg focus:outline-none focus:ring-2 focus:ring-[--color-tb-stitch]/60"
+                  className="w-full px-3 py-2 border border-tb-line rounded-lg focus:outline-none focus:ring-2 focus:ring-tb-stitch/60"
                   required
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-[--color-tb-navy] mb-2">
+                <label className="block text-sm font-medium text-tb-navy mb-2">
                   Nacionalidad
                 </label>
                 <input
                   type="text"
                   value={formData.nationality}
                   onChange={(e) => updateFormData("nationality", e.target.value)}
-                  className="w-full px-3 py-2 border border-[--color-tb-line] rounded-lg focus:outline-none focus:ring-2 focus:ring-[--color-tb-stitch]/60"
+                  className="w-full px-3 py-2 border border-tb-line rounded-lg focus:outline-none focus:ring-2 focus:ring-tb-stitch/60"
                 />
               </div>
             </div>
 
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <label className="block text-sm font-medium text-[--color-tb-navy] mb-2">
+                <label className="block text-sm font-medium text-tb-navy mb-2">
                   Email *
                 </label>
                 <input
                   type="email"
                   value={formData.email}
                   onChange={(e) => updateFormData("email", e.target.value)}
-                  className="w-full px-3 py-2 border border-[--color-tb-line] rounded-lg focus:outline-none focus:ring-2 focus:ring-[--color-tb-stitch]/60"
+                  className="w-full px-3 py-2 border border-tb-line rounded-lg focus:outline-none focus:ring-2 focus:ring-tb-stitch/60"
                   required
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-[--color-tb-navy] mb-2">
+                <label className="block text-sm font-medium text-tb-navy mb-2">
                   Teléfono
                 </label>
                 <input
                   type="tel"
                   value={formData.phone}
                   onChange={(e) => updateFormData("phone", e.target.value)}
-                  className="w-full px-3 py-2 border border-[--color-tb-line] rounded-lg focus:outline-none focus:ring-2 focus:ring-[--color-tb-stitch]/60"
+                  className="w-full px-3 py-2 border border-tb-line rounded-lg focus:outline-none focus:ring-2 focus:ring-tb-stitch/60"
                 />
               </div>
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-[--color-tb-navy] mb-2">
+              <label className="block text-sm font-medium text-tb-navy mb-2">
                 Dirección
               </label>
               <textarea
                 value={formData.address}
                 onChange={(e) => updateFormData("address", e.target.value)}
                 rows={2}
-                className="w-full px-3 py-2 border border-[--color-tb-line] rounded-lg focus:outline-none focus:ring-2 focus:ring-[--color-tb-stitch]/60"
+                className="w-full px-3 py-2 border border-tb-line rounded-lg focus:outline-none focus:ring-2 focus:ring-tb-stitch/60"
               />
             </div>
           </div>
@@ -315,17 +315,17 @@ export default function TeacherRegistrationWizard({ onComplete, onCancel }: { on
         {/* Step 2: Employment Info */}
         {step === 2 && (
           <div className="space-y-4">
-            <h3 className="text-lg font-semibold text-[--color-tb-navy]">Información de Empleo</h3>
+            <h3 className="text-lg font-semibold text-tb-navy">Información de Empleo</h3>
             
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <label className="block text-sm font-medium text-[--color-tb-navy] mb-2">
+                <label className="block text-sm font-medium text-tb-navy mb-2">
                   Tipo de Empleo *
                 </label>
                 <select
                   value={formData.employment_type}
                   onChange={(e) => updateFormData("employment_type", e.target.value)}
-                  className="w-full px-3 py-2 border border-[--color-tb-line] rounded-lg focus:outline-none focus:ring-2 focus:ring-[--color-tb-stitch]/60"
+                  className="w-full px-3 py-2 border border-tb-line rounded-lg focus:outline-none focus:ring-2 focus:ring-tb-stitch/60"
                   required
                 >
                   <option value="">Seleccionar</option>
@@ -335,13 +335,13 @@ export default function TeacherRegistrationWizard({ onComplete, onCancel }: { on
                 </select>
               </div>
               <div>
-                <label className="block text-sm font-medium text-[--color-tb-navy] mb-2">
+                <label className="block text-sm font-medium text-tb-navy mb-2">
                   Departamento *
                 </label>
                 <select
                   value={formData.department}
                   onChange={(e) => updateFormData("department", e.target.value)}
-                  className="w-full px-3 py-2 border border-[--color-tb-line] rounded-lg focus:outline-none focus:ring-2 focus:ring-[--color-tb-stitch]/60"
+                  className="w-full px-3 py-2 border border-tb-line rounded-lg focus:outline-none focus:ring-2 focus:ring-tb-stitch/60"
                   required
                 >
                   <option value="">Seleccionar</option>
@@ -354,26 +354,26 @@ export default function TeacherRegistrationWizard({ onComplete, onCancel }: { on
 
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <label className="block text-sm font-medium text-[--color-tb-navy] mb-2">
+                <label className="block text-sm font-medium text-tb-navy mb-2">
                   Fecha de Contratación *
                 </label>
                 <input
                   type="date"
                   value={formData.hire_date}
                   onChange={(e) => updateFormData("hire_date", e.target.value)}
-                  className="w-full px-3 py-2 border border-[--color-tb-line] rounded-lg focus:outline-none focus:ring-2 focus:ring-[--color-tb-stitch]/60"
+                  className="w-full px-3 py-2 border border-tb-line rounded-lg focus:outline-none focus:ring-2 focus:ring-tb-stitch/60"
                   required
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-[--color-tb-navy] mb-2">
+                <label className="block text-sm font-medium text-tb-navy mb-2">
                   Salario
                 </label>
                 <input
                   type="number"
                   value={formData.salary || ""}
                   onChange={(e) => updateFormData("salary", e.target.value ? parseFloat(e.target.value) : undefined)}
-                  className="w-full px-3 py-2 border border-[--color-tb-line] rounded-lg focus:outline-none focus:ring-2 focus:ring-[--color-tb-stitch]/60"
+                  className="w-full px-3 py-2 border border-tb-line rounded-lg focus:outline-none focus:ring-2 focus:ring-tb-stitch/60"
                   min="0"
                   step="0.01"
                 />
@@ -385,17 +385,17 @@ export default function TeacherRegistrationWizard({ onComplete, onCancel }: { on
         {/* Step 3: Education */}
         {step === 3 && (
           <div className="space-y-4">
-            <h3 className="text-lg font-semibold text-[--color-tb-navy]">Antecedentes Educativos</h3>
+            <h3 className="text-lg font-semibold text-tb-navy">Antecedentes Educativos</h3>
             
             <div>
-              <label className="block text-sm font-medium text-[--color-tb-navy] mb-2">
+              <label className="block text-sm font-medium text-tb-navy mb-2">
                 Grado Académico *
               </label>
               <input
                 type="text"
                 value={formData.degree}
                 onChange={(e) => updateFormData("degree", e.target.value)}
-                className="w-full px-3 py-2 border border-[--color-tb-line] rounded-lg focus:outline-none focus:ring-2 focus:ring-[--color-tb-stitch]/60"
+                className="w-full px-3 py-2 border border-tb-line rounded-lg focus:outline-none focus:ring-2 focus:ring-tb-stitch/60"
                 placeholder="Ej: Bachelor's, Master's, PhD"
                 required
               />
@@ -403,26 +403,26 @@ export default function TeacherRegistrationWizard({ onComplete, onCancel }: { on
 
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <label className="block text-sm font-medium text-[--color-tb-navy] mb-2">
+                <label className="block text-sm font-medium text-tb-navy mb-2">
                   Campo de Estudio *
                 </label>
                 <input
                   type="text"
                   value={formData.field_of_study}
                   onChange={(e) => updateFormData("field_of_study", e.target.value)}
-                  className="w-full px-3 py-2 border border-[--color-tb-line] rounded-lg focus:outline-none focus:ring-2 focus:ring-[--color-tb-stitch]/60"
+                  className="w-full px-3 py-2 border border-tb-line rounded-lg focus:outline-none focus:ring-2 focus:ring-tb-stitch/60"
                   required
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-[--color-tb-navy] mb-2">
+                <label className="block text-sm font-medium text-tb-navy mb-2">
                   Año de Graduación
                 </label>
                 <input
                   type="number"
                   value={formData.graduation_year || ""}
                   onChange={(e) => updateFormData("graduation_year", e.target.value ? parseInt(e.target.value) : undefined)}
-                  className="w-full px-3 py-2 border border-[--color-tb-line] rounded-lg focus:outline-none focus:ring-2 focus:ring-[--color-tb-stitch]/60"
+                  className="w-full px-3 py-2 border border-tb-line rounded-lg focus:outline-none focus:ring-2 focus:ring-tb-stitch/60"
                   min="1950"
                   max="2100"
                 />
@@ -430,14 +430,14 @@ export default function TeacherRegistrationWizard({ onComplete, onCancel }: { on
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-[--color-tb-navy] mb-2">
+              <label className="block text-sm font-medium text-tb-navy mb-2">
                 Institución *
               </label>
               <input
                 type="text"
                 value={formData.institution}
                 onChange={(e) => updateFormData("institution", e.target.value)}
-                className="w-full px-3 py-2 border border-[--color-tb-line] rounded-lg focus:outline-none focus:ring-2 focus:ring-[--color-tb-stitch]/60"
+                className="w-full px-3 py-2 border border-tb-line rounded-lg focus:outline-none focus:ring-2 focus:ring-tb-stitch/60"
                 required
               />
             </div>
@@ -447,10 +447,10 @@ export default function TeacherRegistrationWizard({ onComplete, onCancel }: { on
         {/* Step 4: Teaching & Experience */}
         {step === 4 && (
           <div className="space-y-4">
-            <h3 className="text-lg font-semibold text-[--color-tb-navy]">Materias y Experiencia</h3>
+            <h3 className="text-lg font-semibold text-tb-navy">Materias y Experiencia</h3>
             
             <div>
-              <label className="block text-sm font-medium text-[--color-tb-navy] mb-2">
+              <label className="block text-sm font-medium text-tb-navy mb-2">
                 Materias que Enseña
               </label>
               <div className="flex gap-2 mb-2">
@@ -459,19 +459,19 @@ export default function TeacherRegistrationWizard({ onComplete, onCancel }: { on
                   value={currentSubject}
                   onChange={(e) => setCurrentSubject(e.target.value)}
                   onKeyDown={(e) => e.key === "Enter" && (e.preventDefault(), addSubject())}
-                  className="flex-1 px-3 py-2 border border-[--color-tb-line] rounded-lg focus:outline-none focus:ring-2 focus:ring-[--color-tb-stitch]/60"
+                  className="flex-1 px-3 py-2 border border-tb-line rounded-lg focus:outline-none focus:ring-2 focus:ring-tb-stitch/60"
                   placeholder="Agregar materia"
                 />
                 <Button type="button" onClick={addSubject}>Agregar</Button>
               </div>
               <div className="flex flex-wrap gap-2">
                 {formData.teaching_subjects.map(subject => (
-                  <span key={subject} className="inline-flex items-center gap-1 px-3 py-1 bg-[--color-tb-navy]/10 text-[--color-tb-navy] rounded-full text-sm">
+                  <span key={subject} className="inline-flex items-center gap-1 px-3 py-1 bg-tb-navy/10 text-tb-navy rounded-full text-sm">
                     {subject}
                     <button
                       type="button"
                       onClick={() => removeSubject(subject)}
-                      className="text-[--color-tb-navy] hover:text-[--color-tb-red]"
+                      className="text-tb-navy hover:text-tb-red"
                     >
                       ×
                     </button>
@@ -481,20 +481,20 @@ export default function TeacherRegistrationWizard({ onComplete, onCancel }: { on
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-[--color-tb-navy] mb-2">
+              <label className="block text-sm font-medium text-tb-navy mb-2">
                 Años de Experiencia
               </label>
               <input
                 type="number"
                 value={formData.experience_years || ""}
                 onChange={(e) => updateFormData("experience_years", e.target.value ? parseInt(e.target.value) : undefined)}
-                className="w-full px-3 py-2 border border-[--color-tb-line] rounded-lg focus:outline-none focus:ring-2 focus:ring-[--color-tb-stitch]/60"
+                className="w-full px-3 py-2 border border-tb-line rounded-lg focus:outline-none focus:ring-2 focus:ring-tb-stitch/60"
                 min="0"
               />
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-[--color-tb-navy] mb-2">
+              <label className="block text-sm font-medium text-tb-navy mb-2">
                 Certificaciones
               </label>
               <div className="space-y-2 mb-2">
@@ -504,20 +504,20 @@ export default function TeacherRegistrationWizard({ onComplete, onCancel }: { on
                     value={currentCert.name}
                     onChange={(e) => setCurrentCert({ ...currentCert, name: e.target.value })}
                     placeholder="Nombre"
-                    className="px-3 py-2 border border-[--color-tb-line] rounded-lg focus:outline-none focus:ring-2 focus:ring-[--color-tb-stitch]/60"
+                    className="px-3 py-2 border border-tb-line rounded-lg focus:outline-none focus:ring-2 focus:ring-tb-stitch/60"
                   />
                   <input
                     type="text"
                     value={currentCert.issuer}
                     onChange={(e) => setCurrentCert({ ...currentCert, issuer: e.target.value })}
                     placeholder="Emisor"
-                    className="px-3 py-2 border border-[--color-tb-line] rounded-lg focus:outline-none focus:ring-2 focus:ring-[--color-tb-stitch]/60"
+                    className="px-3 py-2 border border-tb-line rounded-lg focus:outline-none focus:ring-2 focus:ring-tb-stitch/60"
                   />
                   <input
                     type="date"
                     value={currentCert.date}
                     onChange={(e) => setCurrentCert({ ...currentCert, date: e.target.value })}
-                    className="px-3 py-2 border border-[--color-tb-line] rounded-lg focus:outline-none focus:ring-2 focus:ring-[--color-tb-stitch]/60"
+                    className="px-3 py-2 border border-tb-line rounded-lg focus:outline-none focus:ring-2 focus:ring-tb-stitch/60"
                   />
                 </div>
                 <Button type="button" onClick={addCertification} variant="outline" size="sm">
@@ -526,7 +526,7 @@ export default function TeacherRegistrationWizard({ onComplete, onCancel }: { on
               </div>
               <div className="space-y-1">
                 {formData.certifications.map((cert, idx) => (
-                  <div key={idx} className="text-sm text-[--color-tb-shadow]">
+                  <div key={idx} className="text-sm text-tb-shadow">
                     {cert.name} - {cert.issuer} ({cert.date})
                   </div>
                 ))}
@@ -534,7 +534,7 @@ export default function TeacherRegistrationWizard({ onComplete, onCancel }: { on
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-[--color-tb-navy] mb-2">
+              <label className="block text-sm font-medium text-tb-navy mb-2">
                 Licencias
               </label>
               <div className="space-y-2 mb-2">
@@ -544,21 +544,21 @@ export default function TeacherRegistrationWizard({ onComplete, onCancel }: { on
                     value={currentLicense.name}
                     onChange={(e) => setCurrentLicense({ ...currentLicense, name: e.target.value })}
                     placeholder="Nombre"
-                    className="px-3 py-2 border border-[--color-tb-line] rounded-lg focus:outline-none focus:ring-2 focus:ring-[--color-tb-stitch]/60"
+                    className="px-3 py-2 border border-tb-line rounded-lg focus:outline-none focus:ring-2 focus:ring-tb-stitch/60"
                   />
                   <input
                     type="text"
                     value={currentLicense.number}
                     onChange={(e) => setCurrentLicense({ ...currentLicense, number: e.target.value })}
                     placeholder="Número"
-                    className="px-3 py-2 border border-[--color-tb-line] rounded-lg focus:outline-none focus:ring-2 focus:ring-[--color-tb-stitch]/60"
+                    className="px-3 py-2 border border-tb-line rounded-lg focus:outline-none focus:ring-2 focus:ring-tb-stitch/60"
                   />
                   <input
                     type="date"
                     value={currentLicense.expiry}
                     onChange={(e) => setCurrentLicense({ ...currentLicense, expiry: e.target.value })}
                     placeholder="Expiración"
-                    className="px-3 py-2 border border-[--color-tb-line] rounded-lg focus:outline-none focus:ring-2 focus:ring-[--color-tb-stitch]/60"
+                    className="px-3 py-2 border border-tb-line rounded-lg focus:outline-none focus:ring-2 focus:ring-tb-stitch/60"
                   />
                 </div>
                 <Button type="button" onClick={addLicense} variant="outline" size="sm">
@@ -567,7 +567,7 @@ export default function TeacherRegistrationWizard({ onComplete, onCancel }: { on
               </div>
               <div className="space-y-1">
                 {formData.licenses.map((license, idx) => (
-                  <div key={idx} className="text-sm text-[--color-tb-shadow]">
+                  <div key={idx} className="text-sm text-tb-shadow">
                     {license.name} - {license.number} (Exp: {license.expiry})
                   </div>
                 ))}
@@ -579,17 +579,17 @@ export default function TeacherRegistrationWizard({ onComplete, onCancel }: { on
         {/* Step 5: Notes */}
         {step === 5 && (
           <div className="space-y-4">
-            <h3 className="text-lg font-semibold text-[--color-tb-navy]">Notas Adicionales</h3>
+            <h3 className="text-lg font-semibold text-tb-navy">Notas Adicionales</h3>
             
             <div>
-              <label className="block text-sm font-medium text-[--color-tb-navy] mb-2">
+              <label className="block text-sm font-medium text-tb-navy mb-2">
                 Notas
               </label>
               <textarea
                 value={formData.notes || ""}
                 onChange={(e) => updateFormData("notes", e.target.value)}
                 rows={6}
-                className="w-full px-3 py-2 border border-[--color-tb-line] rounded-lg focus:outline-none focus:ring-2 focus:ring-[--color-tb-stitch]/60"
+                className="w-full px-3 py-2 border border-tb-line rounded-lg focus:outline-none focus:ring-2 focus:ring-tb-stitch/60"
                 placeholder="Información adicional sobre el profesor..."
               />
             </div>

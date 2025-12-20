@@ -14,16 +14,16 @@ const ScoreChip = forwardRef<HTMLDivElement, ScoreChipProps>(
       <div
         ref={ref}
         className={cn(
-          'inline-flex items-center gap-2 rounded-full bg-[--color-tb-beige] px-3 py-1',
-          'ring-1 ring-[--color-tb-line] text-[--color-tb-navy] font-display font-semibold text-sm',
+          'inline-flex items-center gap-2 rounded-full bg-tb-beige px-3 py-1',
+          'ring-1 ring-tb-line text-tb-navy font-display font-semibold text-sm',
           className
         )}
         {...props}
       >
         <span>{homeTeam}</span>
-        <span className="text-[--color-tb-red]">{homeScore}</span>
-        <span className="text-[--color-tb-shadow]/50">—</span>
-        <span className="text-[--color-tb-red]">{awayScore}</span>
+        <span className="text-tb-red">{homeScore}</span>
+        <span className="text-tb-shadow/50">—</span>
+        <span className="text-tb-red">{awayScore}</span>
         <span>{awayTeam}</span>
       </div>
     );

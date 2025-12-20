@@ -116,7 +116,7 @@ export default function TeacherClassModulesPage() {
         <Button variant="outline" onClick={() => router.push(`/teacher/classes/${classId}`)} className="mb-4">
           {t('backToClass')}
         </Button>
-        <h1 className="text-3xl font-display font-bold text-[--color-tb-navy] mb-2">
+        <h1 className="text-3xl font-display font-bold text-tb-navy mb-2">
           {t('title')}
         </h1>
       </div>
@@ -129,13 +129,13 @@ export default function TeacherClassModulesPage() {
 
       {/* Assigned Modules */}
       <div className="mb-8">
-        <h2 className="text-2xl font-semibold text-[--color-tb-navy] mb-4">
+        <h2 className="text-2xl font-semibold text-tb-navy mb-4">
           {t('assignedModules')} ({assignedModules.length})
         </h2>
         {assignedModules.length === 0 ? (
           <Card>
             <CardContent className="text-center py-12">
-              <p className="text-[--color-tb-shadow]">{t('noAssignedModules')}</p>
+              <p className="text-tb-shadow">{t('noAssignedModules')}</p>
             </CardContent>
           </Card>
         ) : (
@@ -146,17 +146,17 @@ export default function TeacherClassModulesPage() {
                   <div className="flex items-start justify-between">
                     <div className="flex-1">
                       <div className="flex items-center gap-3 mb-2">
-                        <h3 className="font-semibold text-[--color-tb-navy]">{module.title}</h3>
+                        <h3 className="font-semibold text-tb-navy">{module.title}</h3>
                         {module.difficulty && (
                           <Badge variant="info">{module.difficulty}</Badge>
                         )}
                       </div>
                       {module.description && (
-                        <p className="text-sm text-[--color-tb-shadow] mb-2">
+                        <p className="text-sm text-tb-shadow mb-2">
                           {module.description}
                         </p>
                       )}
-                      <div className="flex items-center gap-4 text-sm text-[--color-tb-shadow]">
+                      <div className="flex items-center gap-4 text-sm text-tb-shadow">
                         {module.duration_minutes && (
                           <span>{module.duration_minutes} {t('minutes')}</span>
                         )}
@@ -191,13 +191,13 @@ export default function TeacherClassModulesPage() {
 
       {/* Available Modules */}
       <div>
-        <h2 className="text-2xl font-semibold text-[--color-tb-navy] mb-4">
+        <h2 className="text-2xl font-semibold text-tb-navy mb-4">
           {t('availableModules')} ({availableModules.length})
         </h2>
         {availableModules.length === 0 ? (
           <Card>
             <CardContent className="text-center py-12">
-              <p className="text-[--color-tb-shadow]">{t('noAvailableModules')}</p>
+              <p className="text-tb-shadow">{t('noAvailableModules')}</p>
             </CardContent>
           </Card>
         ) : (
@@ -208,17 +208,17 @@ export default function TeacherClassModulesPage() {
                   <div className="flex items-start justify-between">
                     <div className="flex-1">
                       <div className="flex items-center gap-3 mb-2">
-                        <h3 className="font-semibold text-[--color-tb-navy]">{module.title}</h3>
+                        <h3 className="font-semibold text-tb-navy">{module.title}</h3>
                         {module.difficulty && (
                           <Badge variant="info">{module.difficulty}</Badge>
                         )}
                       </div>
                       {module.description && (
-                        <p className="text-sm text-[--color-tb-shadow] mb-2">
+                        <p className="text-sm text-tb-shadow mb-2">
                           {module.description}
                         </p>
                       )}
-                      <div className="flex items-center gap-4 text-sm text-[--color-tb-shadow]">
+                      <div className="flex items-center gap-4 text-sm text-tb-shadow">
                         {module.duration_minutes && (
                           <span>{module.duration_minutes} {t('minutes')}</span>
                         )}

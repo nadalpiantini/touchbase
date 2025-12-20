@@ -52,7 +52,7 @@ export default function OrgDropdown() {
     return (
       <div className="flex items-center gap-2">
         <LoadingSpinner size="sm" />
-        <span className="text-sm font-sans text-[--color-tb-shadow]">Cargando…</span>
+        <span className="text-sm font-sans text-tb-shadow">Cargando…</span>
       </div>
     );
   }
@@ -68,7 +68,7 @@ export default function OrgDropdown() {
   }
 
   if (!orgs.length) {
-    return <span className="text-sm font-sans text-[--color-tb-shadow]">Sin organizaciones</span>;
+    return <span className="text-sm font-sans text-tb-shadow">Sin organizaciones</span>;
   }
 
   return (
@@ -78,7 +78,7 @@ export default function OrgDropdown() {
       </label>
       <select
         id="org-select"
-        className="border border-[--color-tb-line] rounded-lg px-2 py-1 text-sm font-sans bg-white text-[--color-tb-navy] focus:outline-none focus:ring-2 focus:ring-[--color-tb-stitch]/60 focus:border-[--color-tb-stitch] transition"
+        className="border border-tb-line rounded-lg px-2 py-1 text-sm font-sans bg-white text-tb-navy focus:outline-none focus:ring-2 focus:ring-tb-stitch/60 focus:border-tb-stitch transition"
         value={current?.org_id ?? ""}
         onChange={(e) => onSwitch(e.target.value)}
         aria-label="Seleccionar organización"
@@ -89,7 +89,7 @@ export default function OrgDropdown() {
           </option>
         ))}
       </select>
-      {msg && <span className="text-xs font-sans text-[--color-tb-stitch]">{msg}</span>}
+      {msg && <span className="text-xs font-sans text-tb-stitch">{msg}</span>}
     </div>
   );
 }

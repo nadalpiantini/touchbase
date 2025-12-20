@@ -88,7 +88,7 @@ export default function StudentSkillsPage() {
 
   return (
     <div className="max-w-7xl mx-auto">
-      <h1 className="text-3xl font-display font-bold text-[--color-tb-navy] mb-8">
+      <h1 className="text-3xl font-display font-bold text-tb-navy mb-8">
         {t('title')}
       </h1>
 
@@ -100,20 +100,20 @@ export default function StudentSkillsPage() {
         <CardContent>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div className="text-center">
-              <div className="text-6xl font-bold text-[--color-tb-red] mb-2">
+              <div className="text-6xl font-bold text-tb-red mb-2">
                 {xpSummary.level}
               </div>
-              <div className="text-sm text-[--color-tb-shadow]">{t('level')}</div>
+              <div className="text-sm text-tb-shadow">{t('level')}</div>
             </div>
             <div className="flex-1">
-              <div className="flex justify-between text-sm text-[--color-tb-shadow] mb-2">
+              <div className="flex justify-between text-sm text-tb-shadow mb-2">
                 <span>{t('totalXp')}</span>
-                <span className="font-semibold text-[--color-tb-navy]">
+                <span className="font-semibold text-tb-navy">
                   {xpSummary.totalXp} XP
                 </span>
               </div>
               <ProgressBar value={progress.percentage} showLabel color="primary" />
-              <div className="flex justify-between text-xs text-[--color-tb-shadow] mt-2">
+              <div className="flex justify-between text-xs text-tb-shadow mt-2">
                 <span>
                   {progress.current} / {progress.required} {t('xpToNextLevel')}
                 </span>
@@ -122,11 +122,11 @@ export default function StudentSkillsPage() {
             </div>
             {streak && (
               <div className="text-center">
-                <div className="text-4xl font-bold text-[--color-tb-red] mb-2">
+                <div className="text-4xl font-bold text-tb-red mb-2">
                   🔥 {streak.current_streak}
                 </div>
-                <div className="text-sm text-[--color-tb-shadow]">{t('dayStreak')}</div>
-                <div className="text-xs text-[--color-tb-shadow] mt-1">
+                <div className="text-sm text-tb-shadow">{t('dayStreak')}</div>
+                <div className="text-xs text-tb-shadow mt-1">
                   {t('longestStreak')}: {streak.longest_streak}
                 </div>
               </div>
@@ -148,13 +148,13 @@ export default function StudentSkillsPage() {
             <CardContent>
               <div className="space-y-3">
                 <div>
-                  <div className="flex justify-between text-sm text-[--color-tb-shadow] mb-1">
+                  <div className="flex justify-between text-sm text-tb-shadow mb-1">
                     <span>{t('xp')}</span>
-                    <span className="font-semibold text-[--color-tb-navy]">0 XP</span>
+                    <span className="font-semibold text-tb-navy">0 XP</span>
                   </div>
                   <ProgressBar value={0} color="primary" />
                 </div>
-                <p className="text-xs text-[--color-tb-shadow]">
+                <p className="text-xs text-tb-shadow">
                   {t('skillDescription', { skill: category })}
                 </p>
               </div>
@@ -169,7 +169,7 @@ export default function StudentSkillsPage() {
           <CardTitle>{t('recentAchievements')}</CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="text-center py-8 text-[--color-tb-shadow]">
+          <div className="text-center py-8 text-tb-shadow">
             {t('noAchievementsYet')}
           </div>
         </CardContent>

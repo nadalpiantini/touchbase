@@ -131,8 +131,8 @@ export default function BudgetingPage() {
   return (
     <main className="space-y-6">
       <div>
-        <h1 className="text-2xl font-bold text-[--color-tb-navy]">Presupuesto y Finanzas</h1>
-        <p className="text-[--color-tb-shadow] mt-1">Gestiona el presupuesto y gastos de tu organización</p>
+        <h1 className="text-2xl font-bold text-tb-navy">Presupuesto y Finanzas</h1>
+        <p className="text-tb-shadow mt-1">Gestiona el presupuesto y gastos de tu organización</p>
       </div>
 
       {/* Summary Cards */}
@@ -142,7 +142,7 @@ export default function BudgetingPage() {
             <CardTitle className="text-lg">Total Asignado</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-3xl font-bold text-[--color-tb-navy]">
+            <div className="text-3xl font-bold text-tb-navy">
               ${totalAllocated.toLocaleString("es-ES", { minimumFractionDigits: 2 })}
             </div>
           </CardContent>
@@ -153,7 +153,7 @@ export default function BudgetingPage() {
             <CardTitle className="text-lg">Total Gastado</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-3xl font-bold text-[--color-tb-red]">
+            <div className="text-3xl font-bold text-tb-red">
               ${totalSpent.toLocaleString("es-ES", { minimumFractionDigits: 2 })}
             </div>
           </CardContent>
@@ -180,20 +180,20 @@ export default function BudgetingPage() {
           <CardContent>
             <form onSubmit={handleAddBudget} className="space-y-4">
               <div>
-                <label className="block text-sm font-medium text-[--color-tb-navy] mb-2">
+                <label className="block text-sm font-medium text-tb-navy mb-2">
                   Categoría *
                 </label>
                 <input
                   type="text"
                   value={budgetForm.category}
                   onChange={(e) => setBudgetForm({ ...budgetForm, category: e.target.value })}
-                  className="w-full px-3 py-2 border border-[--color-tb-line] rounded-lg focus:outline-none focus:ring-2 focus:ring-[--color-tb-stitch]/60"
+                  className="w-full px-3 py-2 border border-tb-line rounded-lg focus:outline-none focus:ring-2 focus:ring-tb-stitch/60"
                   required
                 />
               </div>
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-medium text-[--color-tb-navy] mb-2">
+                  <label className="block text-sm font-medium text-tb-navy mb-2">
                     Monto Asignado *
                   </label>
                   <input
@@ -201,31 +201,31 @@ export default function BudgetingPage() {
                     step="0.01"
                     value={budgetForm.allocated_amount}
                     onChange={(e) => setBudgetForm({ ...budgetForm, allocated_amount: e.target.value })}
-                    className="w-full px-3 py-2 border border-[--color-tb-line] rounded-lg focus:outline-none focus:ring-2 focus:ring-[--color-tb-stitch]/60"
+                    className="w-full px-3 py-2 border border-tb-line rounded-lg focus:outline-none focus:ring-2 focus:ring-tb-stitch/60"
                     required
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-[--color-tb-navy] mb-2">
+                  <label className="block text-sm font-medium text-tb-navy mb-2">
                     Año Fiscal
                   </label>
                   <input
                     type="number"
                     value={budgetForm.fiscal_year}
                     onChange={(e) => setBudgetForm({ ...budgetForm, fiscal_year: parseInt(e.target.value) })}
-                    className="w-full px-3 py-2 border border-[--color-tb-line] rounded-lg focus:outline-none focus:ring-2 focus:ring-[--color-tb-stitch]/60"
+                    className="w-full px-3 py-2 border border-tb-line rounded-lg focus:outline-none focus:ring-2 focus:ring-tb-stitch/60"
                   />
                 </div>
               </div>
               <div>
-                <label className="block text-sm font-medium text-[--color-tb-navy] mb-2">
+                <label className="block text-sm font-medium text-tb-navy mb-2">
                   Notas
                 </label>
                 <textarea
                   value={budgetForm.notes}
                   onChange={(e) => setBudgetForm({ ...budgetForm, notes: e.target.value })}
                   rows={3}
-                  className="w-full px-3 py-2 border border-[--color-tb-line] rounded-lg focus:outline-none focus:ring-2 focus:ring-[--color-tb-stitch]/60"
+                  className="w-full px-3 py-2 border border-tb-line rounded-lg focus:outline-none focus:ring-2 focus:ring-tb-stitch/60"
                 />
               </div>
               <div className="flex gap-2">
@@ -251,7 +251,7 @@ export default function BudgetingPage() {
         </CardHeader>
         <CardContent>
           {budgets.length === 0 ? (
-            <p className="text-[--color-tb-shadow] text-center py-8">
+            <p className="text-tb-shadow text-center py-8">
               No hay presupuestos configurados. Agrega uno para comenzar.
             </p>
           ) : (
@@ -264,15 +264,15 @@ export default function BudgetingPage() {
                   : 0;
 
                 return (
-                  <div key={budget.id} className="border border-[--color-tb-line] rounded-lg p-4">
+                  <div key={budget.id} className="border border-tb-line rounded-lg p-4">
                     <div className="flex items-center justify-between mb-2">
-                      <h3 className="font-semibold text-[--color-tb-navy]">{budget.category}</h3>
+                      <h3 className="font-semibold text-tb-navy">{budget.category}</h3>
                       <Badge variant={percentage > 90 ? "error" : percentage > 70 ? "warning" : "info"}>
                         {percentage.toFixed(0)}%
                       </Badge>
                     </div>
                     <div className="mb-2">
-                      <div className="flex justify-between text-sm text-[--color-tb-shadow] mb-1">
+                      <div className="flex justify-between text-sm text-tb-shadow mb-1">
                         <span>Gastado: ${categorySpent.toLocaleString("es-ES", { minimumFractionDigits: 2 })}</span>
                         <span>Asignado: ${budget.allocated_amount.toLocaleString("es-ES", { minimumFractionDigits: 2 })}</span>
                       </div>
@@ -303,19 +303,19 @@ export default function BudgetingPage() {
             <form onSubmit={handleAddExpense} className="space-y-4">
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-medium text-[--color-tb-navy] mb-2">
+                  <label className="block text-sm font-medium text-tb-navy mb-2">
                     Categoría *
                   </label>
                   <input
                     type="text"
                     value={expenseForm.category}
                     onChange={(e) => setExpenseForm({ ...expenseForm, category: e.target.value })}
-                    className="w-full px-3 py-2 border border-[--color-tb-line] rounded-lg focus:outline-none focus:ring-2 focus:ring-[--color-tb-stitch]/60"
+                    className="w-full px-3 py-2 border border-tb-line rounded-lg focus:outline-none focus:ring-2 focus:ring-tb-stitch/60"
                     required
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-[--color-tb-navy] mb-2">
+                  <label className="block text-sm font-medium text-tb-navy mb-2">
                     Monto *
                   </label>
                   <input
@@ -323,20 +323,20 @@ export default function BudgetingPage() {
                     step="0.01"
                     value={expenseForm.amount}
                     onChange={(e) => setExpenseForm({ ...expenseForm, amount: e.target.value })}
-                    className="w-full px-3 py-2 border border-[--color-tb-line] rounded-lg focus:outline-none focus:ring-2 focus:ring-[--color-tb-stitch]/60"
+                    className="w-full px-3 py-2 border border-tb-line rounded-lg focus:outline-none focus:ring-2 focus:ring-tb-stitch/60"
                     required
                   />
                 </div>
               </div>
               <div>
-                <label className="block text-sm font-medium text-[--color-tb-navy] mb-2">
+                <label className="block text-sm font-medium text-tb-navy mb-2">
                   Descripción *
                 </label>
                 <textarea
                   value={expenseForm.description}
                   onChange={(e) => setExpenseForm({ ...expenseForm, description: e.target.value })}
                   rows={3}
-                  className="w-full px-3 py-2 border border-[--color-tb-line] rounded-lg focus:outline-none focus:ring-2 focus:ring-[--color-tb-stitch]/60"
+                  className="w-full px-3 py-2 border border-tb-line rounded-lg focus:outline-none focus:ring-2 focus:ring-tb-stitch/60"
                   required
                 />
               </div>
@@ -363,7 +363,7 @@ export default function BudgetingPage() {
         </CardHeader>
         <CardContent>
           {expenses.length === 0 ? (
-            <p className="text-[--color-tb-shadow] text-center py-8">
+            <p className="text-tb-shadow text-center py-8">
               No hay gastos registrados.
             </p>
           ) : (

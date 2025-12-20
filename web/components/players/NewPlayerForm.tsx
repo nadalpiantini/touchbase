@@ -44,7 +44,7 @@ export default function NewPlayerForm() {
   return (
     <form onSubmit={onSubmit} className="flex flex-wrap gap-2 items-center" aria-label="Formulario de nuevo jugador">
       <input
-        className="border border-[--color-tb-line] p-2 rounded-lg w-64 font-sans text-[--color-tb-navy] placeholder:text-[--color-tb-shadow]/50 focus:ring-2 focus:ring-[--color-tb-stitch]/60 focus:border-[--color-tb-stitch] transition"
+        className="border border-tb-line p-2 rounded-lg w-64 font-sans text-tb-navy placeholder:text-tb-shadow/50 focus:ring-2 focus:ring-tb-stitch/60 focus:border-tb-stitch transition"
         placeholder="Nombre completo"
         value={fullName}
         onChange={(e) => setFullName(e.target.value)}
@@ -53,7 +53,7 @@ export default function NewPlayerForm() {
         aria-required="true"
       />
       <select
-        className="border border-[--color-tb-line] p-2 rounded-lg bg-white font-sans text-[--color-tb-navy] focus:ring-2 focus:ring-[--color-tb-stitch]/60 focus:border-[--color-tb-stitch] transition"
+        className="border border-tb-line p-2 rounded-lg bg-white font-sans text-tb-navy focus:ring-2 focus:ring-tb-stitch/60 focus:border-tb-stitch transition"
         value={teamId}
         onChange={(e) => setTeamId(e.target.value)}
         aria-label="Equipo del jugador"
@@ -66,7 +66,7 @@ export default function NewPlayerForm() {
         type="submit"
         aria-busy={loading}
         aria-label={loading ? "Creando jugador..." : "Crear jugador"}
-        className="bg-[--color-tb-red] text-white px-4 py-2 rounded-xl font-display hover:bg-[--color-tb-stitch] shadow-dugout disabled:opacity-50 transition-all active:translate-y-[1px]"
+        className="bg-tb-red text-white px-4 py-2 rounded-xl font-display hover:bg-tb-stitch shadow-dugout disabled:opacity-50 transition-all active:translate-y-[1px]"
       >
         {loading ? "Creando..." : "Crear jugador"}
       </button>

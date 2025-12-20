@@ -30,7 +30,7 @@ export function ResponsiveNav({ locale, userRole, userEmail, navItems, logoHref 
   );
 
   return (
-    <header className="bg-[--color-tb-navy] text-white border-b border-[--color-tb-navy]">
+    <header className="bg-tb-navy text-white border-b border-tb-navy">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
@@ -51,8 +51,8 @@ export function ResponsiveNav({ locale, userRole, userEmail, navItems, logoHref 
               <Link
                 key={item.href}
                 href={item.href}
-                className={`text-sm font-sans hover:text-[--color-tb-beige] transition ${
-                  pathname === item.href ? 'text-[--color-tb-beige] font-semibold' : ''
+                className={`text-sm font-sans hover:text-tb-beige transition ${
+                  pathname === item.href ? 'text-tb-beige font-semibold' : ''
                 }`}
               >
                 {item.label}
@@ -64,7 +64,7 @@ export function ResponsiveNav({ locale, userRole, userEmail, navItems, logoHref 
           <div className="flex items-center gap-4">
             <div className="hidden lg:flex items-center gap-4">
               <OrgDropdown />
-              <span className="text-sm font-sans text-[--color-tb-bone]">
+              <span className="text-sm font-sans text-tb-bone">
                 {userEmail}
               </span>
             </div>
@@ -114,7 +114,7 @@ export function ResponsiveNav({ locale, userRole, userEmail, navItems, logoHref 
                 <div className="mb-2">
                   <OrgDropdown />
                 </div>
-                <div className="px-4 py-2 text-sm font-sans text-[--color-tb-bone]/80">
+                <div className="px-4 py-2 text-sm font-sans text-tb-bone/80">
                   {userEmail}
                 </div>
               </div>

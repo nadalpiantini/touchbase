@@ -322,6 +322,52 @@
     }
   },
   "teacher": {
+    "dashboard": {
+      "title": "Panel del Profesor",
+      "stats": {
+        "classes": "Clases",
+        "activeClasses": "Clases activas",
+        "students": "Estudiantes",
+        "totalStudents": "Total estudiantes",
+        "modules": "Módulos",
+        "availableModules": "Módulos disponibles"
+      },
+      "myClasses": "Mis Clases",
+      "createClass": "Crear Clase",
+      "noClasses": "Aún no has creado ninguna clase.",
+      "createFirstClass": "Crea Tu Primera Clase",
+      "students": "estudiantes",
+      "viewClass": "Ver Clase",
+      "quickActions": "Acciones Rápidas",
+      "manageModules": "Gestionar Módulos",
+      "manageModulesDesc": "Ver y editar tus módulos de aprendizaje",
+      "viewAnalytics": "Ver Analíticas",
+      "viewAnalyticsDesc": "Rastrear progreso y rendimiento de estudiantes",
+      "createModule": "Crear Módulo",
+      "createModuleDesc": "Crear nuevo contenido de aprendizaje"
+    },
+    "aiAssistant": {
+      "title": "Asistente IA",
+      "openAssistant": "Abrir Asistente IA",
+      "close": "Cerrar",
+      "welcome": "¡Hola! Soy tu asistente de enseñanza con IA.",
+      "askQuestion": "¡Pregúntame lo que quieras sobre gestionar tus clases, crear contenido o analizar el progreso de los estudiantes!",
+      "typeMessage": "Escribe tu pregunta...",
+      "send": "Enviar",
+      "thinking": "Pensando",
+      "quickActions": {
+        "title": "Acciones Rápidas",
+        "createModule": "Crear Módulo",
+        "analyzeProgress": "Analizar Progreso",
+        "suggestContent": "Sugerir Contenido",
+        "createModulePrompt": "Ayúdame a crear un nuevo módulo educativo. ¿Qué debería incluir?",
+        "analyzeProgressPrompt": "Analiza el progreso de mis estudiantes y sugiere mejoras.",
+        "suggestContentPrompt": "Sugiere ideas de contenido para mi próximo módulo basado en mis objetivos de enseñanza."
+      },
+      "errors": {
+        "failed": "Lo siento, no pude procesar tu solicitud. Por favor intenta de nuevo."
+      }
+    },
     "modules": {
       "title": "Módulos",
       "createModule": "Crear Módulo",
@@ -368,8 +414,9 @@
         "stepTypeScenario": "Escenario",
         "order": "Orden",
         "edit": "Editar",
-      "errors": {
-        "fetchFailed": "Error al cargar módulo"
+        "errors": {
+          "fetchFailed": "Error al cargar módulo"
+        }
       }
     },
     "classes": {
@@ -460,8 +507,8 @@
         }
       }
     },
-      "steps": {
-        "create": {
+    "steps": {
+      "create": {
           "title": "Crear Nuevo Paso",
           "stepTypeLabel": "Tipo de Paso",
           "stepTypeContent": "Contenido",
@@ -550,8 +597,7 @@
             "minTwoScenarioOptions": "Se requieren al menos dos opciones de escenario"
           }
         }
-      }
-    },
+      },
     "analytics": {
       "title": "Panel de Análisis",
       "loading": "Cargando análisis...",
@@ -722,179 +768,6 @@
         "loadFailed": "Error al cargar clases",
         "invalidCode": "Código de clase inválido",
         "joinFailed": "Error al unirse a la clase"
-      }
-    }
-  },
-  "teacher": {
-    "dashboard": {
-      "title": "Panel del Profesor",
-      "stats": {
-        "classes": "Clases",
-        "activeClasses": "Clases activas",
-        "students": "Estudiantes",
-        "totalStudents": "Total estudiantes",
-        "modules": "Módulos",
-        "availableModules": "Módulos disponibles"
-      },
-      "myClasses": "Mis Clases",
-      "createClass": "Crear Clase",
-      "noClasses": "Aún no has creado ninguna clase.",
-      "createFirstClass": "Crea Tu Primera Clase",
-      "students": "estudiantes",
-      "viewClass": "Ver Clase",
-      "quickActions": "Acciones Rápidas",
-      "manageModules": "Gestionar Módulos",
-      "manageModulesDesc": "Ver y editar tus módulos de aprendizaje",
-      "viewAnalytics": "Ver Analíticas",
-      "viewAnalyticsDesc": "Rastrear progreso y rendimiento de estudiantes",
-      "createModule": "Crear Módulo",
-      "createModuleDesc": "Crear nuevo contenido de aprendizaje"
-    },
-    "aiAssistant": {
-      "title": "Asistente IA",
-      "openAssistant": "Abrir Asistente IA",
-      "close": "Cerrar",
-      "welcome": "¡Hola! Soy tu asistente de enseñanza con IA.",
-      "askQuestion": "¡Pregúntame lo que quieras sobre gestionar tus clases, crear contenido o analizar el progreso de los estudiantes!",
-      "typeMessage": "Escribe tu pregunta...",
-      "send": "Enviar",
-      "thinking": "Pensando",
-      "quickActions": {
-        "title": "Acciones Rápidas",
-        "createModule": "Crear Módulo",
-        "analyzeProgress": "Analizar Progreso",
-        "suggestContent": "Sugerir Contenido",
-        "createModulePrompt": "Ayúdame a crear un nuevo módulo educativo. ¿Qué debería incluir?",
-        "analyzeProgressPrompt": "Analiza el progreso de mis estudiantes y sugiere mejoras.",
-        "suggestContentPrompt": "Sugiere ideas de contenido para mi próximo módulo basado en mis objetivos de enseñanza."
-      },
-      "errors": {
-        "failed": "Lo siento, no pude procesar tu solicitud. Por favor intenta de nuevo."
-      }
-    },
-    "modules": {
-      "title": "Módulos",
-      "loading": "Cargando módulos...",
-      "createModule": "Crear Módulo",
-      "noModules": "Aún no has creado ningún módulo.",
-      "createFirstModule": "Crear Tu Primer Módulo",
-      "minutes": "min",
-      "errors": {
-        "fetchFailed": "Error al cargar módulos"
-      },
-      "detail": {
-        "loading": "Cargando...",
-        "notFound": "Módulo no encontrado",
-        "minutes": "min",
-        "stepsTitle": "Pasos del Módulo",
-        "addStep": "Agregar Paso",
-        "noSteps": "Este módulo aún no tiene pasos.",
-        "addFirstStep": "Agregar Primer Paso",
-        "stepTypeContent": "Contenido",
-        "stepTypeQuiz": "Quiz",
-        "stepTypeScenario": "Escenario",
-        "order": "Orden",
-        "edit": "Editar",
-        "errors": {
-          "fetchFailed": "Error al cargar módulo"
-        }
-      }
-    },
-    "classes": {
-      "title": "Mis Clases",
-      "loading": "Cargando clases...",
-      "createClass": "Crear Clase",
-      "noClasses": "Aún no has creado ninguna clase.",
-      "createFirstClass": "Crear Tu Primera Clase",
-      "viewClass": "Ver Clase",
-      "detail": {
-        "classCode": "Código de Clase",
-        "codeDescription": "Comparte este código con tus estudiantes para que se unan a la clase.",
-        "description": "Descripción",
-        "manageAssignments": "Gestionar Asignaciones",
-        "manageModules": "Gestionar Módulos",
-        "totalStudents": "Total de Estudiantes",
-        "assignments": "Asignaciones",
-        "avgProgress": "Progreso Promedio",
-        "students": "Estudiantes",
-        "noStudents": "Aún no hay estudiantes en esta clase.",
-        "shareCode": "Comparte el código de clase con tus estudiantes:"
-      },
-      "assignments": {
-        "title": "Asignaciones de la Clase",
-        "loading": "Cargando...",
-        "backToClass": "Volver a la Clase",
-        "createAssignment": "Crear Asignación",
-        "selectModule": "Seleccionar Módulo",
-        "selectModulePlaceholder": "Selecciona un módulo...",
-        "title": "Título",
-        "titlePlaceholder": "Título de la asignación",
-        "description": "Descripción",
-        "descriptionPlaceholder": "Descripción opcional",
-        "dueDate": "Fecha de Entrega",
-        "create": "Crear",
-        "creating": "Creando...",
-        "cancel": "Cancelar",
-        "assignmentsList": "Lista de Asignaciones",
-        "noAssignments": "No hay asignaciones para esta clase.",
-        "module": "Módulo",
-        "overdue": "Vencida",
-        "dueSoon": "Próxima",
-        "upcoming": "Próxima",
-        "assignedAt": "Asignada el",
-        "viewModule": "Ver Módulo",
-        "delete": "Eliminar",
-        "deleteConfirm": "¿Estás seguro de que quieres eliminar esta asignación?",
-        "errors": {
-          "notAuthenticated": "No autenticado",
-          "loadFailed": "Error al cargar asignaciones",
-          "missingFields": "Completa todos los campos requeridos",
-          "createFailed": "Error al crear asignación",
-          "deleteFailed": "Error al eliminar asignación"
-        }
-      },
-      "modules": {
-        "title": "Módulos de la Clase",
-        "loading": "Cargando...",
-        "backToClass": "Volver a la Clase",
-        "assignedModules": "Módulos Asignados",
-        "noAssignedModules": "No hay módulos asignados a esta clase.",
-        "availableModules": "Módulos Disponibles",
-        "noAvailableModules": "No hay más módulos disponibles para asignar.",
-        "minutes": "min",
-        "skills": "habilidades",
-        "viewModule": "Ver Módulo",
-        "assign": "Asignar",
-        "assigning": "Asignando...",
-        "unassign": "Desasignar",
-        "unassigning": "Desasignando...",
-        "unassignConfirm": "¿Estás seguro de que quieres desasignar este módulo?",
-        "errors": {
-          "loadFailed": "Error al cargar módulos",
-          "assignFailed": "Error al asignar módulo",
-          "unassignFailed": "Error al desasignar módulo"
-        }
-      }
-    },
-    "analytics": {
-      "title": "Analíticas",
-      "loading": "Cargando analíticas...",
-      "tabs": {
-        "classes": "Clases",
-        "modules": "Módulos"
-      },
-      "noClasses": "No hay datos de clases disponibles.",
-      "noModules": "No hay datos de módulos disponibles.",
-      "students": "Estudiantes",
-      "completionRate": "Tasa de Completado",
-      "averageScore": "Puntuación Promedio",
-      "modulesAssigned": "Módulos Asignados",
-      "modulesCompleted": "Módulos Completados",
-      "totalAssignments": "Total de Asignaciones",
-      "averageTime": "Tiempo Promedio",
-      "minutes": "min",
-      "errors": {
-        "loadFailed": "Error al cargar analíticas"
       }
     }
   },

@@ -94,7 +94,7 @@ export function WeeklyAgenda({ classId }: WeeklyAgendaProps) {
     return (
       <Card>
         <CardContent className="py-12 text-center">
-          <p className="text-[--color-tb-shadow]">Loading agenda...</p>
+          <p className="text-tb-shadow">Loading agenda...</p>
         </CardContent>
       </Card>
     );
@@ -110,25 +110,25 @@ export function WeeklyAgenda({ classId }: WeeklyAgendaProps) {
           <div className="flex items-center gap-2">
             <button
               onClick={() => navigateWeek('prev')}
-              className="px-3 py-1 border border-[--color-tb-line] rounded-lg hover:bg-[--color-tb-bone]"
+              className="px-3 py-1 border border-tb-line rounded-lg hover:bg-tb-bone"
             >
               ←
             </button>
             <button
               onClick={() => setCurrentWeek(new Date())}
-              className="px-3 py-1 border border-[--color-tb-line] rounded-lg hover:bg-[--color-tb-bone] text-sm"
+              className="px-3 py-1 border border-tb-line rounded-lg hover:bg-tb-bone text-sm"
             >
               Today
             </button>
             <button
               onClick={() => navigateWeek('next')}
-              className="px-3 py-1 border border-[--color-tb-line] rounded-lg hover:bg-[--color-tb-bone]"
+              className="px-3 py-1 border border-tb-line rounded-lg hover:bg-tb-bone"
             >
               →
             </button>
           </div>
         </div>
-        <p className="text-sm text-[--color-tb-shadow] mt-1">
+        <p className="text-sm text-tb-shadow mt-1">
           {weekStart.toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}
         </p>
       </CardHeader>
@@ -142,26 +142,26 @@ export function WeeklyAgenda({ classId }: WeeklyAgendaProps) {
             return (
               <div
                 key={index}
-                className={`border border-[--color-tb-line] rounded-lg p-2 min-h-[120px] ${
-                  isToday ? 'bg-[--color-tb-red]/5' : ''
+                className={`border border-tb-line rounded-lg p-2 min-h-[120px] ${
+                  isToday ? 'bg-tb-red/5' : ''
                 }`}
               >
-                <div className="text-xs font-medium text-[--color-tb-navy] mb-1">
+                <div className="text-xs font-medium text-tb-navy mb-1">
                   {dayNames[index]}
                 </div>
-                <div className="text-sm font-semibold text-[--color-tb-navy] mb-2">
+                <div className="text-sm font-semibold text-tb-navy mb-2">
                   {date.getDate()}
                 </div>
                 <div className="space-y-1">
                   {dayEvents.map((event) => (
                     <div
                       key={event.id}
-                      className="text-xs p-1 bg-[--color-tb-red]/10 rounded border border-[--color-tb-red]/20"
+                      className="text-xs p-1 bg-tb-red/10 rounded border border-tb-red/20"
                     >
-                      <div className="font-medium text-[--color-tb-navy] truncate">
+                      <div className="font-medium text-tb-navy truncate">
                         {event.title}
                       </div>
-                      <div className="text-[--color-tb-shadow]">
+                      <div className="text-tb-shadow">
                         {event.start.toLocaleTimeString('en-US', {
                           hour: 'numeric',
                           minute: '2-digit',

@@ -65,7 +65,7 @@ export default function TeacherModulesPage() {
   return (
     <div className="max-w-7xl mx-auto">
       <div className="flex justify-between items-center mb-8">
-        <h1 className="text-3xl font-display font-bold text-[--color-tb-navy]">
+        <h1 className="text-3xl font-display font-bold text-tb-navy">
           {t('title')}
         </h1>
         <Link href="/teacher/modules/create">
@@ -76,7 +76,7 @@ export default function TeacherModulesPage() {
       {modules.length === 0 ? (
         <Card>
           <CardContent className="text-center py-12">
-            <p className="text-[--color-tb-shadow] mb-4">{t('noModules')}</p>
+            <p className="text-tb-shadow mb-4">{t('noModules')}</p>
             <Link href="/teacher/modules/create">
               <Button variant="secondary">{t('createFirstModule')}</Button>
             </Link>
@@ -97,24 +97,24 @@ export default function TeacherModulesPage() {
                 </CardHeader>
                 <CardContent>
                   {module.description && (
-                    <p className="text-[--color-tb-shadow] text-sm mb-4 line-clamp-2">
+                    <p className="text-tb-shadow text-sm mb-4 line-clamp-2">
                       {module.description}
                     </p>
                   )}
-                  <div className="flex items-center justify-between text-xs text-[--color-tb-shadow]">
+                  <div className="flex items-center justify-between text-xs text-tb-shadow">
                     <span>{module.duration_minutes} {t('minutes')}</span>
                     {module.skills && module.skills.length > 0 && (
                       <div className="flex gap-1">
                         {module.skills.slice(0, 2).map((skill, idx) => (
                           <span
                             key={idx}
-                            className="px-2 py-1 bg-[--color-tb-beige] text-[--color-tb-navy] rounded"
+                            className="px-2 py-1 bg-tb-beige text-tb-navy rounded"
                           >
                             {skill}
                           </span>
                         ))}
                         {module.skills.length > 2 && (
-                          <span className="px-2 py-1 text-[--color-tb-shadow]">
+                          <span className="px-2 py-1 text-tb-shadow">
                             +{module.skills.length - 2}
                           </span>
                         )}

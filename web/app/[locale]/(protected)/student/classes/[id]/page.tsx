@@ -94,11 +94,11 @@ export default function StudentClassDetailPage() {
         <Button variant="outline" onClick={() => router.push("/student/classes")} className="mb-4">
           {t('backToClasses')}
         </Button>
-        <h1 className="text-3xl font-display font-bold text-[--color-tb-navy] mb-2">
+        <h1 className="text-3xl font-display font-bold text-tb-navy mb-2">
           {classItem.name}
         </h1>
         {classItem.description && (
-          <p className="text-[--color-tb-shadow]">{classItem.description}</p>
+          <p className="text-tb-shadow">{classItem.description}</p>
         )}
         {classItem.grade_level && (
           <Badge variant="info" className="mt-2">{classItem.grade_level}</Badge>
@@ -107,13 +107,13 @@ export default function StudentClassDetailPage() {
 
       {/* Modules */}
       <div>
-        <h2 className="text-2xl font-semibold text-[--color-tb-navy] mb-4">
+        <h2 className="text-2xl font-semibold text-tb-navy mb-4">
           {t('assignedModules')}
         </h2>
         {modules.length === 0 ? (
           <Card>
             <CardContent className="text-center py-12">
-              <p className="text-[--color-tb-shadow]">{t('noModules')}</p>
+              <p className="text-tb-shadow">{t('noModules')}</p>
             </CardContent>
           </Card>
         ) : (
@@ -127,13 +127,13 @@ export default function StudentClassDetailPage() {
                 <Card key={module.id}>
                   <CardContent className="pt-6">
                     <div className="flex items-center justify-between mb-2">
-                      <h3 className="font-semibold text-[--color-tb-navy]">{module.title}</h3>
+                      <h3 className="font-semibold text-tb-navy">{module.title}</h3>
                       {module.difficulty && (
                         <Badge variant="info">{module.difficulty}</Badge>
                       )}
                     </div>
                     {module.description && (
-                      <p className="text-sm text-[--color-tb-shadow] mb-4">
+                      <p className="text-sm text-tb-shadow mb-4">
                         {module.description}
                       </p>
                     )}

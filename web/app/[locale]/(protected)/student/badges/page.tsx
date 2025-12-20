@@ -80,22 +80,22 @@ export default function StudentBadgesPage() {
 
   return (
     <div className="max-w-7xl mx-auto">
-      <h1 className="text-3xl font-display font-bold text-[--color-tb-navy] mb-8">
+      <h1 className="text-3xl font-display font-bold text-tb-navy mb-8">
         {t('title')}
       </h1>
 
       {badges.length === 0 ? (
         <Card>
           <CardContent className="text-center py-12">
-            <p className="text-[--color-tb-shadow] mb-4">{t('noBadges')}</p>
-            <p className="text-sm text-[--color-tb-shadow]">{t('earnBadgesHint')}</p>
+            <p className="text-tb-shadow mb-4">{t('noBadges')}</p>
+            <p className="text-sm text-tb-shadow">{t('earnBadgesHint')}</p>
           </CardContent>
         </Card>
       ) : (
         <div className="space-y-8">
           {Object.entries(badgesByCategory).map(([category, categoryBadges]) => (
             <div key={category}>
-              <h2 className="text-2xl font-semibold text-[--color-tb-navy] mb-4">
+              <h2 className="text-2xl font-semibold text-tb-navy mb-4">
                 {categoryLabels[category] || category}
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -120,11 +120,11 @@ export default function StudentBadgesPage() {
                         </div>
                       )}
                       {userBadge.badge?.description && (
-                        <p className="text-sm text-[--color-tb-shadow] mb-4">
+                        <p className="text-sm text-tb-shadow mb-4">
                           {userBadge.badge.description}
                         </p>
                       )}
-                      <div className="text-xs text-[--color-tb-shadow]">
+                      <div className="text-xs text-tb-shadow">
                         {t('earnedOn')}: {new Date(userBadge.awarded_at).toLocaleDateString()}
                       </div>
                     </CardContent>

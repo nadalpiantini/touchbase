@@ -110,7 +110,7 @@ export default function StudentClassesPage() {
 
   return (
     <div className="max-w-7xl mx-auto">
-      <h1 className="text-3xl font-display font-bold text-[--color-tb-navy] mb-8">
+      <h1 className="text-3xl font-display font-bold text-tb-navy mb-8">
         {t('title')}
       </h1>
 
@@ -140,14 +140,14 @@ export default function StudentClassesPage() {
 
       {/* My Classes - Rule of Thirds grid */}
       <div>
-        <h2 className="text-2xl font-semibold text-[--color-tb-navy] mb-4">
+        <h2 className="text-2xl font-semibold text-tb-navy mb-4">
           {t('myClasses')}
         </h2>
         {classes.length === 0 ? (
           <Card>
             <CardContent className="text-center py-12">
-              <p className="text-[--color-tb-shadow] mb-4">{t('noClasses')}</p>
-              <p className="text-sm text-[--color-tb-shadow]">{t('joinHint')}</p>
+              <p className="text-tb-shadow mb-4">{t('noClasses')}</p>
+              <p className="text-sm text-tb-shadow">{t('joinHint')}</p>
             </CardContent>
           </Card>
         ) : (
@@ -157,12 +157,12 @@ export default function StudentClassesPage() {
                 <CardHeader>
                   <CardTitle className="text-lg">{classItem.name}</CardTitle>
                   {classItem.grade_level && (
-                    <p className="text-sm text-[--color-tb-shadow]">{classItem.grade_level}</p>
+                    <p className="text-sm text-tb-shadow">{classItem.grade_level}</p>
                   )}
                 </CardHeader>
                 <CardContent>
                   {classItem.description && (
-                    <p className="text-sm text-[--color-tb-shadow] mb-4">
+                    <p className="text-sm text-tb-shadow mb-4">
                       {classItem.description}
                     </p>
                   )}

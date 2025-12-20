@@ -61,8 +61,8 @@ export default function TeachersTable() {
 
   if (teachers.length === 0) {
     return (
-      <div className="bg-white border border-[--color-tb-line] rounded-xl p-8 text-center shadow-sm">
-        <p className="font-sans text-[--color-tb-shadow]">No hay profesores registrados.</p>
+      <div className="bg-white border border-tb-line rounded-xl p-8 text-center shadow-sm">
+        <p className="font-sans text-tb-shadow">No hay profesores registrados.</p>
       </div>
     );
   }
@@ -72,23 +72,23 @@ export default function TeachersTable() {
       <div className="flex justify-end">
         <CSVExportButton type="teachers" />
       </div>
-      <div className="bg-white border border-[--color-tb-line] rounded-xl overflow-hidden shadow-sm">
+      <div className="bg-white border border-tb-line rounded-xl overflow-hidden shadow-sm">
         <div className="overflow-x-auto">
         <table className="w-full font-sans">
-          <thead className="bg-[--color-tb-beige] border-b border-[--color-tb-line]">
+          <thead className="bg-tb-beige border-b border-tb-line">
             <tr>
-              <th className="text-left p-4 font-display font-semibold text-[--color-tb-navy]">Foto</th>
-              <th className="text-left p-4 font-display font-semibold text-[--color-tb-navy]">Nombre</th>
-              <th className="text-left p-4 font-display font-semibold text-[--color-tb-navy]">Email</th>
-              <th className="text-left p-4 font-display font-semibold text-[--color-tb-navy]">Teléfono</th>
-              <th className="text-left p-4 font-display font-semibold text-[--color-tb-navy]">Departamento</th>
-              <th className="text-left p-4 font-display font-semibold text-[--color-tb-navy]">Tipo</th>
-              <th className="text-left p-4 font-display font-semibold text-[--color-tb-navy]">Fecha Contratación</th>
+              <th className="text-left p-4 font-display font-semibold text-tb-navy">Foto</th>
+              <th className="text-left p-4 font-display font-semibold text-tb-navy">Nombre</th>
+              <th className="text-left p-4 font-display font-semibold text-tb-navy">Email</th>
+              <th className="text-left p-4 font-display font-semibold text-tb-navy">Teléfono</th>
+              <th className="text-left p-4 font-display font-semibold text-tb-navy">Departamento</th>
+              <th className="text-left p-4 font-display font-semibold text-tb-navy">Tipo</th>
+              <th className="text-left p-4 font-display font-semibold text-tb-navy">Fecha Contratación</th>
             </tr>
           </thead>
           <tbody>
             {teachers.map((teacher) => (
-              <tr key={teacher.id} className="border-b border-[--color-tb-line] hover:bg-[--color-tb-bone] transition">
+              <tr key={teacher.id} className="border-b border-tb-line hover:bg-tb-bone transition">
                 <td className="p-4">
                   {teacher.photo_url ? (
                     <Image
@@ -99,25 +99,25 @@ export default function TeachersTable() {
                       className="rounded-full object-cover"
                     />
                   ) : (
-                    <div className="w-10 h-10 rounded-full bg-[--color-tb-navy]/10 flex items-center justify-center">
-                      <span className="text-[--color-tb-navy] font-display font-semibold text-sm">
+                    <div className="w-10 h-10 rounded-full bg-tb-navy/10 flex items-center justify-center">
+                      <span className="text-tb-navy font-display font-semibold text-sm">
                         {teacher.full_name.charAt(0).toUpperCase()}
                       </span>
                     </div>
                   )}
                 </td>
-                <td className="p-4 font-sans font-medium text-[--color-tb-ink]">{teacher.full_name}</td>
-                <td className="p-4 font-sans text-[--color-tb-shadow]">{teacher.email || "—"}</td>
-                <td className="p-4 font-sans text-[--color-tb-shadow]">{teacher.phone || "—"}</td>
+                <td className="p-4 font-sans font-medium text-tb-ink">{teacher.full_name}</td>
+                <td className="p-4 font-sans text-tb-shadow">{teacher.email || "—"}</td>
+                <td className="p-4 font-sans text-tb-shadow">{teacher.phone || "—"}</td>
                 <td className="p-4">
                   {teacher.department ? (
                     <Badge variant="info">{teacher.department}</Badge>
                   ) : (
-                    <span className="font-sans text-[--color-tb-shadow]">—</span>
+                    <span className="font-sans text-tb-shadow">—</span>
                   )}
                 </td>
-                <td className="p-4 font-sans text-[--color-tb-shadow]">{teacher.employment_type || "—"}</td>
-                <td className="p-4 font-sans text-[--color-tb-shadow]">
+                <td className="p-4 font-sans text-tb-shadow">{teacher.employment_type || "—"}</td>
+                <td className="p-4 font-sans text-tb-shadow">
                   {teacher.hire_date ? new Date(teacher.hire_date).toLocaleDateString("es-ES") : "—"}
                 </td>
               </tr>

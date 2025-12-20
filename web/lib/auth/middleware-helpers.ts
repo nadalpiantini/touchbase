@@ -5,7 +5,7 @@
 import { SupabaseClient } from "@supabase/supabase-js";
 import { redirect } from "next/navigation";
 import { getUserDefaultRole, isTeacher, isStudent, UserRole } from "./roles";
-import { DEV_USER_ID, DEV_ORG_ID, isDevMode } from "@/lib/dev-helpers";
+import { DEV_USER_ID, DEV_TEACHER_ID, DEV_STUDENT_ID, DEV_ORG_ID, isDevMode } from "@/lib/dev-helpers";
 
 /**
  * Require authentication - redirects to login if not authenticated
@@ -70,10 +70,25 @@ export async function requireRole(
 
 /**
  * Require teacher role
+ * In development mode, returns a mock teacher user for testing
  */
 export async function requireTeacher(supabase: SupabaseClient) {
-  const user = await requireAuth(supabase);
-  
+  const { data: { user } } = await supabase.auth.getUser();
+
+  // In development, return mock teacher if no real user
+  if (!user && isDevMode()) {
+    return {
+      id: DEV_TEACHER_ID,
+      email: 'teacher@touchbase.local',
+      user_metadata: {},
+      app_metadata: {}
+    } as any;
+  }
+
+  if (!user) {
+    redirect("/login");
+  }
+
   const isTeacherUser = await isTeacher(supabase, user.id);
   if (!isTeacherUser) {
     redirect("/dashboard");
@@ -84,10 +99,25 @@ export async function requireTeacher(supabase: SupabaseClient) {
 
 /**
  * Require student role
+ * In development mode, returns a mock student user for testing
  */
 export async function requireStudent(supabase: SupabaseClient) {
-  const user = await requireAuth(supabase);
-  
+  const { data: { user } } = await supabase.auth.getUser();
+
+  // In development, return mock student if no real user
+  if (!user && isDevMode()) {
+    return {
+      id: DEV_STUDENT_ID,
+      email: 'student@touchbase.local',
+      user_metadata: {},
+      app_metadata: {}
+    } as any;
+  }
+
+  if (!user) {
+    redirect("/login");
+  }
+
   const isStudentUser = await isStudent(supabase, user.id);
   if (!isStudentUser) {
     redirect("/dashboard");

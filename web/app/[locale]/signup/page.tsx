@@ -78,7 +78,7 @@ export default function SignUpPage() {
   };
 
   return (
-    <main className="thirds-auth-layout bg-[--color-tb-beige]/20 relative">
+    <main className="thirds-auth-layout bg-tb-beige/20 relative">
       {/* Language Selector */}
       <div className="absolute top-4 right-4 z-10">
         <LanguageSelector />
@@ -86,12 +86,12 @@ export default function SignUpPage() {
 
       {/* Left Third - Branding panel (hidden on mobile) */}
       <div className="thirds-auth-brand">
-        <div className="w-32 h-32 rounded-full bg-[--color-tb-navy]/10 border-4 border-[--color-tb-navy] flex items-center justify-center shadow-dugout mb-6">
-          <svg className="w-16 h-16 text-[--color-tb-navy]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <div className="w-32 h-32 rounded-full bg-tb-navy/10 border-4 border-tb-navy flex items-center justify-center shadow-dugout mb-6">
+          <svg className="w-16 h-16 text-tb-navy" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z" />
           </svg>
         </div>
-        <p className="text-center text-[--color-tb-bone]/80 font-sans text-sm max-w-[200px]">
+        <p className="text-center text-tb-bone/80 font-sans text-sm max-w-[200px]">
           {locale === 'es' ? 'Únete a miles de equipos que ya usan TouchBase' : 'Join thousands of teams already using TouchBase'}
         </p>
       </div>
@@ -108,10 +108,10 @@ export default function SignUpPage() {
                   priority
                   className="w-auto h-25 mb-4"
                 />
-                <h2 className="text-center text-3xl font-display font-bold text-[--color-tb-navy]">
+                <h2 className="text-center text-3xl font-display font-bold text-tb-navy">
                   {t('title')}
                 </h2>
-                <p className="mt-2 text-center text-sm font-sans text-[--color-tb-shadow]">
+                <p className="mt-2 text-center text-sm font-sans text-tb-shadow">
                   {t('subtitle')}
                 </p>
               </div>
@@ -140,7 +140,7 @@ export default function SignUpPage() {
           <form className="mt-8 space-y-6" onSubmit={handleSignUp}>
             <div className="space-y-4">
               <div>
-                <label htmlFor="email" className="block text-sm font-sans font-medium text-[--color-tb-navy] mb-2">
+                <label htmlFor="email" className="block text-sm font-sans font-medium text-tb-navy mb-2">
                   {t('form.emailPlaceholder')}
                 </label>
                 <input
@@ -149,14 +149,14 @@ export default function SignUpPage() {
                   type="email"
                   autoComplete="email"
                   required
-                  className="appearance-none relative block w-full px-3 py-2 border border-[--color-tb-line] placeholder-[--color-tb-shadow]/50 text-[--color-tb-ink] rounded-lg focus:outline-none focus:ring-2 focus:ring-[--color-tb-stitch]/60 focus:border-[--color-tb-stitch] transition sm:text-sm font-sans"
+                  className="appearance-none relative block w-full px-3 py-2 border border-tb-line placeholder-tb-shadow/50 text-tb-ink rounded-lg focus:outline-none focus:ring-2 focus:ring-tb-stitch/60 focus:border-tb-stitch transition sm:text-sm font-sans"
                   placeholder={t('form.emailPlaceholder')}
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                 />
               </div>
               <div>
-                <label htmlFor="password" className="block text-sm font-sans font-medium text-[--color-tb-navy] mb-2">
+                <label htmlFor="password" className="block text-sm font-sans font-medium text-tb-navy mb-2">
                   {t('form.passwordPlaceholder')}
                 </label>
                 <input
@@ -165,14 +165,14 @@ export default function SignUpPage() {
                   type="password"
                   autoComplete="new-password"
                   required
-                  className="appearance-none relative block w-full px-3 py-2 border border-[--color-tb-line] placeholder-[--color-tb-shadow]/50 text-[--color-tb-ink] rounded-lg focus:outline-none focus:ring-2 focus:ring-[--color-tb-stitch]/60 focus:border-[--color-tb-stitch] transition sm:text-sm font-sans"
+                  className="appearance-none relative block w-full px-3 py-2 border border-tb-line placeholder-tb-shadow/50 text-tb-ink rounded-lg focus:outline-none focus:ring-2 focus:ring-tb-stitch/60 focus:border-tb-stitch transition sm:text-sm font-sans"
                   placeholder={t('form.passwordPlaceholder')}
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                 />
               </div>
               <div>
-                <label htmlFor="confirmPassword" className="block text-sm font-sans font-medium text-[--color-tb-navy] mb-2">
+                <label htmlFor="confirmPassword" className="block text-sm font-sans font-medium text-tb-navy mb-2">
                   {t('form.confirmPasswordPlaceholder')}
                 </label>
                 <input
@@ -181,7 +181,7 @@ export default function SignUpPage() {
                   type="password"
                   autoComplete="new-password"
                   required
-                  className="appearance-none relative block w-full px-3 py-2 border border-[--color-tb-line] placeholder-[--color-tb-shadow]/50 text-[--color-tb-ink] rounded-lg focus:outline-none focus:ring-2 focus:ring-[--color-tb-stitch]/60 focus:border-[--color-tb-stitch] transition sm:text-sm font-sans"
+                  className="appearance-none relative block w-full px-3 py-2 border border-tb-line placeholder-tb-shadow/50 text-tb-ink rounded-lg focus:outline-none focus:ring-2 focus:ring-tb-stitch/60 focus:border-tb-stitch transition sm:text-sm font-sans"
                   placeholder={t('form.confirmPasswordPlaceholder')}
                   value={confirmPassword}
                   onChange={(e) => setConfirmPassword(e.target.value)}
@@ -199,16 +199,16 @@ export default function SignUpPage() {
               <button
                 type="submit"
                 disabled={loading}
-                className="group relative w-full flex justify-center py-3 px-4 border border-transparent font-display tracking-wide rounded-xl text-white bg-[--color-tb-red] hover:bg-[--color-tb-stitch] shadow-dugout focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[--color-tb-red]/50 disabled:opacity-50 disabled:cursor-not-allowed transition-all active:translate-y-[1px]"
+                className="group relative w-full flex justify-center py-3 px-4 border border-transparent font-display tracking-wide rounded-xl text-white bg-tb-red hover:bg-tb-stitch shadow-dugout focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-tb-red/50 disabled:opacity-50 disabled:cursor-not-allowed transition-all active:translate-y-[1px]"
               >
                 {loading ? t('form.submittingButton') : t('form.submitButton')}
               </button>
             </div>
 
             <div className="text-center">
-              <p className="text-sm font-sans text-[--color-tb-shadow]">
+              <p className="text-sm font-sans text-tb-shadow">
                 {t('footer.hasAccount')}{' '}
-                <Link href={`/${locale}/login`} className="font-medium text-[--color-tb-navy] hover:text-[--color-tb-stitch] transition">
+                <Link href={`/${locale}/login`} className="font-medium text-tb-navy hover:text-tb-stitch transition">
                   {t('footer.loginLink')}
                 </Link>
               </p>

@@ -147,7 +147,7 @@ export default function TeacherClassAssignmentsPage() {
         <Button variant="outline" onClick={() => router.push(`/teacher/classes/${classId}`)} className="mb-4">
           {t('backToClass')}
         </Button>
-        <h1 className="text-3xl font-display font-bold text-[--color-tb-navy] mb-2">
+        <h1 className="text-3xl font-display font-bold text-tb-navy mb-2">
           {t('title')}
         </h1>
       </div>
@@ -167,13 +167,13 @@ export default function TeacherClassAssignmentsPage() {
           <CardContent>
             <div className="space-y-4">
               <div>
-                <label className="block text-sm font-medium text-[--color-tb-navy] mb-2">
+                <label className="block text-sm font-medium text-tb-navy mb-2">
                   {t('selectModule')}
                 </label>
                 <select
                   value={selectedModuleId}
                   onChange={(e) => setSelectedModuleId(e.target.value)}
-                  className="w-full px-3 py-2 border border-[--color-tb-shadow] rounded-lg"
+                  className="w-full px-3 py-2 border border-tb-shadow rounded-lg"
                 >
                   <option value="">{t('selectModulePlaceholder')}</option>
                   {availableModules.map((module) => (
@@ -184,7 +184,7 @@ export default function TeacherClassAssignmentsPage() {
                 </select>
               </div>
               <div>
-                <label className="block text-sm font-medium text-[--color-tb-navy] mb-2">
+                <label className="block text-sm font-medium text-tb-navy mb-2">
                   {t('title')}
                 </label>
                 <Input
@@ -194,19 +194,19 @@ export default function TeacherClassAssignmentsPage() {
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-[--color-tb-navy] mb-2">
+                <label className="block text-sm font-medium text-tb-navy mb-2">
                   {t('description')}
                 </label>
                 <textarea
                   value={description}
                   onChange={(e) => setDescription(e.target.value)}
                   placeholder={t('descriptionPlaceholder')}
-                  className="w-full px-3 py-2 border border-[--color-tb-shadow] rounded-lg"
+                  className="w-full px-3 py-2 border border-tb-shadow rounded-lg"
                   rows={3}
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-[--color-tb-navy] mb-2">
+                <label className="block text-sm font-medium text-tb-navy mb-2">
                   {t('dueDate')}
                 </label>
                 <Input
@@ -236,13 +236,13 @@ export default function TeacherClassAssignmentsPage() {
 
       {/* Assignments List */}
       <div>
-        <h2 className="text-2xl font-semibold text-[--color-tb-navy] mb-4">
+        <h2 className="text-2xl font-semibold text-tb-navy mb-4">
           {t('assignmentsList')}
         </h2>
         {assignments.length === 0 ? (
           <Card>
             <CardContent className="text-center py-12">
-              <p className="text-[--color-tb-shadow]">{t('noAssignments')}</p>
+              <p className="text-tb-shadow">{t('noAssignments')}</p>
             </CardContent>
           </Card>
         ) : (
@@ -257,16 +257,16 @@ export default function TeacherClassAssignmentsPage() {
                   <CardContent className="pt-6">
                     <div className="flex items-start justify-between mb-2">
                       <div className="flex-1">
-                        <h3 className="font-semibold text-[--color-tb-navy] mb-1">
+                        <h3 className="font-semibold text-tb-navy mb-1">
                           {assignment.title}
                         </h3>
                         {assignment.module && (
-                          <p className="text-sm text-[--color-tb-shadow] mb-2">
+                          <p className="text-sm text-tb-shadow mb-2">
                             {t('module')}: {assignment.module.title}
                           </p>
                         )}
                         {assignment.description && (
-                          <p className="text-sm text-[--color-tb-shadow] mb-2">
+                          <p className="text-sm text-tb-shadow mb-2">
                             {assignment.description}
                           </p>
                         )}
@@ -281,7 +281,7 @@ export default function TeacherClassAssignmentsPage() {
                         )}
                       </div>
                     </div>
-                    <div className="text-sm text-[--color-tb-shadow]">
+                    <div className="text-sm text-tb-shadow">
                       <p>{t('dueDate')}: {dueDateObj.toLocaleDateString()}</p>
                       <p>{t('assignedAt')}: {new Date(assignment.assigned_at).toLocaleDateString()}</p>
                     </div>

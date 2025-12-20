@@ -60,6 +60,27 @@ export async function POST(req: Request) {
         const { data, error } = await admin.from("touchbase_class_schedules").select("id").limit(0);
         return !error;
       }
+    },
+    {
+      name: "Check module_steps table",
+      check: async () => {
+        const { data, error } = await admin.from("touchbase_module_steps").select("id").limit(0);
+        return !error;
+      }
+    },
+    {
+      name: "Check progress table",
+      check: async () => {
+        const { data, error } = await admin.from("touchbase_progress").select("id").limit(0);
+        return !error;
+      }
+    },
+    {
+      name: "Check assignments table",
+      check: async () => {
+        const { data, error } = await admin.from("touchbase_assignments").select("id").limit(0);
+        return !error;
+      }
     }
   ];
 

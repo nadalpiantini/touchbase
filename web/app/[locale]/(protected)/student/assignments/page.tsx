@@ -76,7 +76,7 @@ export default function StudentAssignmentsPage() {
 
   return (
     <div className="max-w-7xl mx-auto">
-      <h1 className="text-3xl font-display font-bold text-[--color-tb-navy] mb-8">
+      <h1 className="text-3xl font-display font-bold text-tb-navy mb-8">
         {t('title')}
       </h1>
 
@@ -87,7 +87,7 @@ export default function StudentAssignmentsPage() {
             <CardTitle className="text-lg">{t('stats.overdue')}</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-4xl font-bold text-[--color-tb-stitch]">
+            <div className="text-4xl font-bold text-tb-stitch">
               {overdue.length}
             </div>
           </CardContent>
@@ -107,7 +107,7 @@ export default function StudentAssignmentsPage() {
             <CardTitle className="text-lg">{t('stats.total')}</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-4xl font-bold text-[--color-tb-navy]">
+            <div className="text-4xl font-bold text-tb-navy">
               {assignments.length}
             </div>
           </CardContent>
@@ -117,7 +117,7 @@ export default function StudentAssignmentsPage() {
       {/* Overdue */}
       {overdue.length > 0 && (
         <div className="mb-8">
-          <h2 className="text-2xl font-semibold text-[--color-tb-navy] mb-4">
+          <h2 className="text-2xl font-semibold text-tb-navy mb-4">
             {t('sections.overdue')}
           </h2>
           <div className="space-y-4">
@@ -125,17 +125,17 @@ export default function StudentAssignmentsPage() {
               <Card key={assignment.id}>
                 <CardContent className="pt-6">
                   <div className="flex items-center justify-between mb-2">
-                    <h3 className="font-semibold text-[--color-tb-navy]">
+                    <h3 className="font-semibold text-tb-navy">
                       {assignment.title}
                     </h3>
                     <Badge variant="error">{t('overdue')}</Badge>
                   </div>
                   {assignment.description && (
-                    <p className="text-sm text-[--color-tb-shadow] mb-2">
+                    <p className="text-sm text-tb-shadow mb-2">
                       {assignment.description}
                     </p>
                   )}
-                  <div className="text-sm text-[--color-tb-shadow] mb-4">
+                  <div className="text-sm text-tb-shadow mb-4">
                     <p>{t('dueDate')}: {new Date(assignment.due_date).toLocaleDateString()}</p>
                   </div>
                   <Button
@@ -154,7 +154,7 @@ export default function StudentAssignmentsPage() {
       {/* Due Soon */}
       {dueSoon.length > 0 && (
         <div className="mb-8">
-          <h2 className="text-2xl font-semibold text-[--color-tb-navy] mb-4">
+          <h2 className="text-2xl font-semibold text-tb-navy mb-4">
             {t('sections.dueSoon')}
           </h2>
           <div className="space-y-4">
@@ -162,17 +162,17 @@ export default function StudentAssignmentsPage() {
               <Card key={assignment.id}>
                 <CardContent className="pt-6">
                   <div className="flex items-center justify-between mb-2">
-                    <h3 className="font-semibold text-[--color-tb-navy]">
+                    <h3 className="font-semibold text-tb-navy">
                       {assignment.title}
                     </h3>
                     <Badge variant="warning">{t('dueSoon')}</Badge>
                   </div>
                   {assignment.description && (
-                    <p className="text-sm text-[--color-tb-shadow] mb-2">
+                    <p className="text-sm text-tb-shadow mb-2">
                       {assignment.description}
                     </p>
                   )}
-                  <div className="text-sm text-[--color-tb-shadow] mb-4">
+                  <div className="text-sm text-tb-shadow mb-4">
                     <p>{t('dueDate')}: {new Date(assignment.due_date).toLocaleDateString()}</p>
                   </div>
                   <Button
@@ -191,7 +191,7 @@ export default function StudentAssignmentsPage() {
       {/* Upcoming */}
       {upcoming.length > 0 && (
         <div>
-          <h2 className="text-2xl font-semibold text-[--color-tb-navy] mb-4">
+          <h2 className="text-2xl font-semibold text-tb-navy mb-4">
             {t('sections.upcoming')}
           </h2>
           <div className="space-y-4">
@@ -199,17 +199,17 @@ export default function StudentAssignmentsPage() {
               <Card key={assignment.id}>
                 <CardContent className="pt-6">
                   <div className="flex items-center justify-between mb-2">
-                    <h3 className="font-semibold text-[--color-tb-navy]">
+                    <h3 className="font-semibold text-tb-navy">
                       {assignment.title}
                     </h3>
                     <Badge variant="info">{t('upcoming')}</Badge>
                   </div>
                   {assignment.description && (
-                    <p className="text-sm text-[--color-tb-shadow] mb-2">
+                    <p className="text-sm text-tb-shadow mb-2">
                       {assignment.description}
                     </p>
                   )}
-                  <div className="text-sm text-[--color-tb-shadow] mb-4">
+                  <div className="text-sm text-tb-shadow mb-4">
                     <p>{t('dueDate')}: {new Date(assignment.due_date).toLocaleDateString()}</p>
                   </div>
                   <Button
@@ -228,7 +228,7 @@ export default function StudentAssignmentsPage() {
       {assignments.length === 0 && (
         <Card>
           <CardContent className="text-center py-12">
-            <p className="text-[--color-tb-shadow]">{t('noAssignments')}</p>
+            <p className="text-tb-shadow">{t('noAssignments')}</p>
           </CardContent>
         </Card>
       )}

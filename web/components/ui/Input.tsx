@@ -17,7 +17,7 @@ const Input = memo(forwardRef<HTMLInputElement, InputProps>(
         {label && (
           <label
             htmlFor={inputId}
-            className="block text-sm font-sans font-medium text-[--color-tb-navy] mb-1.5"
+            className="block text-sm font-sans font-medium text-tb-navy mb-1.5"
           >
             {label}
           </label>
@@ -27,10 +27,10 @@ const Input = memo(forwardRef<HTMLInputElement, InputProps>(
           id={inputId}
           className={cn(
             'w-full px-4 py-2.5 rounded-xl border-2 transition-colors font-sans',
-            'bg-white text-[--color-tb-navy]',
-            'border-[--color-tb-line] focus:border-[--color-tb-red] focus:outline-none',
-            'placeholder:text-[--color-tb-shadow]/60',
-            error && 'border-[--color-tb-stitch] focus:border-[--color-tb-stitch]',
+            'bg-white text-tb-navy',
+            'border-tb-line focus:border-tb-red focus:outline-none',
+            'placeholder:text-tb-shadow/60',
+            error && 'border-tb-stitch focus:border-tb-stitch',
             className
           )}
           aria-invalid={error ? 'true' : undefined}
@@ -43,7 +43,7 @@ const Input = memo(forwardRef<HTMLInputElement, InputProps>(
             role={error ? 'alert' : undefined}
             className={cn(
               'mt-1.5 text-sm',
-              error ? 'text-[--color-tb-stitch]' : 'text-[--color-tb-shadow]/70'
+              error ? 'text-tb-stitch' : 'text-tb-shadow/70'
             )}
           >
             {error || helperText}

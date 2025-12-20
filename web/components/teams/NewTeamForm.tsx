@@ -31,7 +31,7 @@ export default function NewTeamForm() {
   return (
     <form onSubmit={onSubmit} className="flex gap-2 items-center">
       <input
-        className="border border-[--color-tb-line] p-2 rounded-lg w-64 font-sans text-[--color-tb-navy] placeholder:text-[--color-tb-shadow]/50 focus:ring-2 focus:ring-[--color-tb-stitch]/60 focus:border-[--color-tb-stitch] transition"
+        className="border border-tb-line p-2 rounded-lg w-64 font-sans text-tb-navy placeholder:text-tb-shadow/50 focus:ring-2 focus:ring-tb-stitch/60 focus:border-tb-stitch transition"
         placeholder="Nombre del equipo"
         value={name}
         onChange={(e) => setName(e.target.value)}
@@ -39,7 +39,7 @@ export default function NewTeamForm() {
       />
       <button 
         disabled={loading} 
-        className="bg-[--color-tb-red] text-white px-4 py-2 rounded-xl font-display hover:bg-[--color-tb-stitch] shadow-dugout disabled:opacity-50 transition-all active:translate-y-[1px]"
+        className="bg-tb-red text-white px-4 py-2 rounded-xl font-display hover:bg-tb-stitch shadow-dugout disabled:opacity-50 transition-all active:translate-y-[1px]"
       >
         {loading ? "Creando..." : "Crear equipo"}
       </button>

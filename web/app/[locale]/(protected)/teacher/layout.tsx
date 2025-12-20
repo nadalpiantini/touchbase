@@ -23,7 +23,7 @@ export default async function TeacherLayout({
   ];
 
   return (
-    <div className="min-h-screen bg-[--color-tb-bone]">
+    <div className="min-h-screen bg-tb-bone">
       <ResponsiveNav
         locale={locale}
         userRole="teacher"

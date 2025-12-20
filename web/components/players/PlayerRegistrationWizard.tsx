@@ -166,9 +166,9 @@ export default function PlayerRegistrationWizard({ onComplete, onCancel }: { onC
               <div
                 className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-semibold ${
                   s === step
-                    ? "bg-[--color-tb-red] text-white"
+                    ? "bg-tb-red text-white"
                     : s < step
-                    ? "bg-[--color-tb-navy] text-white"
+                    ? "bg-tb-navy text-white"
                     : "bg-gray-200 text-gray-600"
                 }`}
               >
@@ -177,7 +177,7 @@ export default function PlayerRegistrationWizard({ onComplete, onCancel }: { onC
               {s < 5 && (
                 <div
                   className={`w-12 h-1 ${
-                    s < step ? "bg-[--color-tb-navy]" : "bg-gray-200"
+                    s < step ? "bg-tb-navy" : "bg-gray-200"
                   }`}
                 />
               )}
@@ -195,10 +195,10 @@ export default function PlayerRegistrationWizard({ onComplete, onCancel }: { onC
         {/* Step 1: Photo & Basic Info */}
         {step === 1 && (
           <div className="space-y-4">
-            <h3 className="text-lg font-semibold text-[--color-tb-navy]">Información Personal</h3>
+            <h3 className="text-lg font-semibold text-tb-navy">Información Personal</h3>
             
             <div>
-              <label className="block text-sm font-medium text-[--color-tb-navy] mb-2">
+              <label className="block text-sm font-medium text-tb-navy mb-2">
                 Foto de Perfil
               </label>
               <div className="flex items-center gap-4">
@@ -219,66 +219,66 @@ export default function PlayerRegistrationWizard({ onComplete, onCancel }: { onC
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-[--color-tb-navy] mb-2">
+              <label className="block text-sm font-medium text-tb-navy mb-2">
                 Nombre Completo *
               </label>
               <input
                 type="text"
                 value={formData.full_name}
                 onChange={(e) => updateFormData("full_name", e.target.value)}
-                className="w-full px-3 py-2 border border-[--color-tb-line] rounded-lg focus:outline-none focus:ring-2 focus:ring-[--color-tb-stitch]/60"
+                className="w-full px-3 py-2 border border-tb-line rounded-lg focus:outline-none focus:ring-2 focus:ring-tb-stitch/60"
                 required
               />
             </div>
 
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <label className="block text-sm font-medium text-[--color-tb-navy] mb-2">
+                <label className="block text-sm font-medium text-tb-navy mb-2">
                   Fecha de Nacimiento *
                 </label>
                 <input
                   type="date"
                   value={formData.birthdate}
                   onChange={(e) => updateFormData("birthdate", e.target.value)}
-                  className="w-full px-3 py-2 border border-[--color-tb-line] rounded-lg focus:outline-none focus:ring-2 focus:ring-[--color-tb-stitch]/60"
+                  className="w-full px-3 py-2 border border-tb-line rounded-lg focus:outline-none focus:ring-2 focus:ring-tb-stitch/60"
                   required
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-[--color-tb-navy] mb-2">
+                <label className="block text-sm font-medium text-tb-navy mb-2">
                   País
                 </label>
                 <input
                   type="text"
                   value={formData.country}
                   onChange={(e) => updateFormData("country", e.target.value)}
-                  className="w-full px-3 py-2 border border-[--color-tb-line] rounded-lg focus:outline-none focus:ring-2 focus:ring-[--color-tb-stitch]/60"
+                  className="w-full px-3 py-2 border border-tb-line rounded-lg focus:outline-none focus:ring-2 focus:ring-tb-stitch/60"
                 />
               </div>
             </div>
 
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <label className="block text-sm font-medium text-[--color-tb-navy] mb-2">
+                <label className="block text-sm font-medium text-tb-navy mb-2">
                   Email *
                 </label>
                 <input
                   type="email"
                   value={formData.email}
                   onChange={(e) => updateFormData("email", e.target.value)}
-                  className="w-full px-3 py-2 border border-[--color-tb-line] rounded-lg focus:outline-none focus:ring-2 focus:ring-[--color-tb-stitch]/60"
+                  className="w-full px-3 py-2 border border-tb-line rounded-lg focus:outline-none focus:ring-2 focus:ring-tb-stitch/60"
                   required
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-[--color-tb-navy] mb-2">
+                <label className="block text-sm font-medium text-tb-navy mb-2">
                   Teléfono
                 </label>
                 <input
                   type="tel"
                   value={formData.phone}
                   onChange={(e) => updateFormData("phone", e.target.value)}
-                  className="w-full px-3 py-2 border border-[--color-tb-line] rounded-lg focus:outline-none focus:ring-2 focus:ring-[--color-tb-stitch]/60"
+                  className="w-full px-3 py-2 border border-tb-line rounded-lg focus:outline-none focus:ring-2 focus:ring-tb-stitch/60"
                 />
               </div>
             </div>
@@ -288,16 +288,16 @@ export default function PlayerRegistrationWizard({ onComplete, onCancel }: { onC
         {/* Step 2: Baseball Info */}
         {step === 2 && (
           <div className="space-y-4">
-            <h3 className="text-lg font-semibold text-[--color-tb-navy]">Información de Béisbol</h3>
+            <h3 className="text-lg font-semibold text-tb-navy">Información de Béisbol</h3>
             
             <div>
-              <label className="block text-sm font-medium text-[--color-tb-navy] mb-2">
+              <label className="block text-sm font-medium text-tb-navy mb-2">
                 Posición *
               </label>
               <select
                 value={formData.position}
                 onChange={(e) => updateFormData("position", e.target.value)}
-                className="w-full px-3 py-2 border border-[--color-tb-line] rounded-lg focus:outline-none focus:ring-2 focus:ring-[--color-tb-stitch]/60"
+                className="w-full px-3 py-2 border border-tb-line rounded-lg focus:outline-none focus:ring-2 focus:ring-tb-stitch/60"
                 required
               >
                 <option value="">Seleccionar posición</option>
@@ -309,26 +309,26 @@ export default function PlayerRegistrationWizard({ onComplete, onCancel }: { onC
 
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <label className="block text-sm font-medium text-[--color-tb-navy] mb-2">
+                <label className="block text-sm font-medium text-tb-navy mb-2">
                   Afiliación *
                 </label>
                 <input
                   type="text"
                   value={formData.affiliate}
                   onChange={(e) => updateFormData("affiliate", e.target.value)}
-                  className="w-full px-3 py-2 border border-[--color-tb-line] rounded-lg focus:outline-none focus:ring-2 focus:ring-[--color-tb-stitch]/60"
+                  className="w-full px-3 py-2 border border-tb-line rounded-lg focus:outline-none focus:ring-2 focus:ring-tb-stitch/60"
                   required
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-[--color-tb-navy] mb-2">
+                <label className="block text-sm font-medium text-tb-navy mb-2">
                   Año de Firma
                 </label>
                 <input
                   type="number"
                   value={formData.signing_year || ""}
                   onChange={(e) => updateFormData("signing_year", e.target.value ? parseInt(e.target.value) : undefined)}
-                  className="w-full px-3 py-2 border border-[--color-tb-line] rounded-lg focus:outline-none focus:ring-2 focus:ring-[--color-tb-stitch]/60"
+                  className="w-full px-3 py-2 border border-tb-line rounded-lg focus:outline-none focus:ring-2 focus:ring-tb-stitch/60"
                   min="2000"
                   max="2100"
                 />
@@ -337,26 +337,26 @@ export default function PlayerRegistrationWizard({ onComplete, onCancel }: { onC
 
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <label className="block text-sm font-medium text-[--color-tb-navy] mb-2">
+                <label className="block text-sm font-medium text-tb-navy mb-2">
                   Número de Camiseta
                 </label>
                 <input
                   type="number"
                   value={formData.jersey_number || ""}
                   onChange={(e) => updateFormData("jersey_number", e.target.value ? parseInt(e.target.value) : undefined)}
-                  className="w-full px-3 py-2 border border-[--color-tb-line] rounded-lg focus:outline-none focus:ring-2 focus:ring-[--color-tb-stitch]/60"
+                  className="w-full px-3 py-2 border border-tb-line rounded-lg focus:outline-none focus:ring-2 focus:ring-tb-stitch/60"
                   min="1"
                   max="99"
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-[--color-tb-navy] mb-2">
+                <label className="block text-sm font-medium text-tb-navy mb-2">
                   Equipo
                 </label>
                 <select
                   value={formData.team_id || ""}
                   onChange={(e) => updateFormData("team_id", e.target.value || undefined)}
-                  className="w-full px-3 py-2 border border-[--color-tb-line] rounded-lg focus:outline-none focus:ring-2 focus:ring-[--color-tb-stitch]/60"
+                  className="w-full px-3 py-2 border border-tb-line rounded-lg focus:outline-none focus:ring-2 focus:ring-tb-stitch/60"
                 >
                   <option value="">Sin equipo</option>
                   {/* TODO: Load teams */}
@@ -369,66 +369,66 @@ export default function PlayerRegistrationWizard({ onComplete, onCancel }: { onC
         {/* Step 3: Family Info */}
         {step === 3 && (
           <div className="space-y-4">
-            <h3 className="text-lg font-semibold text-[--color-tb-navy]">Información Familiar</h3>
+            <h3 className="text-lg font-semibold text-tb-navy">Información Familiar</h3>
             
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <label className="block text-sm font-medium text-[--color-tb-navy] mb-2">
+                <label className="block text-sm font-medium text-tb-navy mb-2">
                   Nombre del Padre/Madre
                 </label>
                 <input
                   type="text"
                   value={formData.family_info.parent_name || ""}
                   onChange={(e) => updateFormData("family_info", { parent_name: e.target.value })}
-                  className="w-full px-3 py-2 border border-[--color-tb-line] rounded-lg focus:outline-none focus:ring-2 focus:ring-[--color-tb-stitch]/60"
+                  className="w-full px-3 py-2 border border-tb-line rounded-lg focus:outline-none focus:ring-2 focus:ring-tb-stitch/60"
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-[--color-tb-navy] mb-2">
+                <label className="block text-sm font-medium text-tb-navy mb-2">
                   Teléfono del Padre/Madre
                 </label>
                 <input
                   type="tel"
                   value={formData.family_info.parent_phone || ""}
                   onChange={(e) => updateFormData("family_info", { parent_phone: e.target.value })}
-                  className="w-full px-3 py-2 border border-[--color-tb-line] rounded-lg focus:outline-none focus:ring-2 focus:ring-[--color-tb-stitch]/60"
+                  className="w-full px-3 py-2 border border-tb-line rounded-lg focus:outline-none focus:ring-2 focus:ring-tb-stitch/60"
                 />
               </div>
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-[--color-tb-navy] mb-2">
+              <label className="block text-sm font-medium text-tb-navy mb-2">
                 Email del Padre/Madre
               </label>
               <input
                 type="email"
                 value={formData.family_info.parent_email || ""}
                 onChange={(e) => updateFormData("family_info", { parent_email: e.target.value })}
-                className="w-full px-3 py-2 border border-[--color-tb-line] rounded-lg focus:outline-none focus:ring-2 focus:ring-[--color-tb-stitch]/60"
+                className="w-full px-3 py-2 border border-tb-line rounded-lg focus:outline-none focus:ring-2 focus:ring-tb-stitch/60"
               />
             </div>
 
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <label className="block text-sm font-medium text-[--color-tb-navy] mb-2">
+                <label className="block text-sm font-medium text-tb-navy mb-2">
                   Contacto de Emergencia
                 </label>
                 <input
                   type="text"
                   value={formData.family_info.emergency_contact || ""}
                   onChange={(e) => updateFormData("family_info", { emergency_contact: e.target.value })}
-                  className="w-full px-3 py-2 border border-[--color-tb-line] rounded-lg focus:outline-none focus:ring-2 focus:ring-[--color-tb-stitch]/60"
+                  className="w-full px-3 py-2 border border-tb-line rounded-lg focus:outline-none focus:ring-2 focus:ring-tb-stitch/60"
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-[--color-tb-navy] mb-2">
+                <label className="block text-sm font-medium text-tb-navy mb-2">
                   Teléfono de Emergencia
                 </label>
                 <input
                   type="tel"
                   value={formData.family_info.emergency_phone || ""}
                   onChange={(e) => updateFormData("family_info", { emergency_phone: e.target.value })}
-                  className="w-full px-3 py-2 border border-[--color-tb-line] rounded-lg focus:outline-none focus:ring-2 focus:ring-[--color-tb-stitch]/60"
+                  className="w-full px-3 py-2 border border-tb-line rounded-lg focus:outline-none focus:ring-2 focus:ring-tb-stitch/60"
                 />
               </div>
             </div>
@@ -438,17 +438,17 @@ export default function PlayerRegistrationWizard({ onComplete, onCancel }: { onC
         {/* Step 4: Academic Levels */}
         {step === 4 && (
           <div className="space-y-4">
-            <h3 className="text-lg font-semibold text-[--color-tb-navy]">Niveles Académicos</h3>
+            <h3 className="text-lg font-semibold text-tb-navy">Niveles Académicos</h3>
             
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <label className="block text-sm font-medium text-[--color-tb-navy] mb-2">
+                <label className="block text-sm font-medium text-tb-navy mb-2">
                   Nivel Académico General *
                 </label>
                 <select
                   value={formData.academic_level}
                   onChange={(e) => updateFormData("academic_level", e.target.value)}
-                  className="w-full px-3 py-2 border border-[--color-tb-line] rounded-lg focus:outline-none focus:ring-2 focus:ring-[--color-tb-stitch]/60"
+                  className="w-full px-3 py-2 border border-tb-line rounded-lg focus:outline-none focus:ring-2 focus:ring-tb-stitch/60"
                   required
                 >
                   <option value="">Seleccionar nivel</option>
@@ -458,13 +458,13 @@ export default function PlayerRegistrationWizard({ onComplete, onCancel }: { onC
                 </select>
               </div>
               <div>
-                <label className="block text-sm font-medium text-[--color-tb-navy] mb-2">
+                <label className="block text-sm font-medium text-tb-navy mb-2">
                   Nivel de Inglés *
                 </label>
                 <select
                   value={formData.english_level}
                   onChange={(e) => updateFormData("english_level", e.target.value)}
-                  className="w-full px-3 py-2 border border-[--color-tb-line] rounded-lg focus:outline-none focus:ring-2 focus:ring-[--color-tb-stitch]/60"
+                  className="w-full px-3 py-2 border border-tb-line rounded-lg focus:outline-none focus:ring-2 focus:ring-tb-stitch/60"
                   required
                 >
                   <option value="">Seleccionar nivel</option>
@@ -477,13 +477,13 @@ export default function PlayerRegistrationWizard({ onComplete, onCancel }: { onC
 
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <label className="block text-sm font-medium text-[--color-tb-navy] mb-2">
+                <label className="block text-sm font-medium text-tb-navy mb-2">
                   Nivel de Español *
                 </label>
                 <select
                   value={formData.spanish_level}
                   onChange={(e) => updateFormData("spanish_level", e.target.value)}
-                  className="w-full px-3 py-2 border border-[--color-tb-line] rounded-lg focus:outline-none focus:ring-2 focus:ring-[--color-tb-stitch]/60"
+                  className="w-full px-3 py-2 border border-tb-line rounded-lg focus:outline-none focus:ring-2 focus:ring-tb-stitch/60"
                   required
                 >
                   <option value="">Seleccionar nivel</option>
@@ -493,13 +493,13 @@ export default function PlayerRegistrationWizard({ onComplete, onCancel }: { onC
                 </select>
               </div>
               <div>
-                <label className="block text-sm font-medium text-[--color-tb-navy] mb-2">
+                <label className="block text-sm font-medium text-tb-navy mb-2">
                   Nivel de Matemáticas *
                 </label>
                 <select
                   value={formData.math_level}
                   onChange={(e) => updateFormData("math_level", e.target.value)}
-                  className="w-full px-3 py-2 border border-[--color-tb-line] rounded-lg focus:outline-none focus:ring-2 focus:ring-[--color-tb-stitch]/60"
+                  className="w-full px-3 py-2 border border-tb-line rounded-lg focus:outline-none focus:ring-2 focus:ring-tb-stitch/60"
                   required
                 >
                   <option value="">Seleccionar nivel</option>
@@ -511,13 +511,13 @@ export default function PlayerRegistrationWizard({ onComplete, onCancel }: { onC
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-[--color-tb-navy] mb-2">
+              <label className="block text-sm font-medium text-tb-navy mb-2">
                 Nivel de Ciencias *
               </label>
               <select
                 value={formData.science_level}
                 onChange={(e) => updateFormData("science_level", e.target.value)}
-                className="w-full px-3 py-2 border border-[--color-tb-line] rounded-lg focus:outline-none focus:ring-2 focus:ring-[--color-tb-stitch]/60"
+                className="w-full px-3 py-2 border border-tb-line rounded-lg focus:outline-none focus:ring-2 focus:ring-tb-stitch/60"
                 required
               >
                 <option value="">Seleccionar nivel</option>
@@ -532,17 +532,17 @@ export default function PlayerRegistrationWizard({ onComplete, onCancel }: { onC
         {/* Step 5: Notes */}
         {step === 5 && (
           <div className="space-y-4">
-            <h3 className="text-lg font-semibold text-[--color-tb-navy]">Notas Adicionales</h3>
+            <h3 className="text-lg font-semibold text-tb-navy">Notas Adicionales</h3>
             
             <div>
-              <label className="block text-sm font-medium text-[--color-tb-navy] mb-2">
+              <label className="block text-sm font-medium text-tb-navy mb-2">
                 Notas
               </label>
               <textarea
                 value={formData.notes || ""}
                 onChange={(e) => updateFormData("notes", e.target.value)}
                 rows={6}
-                className="w-full px-3 py-2 border border-[--color-tb-line] rounded-lg focus:outline-none focus:ring-2 focus:ring-[--color-tb-stitch]/60"
+                className="w-full px-3 py-2 border border-tb-line rounded-lg focus:outline-none focus:ring-2 focus:ring-tb-stitch/60"
                 placeholder="Información adicional sobre el jugador..."
               />
             </div>

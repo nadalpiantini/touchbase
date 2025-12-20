@@ -52,7 +52,7 @@ export default function RoleSelection() {
   return (
     <Card className="max-w-2xl mx-auto">
       <CardHeader>
-        <CardTitle className="text-2xl font-display font-bold text-[--color-tb-navy]">
+        <CardTitle className="text-2xl font-display font-bold text-tb-navy">
           {t('title')}
         </CardTitle>
         <CardDescription>
@@ -63,7 +63,7 @@ export default function RoleSelection() {
         <form onSubmit={handleSubmit} className="space-y-6">
           {/* Role Selection */}
           <div>
-            <label className="block text-sm font-medium text-[--color-tb-navy] mb-3">
+            <label className="block text-sm font-medium text-tb-navy mb-3">
               {t('selectRole')}
             </label>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -72,23 +72,23 @@ export default function RoleSelection() {
                 onClick={() => setSelectedRole('teacher')}
                 className={`p-6 rounded-xl border-2 transition-all text-left ${
                   selectedRole === 'teacher'
-                    ? 'border-[--color-tb-red] bg-[--color-tb-red]/5'
-                    : 'border-[--color-tb-line] hover:border-[--color-tb-red]/50'
+                    ? 'border-tb-red bg-tb-red/5'
+                    : 'border-tb-line hover:border-tb-red/50'
                 }`}
               >
                 <div className="flex items-center gap-3 mb-2">
                   <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center ${
-                    selectedRole === 'teacher' ? 'border-[--color-tb-red]' : 'border-[--color-tb-shadow]'
+                    selectedRole === 'teacher' ? 'border-tb-red' : 'border-tb-shadow'
                   }`}>
                     {selectedRole === 'teacher' && (
-                      <div className="w-3 h-3 rounded-full bg-[--color-tb-red]" />
+                      <div className="w-3 h-3 rounded-full bg-tb-red" />
                     )}
                   </div>
-                  <h3 className="font-display font-semibold text-lg text-[--color-tb-navy]">
+                  <h3 className="font-display font-semibold text-lg text-tb-navy">
                     {t('roles.teacher.title')}
                   </h3>
                 </div>
-                <p className="text-sm font-sans text-[--color-tb-shadow]">
+                <p className="text-sm font-sans text-tb-shadow">
                   {t('roles.teacher.description')}
                 </p>
               </button>
@@ -98,23 +98,23 @@ export default function RoleSelection() {
                 onClick={() => setSelectedRole('student')}
                 className={`p-6 rounded-xl border-2 transition-all text-left ${
                   selectedRole === 'student'
-                    ? 'border-[--color-tb-red] bg-[--color-tb-red]/5'
-                    : 'border-[--color-tb-line] hover:border-[--color-tb-red]/50'
+                    ? 'border-tb-red bg-tb-red/5'
+                    : 'border-tb-line hover:border-tb-red/50'
                 }`}
               >
                 <div className="flex items-center gap-3 mb-2">
                   <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center ${
-                    selectedRole === 'student' ? 'border-[--color-tb-red]' : 'border-[--color-tb-shadow]'
+                    selectedRole === 'student' ? 'border-tb-red' : 'border-tb-shadow'
                   }`}>
                     {selectedRole === 'student' && (
-                      <div className="w-3 h-3 rounded-full bg-[--color-tb-red]" />
+                      <div className="w-3 h-3 rounded-full bg-tb-red" />
                     )}
                   </div>
-                  <h3 className="font-display font-semibold text-lg text-[--color-tb-navy]">
+                  <h3 className="font-display font-semibold text-lg text-tb-navy">
                     {t('roles.student.title')}
                   </h3>
                 </div>
-                <p className="text-sm font-sans text-[--color-tb-shadow]">
+                <p className="text-sm font-sans text-tb-shadow">
                   {t('roles.student.description')}
                 </p>
               </button>
@@ -123,7 +123,7 @@ export default function RoleSelection() {
 
           {/* Organization Name */}
           <div>
-            <label htmlFor="orgName" className="block text-sm font-sans font-medium text-[--color-tb-navy] mb-2">
+            <label htmlFor="orgName" className="block text-sm font-sans font-medium text-tb-navy mb-2">
               {t('orgName')}
             </label>
             <input
@@ -132,7 +132,7 @@ export default function RoleSelection() {
               value={orgName}
               onChange={(e) => setOrgName(e.target.value)}
               placeholder={t('orgNamePlaceholder')}
-              className="w-full px-4 py-2.5 rounded-xl border-2 border-[--color-tb-line] focus:border-[--color-tb-red] focus:outline-none font-sans"
+              className="w-full px-4 py-2.5 rounded-xl border-2 border-tb-line focus:border-tb-red focus:outline-none font-sans"
               required
             />
           </div>

@@ -53,13 +53,13 @@ export default function WellnessProgramForm({ onSubmit, onCancel }: WellnessProg
         required
       />
       <div>
-        <label className="block text-sm font-medium text-[--color-tb-navy] mb-2">
+        <label className="block text-sm font-medium text-tb-navy mb-2">
           Tipo de Programa *
         </label>
         <select
           value={formData.program_type}
           onChange={(e) => setFormData({ ...formData, program_type: e.target.value })}
-          className="w-full px-3 py-2 border border-[--color-tb-line] rounded-lg focus:outline-none focus:ring-2 focus:ring-[--color-tb-stitch]/60"
+          className="w-full px-3 py-2 border border-tb-line rounded-lg focus:outline-none focus:ring-2 focus:ring-tb-stitch/60"
           required
         >
           <option value="nutrition">Nutrición</option>
@@ -69,14 +69,14 @@ export default function WellnessProgramForm({ onSubmit, onCancel }: WellnessProg
         </select>
       </div>
       <div>
-        <label className="block text-sm font-medium text-[--color-tb-navy] mb-2">
+        <label className="block text-sm font-medium text-tb-navy mb-2">
           Descripción
         </label>
         <textarea
           value={formData.description}
           onChange={(e) => setFormData({ ...formData, description: e.target.value })}
           rows={3}
-          className="w-full px-3 py-2 border border-[--color-tb-line] rounded-lg focus:outline-none focus:ring-2 focus:ring-[--color-tb-stitch]/60"
+          className="w-full px-3 py-2 border border-tb-line rounded-lg focus:outline-none focus:ring-2 focus:ring-tb-stitch/60"
         />
       </div>
       <div className="grid grid-cols-2 gap-4">

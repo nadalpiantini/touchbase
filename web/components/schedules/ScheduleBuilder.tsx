@@ -120,7 +120,7 @@ export function ScheduleBuilder({ classId, onSave, onCancel }: ScheduleBuilderPr
     return (
       <Card>
         <CardContent className="py-12 text-center">
-          <p className="text-[--color-tb-shadow]">Loading schedules...</p>
+          <p className="text-tb-shadow">Loading schedules...</p>
         </CardContent>
       </Card>
     );
@@ -139,10 +139,10 @@ export function ScheduleBuilder({ classId, onSave, onCancel }: ScheduleBuilderPr
           {schedules.map((schedule, index) => (
             <div
               key={index}
-              className="p-4 border border-[--color-tb-line] rounded-lg space-y-3"
+              className="p-4 border border-tb-line rounded-lg space-y-3"
             >
               <div className="flex items-center justify-between">
-                <h4 className="font-medium text-[--color-tb-navy]">Schedule {index + 1}</h4>
+                <h4 className="font-medium text-tb-navy">Schedule {index + 1}</h4>
                 <Button
                   variant="outline"
                   size="sm"
@@ -154,13 +154,13 @@ export function ScheduleBuilder({ classId, onSave, onCancel }: ScheduleBuilderPr
 
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-medium text-[--color-tb-navy] mb-1">
+                  <label className="block text-sm font-medium text-tb-navy mb-1">
                     Day of Week
                   </label>
                   <select
                     value={schedule.day_of_week}
                     onChange={(e) => updateSchedule(index, 'day_of_week', parseInt(e.target.value))}
-                    className="w-full px-3 py-2 border border-[--color-tb-line] rounded-lg"
+                    className="w-full px-3 py-2 border border-tb-line rounded-lg"
                   >
                     {DAYS_OF_WEEK.map((day) => (
                       <option key={day.value} value={day.value}>
@@ -171,13 +171,13 @@ export function ScheduleBuilder({ classId, onSave, onCancel }: ScheduleBuilderPr
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-[--color-tb-navy] mb-1">
+                  <label className="block text-sm font-medium text-tb-navy mb-1">
                     Recurring
                   </label>
                   <select
                     value={schedule.is_recurring ? 'true' : 'false'}
                     onChange={(e) => updateSchedule(index, 'is_recurring', e.target.value === 'true')}
-                    className="w-full px-3 py-2 border border-[--color-tb-line] rounded-lg"
+                    className="w-full px-3 py-2 border border-tb-line rounded-lg"
                   >
                     <option value="true">Yes</option>
                     <option value="false">No</option>
@@ -185,52 +185,52 @@ export function ScheduleBuilder({ classId, onSave, onCancel }: ScheduleBuilderPr
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-[--color-tb-navy] mb-1">
+                  <label className="block text-sm font-medium text-tb-navy mb-1">
                     Start Time
                   </label>
                   <input
                     type="time"
                     value={schedule.start_time}
                     onChange={(e) => updateSchedule(index, 'start_time', e.target.value)}
-                    className="w-full px-3 py-2 border border-[--color-tb-line] rounded-lg"
+                    className="w-full px-3 py-2 border border-tb-line rounded-lg"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-[--color-tb-navy] mb-1">
+                  <label className="block text-sm font-medium text-tb-navy mb-1">
                     End Time
                   </label>
                   <input
                     type="time"
                     value={schedule.end_time}
                     onChange={(e) => updateSchedule(index, 'end_time', e.target.value)}
-                    className="w-full px-3 py-2 border border-[--color-tb-line] rounded-lg"
+                    className="w-full px-3 py-2 border border-tb-line rounded-lg"
                   />
                 </div>
 
                 {!schedule.is_recurring && (
                   <>
                     <div>
-                      <label className="block text-sm font-medium text-[--color-tb-navy] mb-1">
+                      <label className="block text-sm font-medium text-tb-navy mb-1">
                         Start Date
                       </label>
                       <input
                         type="date"
                         value={schedule.start_date || ''}
                         onChange={(e) => updateSchedule(index, 'start_date', e.target.value)}
-                        className="w-full px-3 py-2 border border-[--color-tb-line] rounded-lg"
+                        className="w-full px-3 py-2 border border-tb-line rounded-lg"
                       />
                     </div>
 
                     <div>
-                      <label className="block text-sm font-medium text-[--color-tb-navy] mb-1">
+                      <label className="block text-sm font-medium text-tb-navy mb-1">
                         End Date
                       </label>
                       <input
                         type="date"
                         value={schedule.end_date || ''}
                         onChange={(e) => updateSchedule(index, 'end_date', e.target.value)}
-                        className="w-full px-3 py-2 border border-[--color-tb-line] rounded-lg"
+                        className="w-full px-3 py-2 border border-tb-line rounded-lg"
                       />
                     </div>
                   </>

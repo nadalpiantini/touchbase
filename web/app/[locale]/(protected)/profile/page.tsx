@@ -159,8 +159,8 @@ export default function ProfilePage() {
     return (
       <div className="flex items-center justify-center min-h-[400px]">
         <div className="text-center">
-          <div className="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-[--color-tb-navy]"></div>
-          <p className="mt-4 text-sm font-sans text-[--color-tb-shadow]">Loading profile...</p>
+          <div className="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-tb-navy"></div>
+          <p className="mt-4 text-sm font-sans text-tb-shadow">Loading profile...</p>
         </div>
       </div>
     );
@@ -168,7 +168,7 @@ export default function ProfilePage() {
 
   return (
     <div className="max-w-2xl mx-auto">
-      <h1 className="text-3xl font-display font-bold text-[--color-tb-navy] mb-8">
+      <h1 className="text-3xl font-display font-bold text-tb-navy mb-8">
         {t('title')}
       </h1>
 
@@ -180,7 +180,7 @@ export default function ProfilePage() {
           <form onSubmit={handleSubmit} className="space-y-6">
             {/* Photo Upload */}
             <div>
-              <label className="block text-sm font-medium text-[--color-tb-navy] mb-2">
+              <label className="block text-sm font-medium text-tb-navy mb-2">
                 {t('photo')}
               </label>
               <div className="flex items-center gap-4">
@@ -204,7 +204,7 @@ export default function ProfilePage() {
                     onChange={handlePhotoChange}
                     className="text-sm"
                   />
-                  <p className="text-xs text-[--color-tb-shadow] mt-1">
+                  <p className="text-xs text-tb-shadow mt-1">
                     {t('photoHint')}
                   </p>
                 </div>
@@ -213,7 +213,7 @@ export default function ProfilePage() {
 
             {/* Full Name */}
             <div>
-              <label htmlFor="full_name" className="block text-sm font-medium text-[--color-tb-navy] mb-2">
+              <label htmlFor="full_name" className="block text-sm font-medium text-tb-navy mb-2">
                 {t('fullName')}
               </label>
               <Input
@@ -226,7 +226,7 @@ export default function ProfilePage() {
 
             {/* Email */}
             <div>
-              <label htmlFor="email" className="block text-sm font-medium text-[--color-tb-navy] mb-2">
+              <label htmlFor="email" className="block text-sm font-medium text-tb-navy mb-2">
                 {t('email')}
               </label>
               <Input
@@ -238,14 +238,14 @@ export default function ProfilePage() {
                 disabled
                 className="bg-gray-50"
               />
-              <p className="text-xs text-[--color-tb-shadow] mt-1">
+              <p className="text-xs text-tb-shadow mt-1">
                 {t('emailHint')}
               </p>
             </div>
 
             {/* Phone */}
             <div>
-              <label htmlFor="phone" className="block text-sm font-medium text-[--color-tb-navy] mb-2">
+              <label htmlFor="phone" className="block text-sm font-medium text-tb-navy mb-2">
                 {t('phone')}
               </label>
               <Input

@@ -135,11 +135,11 @@ export default function ModulePlayerPage() {
     <div className="max-w-4xl mx-auto">
       {/* Header */}
       <div className="mb-6">
-        <h1 className="text-3xl font-display font-bold text-[--color-tb-navy] mb-2">
+        <h1 className="text-3xl font-display font-bold text-tb-navy mb-2">
           {module.title}
         </h1>
         {module.description && (
-          <p className="text-[--color-tb-shadow]">{module.description}</p>
+          <p className="text-tb-shadow">{module.description}</p>
         )}
       </div>
 
@@ -152,7 +152,7 @@ export default function ModulePlayerPage() {
               showLabel
               color="primary"
             />
-            <p className="text-sm text-[--color-tb-shadow] mt-2 text-center">
+            <p className="text-sm text-tb-shadow mt-2 text-center">
               Step {currentStepIndex + 1} of {steps.length}
             </p>
           </CardContent>
@@ -169,7 +169,7 @@ export default function ModulePlayerPage() {
         <CardContent>
           {currentStep.step_type === "content" && (
             <div>
-              <p className="text-[--color-tb-navy] mb-4">
+              <p className="text-tb-navy mb-4">
                 {(currentStep.content_data as ContentStepData)?.text || "Content step"}
               </p>
               {(currentStep.content_data as ContentStepData)?.mediaUrl && (
@@ -187,7 +187,7 @@ export default function ModulePlayerPage() {
           {currentStep.step_type === "quiz" && (
             <div>
               <div className="mb-4">
-                <p className="font-semibold text-[--color-tb-navy] mb-2 text-lg">
+                <p className="font-semibold text-tb-navy mb-2 text-lg">
                   {(currentStep.content_data as QuizStepData)?.question}
                 </p>
                 {(currentStep.content_data as QuizStepData)?.quizType && (
@@ -266,7 +266,7 @@ export default function ModulePlayerPage() {
 
           {currentStep.step_type === "scenario" && (
             <div>
-              <p className="font-semibold text-[--color-tb-navy] mb-4">
+              <p className="font-semibold text-tb-navy mb-4">
                 {(currentStep.content_data as ScenarioStepData)?.prompt}
               </p>
               <div className="space-y-2">
@@ -285,7 +285,7 @@ export default function ModulePlayerPage() {
                         <div>
                           <div className="font-medium">{option.text}</div>
                           {option.consequence && (
-                            <div className="text-xs text-[--color-tb-shadow] mt-1">
+                            <div className="text-xs text-tb-shadow mt-1">
                               {option.consequence}
                             </div>
                           )}

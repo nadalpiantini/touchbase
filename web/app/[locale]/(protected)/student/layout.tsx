@@ -27,7 +27,7 @@ export default async function StudentLayout({
   ];
 
   return (
-    <div className="min-h-screen bg-[--color-tb-bone]">
+    <div className="min-h-screen bg-tb-bone">
       <ResponsiveNav
         locale={locale}
         userRole="student"

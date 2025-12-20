@@ -136,7 +136,7 @@ export function AttendanceMarking({ classId, students, date, onSave }: Attendanc
     return (
       <Card>
         <CardContent className="py-12 text-center">
-          <p className="text-[--color-tb-shadow]">Loading attendance...</p>
+          <p className="text-tb-shadow">Loading attendance...</p>
         </CardContent>
       </Card>
     );
@@ -151,7 +151,7 @@ export function AttendanceMarking({ classId, students, date, onSave }: Attendanc
             type="date"
             value={selectedDate}
             onChange={(e) => setSelectedDate(e.target.value)}
-            className="px-3 py-2 border border-[--color-tb-line] rounded-lg"
+            className="px-3 py-2 border border-tb-line rounded-lg"
           />
         </div>
       </CardHeader>
@@ -165,11 +165,11 @@ export function AttendanceMarking({ classId, students, date, onSave }: Attendanc
             return (
               <div
                 key={student.id}
-                className="flex items-center gap-4 p-3 border border-[--color-tb-line] rounded-lg"
+                className="flex items-center gap-4 p-3 border border-tb-line rounded-lg"
               >
                 <div className="flex-1">
-                  <p className="font-medium text-[--color-tb-navy]">{student.full_name}</p>
-                  <p className="text-sm text-[--color-tb-shadow]">{student.email}</p>
+                  <p className="font-medium text-tb-navy">{student.full_name}</p>
+                  <p className="text-sm text-tb-shadow">{student.email}</p>
                 </div>
 
                 <div className="flex items-center gap-2">
@@ -193,7 +193,7 @@ export function AttendanceMarking({ classId, students, date, onSave }: Attendanc
                   placeholder="Notes (optional)"
                   value={record.notes || ''}
                   onChange={(e) => updateNotes(student.id, e.target.value)}
-                  className="px-3 py-1 border border-[--color-tb-line] rounded-lg text-sm w-32"
+                  className="px-3 py-1 border border-tb-line rounded-lg text-sm w-32"
                 />
               </div>
             );

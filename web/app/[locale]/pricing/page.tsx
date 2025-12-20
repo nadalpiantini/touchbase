@@ -5,7 +5,7 @@ import { Footer } from '@/components/Footer';
 
 function CheckIcon() {
   return (
-    <svg className="w-5 h-5 text-[--color-tb-red] flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <svg className="w-5 h-5 text-tb-red flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
     </svg>
   );
@@ -13,7 +13,7 @@ function CheckIcon() {
 
 function XIcon() {
   return (
-    <svg className="w-5 h-5 text-[--color-tb-shadow]/40 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <svg className="w-5 h-5 text-tb-shadow/40 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
     </svg>
   );
@@ -152,7 +152,7 @@ export default async function PricingPage({
   return (
     <main className="min-h-screen" style={{ backgroundColor: 'var(--color-tb-bone)' }}>
       {/* Navigation - Rule of Thirds: Logo at left third, nav at right third */}
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-[--color-tb-bone]/95 backdrop-blur-sm border-b-4 border-[--color-tb-shadow]">
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-tb-bone/95 backdrop-blur-sm border-b-4 border-tb-shadow">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-3 items-center h-16 sm:h-20">
             {/* Left Third - Logo */}
@@ -172,13 +172,13 @@ export default async function PricingPage({
             <div className="flex items-center justify-end gap-3 sm:gap-6 col-span-2 lg:col-span-1">
               <Link
                 href={`/${locale}/login`}
-                className="text-[--color-tb-ink] hover:text-[--color-tb-red] font-display font-bold uppercase text-sm tracking-wide transition-colors"
+                className="text-tb-ink hover:text-tb-red font-display font-bold uppercase text-sm tracking-wide transition-colors"
               >
                 {isSpanish ? 'Iniciar Sesión' : 'Sign In'}
               </Link>
               <Link
                 href={`/${locale}/signup`}
-                className="inline-flex items-center justify-center px-4 sm:px-6 py-2 sm:py-3 bg-[--color-tb-red] text-white font-display font-bold text-sm uppercase tracking-wide border-2 border-[--color-tb-shadow] shadow-[3px_3px_0_0_rgba(62,62,62,1)] hover:shadow-[5px_5px_0_0_rgba(62,62,62,1)] hover:-translate-y-0.5 transition-all"
+                className="inline-flex items-center justify-center px-4 sm:px-6 py-2 sm:py-3 bg-tb-red text-white font-display font-bold text-sm uppercase tracking-wide border-2 border-tb-shadow shadow-[3px_3px_0_0_rgba(62,62,62,1)] hover:shadow-[5px_5px_0_0_rgba(62,62,62,1)] hover:-translate-y-0.5 transition-all"
               >
                 {isSpanish ? 'Comenzar' : 'Get Started'}
               </Link>
@@ -192,16 +192,16 @@ export default async function PricingPage({
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
             <div className="lg:col-span-2 text-left lg:text-left">
-              <h1 className="text-4xl sm:text-5xl md:text-6xl font-display font-black uppercase text-[--color-tb-ink] mb-4">
+              <h1 className="text-4xl sm:text-5xl md:text-6xl font-display font-black uppercase text-tb-ink mb-4">
                 {translations.title}
               </h1>
-              <p className="text-lg sm:text-xl text-[--color-tb-shadow] font-sans max-w-2xl">
+              <p className="text-lg sm:text-xl text-tb-shadow font-sans max-w-2xl">
                 {translations.subtitle}
               </p>
             </div>
             {/* Right Third - Decorative baseball stitching pattern */}
             <div className="hidden lg:flex items-center justify-center">
-              <div className="w-24 h-24 rounded-full bg-[--color-tb-bone] border-4 border-[--color-tb-red] shadow-dugout flex items-center justify-center">
+              <div className="w-24 h-24 rounded-full bg-tb-bone border-4 border-tb-red shadow-dugout flex items-center justify-center">
                 <span className="text-4xl">$</span>
               </div>
             </div>
@@ -216,35 +216,35 @@ export default async function PricingPage({
             {tiers.map((tier, index) => (
               <div
                 key={tier.name}
-                className={`relative bg-[--color-tb-bone] p-6 sm:p-8 border-4 ${
+                className={`relative bg-tb-bone p-6 sm:p-8 border-4 ${
                   tier.highlighted
-                    ? 'border-[--color-tb-red] shadow-[8px_8px_0_0_rgba(203,45,62,0.5)] lg:-translate-y-4'
-                    : 'border-[--color-tb-shadow] shadow-[8px_8px_0_0_rgba(62,62,62,1)]'
+                    ? 'border-tb-red shadow-[8px_8px_0_0_rgba(203,45,62,0.5)] lg:-translate-y-4'
+                    : 'border-tb-shadow shadow-[8px_8px_0_0_rgba(62,62,62,1)]'
                 } ${index === 0 ? 'lg:translate-y-6' : ''} ${index === 2 ? 'lg:translate-y-3' : ''} transition-all hover:-translate-y-1`}
               >
                 {tier.highlighted && (
                   <div className="absolute -top-4 left-1/2 -translate-x-1/2">
-                    <span className="inline-block px-4 py-1 bg-[--color-tb-red] text-[--color-tb-bone] font-display font-bold text-xs uppercase tracking-wider border-2 border-[--color-tb-shadow]">
+                    <span className="inline-block px-4 py-1 bg-tb-red text-tb-bone font-display font-bold text-xs uppercase tracking-wider border-2 border-tb-shadow">
                       {translations.popular}
                     </span>
                   </div>
                 )}
 
                 <div className="text-center mb-6">
-                  <h3 className="text-xl sm:text-2xl font-display font-bold uppercase text-[--color-tb-ink] mb-2">
+                  <h3 className="text-xl sm:text-2xl font-display font-bold uppercase text-tb-ink mb-2">
                     {tier.name}
                   </h3>
                   <div className="flex items-baseline justify-center gap-1">
-                    <span className="text-4xl sm:text-5xl font-display font-black text-[--color-tb-ink]">
+                    <span className="text-4xl sm:text-5xl font-display font-black text-tb-ink">
                       {tier.price}
                     </span>
                     {tier.period && (
-                      <span className="text-base text-[--color-tb-shadow] font-sans">
+                      <span className="text-base text-tb-shadow font-sans">
                         {tier.period}
                       </span>
                     )}
                   </div>
-                  <p className="mt-3 text-sm text-[--color-tb-shadow] font-sans">
+                  <p className="mt-3 text-sm text-tb-shadow font-sans">
                     {tier.description}
                   </p>
                 </div>
@@ -255,7 +255,7 @@ export default async function PricingPage({
                       {feature.included ? <CheckIcon /> : <XIcon />}
                       <span
                         className={`text-sm font-sans ${
-                          feature.included ? 'text-[--color-tb-ink]' : 'text-[--color-tb-shadow]/60'
+                          feature.included ? 'text-tb-ink' : 'text-tb-shadow/60'
                         }`}
                       >
                         {feature.text}
@@ -268,8 +268,8 @@ export default async function PricingPage({
                   href={tier.name === 'Enterprise' ? 'mailto:sales@touchbase.app' : `/${locale}/signup`}
                   className={`block w-full text-center py-3 sm:py-4 font-display font-bold uppercase text-sm tracking-wide border-4 transition-all ${
                     tier.highlighted
-                      ? 'bg-[--color-tb-red] text-white border-[--color-tb-shadow] shadow-[4px_4px_0_0_rgba(62,62,62,1)] hover:shadow-[6px_6px_0_0_rgba(62,62,62,1)] hover:-translate-y-0.5'
-                      : 'bg-transparent text-[--color-tb-ink] border-[--color-tb-shadow] hover:bg-[--color-tb-shadow] hover:text-[--color-tb-bone]'
+                      ? 'bg-tb-red text-white border-tb-shadow shadow-[4px_4px_0_0_rgba(62,62,62,1)] hover:shadow-[6px_6px_0_0_rgba(62,62,62,1)] hover:-translate-y-0.5'
+                      : 'bg-transparent text-tb-ink border-tb-shadow hover:bg-tb-shadow hover:text-tb-bone'
                   }`}
                 >
                   {tier.cta}
@@ -281,13 +281,13 @@ export default async function PricingPage({
       </section>
 
       {/* FAQ Section - Rule of Thirds: Title offset to right, content spans 2/3 */}
-      <section className="py-16 sm:py-24 bg-[--color-tb-navy]">
+      <section className="py-16 sm:py-24 bg-tb-navy">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Title Grid - offset to right third */}
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 mb-12">
             <div className="hidden lg:block" />
             <div className="lg:col-span-2 lg:text-right">
-              <h2 className="text-3xl sm:text-4xl font-display font-black uppercase text-[--color-tb-bone]">
+              <h2 className="text-3xl sm:text-4xl font-display font-black uppercase text-tb-bone">
                 {translations.faqTitle}
               </h2>
             </div>
@@ -298,14 +298,14 @@ export default async function PricingPage({
               {faqs.map((faq, index) => (
                 <div
                   key={index}
-                  className={`bg-[--color-tb-bone] p-6 border-4 border-[--color-tb-shadow] shadow-[4px_4px_0_0_rgba(62,62,62,1)] ${
+                  className={`bg-tb-bone p-6 border-4 border-tb-shadow shadow-[4px_4px_0_0_rgba(62,62,62,1)] ${
                     index % 2 === 0 ? 'lg:-translate-x-4' : 'lg:translate-x-4'
                   }`}
                 >
-                  <h3 className="text-lg font-display font-bold text-[--color-tb-ink] mb-2">
+                  <h3 className="text-lg font-display font-bold text-tb-ink mb-2">
                     {faq.question}
                   </h3>
-                  <p className="text-sm text-[--color-tb-shadow] font-sans leading-relaxed">
+                  <p className="text-sm text-tb-shadow font-sans leading-relaxed">
                     {faq.answer}
                   </p>
                 </div>

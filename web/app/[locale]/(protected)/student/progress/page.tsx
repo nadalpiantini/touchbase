@@ -66,7 +66,7 @@ export default function StudentProgressPage() {
 
   return (
     <div className="max-w-7xl mx-auto">
-      <h1 className="text-3xl font-display font-bold text-[--color-tb-navy] mb-8">
+      <h1 className="text-3xl font-display font-bold text-tb-navy mb-8">
         {t('title')}
       </h1>
 
@@ -77,7 +77,7 @@ export default function StudentProgressPage() {
             <CardTitle className="text-lg">{t('stats.inProgress')}</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-4xl font-bold text-[--color-tb-navy]">
+            <div className="text-4xl font-bold text-tb-navy">
               {inProgress.length}
             </div>
           </CardContent>
@@ -87,7 +87,7 @@ export default function StudentProgressPage() {
             <CardTitle className="text-lg">{t('stats.completed')}</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-4xl font-bold text-[--color-tb-red]">
+            <div className="text-4xl font-bold text-tb-red">
               {completed.length}
             </div>
           </CardContent>
@@ -97,7 +97,7 @@ export default function StudentProgressPage() {
             <CardTitle className="text-lg">{t('stats.total')}</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-4xl font-bold text-[--color-tb-navy]">
+            <div className="text-4xl font-bold text-tb-navy">
               {progress.length}
             </div>
           </CardContent>
@@ -107,7 +107,7 @@ export default function StudentProgressPage() {
       {/* In Progress */}
       {inProgress.length > 0 && (
         <div className="mb-8">
-          <h2 className="text-2xl font-semibold text-[--color-tb-navy] mb-4">
+          <h2 className="text-2xl font-semibold text-tb-navy mb-4">
             {t('sections.inProgress')}
           </h2>
           <div className="space-y-4">
@@ -115,7 +115,7 @@ export default function StudentProgressPage() {
               <Card key={prog.id}>
                 <CardContent className="pt-6">
                   <div className="flex items-center justify-between mb-2">
-                    <h3 className="font-semibold text-[--color-tb-navy]">
+                    <h3 className="font-semibold text-tb-navy">
                       Module {prog.module_id.slice(0, 8)}...
                     </h3>
                     <Badge variant="info">{prog.completion_percentage}%</Badge>
@@ -126,7 +126,7 @@ export default function StudentProgressPage() {
                     color="primary"
                   />
                   {prog.score !== null && (
-                    <div className="text-sm text-[--color-tb-shadow] mt-2">
+                    <div className="text-sm text-tb-shadow mt-2">
                       {t('score')}: {prog.score}%
                     </div>
                   )}
@@ -140,7 +140,7 @@ export default function StudentProgressPage() {
       {/* Completed */}
       {completed.length > 0 && (
         <div className="mb-8">
-          <h2 className="text-2xl font-semibold text-[--color-tb-navy] mb-4">
+          <h2 className="text-2xl font-semibold text-tb-navy mb-4">
             {t('sections.completed')}
           </h2>
           <div className="space-y-4">
@@ -148,19 +148,19 @@ export default function StudentProgressPage() {
               <Card key={prog.id}>
                 <CardContent className="pt-6">
                   <div className="flex items-center justify-between mb-2">
-                    <h3 className="font-semibold text-[--color-tb-navy]">
+                    <h3 className="font-semibold text-tb-navy">
                       Module {prog.module_id.slice(0, 8)}...
                     </h3>
                     <Badge variant="success">100%</Badge>
                   </div>
                   <ProgressBar value={100} showLabel color="primary" />
                   {prog.score !== null && (
-                    <div className="text-sm text-[--color-tb-shadow] mt-2">
+                    <div className="text-sm text-tb-shadow mt-2">
                       {t('score')}: {prog.score}%
                     </div>
                   )}
                   {prog.completed_at && (
-                    <div className="text-xs text-[--color-tb-shadow] mt-2">
+                    <div className="text-xs text-tb-shadow mt-2">
                       {t('completedOn')}: {new Date(prog.completed_at).toLocaleDateString()}
                     </div>
                   )}
@@ -174,7 +174,7 @@ export default function StudentProgressPage() {
       {/* Not Started */}
       {notStarted.length > 0 && (
         <div>
-          <h2 className="text-2xl font-semibold text-[--color-tb-navy] mb-4">
+          <h2 className="text-2xl font-semibold text-tb-navy mb-4">
             {t('sections.notStarted')}
           </h2>
           <div className="space-y-4">
@@ -182,7 +182,7 @@ export default function StudentProgressPage() {
               <Card key={prog.id}>
                 <CardContent className="pt-6">
                   <div className="flex items-center justify-between">
-                    <h3 className="font-semibold text-[--color-tb-navy]">
+                    <h3 className="font-semibold text-tb-navy">
                       Module {prog.module_id.slice(0, 8)}...
                     </h3>
                     <Badge variant="info">{t('notStarted')}</Badge>
@@ -197,7 +197,7 @@ export default function StudentProgressPage() {
       {progress.length === 0 && (
         <Card>
           <CardContent className="text-center py-12">
-            <p className="text-[--color-tb-shadow]">{t('noProgress')}</p>
+            <p className="text-tb-shadow">{t('noProgress')}</p>
           </CardContent>
         </Card>
       )}

@@ -23,7 +23,7 @@ export default async function TeacherClassesPage() {
   return (
     <div>
       <div className="flex items-center justify-between mb-6">
-        <h1 className="text-3xl font-display font-bold text-[--color-tb-navy]">
+        <h1 className="text-3xl font-display font-bold text-tb-navy">
           {t('title')}
         </h1>
         <div className="flex items-center gap-3">
@@ -39,7 +39,7 @@ export default async function TeacherClassesPage() {
       {classes.length === 0 ? (
         <Card>
           <CardContent className="py-12 text-center">
-            <p className="text-[--color-tb-shadow] mb-4">{t('noClasses')}</p>
+            <p className="text-tb-shadow mb-4">{t('noClasses')}</p>
             <Link href="/teacher/classes/create">
               <Button>{t('createFirstClass')}</Button>
             </Link>
@@ -52,18 +52,18 @@ export default async function TeacherClassesPage() {
               <CardHeader>
                 <CardTitle>{classItem.name}</CardTitle>
                 {classItem.grade_level && (
-                  <p className="text-sm text-[--color-tb-shadow]">{classItem.grade_level}</p>
+                  <p className="text-sm text-tb-shadow">{classItem.grade_level}</p>
                 )}
               </CardHeader>
               <CardContent>
                 <div className="mb-4">
-                  <p className="text-xs text-[--color-tb-shadow] mb-1">Class Code</p>
-                  <p className="font-mono font-bold text-lg text-[--color-tb-navy]">
+                  <p className="text-xs text-tb-shadow mb-1">Class Code</p>
+                  <p className="font-mono font-bold text-lg text-tb-navy">
                     {classItem.code}
                   </p>
                 </div>
                 {classItem.description && (
-                  <p className="text-sm text-[--color-tb-shadow] mb-4 line-clamp-2">
+                  <p className="text-sm text-tb-shadow mb-4 line-clamp-2">
                     {classItem.description}
                   </p>
                 )}

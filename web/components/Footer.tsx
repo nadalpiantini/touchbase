@@ -48,7 +48,7 @@ export function Footer({ locale }: FooterProps) {
   const t = translations[locale as keyof typeof translations] || translations.en;
 
   return (
-    <footer className="bg-[--color-tb-ink] text-[--color-tb-bone]">
+    <footer className="bg-tb-ink text-tb-bone">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
           {/* Brand Column */}
@@ -62,7 +62,7 @@ export function Footer({ locale }: FooterProps) {
                 className="h-10 w-auto brightness-0 invert"
               />
             </Link>
-            <p className="text-sm text-[--color-tb-bone]/70 font-sans mb-4">
+            <p className="text-sm text-tb-bone/70 font-sans mb-4">
               {t.tagline}
             </p>
             {/* Social Links */}
@@ -71,7 +71,7 @@ export function Footer({ locale }: FooterProps) {
                 href="https://twitter.com/touchbaseapp"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 flex items-center justify-center bg-[--color-tb-shadow]/30 hover:bg-[--color-tb-red] transition-colors rounded"
+                className="w-10 h-10 flex items-center justify-center bg-tb-shadow/30 hover:bg-tb-red transition-colors rounded"
                 aria-label="Twitter"
               >
                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -82,7 +82,7 @@ export function Footer({ locale }: FooterProps) {
                 href="https://linkedin.com/company/touchbaseapp"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 flex items-center justify-center bg-[--color-tb-shadow]/30 hover:bg-[--color-tb-red] transition-colors rounded"
+                className="w-10 h-10 flex items-center justify-center bg-tb-shadow/30 hover:bg-tb-red transition-colors rounded"
                 aria-label="LinkedIn"
               >
                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -93,7 +93,7 @@ export function Footer({ locale }: FooterProps) {
                 href="https://instagram.com/touchbaseapp"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 flex items-center justify-center bg-[--color-tb-shadow]/30 hover:bg-[--color-tb-red] transition-colors rounded"
+                className="w-10 h-10 flex items-center justify-center bg-tb-shadow/30 hover:bg-tb-red transition-colors rounded"
                 aria-label="Instagram"
               >
                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -105,14 +105,14 @@ export function Footer({ locale }: FooterProps) {
 
           {/* Product Column */}
           <div>
-            <h3 className="text-sm font-display font-bold uppercase tracking-wider text-[--color-tb-bone] mb-4">
+            <h3 className="text-sm font-display font-bold uppercase tracking-wider text-tb-bone mb-4">
               {t.product}
             </h3>
             <ul className="space-y-3">
               <li>
                 <Link
                   href={`/${locale}#features`}
-                  className="text-sm text-[--color-tb-bone]/70 hover:text-[--color-tb-bone] transition-colors font-sans"
+                  className="text-sm text-tb-bone/70 hover:text-tb-bone transition-colors font-sans"
                 >
                   {t.features}
                 </Link>
@@ -120,7 +120,7 @@ export function Footer({ locale }: FooterProps) {
               <li>
                 <Link
                   href={`/${locale}/pricing`}
-                  className="text-sm text-[--color-tb-bone]/70 hover:text-[--color-tb-bone] transition-colors font-sans"
+                  className="text-sm text-tb-bone/70 hover:text-tb-bone transition-colors font-sans"
                 >
                   {t.pricing}
                 </Link>
@@ -130,14 +130,14 @@ export function Footer({ locale }: FooterProps) {
 
           {/* Legal Column */}
           <div>
-            <h3 className="text-sm font-display font-bold uppercase tracking-wider text-[--color-tb-bone] mb-4">
+            <h3 className="text-sm font-display font-bold uppercase tracking-wider text-tb-bone mb-4">
               {t.legal}
             </h3>
             <ul className="space-y-3">
               <li>
                 <Link
                   href={`/${locale}/terms`}
-                  className="text-sm text-[--color-tb-bone]/70 hover:text-[--color-tb-bone] transition-colors font-sans"
+                  className="text-sm text-tb-bone/70 hover:text-tb-bone transition-colors font-sans"
                 >
                   {t.terms}
                 </Link>
@@ -145,7 +145,7 @@ export function Footer({ locale }: FooterProps) {
               <li>
                 <Link
                   href={`/${locale}/privacy`}
-                  className="text-sm text-[--color-tb-bone]/70 hover:text-[--color-tb-bone] transition-colors font-sans"
+                  className="text-sm text-tb-bone/70 hover:text-tb-bone transition-colors font-sans"
                 >
                   {t.privacy}
                 </Link>
@@ -155,14 +155,14 @@ export function Footer({ locale }: FooterProps) {
 
           {/* Support Column */}
           <div>
-            <h3 className="text-sm font-display font-bold uppercase tracking-wider text-[--color-tb-bone] mb-4">
+            <h3 className="text-sm font-display font-bold uppercase tracking-wider text-tb-bone mb-4">
               {t.support}
             </h3>
             <ul className="space-y-3">
               <li>
                 <a
                   href="mailto:support@touchbase.app"
-                  className="text-sm text-[--color-tb-bone]/70 hover:text-[--color-tb-bone] transition-colors font-sans"
+                  className="text-sm text-tb-bone/70 hover:text-tb-bone transition-colors font-sans"
                 >
                   {t.contact}
                 </a>
@@ -172,15 +172,15 @@ export function Footer({ locale }: FooterProps) {
         </div>
 
         {/* Bottom Bar */}
-        <div className="mt-12 pt-8 border-t border-[--color-tb-shadow]/30">
+        <div className="mt-12 pt-8 border-t border-tb-shadow/30">
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
-            <p className="text-sm text-[--color-tb-bone]/60 font-sans">
+            <p className="text-sm text-tb-bone/60 font-sans">
               &copy; {currentYear} TouchBase. {t.rights}
             </p>
             <div className="flex items-center gap-4">
               <Link
                 href={locale === 'es' ? '/en' : '/es'}
-                className="text-sm text-[--color-tb-bone]/60 hover:text-[--color-tb-bone] transition-colors font-sans flex items-center gap-2"
+                className="text-sm text-tb-bone/60 hover:text-tb-bone transition-colors font-sans flex items-center gap-2"
               >
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
