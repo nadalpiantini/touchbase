@@ -1207,5 +1207,51 @@
         "saveFailed": "Failed to save availability"
       }
     }
+  },
+  "classes": {
+    "title": "Classes",
+    "loading": "Loading classes...",
+    "empty": "No classes available.",
+    "error": "Error",
+    "table": {
+      "name": "Name",
+      "code": "Code",
+      "level": "Level",
+      "capacity": "Capacity",
+      "schedule": "Schedule",
+      "location": "Location",
+      "status": "Status",
+      "actions": "Actions"
+    },
+    "status": {
+      "active": "Active",
+      "inactive": "Inactive",
+      "completed": "Completed",
+      "cancelled": "Cancelled"
+    },
+    "filters": {
+      "search": "Search",
+      "searchPlaceholder": "Search by name or code...",
+      "searchButton": "Search",
+      "status": "Status",
+      "allStatuses": "All Statuses",
+      "level": "Level",
+      "allLevels": "All Levels"
+    },
+    "actions": {
+      "view": "View",
+      "edit": "Edit",
+      "delete": "Delete"
+    },
+    "resultsCount": "{count} classes found",
+    "confirmDelete": "Are you sure you want to delete {name}?",
+    "success": {
+      "deleted": "Class deleted successfully"
+    },
+    "errors": {
+      "loadFailed": "Failed to load classes",
+      "deleteFailed": "Failed to delete class",
+      "generic": "An error occurred"
+    }
   }
 }

@@ -1207,5 +1207,51 @@
         "saveFailed": "Error al guardar disponibilidad"
       }
     }
+  },
+  "classes": {
+    "title": "Clases",
+    "loading": "Cargando clases...",
+    "empty": "No hay clases disponibles.",
+    "error": "Error",
+    "table": {
+      "name": "Nombre",
+      "code": "Código",
+      "level": "Nivel",
+      "capacity": "Capacidad",
+      "schedule": "Horario",
+      "location": "Ubicación",
+      "status": "Estado",
+      "actions": "Acciones"
+    },
+    "status": {
+      "active": "Activa",
+      "inactive": "Inactiva",
+      "completed": "Completada",
+      "cancelled": "Cancelada"
+    },
+    "filters": {
+      "search": "Buscar",
+      "searchPlaceholder": "Buscar por nombre o código...",
+      "searchButton": "Buscar",
+      "status": "Estado",
+      "allStatuses": "Todos los Estados",
+      "level": "Nivel",
+      "allLevels": "Todos los Niveles"
+    },
+    "actions": {
+      "view": "Ver",
+      "edit": "Editar",
+      "delete": "Eliminar"
+    },
+    "resultsCount": "{count} clases encontradas",
+    "confirmDelete": "¿Estás seguro que deseas eliminar {name}?",
+    "success": {
+      "deleted": "Clase eliminada exitosamente"
+    },
+    "errors": {
+      "loadFailed": "Error al cargar clases",
+      "deleteFailed": "Error al eliminar clase",
+      "generic": "Ocurrió un error"
+    }
   }
 }
