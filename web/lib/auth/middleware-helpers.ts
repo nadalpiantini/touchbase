@@ -4,6 +4,7 @@
 
 import { SupabaseClient } from "@supabase/supabase-js";
 import { redirect } from "next/navigation";
+import { getLocale } from "next-intl/server";
 import { getUserDefaultRole, isTeacher, isStudent, UserRole } from "./roles";
 import { DEV_USER_ID, DEV_TEACHER_ID, DEV_STUDENT_ID, DEV_ORG_ID, isDevMode } from "@/lib/dev-helpers";
 
@@ -25,7 +26,8 @@ export async function requireAuth(supabase: SupabaseClient) {
   }
 
   if (!user) {
-    redirect("/login");
+    const locale = await getLocale();
+    redirect(`/${locale}/login`);
   }
   return user;
 }
@@ -55,14 +57,15 @@ export async function getCurrentOrgId(supabase: SupabaseClient): Promise<string 
 export async function requireRole(
   supabase: SupabaseClient,
   allowedRoles: UserRole[],
-  redirectTo: string = "/dashboard"
+  redirectTo?: string
 ) {
   const user = await requireAuth(supabase);
-  
+
   const { role } = await getUserDefaultRole(supabase, user.id);
-  
+
   if (!role || !allowedRoles.includes(role)) {
-    redirect(redirectTo);
+    const locale = await getLocale();
+    redirect(redirectTo || `/${locale}/dashboard`);
   }
 
   return { user, role };
@@ -86,7 +89,8 @@ export async function requireTeacher(supabase: SupabaseClient) {
   }
 
   if (!user) {
-    redirect("/login");
+    const locale = await getLocale();
+    redirect(`/${locale}/login`);
   }
 
   // Check role directly - owners and admins always have teacher access
@@ -94,7 +98,8 @@ export async function requireTeacher(supabase: SupabaseClient) {
   const hasTeacherAccess = role !== null && ['teacher', 'admin', 'owner', 'coach'].includes(role);
 
   if (!hasTeacherAccess) {
-    redirect("/dashboard");
+    const locale = await getLocale();
+    redirect(`/${locale}/dashboard`);
   }
 
   return user;
@@ -118,7 +123,8 @@ export async function requireStudent(supabase: SupabaseClient) {
   }
 
   if (!user) {
-    redirect("/login");
+    const locale = await getLocale();
+    redirect(`/${locale}/login`);
   }
 
   // Check role directly - owners and admins can access all areas including student view
@@ -126,7 +132,8 @@ export async function requireStudent(supabase: SupabaseClient) {
   const hasStudentAccess = role !== null && ['student', 'player', 'admin', 'owner'].includes(role);
 
   if (!hasStudentAccess) {
-    redirect("/dashboard");
+    const locale = await getLocale();
+    redirect(`/${locale}/dashboard`);
   }
 
   return user;
@@ -137,11 +144,12 @@ export async function requireStudent(supabase: SupabaseClient) {
  */
 export async function requireAdmin(supabase: SupabaseClient) {
   const user = await requireAuth(supabase);
-  
+
   const { role } = await getUserDefaultRole(supabase, user.id);
-  
+
   if (!role || !['admin', 'owner'].includes(role)) {
-    redirect("/dashboard");
+    const locale = await getLocale();
+    redirect(`/${locale}/dashboard`);
   }
 
   return user;
