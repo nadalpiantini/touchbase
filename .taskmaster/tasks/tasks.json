@@ -192,11 +192,110 @@
         "dependencies": [],
         "priority": "medium",
         "subtasks": []
+      },
+      {
+        "id": 4,
+        "title": "Refactor TeamsTable to use Table component",
+        "description": "Migrate TeamsTable.tsx from raw HTML table to use the new Table component library created in SPRINT_FRONTEND_REMEDIATION",
+        "details": "",
+        "testStrategy": "",
+        "status": "pending",
+        "dependencies": [],
+        "priority": "high",
+        "subtasks": []
+      },
+      {
+        "id": 5,
+        "title": "Refactor GamesTable to use Table component",
+        "description": "Migrate GamesTable.tsx from raw HTML table to use the new Table component library (already uses correct design tokens)",
+        "details": "",
+        "testStrategy": "",
+        "status": "pending",
+        "dependencies": [],
+        "priority": "high",
+        "subtasks": []
+      },
+      {
+        "id": 6,
+        "title": "Refactor TeachersTable to use Table component",
+        "description": "Migrate TeachersTable.tsx from raw HTML table to use the new Table component library. Also add edit/delete actions.",
+        "details": "",
+        "testStrategy": "",
+        "status": "pending",
+        "dependencies": [],
+        "priority": "high",
+        "subtasks": []
+      },
+      {
+        "id": 7,
+        "title": "Fix i18n in student/assignments page",
+        "description": "Add i18n translations throughout student/assignments/[id]/page.tsx (currently has TODO comment)",
+        "details": "",
+        "testStrategy": "",
+        "status": "pending",
+        "dependencies": [],
+        "priority": "medium",
+        "subtasks": []
+      },
+      {
+        "id": 8,
+        "title": "Fix i18n in admin/organizations page",
+        "description": "Add i18n translations throughout admin/organizations/[id]/page.tsx (currently has TODO comment)",
+        "details": "",
+        "testStrategy": "",
+        "status": "pending",
+        "dependencies": [],
+        "priority": "medium",
+        "subtasks": []
+      },
+      {
+        "id": 9,
+        "title": "Implement placement tests modal UI",
+        "description": "Create modal UI for placement test creation in dashboard/placement-tests/page.tsx (currently has TODO and useState)",
+        "details": "",
+        "testStrategy": "",
+        "status": "pending",
+        "dependencies": [],
+        "priority": "medium",
+        "subtasks": []
+      },
+      {
+        "id": 10,
+        "title": "Create Toast/Snackbar component",
+        "description": "Design and implement Toast component for success/error notifications (Priority 4 from SPRINT_FRONTEND_REMEDIATION). Replace alert() calls.",
+        "details": "",
+        "testStrategy": "",
+        "status": "pending",
+        "dependencies": [],
+        "priority": "medium",
+        "subtasks": []
+      },
+      {
+        "id": 11,
+        "title": "Create Dropdown Menu component",
+        "description": "Design and implement Dropdown Menu component for action menus in tables (Priority 4 from SPRINT_FRONTEND_REMEDIATION)",
+        "details": "",
+        "testStrategy": "",
+        "status": "pending",
+        "dependencies": [],
+        "priority": "medium",
+        "subtasks": []
+      },
+      {
+        "id": 12,
+        "title": "Create Avatar component",
+        "description": "Design and implement Avatar component for user photos (Priority 4 from SPRINT_FRONTEND_REMEDIATION, currently inline in TeachersTable)",
+        "details": "",
+        "testStrategy": "",
+        "status": "pending",
+        "dependencies": [],
+        "priority": "medium",
+        "subtasks": []
       }
     ],
     "metadata": {
       "created": "2025-12-15T17:52:29.573Z",
-      "updated": "2025-12-20T01:05:09.669Z",
+      "updated": "2025-12-20T16:24:27.234Z",
       "description": "QA Testing sistemático de todas las secciones"
     }
   }
