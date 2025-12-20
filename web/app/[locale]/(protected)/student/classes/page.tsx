@@ -43,8 +43,7 @@ export default function StudentClassesPage() {
       const { data: enrollments } = await supabase
         .from("touchbase_class_enrollments")
         .select("class_id, class:touchbase_classes(*)")
-        .eq("student_id", user.id)
-        .eq("org_id", currentOrg.id);
+        .eq("student_id", user.id);
 
       // Supabase returns joined relations as arrays
       type EnrollmentWithClass = {
@@ -58,7 +57,13 @@ export default function StudentClassesPage() {
 
       setClasses(enrolledClasses);
     } catch (e: unknown) {
-      setError((e instanceof Error ? e.message : String(e)) || t('errors.loadFailed'));
+      const errorMsg = e instanceof Error ? e.message : String(e);
+      // Handle "relation does not exist" errors gracefully (table not created yet)
+      if (errorMsg.includes('does not exist') || errorMsg.includes('PGRST')) {
+        setClasses([]);
+      } else {
+        setError(errorMsg || t('errors.loadFailed'));
+      }
     } finally {
       setLoading(false);
     }

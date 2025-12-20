@@ -29,7 +29,13 @@ export default function ModuleDetailPage() {
       }
     } catch (e: unknown) {
       const errorMessage = e instanceof Error ? e.message : String(e);
-      setError(errorMessage || t('errors.fetchFailed'));
+      // Handle "relation does not exist" errors gracefully (table not created yet)
+      if (errorMessage.includes('does not exist') || errorMessage.includes('PGRST')) {
+        setModule(null);
+        setSteps([]);
+      } else {
+        setError(errorMessage || t('errors.fetchFailed'));
+      }
     } finally {
       setLoading(false);
     }

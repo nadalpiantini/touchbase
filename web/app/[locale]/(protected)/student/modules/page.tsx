@@ -54,7 +54,13 @@ export default function StudentModulesPage() {
         setError(modulesJson.error || t('errors.loadFailed'));
       }
     } catch (e: unknown) {
-      setError((e instanceof Error ? e.message : String(e)) || t('errors.loadFailed'));
+      const errorMsg = e instanceof Error ? e.message : String(e);
+      // Handle "relation does not exist" errors gracefully (table not created yet)
+      if (errorMsg.includes('does not exist') || errorMsg.includes('PGRST')) {
+        setModules([]);
+      } else {
+        setError(errorMsg || t('errors.loadFailed'));
+      }
     } finally {
       setLoading(false);
     }

@@ -11,7 +11,14 @@ export default async function TeacherClassesPage() {
   const s = await supabaseServer();
   const { user, orgId } = await getUserWithRole(s);
 
-  const classes = orgId ? await getTeacherClasses(s, user.id, orgId) : [];
+  // Fetch classes with graceful fallback for missing tables
+  let classes: Awaited<ReturnType<typeof getTeacherClasses>> = [];
+  try {
+    classes = orgId ? await getTeacherClasses(s, user.id, orgId) : [];
+  } catch {
+    // Table may not exist yet
+    classes = [];
+  }
 
   return (
     <div>

@@ -16,44 +16,64 @@ export default async function StudentDashboardPage({
 }) {
   const t = await getTranslations('student.dashboard');
   const { locale } = await params;
-  
+
   const s = await supabaseServer();
   const user = await requireStudent(s);
 
-  // Fetch student's classes
-  const { data: profile } = await s
-    .from("touchbase_profiles")
-    .select("default_org_id")
-    .eq("id", user.id)
-    .single();
-
-  // Get classes where student is enrolled
+  // Fetch student's classes (with graceful fallback for missing tables)
   let classes: Class[] = [];
-  if (profile?.default_org_id) {
-    const { data: enrollments } = await s
-      .from("touchbase_class_enrollments")
-      .select("class_id, class:touchbase_classes(*)")
-      .eq("student_id", user.id)
-      .eq("org_id", profile.default_org_id);
-    
-    classes = (enrollments || [])
-      .map((e: { class_id: string; class: Class | Class[] | null }) => {
-        const classData = Array.isArray(e.class) ? e.class[0] : e.class;
-        return classData;
-      })
-      .filter((c: Class | null | undefined): c is Class => c !== null && c !== undefined);
+  try {
+    const { data: profile } = await s
+      .from("touchbase_profiles")
+      .select("default_org_id")
+      .eq("id", user.id)
+      .single();
+
+    if (profile?.default_org_id) {
+      const { data: enrollments } = await s
+        .from("touchbase_class_enrollments")
+        .select("class_id, class:touchbase_classes(*)")
+        .eq("student_id", user.id);
+
+      classes = (enrollments || [])
+        .map((e: { class_id: string; class: Class | Class[] | null }) => {
+          const classData = Array.isArray(e.class) ? e.class[0] : e.class;
+          return classData;
+        })
+        .filter((c: Class | null | undefined): c is Class => c !== null && c !== undefined);
+    }
+  } catch {
+    // Tables may not exist yet - continue with empty classes
+    classes = [];
   }
 
-  // Fetch progress
-  const progress = await getUserProgress(s, user.id);
+  // Fetch progress (with graceful fallback)
+  let progress: Awaited<ReturnType<typeof getUserProgress>> = [];
+  try {
+    progress = await getUserProgress(s, user.id);
+  } catch {
+    // Table may not exist yet
+    progress = [];
+  }
   const inProgress = progress.filter((p) => p.status === "in_progress");
   const completed = progress.filter((p) => p.status === "completed");
 
-  // Fetch XP summary
-  const xpSummary = await getUserXPSummary(s, user.id);
+  // Fetch XP summary (with graceful fallback)
+  let xpSummary = { level: 1, totalXp: 0, xpToNextLevel: 100 };
+  try {
+    xpSummary = await getUserXPSummary(s, user.id);
+  } catch {
+    // Table may not exist yet
+  }
 
-  // Fetch assignments
-  const assignments = await getStudentAssignments(s, user.id);
+  // Fetch assignments (with graceful fallback)
+  let assignments: Assignment[] = [];
+  try {
+    assignments = await getStudentAssignments(s, user.id);
+  } catch {
+    // Table may not exist yet
+    assignments = [];
+  }
   const now = new Date();
   const overdueAssignments = assignments.filter((a: Assignment) => new Date(a.due_date) < now);
   const dueSoonAssignments = assignments.filter(

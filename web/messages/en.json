@@ -397,8 +397,30 @@
       }
     },
     "classes": {
+      "title": "Classes",
+      "createClass": "Create Class",
+      "noClasses": "No classes yet. Create your first class to get started.",
+      "createFirstClass": "Create First Class",
+      "viewClass": "View Class",
+      "create": {
+        "title": "Create New Class",
+        "subtitle": "Set up a new class for your students",
+        "name": "Class Name",
+        "namePlaceholder": "E.g.: Life Skills - Group A",
+        "gradeLevel": "Grade Level",
+        "gradeLevelPlaceholder": "E.g.: High School, 9th grade, etc.",
+        "description": "Description",
+        "descriptionPlaceholder": "Brief description of the class",
+        "cancel": "Cancel",
+        "create": "Create Class",
+        "creating": "Creating...",
+        "errors": {
+          "createFailed": "Failed to create class"
+        }
+      },
       "detail": {
         "manageAssignments": "Manage Assignments",
+        "manageModules": "Manage Modules",
         "students": "Students",
         "noStudents": "No students enrolled yet.",
         "viewProfile": "View Profile",
@@ -577,6 +599,56 @@
     }
   },
   "student": {
+    "dashboard": {
+      "title": "My Dashboard",
+      "stats": {
+        "level": "Level",
+        "inProgress": "In Progress",
+        "completed": "Completed",
+        "modules": "modules"
+      },
+      "myClasses": "My Classes",
+      "viewClass": "View Class",
+      "continueLearning": "Continue Learning",
+      "continue": "Continue",
+      "quickActions": "Quick Actions",
+      "viewAssignments": "View Assignments",
+      "viewAssignmentsDesc": "Check your pending tasks and due dates",
+      "browseModules": "Browse Modules",
+      "browseModulesDesc": "Discover new learning modules",
+      "viewSkills": "View Skills",
+      "viewSkillsDesc": "Track your skill progress",
+      "assignmentsAlert": {
+        "overdue": "Overdue Assignments!",
+        "dueSoon": "Due Soon",
+        "overdueCount": "You have {count} overdue assignments",
+        "dueSoonCount": "You have {count} assignments due soon"
+      }
+    },
+    "assignments": {
+      "title": "My Assignments",
+      "loading": "Loading assignments...",
+      "stats": {
+        "overdue": "Overdue",
+        "dueSoon": "Due Soon",
+        "total": "Total"
+      },
+      "sections": {
+        "overdue": "Overdue",
+        "dueSoon": "Due Soon",
+        "upcoming": "Upcoming"
+      },
+      "overdue": "Overdue",
+      "dueSoon": "Due Soon",
+      "upcoming": "Upcoming",
+      "dueDate": "Due date",
+      "startModule": "Start Module",
+      "noAssignments": "You have no pending assignments.",
+      "errors": {
+        "notAuthenticated": "Not authenticated",
+        "loadFailed": "Failed to load assignments"
+      }
+    },
     "skills": {
       "title": "My Skills",
       "loading": "Loading skills...",

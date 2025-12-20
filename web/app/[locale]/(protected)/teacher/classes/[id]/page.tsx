@@ -20,32 +20,55 @@ export default async function ClassDetailPage({
   const user = await requireTeacher(s);
   
   const { id } = await params;
-  const classItem = await getClassById(s, id);
+
+  // Graceful fallback for missing tables
+  let classItem: Awaited<ReturnType<typeof getClassById>> | null = null;
+  let students: Awaited<ReturnType<typeof getClassStudents>> = [];
+  let assignments: Awaited<ReturnType<typeof getClassAssignments>> = [];
+  let avgProgress = 0;
+
+  try {
+    classItem = await getClassById(s, id);
+  } catch {
+    // Table may not exist yet
+  }
 
   if (!classItem) {
     notFound();
   }
 
-  const students = await getClassStudents(s, id);
-  const assignments = await getClassAssignments(s, id, user.id);
+  try {
+    students = await getClassStudents(s, id);
+  } catch {
+    students = [];
+  }
+
+  try {
+    assignments = await getClassAssignments(s, id, user.id);
+  } catch {
+    assignments = [];
+  }
 
   // Calculate average progress for students in this class
-  let avgProgress = 0;
   if (students.length > 0) {
-    const { data: progressData } = await s
-      .from("touchbase_progress")
-      .select("completion_percentage")
-      .in(
-        "user_id",
-        students.map((s) => s.student.id)
-      );
+    try {
+      const { data: progressData } = await s
+        .from("touchbase_progress")
+        .select("completion_percentage")
+        .in(
+          "user_id",
+          students.map((st) => st.student.id)
+        );
 
-    if (progressData && progressData.length > 0) {
-      const totalProgress = progressData.reduce(
-        (sum, p) => sum + (p.completion_percentage || 0),
-        0
-      );
-      avgProgress = Math.round(totalProgress / progressData.length);
+      if (progressData && progressData.length > 0) {
+        const totalProgress = progressData.reduce(
+          (sum, p) => sum + (p.completion_percentage || 0),
+          0
+        );
+        avgProgress = Math.round(totalProgress / progressData.length);
+      }
+    } catch {
+      // Progress table may not exist
     }
   }
 

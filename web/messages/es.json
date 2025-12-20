@@ -373,6 +373,27 @@
       }
     },
     "classes": {
+      "title": "Clases",
+      "createClass": "Crear Clase",
+      "noClasses": "Aún no hay clases. Crea tu primera clase para comenzar.",
+      "createFirstClass": "Crear Primera Clase",
+      "viewClass": "Ver Clase",
+      "create": {
+        "title": "Crear Nueva Clase",
+        "subtitle": "Configura una nueva clase para tus estudiantes",
+        "name": "Nombre de la Clase",
+        "namePlaceholder": "Ej: Habilidades para la Vida - Grupo A",
+        "gradeLevel": "Nivel/Grado",
+        "gradeLevelPlaceholder": "Ej: Preparatoria, 9° grado, etc.",
+        "description": "Descripción",
+        "descriptionPlaceholder": "Descripción breve de la clase",
+        "cancel": "Cancelar",
+        "create": "Crear Clase",
+        "creating": "Creando...",
+        "errors": {
+          "createFailed": "Error al crear la clase"
+        }
+      },
       "detail": {
         "manageAssignments": "Gestionar Asignaciones",
         "manageModules": "Gestionar Módulos",
@@ -554,6 +575,56 @@
     }
   },
   "student": {
+    "dashboard": {
+      "title": "Mi Dashboard",
+      "stats": {
+        "level": "Nivel",
+        "inProgress": "En Progreso",
+        "completed": "Completados",
+        "modules": "módulos"
+      },
+      "myClasses": "Mis Clases",
+      "viewClass": "Ver Clase",
+      "continueLearning": "Continúa Aprendiendo",
+      "continue": "Continuar",
+      "quickActions": "Acciones Rápidas",
+      "viewAssignments": "Ver Asignaciones",
+      "viewAssignmentsDesc": "Revisa tus tareas pendientes y fechas de entrega",
+      "browseModules": "Explorar Módulos",
+      "browseModulesDesc": "Descubre nuevos módulos de aprendizaje",
+      "viewSkills": "Ver Habilidades",
+      "viewSkillsDesc": "Revisa tu progreso en habilidades",
+      "assignmentsAlert": {
+        "overdue": "¡Asignaciones Vencidas!",
+        "dueSoon": "Próximas a Vencer",
+        "overdueCount": "Tienes {count} asignaciones vencidas",
+        "dueSoonCount": "Tienes {count} asignaciones próximas a vencer"
+      }
+    },
+    "assignments": {
+      "title": "Mis Asignaciones",
+      "loading": "Cargando asignaciones...",
+      "stats": {
+        "overdue": "Vencidas",
+        "dueSoon": "Próximas",
+        "total": "Total"
+      },
+      "sections": {
+        "overdue": "Vencidas",
+        "dueSoon": "Próximas a Vencer",
+        "upcoming": "Próximas"
+      },
+      "overdue": "Vencida",
+      "dueSoon": "Próxima",
+      "upcoming": "Próxima",
+      "dueDate": "Fecha de entrega",
+      "startModule": "Iniciar Módulo",
+      "noAssignments": "No tienes asignaciones pendientes.",
+      "errors": {
+        "notAuthenticated": "No autenticado",
+        "loadFailed": "Error al cargar asignaciones"
+      }
+    },
     "skills": {
       "title": "Mis Habilidades",
       "loading": "Cargando habilidades...",
@@ -619,6 +690,39 @@
       "errors": {
         "failed": "Lo siento, no pude procesar tu solicitud. Por favor intenta de nuevo."
       }
+    },
+    "modules": {
+      "title": "Módulos de Aprendizaje",
+      "loading": "Cargando módulos...",
+      "noModules": "No hay módulos disponibles.",
+      "noModulesDesc": "Los módulos serán asignados por tu profesor.",
+      "progress": "Progreso",
+      "minutes": "min",
+      "skills": "habilidades",
+      "start": "Iniciar",
+      "continue": "Continuar",
+      "review": "Revisar",
+      "errors": {
+        "loadFailed": "Error al cargar módulos"
+      }
+    },
+    "classes": {
+      "title": "Mis Clases",
+      "loading": "Cargando clases...",
+      "joinClass": "Unirse a una Clase",
+      "enterCode": "Ingresa el código de clase",
+      "join": "Unirse",
+      "joining": "Uniéndose...",
+      "myClasses": "Mis Clases",
+      "noClasses": "Aún no estás inscrito en ninguna clase.",
+      "joinHint": "Ingresa un código de clase para unirte a una clase.",
+      "viewClass": "Ver Clase",
+      "errors": {
+        "notAuthenticated": "No autenticado",
+        "loadFailed": "Error al cargar clases",
+        "invalidCode": "Código de clase inválido",
+        "joinFailed": "Error al unirse a la clase"
+      }
     }
   },
   "teacher": {
@@ -666,6 +770,131 @@
       },
       "errors": {
         "failed": "Lo siento, no pude procesar tu solicitud. Por favor intenta de nuevo."
+      }
+    },
+    "modules": {
+      "title": "Módulos",
+      "loading": "Cargando módulos...",
+      "createModule": "Crear Módulo",
+      "noModules": "Aún no has creado ningún módulo.",
+      "createFirstModule": "Crear Tu Primer Módulo",
+      "minutes": "min",
+      "errors": {
+        "fetchFailed": "Error al cargar módulos"
+      },
+      "detail": {
+        "loading": "Cargando...",
+        "notFound": "Módulo no encontrado",
+        "minutes": "min",
+        "stepsTitle": "Pasos del Módulo",
+        "addStep": "Agregar Paso",
+        "noSteps": "Este módulo aún no tiene pasos.",
+        "addFirstStep": "Agregar Primer Paso",
+        "stepTypeContent": "Contenido",
+        "stepTypeQuiz": "Quiz",
+        "stepTypeScenario": "Escenario",
+        "order": "Orden",
+        "edit": "Editar",
+        "errors": {
+          "fetchFailed": "Error al cargar módulo"
+        }
+      }
+    },
+    "classes": {
+      "title": "Mis Clases",
+      "loading": "Cargando clases...",
+      "createClass": "Crear Clase",
+      "noClasses": "Aún no has creado ninguna clase.",
+      "createFirstClass": "Crear Tu Primera Clase",
+      "viewClass": "Ver Clase",
+      "detail": {
+        "classCode": "Código de Clase",
+        "codeDescription": "Comparte este código con tus estudiantes para que se unan a la clase.",
+        "description": "Descripción",
+        "manageAssignments": "Gestionar Asignaciones",
+        "manageModules": "Gestionar Módulos",
+        "totalStudents": "Total de Estudiantes",
+        "assignments": "Asignaciones",
+        "avgProgress": "Progreso Promedio",
+        "students": "Estudiantes",
+        "noStudents": "Aún no hay estudiantes en esta clase.",
+        "shareCode": "Comparte el código de clase con tus estudiantes:"
+      },
+      "assignments": {
+        "title": "Asignaciones de la Clase",
+        "loading": "Cargando...",
+        "backToClass": "Volver a la Clase",
+        "createAssignment": "Crear Asignación",
+        "selectModule": "Seleccionar Módulo",
+        "selectModulePlaceholder": "Selecciona un módulo...",
+        "title": "Título",
+        "titlePlaceholder": "Título de la asignación",
+        "description": "Descripción",
+        "descriptionPlaceholder": "Descripción opcional",
+        "dueDate": "Fecha de Entrega",
+        "create": "Crear",
+        "creating": "Creando...",
+        "cancel": "Cancelar",
+        "assignmentsList": "Lista de Asignaciones",
+        "noAssignments": "No hay asignaciones para esta clase.",
+        "module": "Módulo",
+        "overdue": "Vencida",
+        "dueSoon": "Próxima",
+        "upcoming": "Próxima",
+        "assignedAt": "Asignada el",
+        "viewModule": "Ver Módulo",
+        "delete": "Eliminar",
+        "deleteConfirm": "¿Estás seguro de que quieres eliminar esta asignación?",
+        "errors": {
+          "notAuthenticated": "No autenticado",
+          "loadFailed": "Error al cargar asignaciones",
+          "missingFields": "Completa todos los campos requeridos",
+          "createFailed": "Error al crear asignación",
+          "deleteFailed": "Error al eliminar asignación"
+        }
+      },
+      "modules": {
+        "title": "Módulos de la Clase",
+        "loading": "Cargando...",
+        "backToClass": "Volver a la Clase",
+        "assignedModules": "Módulos Asignados",
+        "noAssignedModules": "No hay módulos asignados a esta clase.",
+        "availableModules": "Módulos Disponibles",
+        "noAvailableModules": "No hay más módulos disponibles para asignar.",
+        "minutes": "min",
+        "skills": "habilidades",
+        "viewModule": "Ver Módulo",
+        "assign": "Asignar",
+        "assigning": "Asignando...",
+        "unassign": "Desasignar",
+        "unassigning": "Desasignando...",
+        "unassignConfirm": "¿Estás seguro de que quieres desasignar este módulo?",
+        "errors": {
+          "loadFailed": "Error al cargar módulos",
+          "assignFailed": "Error al asignar módulo",
+          "unassignFailed": "Error al desasignar módulo"
+        }
+      }
+    },
+    "analytics": {
+      "title": "Analíticas",
+      "loading": "Cargando analíticas...",
+      "tabs": {
+        "classes": "Clases",
+        "modules": "Módulos"
+      },
+      "noClasses": "No hay datos de clases disponibles.",
+      "noModules": "No hay datos de módulos disponibles.",
+      "students": "Estudiantes",
+      "completionRate": "Tasa de Completado",
+      "averageScore": "Puntuación Promedio",
+      "modulesAssigned": "Módulos Asignados",
+      "modulesCompleted": "Módulos Completados",
+      "totalAssignments": "Total de Asignaciones",
+      "averageTime": "Tiempo Promedio",
+      "minutes": "min",
+      "errors": {
+        "loadFailed": "Error al cargar analíticas"
       }
     }
   },

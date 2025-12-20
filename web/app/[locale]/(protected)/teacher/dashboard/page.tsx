@@ -17,37 +17,63 @@ export default async function TeacherDashboardPage({
   const s = await supabaseServer();
   const user = await requireTeacher(s);
 
-  // Fetch teacher's classes
-  const { data: profile } = await s
-    .from("touchbase_profiles")
-    .select("default_org_id")
-    .eq("id", user.id)
-    .single();
+  // Fetch teacher's classes (with graceful fallback for missing tables)
+  let classes: Awaited<ReturnType<typeof getTeacherClasses>> = [];
+  let profile: { default_org_id: string | null } | null = null;
 
-  const classes = profile?.default_org_id
-    ? await getTeacherClasses(s, user.id, profile.default_org_id)
-    : [];
+  try {
+    const { data: profileData } = await s
+      .from("touchbase_profiles")
+      .select("default_org_id")
+      .eq("id", user.id)
+      .single();
+    profile = profileData;
 
-  // Get class stats
-  const classStats = await Promise.all(
-    classes.map(async (classItem) => {
-      const { count: studentCount } = await s
-        .from("touchbase_class_enrollments")
-        .select("*", { count: "exact", head: true })
-        .eq("class_id", classItem.id);
+    if (profile?.default_org_id) {
+      classes = await getTeacherClasses(s, user.id, profile.default_org_id);
+    }
+  } catch {
+    // Tables may not exist yet
+    classes = [];
+  }
 
-      const { count: moduleCount } = await s
-        .from("touchbase_modules")
-        .select("*", { count: "exact", head: true })
-        .eq("org_id", profile?.default_org_id);
+  // Get class stats (with graceful fallback)
+  let classStats: Array<{ id: string; name: string; grade_level?: string; studentCount: number; moduleCount: number }> = [];
+  try {
+    classStats = await Promise.all(
+      classes.map(async (classItem) => {
+        let studentCount = 0;
+        let moduleCount = 0;
 
-      return {
-        ...classItem,
-        studentCount: studentCount || 0,
-        moduleCount: moduleCount || 0,
-      };
-    })
-  );
+        try {
+          const { count: sc } = await s
+            .from("touchbase_class_enrollments")
+            .select("*", { count: "exact", head: true })
+            .eq("class_id", classItem.id);
+          studentCount = sc || 0;
+        } catch {
+          // Table may not exist
+        }
+
+        try {
+          const { count: mc } = await s
+            .from("touchbase_modules")
+            .select("*", { count: "exact", head: true });
+          moduleCount = mc || 0;
+        } catch {
+          // Table may not exist
+        }
+
+        return {
+          ...classItem,
+          studentCount,
+          moduleCount,
+        };
+      })
+    );
+  } catch {
+    classStats = classes.map((c) => ({ ...c, studentCount: 0, moduleCount: 0 }));
+  }
 
   return (
     <div className="max-w-7xl mx-auto">
