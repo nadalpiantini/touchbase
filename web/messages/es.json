@@ -1105,6 +1105,33 @@
         "employmentType": "ej., Tiempo completo, Medio tiempo, Contrato",
         "emergencyRelationship": "ej., Cónyuge, Padre/Madre, Hermano/a"
       }
+    },
+    "detail": {
+      "title": {
+        "view": "Detalles del Profesor",
+        "edit": "Editar Profesor"
+      },
+      "sections": {
+        "personal": "Información Personal",
+        "professional": "Información Profesional",
+        "employment": "Detalles de Empleo",
+        "emergency": "Contacto de Emergencia"
+      },
+      "labels": {
+        "year": "año",
+        "years": "años"
+      },
+      "deleting": "Eliminando profesor...",
+      "confirm": {
+        "delete": "¿Estás seguro de que quieres eliminar este profesor? Esta acción no se puede deshacer."
+      },
+      "success": {
+        "updated": "Profesor actualizado exitosamente",
+        "deleted": "Profesor eliminado exitosamente"
+      },
+      "errors": {
+        "deleteFailed": "Error al eliminar profesor"
+      }
     }
   }
 }
