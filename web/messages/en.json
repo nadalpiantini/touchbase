@@ -1132,6 +1132,44 @@
       "errors": {
         "deleteFailed": "Failed to delete teacher"
       }
+    },
+    "classes": {
+      "title": "Assigned Classes",
+      "loading": "Loading classes...",
+      "empty": "No classes assigned yet",
+      "labels": {
+        "grade": "Grade"
+      },
+      "roles": {
+        "primary": "Primary Teacher",
+        "assistant": "Assistant Teacher",
+        "substitute": "Substitute Teacher"
+      },
+      "actions": {
+        "add": "Add Class"
+      },
+      "modal": {
+        "title": "Assign Class",
+        "selectClass": "Select Class",
+        "chooseClass": "Choose a class...",
+        "selectRole": "Select Role",
+        "assign": "Assign",
+        "assigning": "Assigning..."
+      },
+      "confirm": {
+        "remove": "Are you sure you want to remove this class assignment?"
+      },
+      "success": {
+        "assigned": "Class assigned successfully",
+        "removed": "Class assignment removed successfully"
+      },
+      "errors": {
+        "fetchFailed": "Failed to load classes",
+        "fetchClassesFailed": "Failed to load available classes",
+        "selectClass": "Please select a class",
+        "assignFailed": "Failed to assign class",
+        "removeFailed": "Failed to remove class assignment"
+      }
     }
   }
 }

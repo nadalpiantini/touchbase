@@ -1132,6 +1132,44 @@
       "errors": {
         "deleteFailed": "Error al eliminar profesor"
       }
+    },
+    "classes": {
+      "title": "Clases Asignadas",
+      "loading": "Cargando clases...",
+      "empty": "No hay clases asignadas aún",
+      "labels": {
+        "grade": "Grado"
+      },
+      "roles": {
+        "primary": "Profesor Principal",
+        "assistant": "Profesor Asistente",
+        "substitute": "Profesor Suplente"
+      },
+      "actions": {
+        "add": "Agregar Clase"
+      },
+      "modal": {
+        "title": "Asignar Clase",
+        "selectClass": "Seleccionar Clase",
+        "chooseClass": "Elige una clase...",
+        "selectRole": "Seleccionar Rol",
+        "assign": "Asignar",
+        "assigning": "Asignando..."
+      },
+      "confirm": {
+        "remove": "¿Estás seguro de que quieres eliminar esta asignación de clase?"
+      },
+      "success": {
+        "assigned": "Clase asignada exitosamente",
+        "removed": "Asignación de clase eliminada exitosamente"
+      },
+      "errors": {
+        "fetchFailed": "Error al cargar clases",
+        "fetchClassesFailed": "Error al cargar clases disponibles",
+        "selectClass": "Por favor selecciona una clase",
+        "assignFailed": "Error al asignar clase",
+        "removeFailed": "Error al eliminar asignación de clase"
+      }
     }
   }
 }
