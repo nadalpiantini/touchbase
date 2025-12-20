@@ -112,9 +112,59 @@ Recuperar estado del proyecto después de interrupción, auditar completitud, si
 
 ---
 
+### ✅ Task 14 COMPLETADA (2024-12-20)
+
+**SPRINT 2.2**: Tenant Themes Database Schema - ✅ DONE
+
+**Archivos Creados** (3):
+- `migrations/postgres/007_tenant_themes.sql` (177 líneas)
+- `web/lib/services/themes.ts` (170 líneas)
+- `web/app/api/tenant-themes/route.ts` (211 líneas)
+
+**Database Migration (007_tenant_themes.sql)**:
+- ✅ touchbase_tenant_themes table con color palettes y branding
+- ✅ Soporte para light/dark mode color schemes
+- ✅ Hex color validation con CHECK constraints (#RRGGBB format)
+- ✅ RLS policies para tenant isolation (SELECT/INSERT/UPDATE/DELETE)
+- ✅ Updated_at trigger para automatic timestamp management
+- ✅ Comprehensive table and column comments
+
+**Service Layer (lib/services/themes.ts)**:
+- ✅ getOrgTheme() - Fetch theme by org_id
+- ✅ getThemeByDomain() - Fetch theme by custom_domain
+- ✅ createOrgTheme() - Create new theme (admin/owner only)
+- ✅ updateOrgTheme() - Update existing theme (admin/owner only)
+- ✅ deleteOrgTheme() - Delete theme (owner only)
+- ✅ tenantThemeToTheme() - Convert to ThemeProvider format
+
+**API Routes (app/api/tenant-themes/route.ts)**:
+- ✅ GET: Fetch theme for current user's organization
+- ✅ POST: Create theme (requires admin/owner role)
+- ✅ PUT: Update theme (requires admin/owner role)
+- ✅ DELETE: Delete theme and revert to defaults (requires owner role)
+- ✅ Role-based access control enforced
+- ✅ Error handling for unique constraints and permissions
+
+**Features Implementadas**:
+- ✅ Multi-tenant whitelabel branding system
+- ✅ Custom color palettes (primary, secondary, accent)
+- ✅ Custom fonts, logos, and favicons
+- ✅ Custom domain support
+- ✅ Dark mode color scheme support (dark_primary_color, dark_secondary_color, dark_accent_color)
+- ✅ Automatic tenant isolation via RLS
+- ✅ Default logo fallback if none set
+
+**Commit**: a31397f8f5 - feat(theme): implement tenant themes database schema and API
+**Push**: ✅ Successful to GitHub
+**Validaciones**: ✅ ESLint OK, TypeScript OK, Pre-commit hooks passed
+
+**Progreso**: 14/24 tasks done (58%)
+
+---
+
 ### 📝 Próximo Paso
 
-**Siguiente acción**: Task 14 - Tenant Themes Database Schema
+**Siguiente acción**: Task 15 - RBAC Middleware Implementation
 
 **Comandos sugeridos**:
 ```bash
