@@ -2,12 +2,13 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import { Card, CardContent, CardHeader, CardTitle, Button, Input } from "@/components/ui";
 import { ModuleDifficulty } from "@/lib/types/education";
 
 export default function CreateModulePage() {
   const t = useTranslations("teacher.modules.create");
+  const locale = useLocale();
   const router = useRouter();
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -53,7 +54,7 @@ export default function CreateModulePage() {
         throw new Error(json.error || t('errors.createFailed'));
       }
 
-      router.push(`/teacher/modules/${json.module.id}`);
+      router.push(`/${locale}/teacher/modules/${json.module.id}`);
     } catch (e: unknown) {
       setError(e instanceof Error ? e.message : t('errors.createFailed'));
     } finally {

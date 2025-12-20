@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import { useRouter } from "next/navigation";
 import { Card, CardContent, CardHeader, CardTitle, Badge, Button, LoadingSpinner, Alert } from "@/components/ui";
 import { supabaseClient } from "@/lib/supabase/client";
@@ -10,6 +10,7 @@ import type { Assignment } from "@/lib/services/assignments";
 
 export default function StudentAssignmentsPage() {
   const t = useTranslations("student.assignments");
+  const locale = useLocale();
   const router = useRouter();
   const [assignments, setAssignments] = useState<Assignment[]>([]);
   const [loading, setLoading] = useState(true);
@@ -140,7 +141,7 @@ export default function StudentAssignmentsPage() {
                   </div>
                   <Button
                     variant="outline"
-                    onClick={() => router.push(`/student/modules/${assignment.module_id}`)}
+                    onClick={() => router.push(`/${locale}/student/modules/${assignment.module_id}`)}
                   >
                     {t('startModule')}
                   </Button>
@@ -177,7 +178,7 @@ export default function StudentAssignmentsPage() {
                   </div>
                   <Button
                     variant="outline"
-                    onClick={() => router.push(`/student/modules/${assignment.module_id}`)}
+                    onClick={() => router.push(`/${locale}/student/modules/${assignment.module_id}`)}
                   >
                     {t('startModule')}
                   </Button>
@@ -214,7 +215,7 @@ export default function StudentAssignmentsPage() {
                   </div>
                   <Button
                     variant="outline"
-                    onClick={() => router.push(`/student/modules/${assignment.module_id}`)}
+                    onClick={() => router.push(`/${locale}/student/modules/${assignment.module_id}`)}
                   >
                     {t('startModule')}
                   </Button>

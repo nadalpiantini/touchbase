@@ -4,7 +4,6 @@ import { useState, useEffect } from "react";
 import { useTranslations } from "next-intl";
 import { Card, CardContent, CardHeader, CardTitle, ProgressBar, Badge } from "@/components/ui";
 import { getUserXPSummary } from "@/lib/services/xp";
-import { getUserStreak } from "@/lib/services/streaks";
 import { SkillCategory, xpProgressToNextLevel } from "@/lib/types/gamification";
 import { supabaseClient } from "@/lib/supabase/client";
 

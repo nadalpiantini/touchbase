@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import { supabaseBrowser } from "@/lib/supabase/client";
-import { useRouter } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import { useTranslations, useLocale } from 'next-intl';
@@ -14,8 +13,6 @@ export default function LoginPage() {
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const router = useRouter();
-
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);

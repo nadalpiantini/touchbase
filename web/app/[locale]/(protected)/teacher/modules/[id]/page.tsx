@@ -2,12 +2,13 @@
 
 import { useState, useEffect } from "react";
 import { useParams, useRouter } from "next/navigation";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import { Card, CardContent, CardHeader, CardTitle, Button, Badge } from "@/components/ui";
 import { Module, ModuleStep, StepType } from "@/lib/types/education";
 
 export default function ModuleDetailPage() {
   const t = useTranslations("teacher.modules.detail");
+  const locale = useLocale();
   const params = useParams();
   const router = useRouter();
   const moduleId = params.id as string;
@@ -47,11 +48,11 @@ export default function ModuleDetailPage() {
   }, [moduleId]);
 
   const handleAddStep = () => {
-    router.push(`/teacher/modules/${moduleId}/steps/create`);
+    router.push(`/${locale}/teacher/modules/${moduleId}/steps/create`);
   };
 
   const handleEditStep = (stepId: string) => {
-    router.push(`/teacher/modules/${moduleId}/steps/${stepId}/edit`);
+    router.push(`/${locale}/teacher/modules/${moduleId}/steps/${stepId}/edit`);
   };
 
   if (loading) {

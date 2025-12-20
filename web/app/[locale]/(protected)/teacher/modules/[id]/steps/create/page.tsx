@@ -46,7 +46,7 @@ export default function CreateStepPage() {
             : 0;
           setOrderIndex(maxOrder + 1);
         }
-      } catch (e) {
+      } catch {
         // Ignore errors, default to 1
       }
     };

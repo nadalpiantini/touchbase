@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import Link from "next/link";
 import {
   Card,
@@ -58,6 +58,7 @@ const MOCK_USAGE = {
 
 export default function BillingPage() {
   const t = useTranslations("admin.billing");
+  const locale = useLocale();
   const [showUpgradeModal, setShowUpgradeModal] = useState(false);
 
   const getStatusBadge = (status: string) => {
@@ -80,7 +81,7 @@ export default function BillingPage() {
         {/* Header */}
         <div className="mb-8">
           <div className="flex items-center gap-2 mb-2">
-            <Link href="/admin" className="text-tb-shadow hover:text-tb-navy">
+            <Link href={`/${locale}/admin`} className="text-tb-shadow hover:text-tb-navy">
               <svg
                 className="w-5 h-5"
                 fill="none"

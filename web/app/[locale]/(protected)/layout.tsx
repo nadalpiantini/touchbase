@@ -2,7 +2,6 @@ import { ReactNode } from "react";
 import { supabaseServer } from "@/lib/supabase/server";
 import { redirect } from "next/navigation";
 import { getLocale } from "next-intl/server";
-import { headers } from "next/headers";
 import { ResponsiveNav } from "@/components/navigation/ResponsiveNav";
 import SignOutButton from "@/components/navigation/SignOutButton";
 

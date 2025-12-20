@@ -61,7 +61,7 @@ export default function ModulePlayerPage() {
           setProgress(startJson.progress);
         }
       }
-    } catch (err: unknown) {
+    } catch {
       // Error handled by UI state
     } finally {
       setLoading(false);

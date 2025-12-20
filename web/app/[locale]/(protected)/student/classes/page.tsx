@@ -1,15 +1,16 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import { useRouter } from "next/navigation";
-import { Card, CardContent, CardHeader, CardTitle, Button, Badge, Input, LoadingSpinner, Alert } from "@/components/ui";
+import { Card, CardContent, CardHeader, CardTitle, Button, Input, LoadingSpinner, Alert } from "@/components/ui";
 import { Class } from "@/lib/types/education";
 import { supabaseClient } from "@/lib/supabase/client";
 import { useCurrentOrg } from "@/lib/hooks/useCurrentOrg";
 
 export default function StudentClassesPage() {
   const t = useTranslations("student.classes");
+  const locale = useLocale();
   const router = useRouter();
   const { currentOrg } = useCurrentOrg();
   const [classes, setClasses] = useState<Class[]>([]);
@@ -169,7 +170,7 @@ export default function StudentClassesPage() {
                   <Button
                     variant="outline"
                     className="w-full"
-                    onClick={() => router.push(`/student/classes/${classItem.id}`)}
+                    onClick={() => router.push(`/${locale}/student/classes/${classItem.id}`)}
                   >
                     {t('viewClass')}
                   </Button>

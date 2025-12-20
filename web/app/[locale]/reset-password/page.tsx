@@ -32,7 +32,7 @@ export default function ResetPasswordPage() {
 
     // Listen for auth state changes (for when user clicks the reset link)
     const supabase = supabaseBrowser();
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((event) => {
       if (event === 'PASSWORD_RECOVERY') {
         setSessionReady(true);
         setSessionError(false);

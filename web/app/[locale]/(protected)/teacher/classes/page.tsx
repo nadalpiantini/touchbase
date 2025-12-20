@@ -1,4 +1,4 @@
-import { getTranslations } from 'next-intl/server';
+import { getTranslations, getLocale } from 'next-intl/server';
 import { supabaseServer } from '@/lib/supabase/server';
 import { getTeacherClasses } from '@/lib/services/classes';
 import { getUserWithRole } from '@/lib/auth/middleware-helpers';
@@ -8,6 +8,7 @@ import Link from 'next/link';
 
 export default async function TeacherClassesPage() {
   const t = await getTranslations('teacher.classes');
+  const locale = await getLocale();
   const s = await supabaseServer();
   const { user, orgId } = await getUserWithRole(s);
 
@@ -28,7 +29,7 @@ export default async function TeacherClassesPage() {
         </h1>
         <div className="flex items-center gap-3">
           {classes.length > 0 && <CSVExportButton type="classes" />}
-          <Link href="/teacher/classes/create">
+          <Link href={`/${locale}/teacher/classes/create`}>
             <Button>
               {t('createClass')}
             </Button>
@@ -40,7 +41,7 @@ export default async function TeacherClassesPage() {
         <Card>
           <CardContent className="py-12 text-center">
             <p className="text-tb-shadow mb-4">{t('noClasses')}</p>
-            <Link href="/teacher/classes/create">
+            <Link href={`/${locale}/teacher/classes/create`}>
               <Button>{t('createFirstClass')}</Button>
             </Link>
           </CardContent>
@@ -67,7 +68,7 @@ export default async function TeacherClassesPage() {
                     {classItem.description}
                   </p>
                 )}
-                <Link href={`/teacher/classes/${classItem.id}`}>
+                <Link href={`/${locale}/teacher/classes/${classItem.id}`}>
                   <Button variant="outline" size="sm" className="w-full">
                     {t('viewClass')}
                   </Button>

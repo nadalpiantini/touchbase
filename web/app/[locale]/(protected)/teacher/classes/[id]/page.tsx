@@ -7,7 +7,6 @@ import { notFound } from 'next/navigation';
 import { Card, CardContent, CardHeader, CardTitle, Badge, Button } from '@/components/ui';
 import { CopyCodeButton } from '@/components/teacher/CopyCodeButton';
 import { AttendanceMarking } from '@/components/attendance/AttendanceMarking';
-import { ScheduleBuilder } from '@/components/schedules/ScheduleBuilder';
 import Link from 'next/link';
 
 export default async function ClassDetailPage({

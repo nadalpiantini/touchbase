@@ -2,11 +2,12 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription, Button, Input } from '@/components/ui';
 
 export default function CreateClassPage() {
   const t = useTranslations('teacher.classes.create');
+  const locale = useLocale();
   const router = useRouter();
   const [name, setName] = useState("");
   const [gradeLevel, setGradeLevel] = useState("");
@@ -29,7 +30,7 @@ export default function CreateClassPage() {
       const json = await res.json();
       if (!res.ok) throw new Error(json?.error || "Failed to create class");
 
-      router.push(`/teacher/classes/${json.class.id}`);
+      router.push(`/${locale}/teacher/classes/${json.class.id}`);
     } catch (e: unknown) {
       setError(e instanceof Error ? e.message : "Error creating class");
     } finally {

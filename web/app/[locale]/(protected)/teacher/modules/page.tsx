@@ -2,12 +2,13 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import { Card, CardContent, CardHeader, CardTitle, Button, Badge, LoadingSpinner, Alert } from "@/components/ui";
 import { Module, ModuleDifficulty } from "@/lib/types/education";
 
 export default function TeacherModulesPage() {
   const t = useTranslations("teacher.modules");
+  const locale = useLocale();
   const [modules, setModules] = useState<Module[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -68,7 +69,7 @@ export default function TeacherModulesPage() {
         <h1 className="text-3xl font-display font-bold text-tb-navy">
           {t('title')}
         </h1>
-        <Link href="/teacher/modules/create">
+        <Link href={`/${locale}/teacher/modules/create`}>
           <Button>{t('createModule')}</Button>
         </Link>
       </div>
@@ -77,7 +78,7 @@ export default function TeacherModulesPage() {
         <Card>
           <CardContent className="text-center py-12">
             <p className="text-tb-shadow mb-4">{t('noModules')}</p>
-            <Link href="/teacher/modules/create">
+            <Link href={`/${locale}/teacher/modules/create`}>
               <Button variant="secondary">{t('createFirstModule')}</Button>
             </Link>
           </CardContent>
@@ -85,7 +86,7 @@ export default function TeacherModulesPage() {
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {modules.map((module) => (
-            <Link key={module.id} href={`/teacher/modules/${module.id}`}>
+            <Link key={module.id} href={`/${locale}/teacher/modules/${module.id}`}>
               <Card className="hover:shadow-lg transition-shadow cursor-pointer h-full">
                 <CardHeader>
                   <div className="flex items-start justify-between">

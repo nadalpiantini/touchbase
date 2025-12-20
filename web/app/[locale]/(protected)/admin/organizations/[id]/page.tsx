@@ -34,7 +34,7 @@ type OrgDetails = {
 };
 
 export default function OrganizationDetailPage() {
-  const t = useTranslations("admin.organizations");
+  const _t = useTranslations("admin.organizations"); // TODO: Add i18n throughout page
   const locale = useLocale();
   const params = useParams();
   const orgId = params.id as string;

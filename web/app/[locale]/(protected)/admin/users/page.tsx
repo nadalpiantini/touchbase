@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import Link from "next/link";
 import {
   Card,
@@ -26,6 +26,7 @@ type User = {
 
 export default function UsersPage() {
   const t = useTranslations("admin.users");
+  const locale = useLocale();
   const [users, setUsers] = useState<User[]>([]);
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState("");
@@ -163,7 +164,7 @@ export default function UsersPage() {
         <div className="flex justify-between items-center mb-8">
           <div>
             <div className="flex items-center gap-2 mb-2">
-              <Link href="/admin" className="text-tb-shadow hover:text-tb-navy">
+              <Link href={`/${locale}/admin`} className="text-tb-shadow hover:text-tb-navy">
                 <svg
                   className="w-5 h-5"
                   fill="none"

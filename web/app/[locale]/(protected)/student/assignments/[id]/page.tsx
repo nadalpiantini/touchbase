@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { useParams, useRouter } from "next/navigation";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import Link from "next/link";
 import {
   Card,
@@ -38,7 +38,8 @@ type Submission = {
 };
 
 export default function AssignmentDetailPage() {
-  const t = useTranslations("student.assignments");
+  const _t = useTranslations("student.assignments"); // TODO: Add i18n throughout page
+  const locale = useLocale();
   const params = useParams();
   const router = useRouter();
   const assignmentId = params.id as string;
@@ -215,7 +216,7 @@ Submit your completed budget spreadsheet or document along with your reflection.
         <div className="mb-8">
           <div className="flex items-center gap-2 mb-4">
             <Link
-              href="/student/assignments"
+              href={`/${locale}/student/assignments`}
               className="text-tb-shadow hover:text-tb-navy"
             >
               <svg

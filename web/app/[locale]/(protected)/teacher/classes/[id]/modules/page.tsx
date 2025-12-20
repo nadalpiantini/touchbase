@@ -2,14 +2,14 @@
 
 import { useState, useEffect } from "react";
 import { useParams, useRouter } from "next/navigation";
-import { useTranslations } from "next-intl";
-import { Card, CardContent, CardHeader, CardTitle, Button, Badge } from "@/components/ui";
+import { useTranslations, useLocale } from "next-intl";
+import { Card, CardContent, Button, Badge } from "@/components/ui";
 import { Module } from "@/lib/types/education";
-import { supabaseClient } from "@/lib/supabase/client";
 import { useCurrentOrg } from "@/lib/hooks/useCurrentOrg";
 
 export default function TeacherClassModulesPage() {
   const t = useTranslations("teacher.classes.modules");
+  const locale = useLocale();
   const params = useParams();
   const router = useRouter();
   const classId = params.id as string;
@@ -113,7 +113,7 @@ export default function TeacherClassModulesPage() {
   return (
     <div className="max-w-7xl mx-auto">
       <div className="mb-6">
-        <Button variant="outline" onClick={() => router.push(`/teacher/classes/${classId}`)} className="mb-4">
+        <Button variant="outline" onClick={() => router.push(`/${locale}/teacher/classes/${classId}`)} className="mb-4">
           {t('backToClass')}
         </Button>
         <h1 className="text-3xl font-display font-bold text-tb-navy mb-2">
@@ -168,7 +168,7 @@ export default function TeacherClassModulesPage() {
                     <div className="flex gap-2 ml-4">
                       <Button
                         variant="outline"
-                        onClick={() => router.push(`/teacher/modules/${module.id}`)}
+                        onClick={() => router.push(`/${locale}/teacher/modules/${module.id}`)}
                       >
                         {t('viewModule')}
                       </Button>
@@ -230,7 +230,7 @@ export default function TeacherClassModulesPage() {
                     <div className="flex gap-2 ml-4">
                       <Button
                         variant="outline"
-                        onClick={() => router.push(`/teacher/modules/${module.id}`)}
+                        onClick={() => router.push(`/${locale}/teacher/modules/${module.id}`)}
                       >
                         {t('viewModule')}
                       </Button>

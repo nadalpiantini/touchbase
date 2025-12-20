@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import { useRouter } from "next/navigation";
 import { Card, CardContent, CardHeader, CardTitle, Badge, Button, ProgressBar, LoadingSpinner, Alert } from "@/components/ui";
 import { Module } from "@/lib/types/education";
@@ -9,6 +9,7 @@ import { useCurrentOrg } from "@/lib/hooks/useCurrentOrg";
 
 export default function StudentModulesPage() {
   const t = useTranslations("student.modules");
+  const locale = useLocale();
   const router = useRouter();
   const { currentOrg } = useCurrentOrg();
   const [modules, setModules] = useState<Module[]>([]);
@@ -144,7 +145,7 @@ export default function StudentModulesPage() {
                     )}
                   </div>
                   <Button
-                    onClick={() => router.push(`/student/modules/${module.id}`)}
+                    onClick={() => router.push(`/${locale}/student/modules/${module.id}`)}
                     className="w-full"
                     variant={isCompleted ? "outline" : "primary"}
                   >

@@ -5,7 +5,6 @@ import { useTranslations } from "next-intl";
 import { Card, CardContent, CardHeader, CardTitle, Badge, LoadingSpinner, Alert } from "@/components/ui";
 import { UserBadge } from "@/lib/types/badge";
 import { useCurrentOrg } from "@/lib/hooks/useCurrentOrg";
-import { supabaseClient } from "@/lib/supabase/client";
 
 export default function StudentBadgesPage() {
   const t = useTranslations("student.badges");

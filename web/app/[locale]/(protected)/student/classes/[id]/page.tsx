@@ -2,13 +2,13 @@
 
 import { useState, useEffect } from "react";
 import { useParams, useRouter } from "next/navigation";
-import { useTranslations } from "next-intl";
-import { Card, CardContent, CardHeader, CardTitle, Button, Badge, ProgressBar, LoadingSpinner, Alert } from "@/components/ui";
+import { useTranslations, useLocale } from "next-intl";
+import { Card, CardContent, Button, Badge, ProgressBar, LoadingSpinner, Alert } from "@/components/ui";
 import { Class, Module } from "@/lib/types/education";
-import { supabaseClient } from "@/lib/supabase/client";
 
 export default function StudentClassDetailPage() {
   const t = useTranslations("student.classes");
+  const locale = useLocale();
   const params = useParams();
   const router = useRouter();
   const classId = params.id as string;
@@ -80,7 +80,7 @@ export default function StudentClassDetailPage() {
           {error || t('errors.notFound')}
         </Alert>
         <div className="mt-4 text-center">
-          <Button onClick={() => router.push("/student/classes")}>
+          <Button onClick={() => router.push(`/${locale}/student/classes`)}>
             {t('backToClasses')}
           </Button>
         </div>
@@ -91,7 +91,7 @@ export default function StudentClassDetailPage() {
   return (
     <div className="max-w-7xl mx-auto">
       <div className="mb-6">
-        <Button variant="outline" onClick={() => router.push("/student/classes")} className="mb-4">
+        <Button variant="outline" onClick={() => router.push(`/${locale}/student/classes`)} className="mb-4">
           {t('backToClasses')}
         </Button>
         <h1 className="text-3xl font-display font-bold text-tb-navy mb-2">
@@ -147,7 +147,7 @@ export default function StudentClassDetailPage() {
                       </div>
                     )}
                     <Button
-                      onClick={() => router.push(`/student/modules/${module.id}`)}
+                      onClick={() => router.push(`/${locale}/student/modules/${module.id}`)}
                       variant={isCompleted ? "outline" : "primary"}
                       className="w-full"
                     >

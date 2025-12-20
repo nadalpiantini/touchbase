@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { useParams } from "next/navigation";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import Link from "next/link";
 import {
   Card,
@@ -40,6 +40,7 @@ type Submission = {
 
 export default function AssignmentSubmissionsPage() {
   const t = useTranslations("teacher.assignments");
+  const locale = useLocale();
   const params = useParams();
   const assignmentId = params.id as string;
 
@@ -302,7 +303,7 @@ I'm saving for a car and this exercise showed me I can reach my goal in 18 month
         <div className="mb-8">
           <div className="flex items-center gap-2 mb-4">
             <Link
-              href="/teacher/assignments"
+              href={`/${locale}/teacher/assignments`}
               className="text-tb-shadow hover:text-tb-navy"
             >
               <svg

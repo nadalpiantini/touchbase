@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Card, CardContent, CardHeader, CardTitle, Button, Badge, LoadingSpinner, Alert } from "@/components/ui";
+import { Card, CardContent, CardHeader, CardTitle, Button, Badge, LoadingSpinner } from "@/components/ui";
 
 type PlacementTest = {
   id: string;
@@ -30,7 +30,8 @@ export default function PlacementTestsPage() {
   const [tests, setTests] = useState<PlacementTest[]>([]);
   const [results, setResults] = useState<TestResult[]>([]);
   const [loading, setLoading] = useState(true);
-  const [showCreateTest, setShowCreateTest] = useState(false);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [showCreateTest, setShowCreateTest] = useState(false); // TODO: Implement create test modal UI
 
   useEffect(() => {
     loadData();
@@ -47,7 +48,7 @@ export default function PlacementTestsPage() {
 
       setTests(json.tests || []);
       setResults(json.results || []);
-    } catch (error) {
+    } catch {
       // Error handled by UI state
     } finally {
       setLoading(false);
