@@ -1,6 +1,6 @@
 import { getTranslations, getLocale } from 'next-intl/server';
 import { supabaseServer } from '@/lib/supabase/server';
-import { getTeacherClasses } from '@/lib/services/classes';
+import { getClasses } from '@/lib/services/classes';
 import { getUserWithRole } from '@/lib/auth/middleware-helpers';
 import { Card, CardContent, CardHeader, CardTitle, Button } from '@/components/ui';
 import { CSVExportButton } from '@/components/export/CSVExportButton';
@@ -13,9 +13,9 @@ export default async function TeacherClassesPage() {
   const { user, orgId } = await getUserWithRole(s);
 
   // Fetch classes with graceful fallback for missing tables
-  let classes: Awaited<ReturnType<typeof getTeacherClasses>> = [];
+  let classes: Awaited<ReturnType<typeof getClasses>> = [];
   try {
-    classes = orgId ? await getTeacherClasses(s, user.id, orgId) : [];
+    classes = orgId ? await getClasses(s, user.id, orgId) : [];
   } catch {
     // Table may not exist yet
     classes = [];

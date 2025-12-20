@@ -1,6 +1,6 @@
 import { getTranslations } from 'next-intl/server';
 import { supabaseServer } from '@/lib/supabase/server';
-import { getClassById, getClassStudents } from '@/lib/services/classes';
+import { getClass, getClassEnrollments } from '@/lib/services/classes';
 import { getClassAssignments } from '@/lib/services/assignments';
 import { requireTeacher } from '@/lib/auth/middleware-helpers';
 import { notFound } from 'next/navigation';
@@ -21,13 +21,13 @@ export default async function ClassDetailPage({
   const { id } = await params;
 
   // Graceful fallback for missing tables
-  let classItem: Awaited<ReturnType<typeof getClassById>> | null = null;
-  let students: Awaited<ReturnType<typeof getClassStudents>> = [];
+  let classItem: Awaited<ReturnType<typeof getClass>> | null = null;
+  let students: Awaited<ReturnType<typeof getClassEnrollments>> = [];
   let assignments: Awaited<ReturnType<typeof getClassAssignments>> = [];
   let avgProgress = 0;
 
   try {
-    classItem = await getClassById(s, id);
+    classItem = await getClass(s, id);
   } catch {
     // Table may not exist yet
   }
@@ -37,7 +37,7 @@ export default async function ClassDetailPage({
   }
 
   try {
-    students = await getClassStudents(s, id);
+    students = await getClassEnrollments(s, id);
   } catch {
     students = [];
   }
@@ -56,7 +56,7 @@ export default async function ClassDetailPage({
         .select("completion_percentage")
         .in(
           "user_id",
-          students.map((st) => st.student.id)
+          students.map((st) => st.student_id)
         );
 
       if (progressData && progressData.length > 0) {
@@ -77,8 +77,8 @@ export default async function ClassDetailPage({
         <h1 className="text-3xl font-display font-bold text-tb-navy mb-2">
           {classItem.name}
         </h1>
-        {classItem.grade_level && (
-          <p className="text-tb-shadow">{classItem.grade_level}</p>
+        {classItem.level && (
+          <p className="text-tb-shadow">{classItem.level}</p>
         )}
       </div>
 
@@ -92,7 +92,7 @@ export default async function ClassDetailPage({
             <p className="font-mono font-bold text-2xl text-tb-navy">
               {classItem.code}
             </p>
-            <CopyCodeButton code={classItem.code} />
+            {classItem.code && <CopyCodeButton code={classItem.code} />}
           </div>
           <p className="text-sm text-tb-shadow mt-2">
             {t('codeDescription')}

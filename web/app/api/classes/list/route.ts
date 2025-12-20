@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { supabaseServer } from "@/lib/supabase/server";
-import { getTeacherClasses } from "@/lib/services/classes";
+import { getClasses } from "@/lib/services/classes";
 import { getUserWithRole } from "@/lib/auth/middleware-helpers";
 
 export async function GET() {
@@ -10,7 +10,7 @@ export async function GET() {
 
     if (isTeacher && orgId) {
       // Get teacher's classes
-      const classes = await getTeacherClasses(s, user.id, orgId);
+      const classes = await getClasses(s, user.id, orgId);
       return NextResponse.json({ classes });
     }
 

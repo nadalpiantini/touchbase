@@ -142,7 +142,7 @@ export function withRBAC<T = unknown>(
   ) => Promise<NextResponse>,
   config: RBACConfig
 ) {
-  return async (request: NextRequest, context?: { params?: T }): Promise<NextResponse> => {
+  return async (request: NextRequest, context?: { params?: Promise<T> | T }): Promise<NextResponse> => {
     // Import supabaseServer dynamically to avoid circular dependencies
     const { supabaseServer } = await import("@/lib/supabase/server");
     const supabase = await supabaseServer();
@@ -154,11 +154,16 @@ export function withRBAC<T = unknown>(
       return authResult;
     }
 
+    // Resolve params if it's a Promise (Next.js 15+ async params)
+    const resolvedParams = context?.params instanceof Promise 
+      ? await context.params 
+      : context?.params;
+
     // Authorization succeeded, call handler with org and role info
     return handler(request, {
       orgId: authResult.orgId,
       role: authResult.role,
-      params: context?.params
+      params: resolvedParams
     });
   };
 }

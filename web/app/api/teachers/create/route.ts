@@ -1,86 +1,47 @@
 import { NextResponse } from "next/server";
+import type { NextRequest } from "next/server";
+import { withRBAC } from "@/lib/rbac/middleware";
 import { supabaseServer } from "@/lib/supabase/server";
 
-export async function POST(req: Request) {
-  const s = await supabaseServer();
-  const { data: { user } } = await s.auth.getUser();
-  
-  if (!user) {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-  }
+/**
+ * Create a new teacher (admin-only endpoint)
+ * RBAC: Only owners and admins can create teachers
+ */
+export const POST = withRBAC(
+  async (request: NextRequest, { orgId, role }) => {
+    const s = await supabaseServer();
+    const body = await request.json().catch(() => ({}));
+    
+    // Validate input with Zod schema
+    const validation = createTeacherSchema.safeParse(body);
+    
+    if (!validation.success) {
+      return NextResponse.json({ 
+        error: "Validation failed", 
+        details: validation.error.issues 
+      }, { status: 400 });
+    }
+    
+    const data = validation.data;
 
-  const data = await req.json().catch(() => ({}));
-  const {
-    full_name,
-    photo_url,
-    phone,
-    email,
-    birthdate,
-    nationality,
-    address,
-    employment_type,
-    hire_date,
-    salary,
-    department,
-    degree,
-    field_of_study,
-    institution,
-    graduation_year,
-    teaching_subjects,
-    experience_years,
-    certifications,
-    licenses,
-    notes,
-  } = data;
-  
-  if (!full_name || typeof full_name !== "string" || full_name.trim().length < 2) {
-    return NextResponse.json({ error: "Nombre de profesor inválido" }, { status: 400 });
-  }
+    // Prepare payload (orgId comes from RBAC middleware, data validated by Zod)
+    const payload = { 
+      org_id: orgId,  // From RBAC middleware
+      ...data  // Spread validated data (Zod ensures type safety)
+    };
 
-  // Obtener org actual
-  const { data: cur } = await s.rpc("touchbase_current_org");
-  const current = cur?.[0];
-  
-  if (!current?.org_id) {
-    return NextResponse.json({ error: "No default org" }, { status: 400 });
-  }
+    const { data: result, error } = await s
+      .from("touchbase_teachers")
+      .insert(payload)
+      .select("id")
+      .maybeSingle();
 
-  // Preparar payload completo
-  const payload: any = { 
-    org_id: current.org_id, 
-    full_name: full_name.trim(),
-  };
-  
-  if (photo_url) payload.photo_url = photo_url;
-  if (phone) payload.phone = phone;
-  if (email) payload.email = email;
-  if (birthdate) payload.birthdate = birthdate;
-  if (nationality) payload.nationality = nationality;
-  if (address) payload.address = address;
-  if (employment_type) payload.employment_type = employment_type;
-  if (hire_date) payload.hire_date = hire_date;
-  if (salary) payload.salary = salary;
-  if (department) payload.department = department;
-  if (degree) payload.degree = degree;
-  if (field_of_study) payload.field_of_study = field_of_study;
-  if (institution) payload.institution = institution;
-  if (graduation_year) payload.graduation_year = graduation_year;
-  if (teaching_subjects && Array.isArray(teaching_subjects)) payload.teaching_subjects = teaching_subjects;
-  if (experience_years) payload.experience_years = experience_years;
-  if (certifications && Array.isArray(certifications)) payload.certifications = certifications;
-  if (licenses && Array.isArray(licenses)) payload.licenses = licenses;
-  if (notes) payload.notes = notes;
+    if (error) {
+      return NextResponse.json({ error: error.message }, { status: 400 });
+    }
 
-  const { data: result, error } = await s
-    .from("touchbase_teachers")
-    .insert(payload)
-    .select("id")
-    .maybeSingle();
-
-  if (error) {
-    return NextResponse.json({ error: error.message }, { status: 400 });
-  }
-
-  return NextResponse.json({ ok: true, id: result?.id });
-}
+    return NextResponse.json({ ok: true, id: result?.id });
+  },
+  { allowedRoles: ['owner', 'admin'] }  // RBAC: Only admin roles
+);
 

@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { supabaseServer } from "@/lib/supabase/server";
-import { getClassByCode, enrollStudentInClass } from "@/lib/services/classes";
+import { getClassByCode, enrollStudent } from "@/lib/services/classes";
 import { requireStudent } from "@/lib/auth/middleware-helpers";
 
 export async function POST(req: Request) {
@@ -34,7 +34,10 @@ export async function POST(req: Request) {
     }
 
     // Enroll student
-    const enrollment = await enrollStudentInClass(s, classItem.id, user.id);
+    const enrollment = await enrollStudent(s, { 
+      class_id: classItem.id, 
+      student_id: user.id 
+    });
 
     return NextResponse.json({ 
       success: true, 

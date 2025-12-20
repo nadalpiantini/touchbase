@@ -1,7 +1,7 @@
 import { getTranslations } from 'next-intl/server';
 import { supabaseServer } from '@/lib/supabase/server';
 import { requireTeacher } from '@/lib/auth/middleware-helpers';
-import { getTeacherClasses } from '@/lib/services/classes';
+import { getClasses } from '@/lib/services/classes';
 import { Card, CardContent, CardHeader, CardTitle, Button, Badge } from '@/components/ui';
 import Link from 'next/link';
 import AIAssistant from '@/components/teacher/AIAssistant';
@@ -18,7 +18,7 @@ export default async function TeacherDashboardPage({
   const user = await requireTeacher(s);
 
   // Fetch teacher's classes (with graceful fallback for missing tables)
-  let classes: Awaited<ReturnType<typeof getTeacherClasses>> = [];
+  let classes: Awaited<ReturnType<typeof getClasses>> = [];
   let profile: { default_org_id: string | null } | null = null;
 
   try {
@@ -30,7 +30,7 @@ export default async function TeacherDashboardPage({
     profile = profileData;
 
     if (profile?.default_org_id) {
-      classes = await getTeacherClasses(s, user.id, profile.default_org_id);
+      classes = await getClasses(s, user.id, profile.default_org_id);
     }
   } catch {
     // Tables may not exist yet

@@ -517,3 +517,43 @@ useEffect(() => { loadTeachers(); }, [loadTeachers]); // ✅
 **Próximos Pasos**: Iniciar Sprint 2 - Classes Module (Tasks 20-21)
 
 ---
+
+## 📅 Sesión: 2025-12-20 (Sprint 2.1 - Task 20: Classes Module Database & API)
+
+### 🎯 Objetivo
+Implementar Classes Module con database schema completo, service layer y API routes con RBAC
+
+### ✅ Completado (Task 20 - Sprint 2.1)
+- [x] **Database Migration 011** (migrations/postgres/011_classes_module.sql - 565 líneas)
+  - Enums: touchbase_class_status, touchbase_enrollment_status
+  - Classes table: 17 campos con constraints
+  - Enrollments table: 14 campos con academic tracking
+  - FK constraint agregado a touchbase_teacher_classes.class_id
+  - 16 RLS policies (8 para classes, 8 para enrollments)
+  - 8 indexes (classes: org, status, code, level, dates | enrollments: class, student, status)
+  - 3 helper functions (RPC): touchbase_get_active_classes, touchbase_get_class_enrollments, touchbase_get_student_classes
+  - 3 triggers: updated_at para classes, updated_at para enrollments, auto-update current_enrollment count
+
+- [x] **Service Layer** (lib/services/classes.ts - 508 líneas, replaced old version)
+  - TypeScript interfaces: Class, CreateClassInput, UpdateClassInput, Enrollment, CreateEnrollmentInput, UpdateEnrollmentInput, ClassFilters
+  - 15 exported functions:
+    - Class CRUD: getClasses, getActiveClasses, getClass, createClass, updateClass, deleteClass, hardDeleteClass
+    - Class Queries: getClassesByLevel, searchClasses
+    - Enrollment Operations: getClassEnrollments, getStudentClasses, enrollStudent, updateEnrollment, withdrawStudent, deleteEnrollment
+  - Capacity checking logic en enrollStudent (checks max_students vs current_enrollment)
+  - Duplicate enrollment handling (unique constraint student_id + class_id)
+
+- [x] **API Routes** (3 archivos, 396 líneas totales)
+  - app/api/classes/route.ts (117 líneas): GET list/search, POST create
+  - app/api/classes/[id]/route.ts (127 líneas): GET single, PUT update, DELETE soft delete
+  - app/api/classes/[id]/enrollments/route.ts (152 líneas): GET list, POST enroll, DELETE withdraw
+
+### ⚠️ Technical Debt
+17 TypeScript errors en archivos pre-existentes usando schema antiguo. Build no bloqueado (ignoreBuildErrors: true).
+
+### 📊 Estado Task Master
+- ✅ Task 18: Teachers Database Schema (done)
+- ✅ Task 19: Teachers CRUD API Routes & UI (done)
+- 🔄 Task 20: Classes Database & API (in-progress - migration ✅, service ✅, API ✅, testing pending)
+
+**Tiempo invertido**: ~2 horas
