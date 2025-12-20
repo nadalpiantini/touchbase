@@ -68,6 +68,7 @@ export default async function ProtectedLayout({
     { href: `/${locale}/dashboard/student-life`, label: "Vida Estudiantil", roles: ["owner", "admin", "teacher", "student"] },
     { href: `/${locale}/dashboard/teams`, label: "Equipos", roles: ["owner", "admin", "coach"] },
     { href: `/${locale}/dashboard/games`, label: "Partidos", roles: ["owner", "admin", "coach"] },
+    { href: `/${locale}/dashboard/leagues`, label: "Ligas", roles: ["owner", "admin", "coach"] },
     { href: `/${locale}/dashboard/recycle`, label: "Papelera", roles: ["owner", "admin"] },
     { href: `/${locale}/dashboard/audit`, label: "Auditoría", roles: ["owner", "admin"] },
   ];
