@@ -315,3 +315,70 @@ interface TeacherClass {
 
 ---
 
+## 📅 Sesión: 2025-12-20 (Sprint 1.4 - TeacherAvailabilityCard Component)
+
+### 🎯 Objetivo
+Implementar componente TeacherAvailabilityCard para gestión de horarios semanales
+
+### ✅ Completado (Sprint 1.4)
+- [x] **TeacherAvailabilityCard Component** (web/components/teachers/TeacherAvailabilityCard.tsx - 318 líneas)
+  - Weekly grid layout (7 columnas, responsive)
+  - Time slot interface (day_of_week: 0-6, start_time, end_time, is_available)
+  - Add/remove time slots en modo de edición
+  - Save bulk availability (POST /api/teachers/:id/availability)
+  - Input validation (startTime < endTime)
+  - Empty state con botón "Set Schedule"
+  - Loading states durante fetch y save
+  - RBAC-aware (UPDATE_CONTENT permission)
+
+- [x] **i18n Translations**
+  - web/messages/en.json (teachers.availability section)
+  - web/messages/es.json (teachers.availability section)
+  - Days of week, form fields, actions, success/error messages
+
+- [x] **Git Checkpoint**
+  - Commit: ce34010bcc
+  - Pre-commit hooks: ESLint ✅, TypeScript ✅
+  - Ready to push
+
+### 📋 Detalles Técnicos
+
+**Component Features**:
+- Weekly grid: `grid-cols-1 sm:grid-cols-2 lg:grid-cols-7`
+- Days array: Sunday=0, Monday=1, ..., Saturday=6
+- Time format: HH:MM (24-hour validation via input type="time")
+- Edit mode toggle with form to add slots
+- Cancel button reverts changes (re-fetches from API)
+- Save button: bulk update all slots in single POST request
+
+**Data Structures**:
+```typescript
+interface TimeSlot {
+  day_of_week: number;
+  start_time: string;
+  end_time: string;
+  is_available: boolean;
+}
+
+// API integration
+getTeacherAvailability(supabase, teacherId) → TimeSlot[]
+setTeacherAvailability(supabase, teacherId, availability[]) → void
+```
+
+**UI Pattern**:
+- Day columns with sorted time slots (by start_time)
+- Empty state per day: "Sin horarios" / "No time slots"
+- Remove button (×) visible only in edit mode
+- Form validation before adding new slot
+
+### 📊 Estado Task Master
+- ✅ Sprint 1.1: TeacherForm Component (100% complete)
+- ✅ Sprint 1.2: TeacherDetail Component (100% complete)
+- ✅ Sprint 1.3: TeacherClassesCard Component (100% complete)
+- ✅ Sprint 1.4: TeacherAvailabilityCard Component (100% complete)
+- ⏳ Sprint 1.5: Task 19 verification (next)
+
+**Tiempo invertido**: ~2 horas (estimado 3-4h, completado antes)
+
+---
+
