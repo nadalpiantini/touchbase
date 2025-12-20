@@ -54,11 +54,17 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: membershipError.message }, { status: 400 });
     }
 
-    // Set as default org
+    // Set as default org - use upsert to handle case where profile doesn't exist
     const { error: profileError } = await admin
       .from("touchbase_profiles")
-      .update({ default_org_id: org.id })
-      .eq("id", user.id);
+      .upsert({
+        id: user.id,
+        user_id: user.id,
+        default_org_id: org.id,
+        full_name: user.user_metadata?.full_name || user.email?.split('@')[0] || 'User',
+      }, {
+        onConflict: 'id'
+      });
 
     if (profileError) {
       return NextResponse.json({ error: profileError.message }, { status: 400 });

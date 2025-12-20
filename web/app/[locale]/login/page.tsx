@@ -79,7 +79,7 @@ export default function LoginPage() {
           </svg>
         </div>
         <p className="text-center text-tb-bone/80 font-sans text-sm max-w-[200px]">
-          {locale === 'es' ? 'Gestiona tu equipo deportivo de forma profesional' : 'Manage your sports team professionally'}
+          {t('brandMessage')}
         </p>
       </div>
 

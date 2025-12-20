@@ -89,6 +89,7 @@
     "title": "TouchBase Login",
     "subtitle": "Access your sports management system",
     "logoAlt": "TouchBase - Your dugout in the cloud",
+    "brandMessage": "Manage your sports team professionally",
     "form": {
       "emailPlaceholder": "your@email.com",
       "passwordPlaceholder": "Your password",
@@ -189,6 +190,10 @@
     "orgNamePlaceholder": "E.g: My Academy, Elementary School, etc.",
     "createAccount": "Create account",
     "creating": "Creating organization…",
+    "errors": {
+      "selectRoleAndOrg": "Please select a role and provide an organization name",
+      "createFailed": "Failed to create account"
+    },
     "roles": {
       "teacher": {
         "title": "Teacher",

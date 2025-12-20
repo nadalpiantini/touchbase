@@ -73,7 +73,7 @@ export default function RoleSelection() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!selectedRole || !orgName.trim()) {
-      setError("Por favor selecciona un rol y proporciona un nombre para tu organización");
+      setError(t('errors.selectRoleAndOrg'));
       return;
     }
 
@@ -100,7 +100,7 @@ export default function RoleSelection() {
       }, 1000);
     } catch (e: unknown) {
       setStatus("error");
-      setError(e instanceof Error ? e.message : "Error al crear cuenta");
+      setError(e instanceof Error ? e.message : t('errors.createFailed'));
     }
   };
 
