@@ -242,3 +242,76 @@ const statusColors = {
 
 ---
 
+## 📅 Sesión: 2025-12-20 (Sprint 1.3 - TeacherClassesCard Component)
+
+### 🎯 Objetivo
+Implementar componente TeacherClassesCard para gestión de asignaciones de clases
+
+### ✅ Completado (Sprint 1.3)
+- [x] **TeacherClassesCard Component** (web/components/teachers/TeacherClassesCard.tsx - 335 líneas)
+  - Lista de clases asignadas con role badges
+  - Modal para agregar nueva asignación
+  - Selección de clase (dropdown de clases disponibles)
+  - Selección de rol (primary/assistant/substitute)
+  - Remover asignación con confirmación
+  - Color coding por rol:
+    - Primary: bg-tb-navy/10 text-tb-navy
+    - Assistant: bg-tb-stitch/10 text-tb-stitch
+    - Substitute: bg-yellow-100 text-yellow-800
+  - RBAC-aware (UPDATE_CONTENT permission)
+  - Loading states para fetch y assign operations
+
+- [x] **API Integration**
+  - GET /api/teachers/:id/classes (fetch assignments)
+  - POST /api/teachers/:id/classes (assign class)
+  - DELETE /api/teachers/:id/classes/:classId (remove)
+  - GET /api/classes (available classes)
+
+- [x] **i18n Translations**
+  - web/messages/en.json (teachers.classes section)
+  - web/messages/es.json (teachers.classes section)
+  - Roles, modal, confirmación, success/error messages
+
+- [x] **React Hooks Fix**
+  - useCallback wrapper para fetchTeacherClasses
+  - Fixed exhaustive-deps warning
+
+- [x] **Git Checkpoint**
+  - Commit: 138589440a
+  - Push: success to origin/master
+  - Pre-commit hooks: ESLint ✅, TypeScript ✅
+
+### 📋 Detalles Técnicos
+
+**Component Features**:
+- Modal overlay con backdrop blur
+- Disabled state en botones durante loading
+- Confirmation dialog usando window.confirm
+- Dynamic class dropdown population
+- Role badge visual differentiation
+
+**Data Structures**:
+```typescript
+interface TeacherClass {
+  id: number;
+  teacher_id: string;
+  class_id: string;
+  role: string;
+  assigned_at: string;
+  class_name?: string;
+  class_code?: string;
+  grade_level?: string;
+}
+```
+
+### 📊 Estado Task Master
+- ✅ Sprint 1.1: TeacherForm Component (100% complete)
+- ✅ Sprint 1.2: TeacherDetail Component (100% complete)
+- ✅ Sprint 1.3: TeacherClassesCard Component (100% complete)
+- ⏳ Sprint 1.4: TeacherAvailabilityCard Component (next)
+- ⏳ Sprint 1.5: Task 19 verification
+
+**Tiempo invertido**: ~2 horas (estimado 2-3h)
+
+---
+
