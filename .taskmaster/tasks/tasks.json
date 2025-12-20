@@ -364,7 +364,7 @@
         "description": "Implement teachers CRUD operations, list view, detail view, registration wizard",
         "details": "Create API routes, service layer, components for teachers management. Use existing UI components (Table, Avatar, Form primitives).",
         "testStrategy": "E2E tests for teacher registration and management",
-        "status": "pending",
+        "status": "in-progress",
         "dependencies": [],
         "priority": "high",
         "subtasks": []
@@ -427,7 +427,7 @@
     ],
     "metadata": {
       "created": "2025-12-15T17:52:29.573Z",
-      "updated": "2025-12-20T18:55:08.047Z",
+      "updated": "2025-12-20T19:05:12.733Z",
       "description": "QA Testing sistemático de todas las secciones"
     }
   }
