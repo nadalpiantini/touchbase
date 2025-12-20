@@ -1170,6 +1170,42 @@
         "assignFailed": "Failed to assign class",
         "removeFailed": "Failed to remove class assignment"
       }
+    },
+    "availability": {
+      "title": "Weekly Availability",
+      "loading": "Loading availability...",
+      "empty": "No availability set yet",
+      "days": {
+        "sunday": "Sunday",
+        "monday": "Monday",
+        "tuesday": "Tuesday",
+        "wednesday": "Wednesday",
+        "thursday": "Thursday",
+        "friday": "Friday",
+        "saturday": "Saturday"
+      },
+      "labels": {
+        "noSlots": "No time slots"
+      },
+      "form": {
+        "addSlot": "Add Time Slot",
+        "day": "Day",
+        "startTime": "Start Time",
+        "endTime": "End Time",
+        "add": "Add",
+        "saving": "Saving..."
+      },
+      "actions": {
+        "setSchedule": "Set Schedule"
+      },
+      "success": {
+        "saved": "Availability saved successfully"
+      },
+      "errors": {
+        "fetchFailed": "Failed to load availability",
+        "invalidTime": "Start time must be before end time",
+        "saveFailed": "Failed to save availability"
+      }
     }
   }
 }

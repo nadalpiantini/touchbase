@@ -1170,6 +1170,42 @@
         "assignFailed": "Error al asignar clase",
         "removeFailed": "Error al eliminar asignación de clase"
       }
+    },
+    "availability": {
+      "title": "Disponibilidad Semanal",
+      "loading": "Cargando disponibilidad...",
+      "empty": "No hay disponibilidad establecida aún",
+      "days": {
+        "sunday": "Domingo",
+        "monday": "Lunes",
+        "tuesday": "Martes",
+        "wednesday": "Miércoles",
+        "thursday": "Jueves",
+        "friday": "Viernes",
+        "saturday": "Sábado"
+      },
+      "labels": {
+        "noSlots": "Sin horarios"
+      },
+      "form": {
+        "addSlot": "Agregar Horario",
+        "day": "Día",
+        "startTime": "Hora de Inicio",
+        "endTime": "Hora de Fin",
+        "add": "Agregar",
+        "saving": "Guardando..."
+      },
+      "actions": {
+        "setSchedule": "Establecer Horario"
+      },
+      "success": {
+        "saved": "Disponibilidad guardada exitosamente"
+      },
+      "errors": {
+        "fetchFailed": "Error al cargar disponibilidad",
+        "invalidTime": "La hora de inicio debe ser anterior a la hora de fin",
+        "saveFailed": "Error al guardar disponibilidad"
+      }
     }
   }
 }
