@@ -244,9 +244,108 @@ if (can('MANAGE_THEME')) { /* render UI */ }
 
 ---
 
+### ✅ Task 16 COMPLETADA (2024-12-20)
+
+**SPRINT 2.4**: Module Registry System - ✅ DONE
+
+**Archivos Creados** (3):
+- `migrations/postgres/009_module_registry.sql` (398 líneas)
+- `web/lib/services/module-registry.ts` (305 líneas)
+- `web/lib/hooks/useModules.ts` (192 líneas)
+
+**Database Migration (009_module_registry.sql)**:
+- ✅ touchbase_module_type enum (10 module types: teachers, classes, attendance, schedules, analytics, gamification, ai_coaching, reports, notifications, integrations)
+- ✅ touchbase_modules table - Master catalog of available modules
+- ✅ touchbase_tenant_modules table - Per-tenant module enablement
+- ✅ RLS policies completas (5 policies: select all, select own org, insert/update/delete owner/admin)
+- ✅ RPC functions: touchbase_is_module_enabled(), touchbase_get_enabled_modules(), touchbase_enable_module(), touchbase_disable_module()
+- ✅ Seed data: 10 modules pre-configured (4 core, 4 premium, 2 addon)
+- ✅ Module dependency support (requires_modules array)
+- ✅ Core module protection (cannot disable core modules)
+- ✅ JSONB settings per tenant-module
+- ✅ Comprehensive indexes for performance
+
+**Service Layer (lib/services/module-registry.ts)**:
+- ✅ getAllModules() - Fetch all available modules
+- ✅ getModule(moduleKey) - Get specific module details
+- ✅ isModuleEnabled(moduleKey) - Check if module enabled for current org
+- ✅ getEnabledModules() - Get all enabled modules with settings
+- ✅ getTenantModules(orgId) - Get all tenant module configurations
+- ✅ getTenantModule(orgId, moduleKey) - Get specific tenant module config
+- ✅ enableModule(orgId, moduleKey, settings) - Enable module for org
+- ✅ disableModule(orgId, moduleKey) - Disable module for org
+- ✅ updateModuleSettings(orgId, moduleKey, settings) - Update module settings
+- ✅ getModulesByCategory() - Group modules by category
+- ✅ checkRequiredModules(moduleKey) - Validate dependencies
+- ✅ getModuleStatusMap(orgId) - Get all module statuses as map
+
+**React Hooks (lib/hooks/useModules.ts)**:
+- ✅ useModules() - Main hook for module management
+  - modules: EnabledModule[] - List of enabled modules
+  - isEnabled(moduleKey) - Check specific module
+  - getModule(moduleKey) - Get module details
+  - hasAnyModule(keys[]) - Check if any of modules enabled
+  - hasAllModules(keys[]) - Check if all modules enabled
+  - refresh() - Reload from server
+- ✅ useModuleCheck(moduleKey) - Single module check (optimized)
+- ✅ useModuleChecks(moduleKeys[]) - Multiple module checks (parallel)
+
+**Features Implementadas**:
+- ✅ Feature gating system per tenant
+- ✅ Module catalog with categories (core, premium, addon)
+- ✅ Core module protection (cannot be disabled)
+- ✅ Module dependency validation
+- ✅ Per-tenant module settings (JSONB)
+- ✅ Role-based module management (owner/admin)
+- ✅ Automatic current org detection
+- ✅ React hooks for component-level module checks
+- ✅ Optimized queries with indexes
+- ✅ Comprehensive error handling
+
+**Module Categories**:
+- **Core** (4): teachers, classes, attendance, schedules
+- **Premium** (4): analytics, gamification, ai_coaching, reports
+- **Addon** (2): notifications, integrations
+
+**Usage Examples**:
+```typescript
+// Component: Check module availability
+const { isEnabled } = useModules();
+if (isEnabled('analytics')) {
+  return <AnalyticsDashboard />;
+}
+
+// Component: Get all enabled modules
+const { modules } = useModules();
+modules.forEach(m => console.log(m.name));
+
+// Service: Enable module for org
+await enableModule(supabase, orgId, 'analytics', {
+  dashboardType: 'advanced',
+  refreshInterval: 300
+});
+
+// Database: Check in SQL
+SELECT touchbase_is_module_enabled('teachers'); -- returns boolean
+```
+
+**Integration with RBAC**:
+- Module enablement requires 'owner' or 'admin' role
+- Module disablement requires 'owner' or 'admin' role
+- Core modules cannot be disabled (enforced in RPC function)
+- RLS policies enforce org isolation
+
+**Commit**: [pending] - feat(modules): implement module registry with feature gating
+**Push**: [pending] - Will push after validation
+**Validaciones**: [pending] - ESLint, TypeScript, Pre-commit hooks
+
+**Progreso**: 16/24 tasks done (66.7%)
+
+---
+
 ### 📝 Próximo Paso
 
-**Siguiente acción**: Task 16 - Module Registry System
+**Siguiente acción**: Task 17 - Permission Hooks & Guards
 
 **Comandos sugeridos**:
 ```bash
