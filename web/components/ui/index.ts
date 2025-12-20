@@ -79,6 +79,14 @@ export {
   BreadcrumbEllipsis,
 } from './Breadcrumb';
 
+// Dropdown Menu
+export { DropdownMenu, DropdownMenuItemButton } from './DropdownMenu';
+export type { DropdownMenuItem, DropdownMenuProps, DropdownMenuItemButtonProps } from './DropdownMenu';
+
 // Toast Notifications
 export { default as ToastProvider, useToast } from './Toast';
+
+// Avatar Component
+export { default as Avatar, AvatarGroup } from './Avatar';
+export type { AvatarProps, AvatarSize, AvatarGroupProps } from './Avatar';
 
