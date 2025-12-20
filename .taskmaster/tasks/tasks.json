@@ -177,7 +177,7 @@
         "description": "7 sections show JSON error because dev-org mock does not exist in Supabase. Create seed data or modify APIs to handle missing org gracefully.",
         "details": "",
         "testStrategy": "",
-        "status": "pending",
+        "status": "done",
         "dependencies": [],
         "priority": "high",
         "subtasks": []
@@ -188,7 +188,7 @@
         "description": "OrgDropdown component shows JSON parse error in navigation menu when org data is not available",
         "details": "",
         "testStrategy": "",
-        "status": "pending",
+        "status": "done",
         "dependencies": [],
         "priority": "medium",
         "subtasks": []
@@ -196,7 +196,7 @@
     ],
     "metadata": {
       "created": "2025-12-15T17:52:29.573Z",
-      "updated": "2025-12-15T18:19:07.875Z",
+      "updated": "2025-12-20T01:05:09.669Z",
       "description": "QA Testing sistemático de todas las secciones"
     }
   }

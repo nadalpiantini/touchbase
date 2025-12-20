@@ -56,10 +56,13 @@ ALTER TABLE public.touchbase_profiles ENABLE ROW LEVEL SECURITY;
 -- ============================================================
 
 -- Helper: ¿usuario pertenece a org?
+-- SECURITY DEFINER: bypasses RLS to prevent infinite recursion
 CREATE OR REPLACE FUNCTION public.touchbase_is_org_member(p_org UUID)
 RETURNS BOOLEAN
 LANGUAGE SQL
 STABLE
+SECURITY DEFINER
+SET search_path = public
 AS $$
   SELECT EXISTS (
     SELECT 1
@@ -69,15 +72,36 @@ AS $$
 $$;
 
 -- Helper: obtener rol del usuario en org
+-- SECURITY DEFINER: bypasses RLS to prevent infinite recursion
 CREATE OR REPLACE FUNCTION public.touchbase_get_user_role(p_org UUID)
 RETURNS TEXT
 LANGUAGE SQL
 STABLE
+SECURITY DEFINER
+SET search_path = public
 AS $$
   SELECT role
   FROM public.touchbase_memberships
   WHERE org_id = p_org AND user_id = auth.uid()
   LIMIT 1;
+$$;
+
+-- Helper: ¿usuario es admin/owner de org?
+-- SECURITY DEFINER: bypasses RLS to prevent infinite recursion
+CREATE OR REPLACE FUNCTION public.touchbase_is_org_admin(p_org UUID)
+RETURNS BOOLEAN
+LANGUAGE SQL
+STABLE
+SECURITY DEFINER
+SET search_path = public
+AS $$
+  SELECT EXISTS (
+    SELECT 1
+    FROM public.touchbase_memberships m
+    WHERE m.org_id = p_org
+      AND m.user_id = auth.uid()
+      AND m.role IN ('owner', 'admin')
+  );
 $$;
 
 -- ============================================================
@@ -124,24 +148,16 @@ DROP POLICY IF EXISTS "touchbase_memberships_select_members" ON public.touchbase
 CREATE POLICY "touchbase_memberships_select_members" ON public.touchbase_memberships
 FOR SELECT USING (public.touchbase_is_org_member(org_id));
 
--- MEMBERSHIPS: solo owners/admins pueden modificar
+-- MEMBERSHIPS: solo owners/admins pueden modificar (using helper to avoid recursion)
 DROP POLICY IF EXISTS "touchbase_memberships_modify_admins" ON public.touchbase_memberships;
 CREATE POLICY "touchbase_memberships_modify_admins" ON public.touchbase_memberships
-FOR ALL USING (
-  EXISTS (
-    SELECT 1 FROM public.touchbase_memberships m
-    WHERE m.org_id = touchbase_memberships.org_id
-      AND m.user_id = auth.uid()
-      AND m.role IN ('owner', 'admin')
-  )
-) WITH CHECK (
-  EXISTS (
-    SELECT 1 FROM public.touchbase_memberships m
-    WHERE m.org_id = touchbase_memberships.org_id
-      AND m.user_id = auth.uid()
-      AND m.role IN ('owner', 'admin')
-  )
-);
+FOR ALL USING (public.touchbase_is_org_admin(org_id))
+WITH CHECK (public.touchbase_is_org_admin(org_id));
+
+-- MEMBERSHIPS: users can insert their own membership (for onboarding)
+DROP POLICY IF EXISTS "touchbase_memberships_insert_self" ON public.touchbase_memberships;
+CREATE POLICY "touchbase_memberships_insert_self" ON public.touchbase_memberships
+FOR INSERT WITH CHECK (user_id = auth.uid());
 
 -- ============================================================
 -- 5. TRIGGER PARA CREAR PERFIL AUTOMÁTICAMENTE

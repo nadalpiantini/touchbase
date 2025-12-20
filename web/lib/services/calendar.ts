@@ -45,7 +45,7 @@ export function schedulesToCalendarEvents(
     const scheduleEnd = new Date(endDate);
 
     // Generate events for each occurrence in the date range
-    let currentDate = new Date(scheduleStart);
+    const currentDate = new Date(scheduleStart);
     
     while (currentDate <= scheduleEnd) {
       // Check if this date matches the day of week
