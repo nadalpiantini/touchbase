@@ -1,8 +1,9 @@
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 import Link from 'next/link';
 
 export default function NotFound() {
   const t = useTranslations('notFound');
+  const locale = useLocale();
 
   return (
     <main className="min-h-screen flex items-center justify-center bg-gradient-to-br from-tb-navy to-tb-ink">
@@ -15,7 +16,7 @@ export default function NotFound() {
           {t('message')}
         </p>
         <Link
-          href="/"
+          href={`/${locale}`}
           className="inline-block px-6 py-3 bg-tb-red hover:bg-tb-stitch text-white font-display rounded-xl shadow-dugout transition-all active:translate-y-[1px]"
         >
           {t('backHome')}

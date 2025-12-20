@@ -728,6 +728,20 @@
         "loadFailed": "Failed to load leaderboard"
       }
     },
+    "aiCoach": {
+      "title": "AI Coach",
+      "openCoach": "Open AI Coach",
+      "close": "Close",
+      "getHint": "Get Hint",
+      "welcome": "Hi! I'm your AI learning coach.",
+      "askQuestion": "Ask me anything about this lesson!",
+      "typeMessage": "Type your question...",
+      "send": "Send",
+      "thinking": "Thinking",
+      "errors": {
+        "failed": "Sorry, I couldn't process your request. Please try again."
+      }
+    },
     "modules": {
       "title": "Modules",
       "loading": "Loading modules...",

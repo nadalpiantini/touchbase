@@ -742,6 +742,32 @@
         "failed": "Lo siento, no pude procesar tu solicitud. Por favor intenta de nuevo."
       }
     },
+    "quiz": {
+      "correct": "¡Correcto!",
+      "incorrect": "Incorrecto. ¡Intenta de nuevo la próxima vez!"
+    },
+    "progress": {
+      "title": "Mi Progreso",
+      "loading": "Cargando progreso...",
+      "stats": {
+        "inProgress": "En Progreso",
+        "completed": "Completados",
+        "total": "Total de Módulos"
+      },
+      "sections": {
+        "inProgress": "En Progreso",
+        "completed": "Completados",
+        "notStarted": "No Iniciados"
+      },
+      "score": "Puntuación",
+      "completedOn": "Completado el",
+      "notStarted": "No Iniciado",
+      "noProgress": "Aún no hay progreso. ¡Comienza un módulo para empezar a rastrear tu progreso!",
+      "errors": {
+        "notAuthenticated": "No autenticado",
+        "loadFailed": "Error al cargar progreso"
+      }
+    },
     "modules": {
       "title": "Módulos de Aprendizaje",
       "loading": "Cargando módulos...",
@@ -768,11 +794,18 @@
       "noClasses": "Aún no estás inscrito en ninguna clase.",
       "joinHint": "Ingresa un código de clase para unirte a una clase.",
       "viewClass": "Ver Clase",
+      "backToClasses": "Volver a Clases",
+      "assignedModules": "Módulos Asignados",
+      "noModules": "No hay módulos asignados a esta clase.",
+      "start": "Iniciar",
+      "continue": "Continuar",
+      "review": "Revisar",
       "errors": {
         "notAuthenticated": "No autenticado",
         "loadFailed": "Error al cargar clases",
         "invalidCode": "Código de clase inválido",
-        "joinFailed": "Error al unirse a la clase"
+        "joinFailed": "Error al unirse a la clase",
+        "notFound": "Clase no encontrada"
       }
     }
   },
