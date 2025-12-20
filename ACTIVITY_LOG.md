@@ -335,9 +335,9 @@ SELECT touchbase_is_module_enabled('teachers'); -- returns boolean
 - Core modules cannot be disabled (enforced in RPC function)
 - RLS policies enforce org isolation
 
-**Commit**: [pending] - feat(modules): implement module registry with feature gating
-**Push**: [pending] - Will push after validation
-**Validaciones**: [pending] - ESLint, TypeScript, Pre-commit hooks
+**Commit**: bef3379fb8 - feat(modules): implement module registry with feature gating
+**Push**: ✅ Successful to GitHub
+**Validaciones**: ✅ ESLint OK, TypeScript OK, Pre-commit hooks passed
 
 **Progreso**: 16/24 tasks done (66.7%)
 
