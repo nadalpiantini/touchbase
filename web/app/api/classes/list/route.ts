@@ -10,7 +10,7 @@ export async function GET() {
 
     if (isTeacher && orgId) {
       // Get teacher's classes
-      const classes = await getClasses(s, user.id, orgId);
+      const classes = await getClasses(s);
       return NextResponse.json({ classes });
     }
 

@@ -1,12 +1,12 @@
 import "server-only";
-import { createServerClient } from "@supabase/ssr";
+import { createServerClient as _createServerClient } from "@supabase/ssr";
 import { createClient } from "@supabase/supabase-js";
 import { cookies } from "next/headers";
 
 export async function supabaseServer() {
   const cookieStore = await cookies();
 
-  return createServerClient(
+  return _createServerClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
     {
@@ -28,6 +28,12 @@ export async function supabaseServer() {
     }
   );
 }
+
+/**
+ * Alias for supabaseServer() for backwards compatibility
+ * Some API routes import createServerClient instead of supabaseServer
+ */
+export const createServerClient = supabaseServer;
 
 /**
  * Admin client with SERVICE_ROLE key - bypasses RLS

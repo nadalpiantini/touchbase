@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 import { withRBAC } from "@/lib/rbac/middleware";
 import { supabaseServer } from "@/lib/supabase/server";
+import { createTeacherSchema } from "@/lib/schemas/teacher";
 
 /**
  * Create a new teacher (admin-only endpoint)

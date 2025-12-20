@@ -15,7 +15,7 @@ export default async function TeacherClassesPage() {
   // Fetch classes with graceful fallback for missing tables
   let classes: Awaited<ReturnType<typeof getClasses>> = [];
   try {
-    classes = orgId ? await getClasses(s, user.id, orgId) : [];
+    classes = await getClasses(s);
   } catch {
     // Table may not exist yet
     classes = [];

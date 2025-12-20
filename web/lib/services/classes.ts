@@ -17,6 +17,7 @@ export interface Class {
   name: string;
   code: string | null;
   level: string | null;
+  grade_level: string | null; // Added for teacher/classes page compatibility
   description: string | null;
 
   // Capacity
@@ -42,9 +43,12 @@ export interface Class {
 }
 
 export interface CreateClassInput {
+  org_id: string;
+  teacher_id: string;
   name: string;
   code?: string;
   level?: string;
+  grade_level?: string;
   description?: string;
   max_students?: number;
   start_date?: string;
@@ -53,6 +57,7 @@ export interface CreateClassInput {
   status?: ClassStatus;
   location?: string;
   room?: string;
+  schedule?: string;
 }
 
 export interface UpdateClassInput {
@@ -67,6 +72,14 @@ export interface UpdateClassInput {
   status?: ClassStatus;
   location?: string;
   room?: string;
+}
+
+export interface Student {
+  id: string;
+  first_name: string;
+  last_name: string;
+  email: string | null;
+  full_name?: string | null; // Computed/joined field from database
 }
 
 export interface Enrollment {
@@ -95,6 +108,14 @@ export interface Enrollment {
   // System Fields
   created_at: string;
   updated_at: string;
+
+  // Relational data (populated via joins)
+  student?: Student;
+  enrollment?: {
+    id: string; // Enrollment record ID
+    status: EnrollmentStatus;
+    enrolled_at: string; // Enrollment date/time
+  };
 }
 
 export interface CreateEnrollmentInput {

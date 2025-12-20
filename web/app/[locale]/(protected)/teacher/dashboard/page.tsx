@@ -30,7 +30,7 @@ export default async function TeacherDashboardPage({
     profile = profileData;
 
     if (profile?.default_org_id) {
-      classes = await getClasses(s, user.id, profile.default_org_id);
+      classes = await getClasses(s);
     }
   } catch {
     // Tables may not exist yet
@@ -38,7 +38,7 @@ export default async function TeacherDashboardPage({
   }
 
   // Get class stats (with graceful fallback)
-  let classStats: Array<{ id: string; name: string; grade_level?: string; studentCount: number; moduleCount: number }> = [];
+  let classStats: Array<{ id: string; name: string; grade_level?: string | null; studentCount: number; moduleCount: number }> = [];
   try {
     classStats = await Promise.all(
       classes.map(async (classItem) => {

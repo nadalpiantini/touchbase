@@ -40,10 +40,12 @@ export async function POST(req: Request) {
       attempts++;
     }
 
-    const newClass = await createClass(s, profile.default_org_id, user.id, {
+    const newClass = await createClass(s, {
+      org_id: profile.default_org_id,
+      teacher_id: user.id,
       name,
       code,
-      gradeLevel,
+      grade_level: gradeLevel,
       description,
       schedule,
     });
