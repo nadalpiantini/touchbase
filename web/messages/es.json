@@ -1298,6 +1298,57 @@
         "completed": "Completada",
         "cancelled": "Cancelada"
       }
+    },
+    "form": {
+      "submitting": "Enviando...",
+      "sections": {
+        "basic": "Información Básica",
+        "schedule": "Horario",
+        "capacityLocation": "Capacidad y Ubicación"
+      },
+      "fields": {
+        "name": "Nombre de la Clase",
+        "code": "Código de la Clase",
+        "level": "Nivel",
+        "description": "Descripción",
+        "status": "Estado",
+        "startDate": "Fecha de Inicio",
+        "endDate": "Fecha de Fin",
+        "scheduleDescription": "Descripción del Horario",
+        "maxStudents": "Máximo de Estudiantes",
+        "location": "Ubicación",
+        "room": "Aula"
+      },
+      "placeholders": {
+        "name": "ej., Introducción al Béisbol",
+        "code": "ej., BB101",
+        "level": "ej., Principiante, Intermedio, Avanzado",
+        "description": "Breve descripción de la clase...",
+        "scheduleDescription": "ej., Lunes y Miércoles, 3:00 PM - 4:30 PM",
+        "location": "ej., Campo Principal, Edificio Norte",
+        "room": "ej., Sala 101, Campo 2"
+      },
+      "hints": {
+        "maxStudents": "Número máximo de estudiantes permitidos en esta clase (1-500)"
+      },
+      "status": {
+        "active": "Activa",
+        "inactive": "Inactiva",
+        "completed": "Completada",
+        "cancelled": "Cancelada"
+      },
+      "actions": {
+        "create": "Crear Clase",
+        "update": "Actualizar Clase"
+      },
+      "success": {
+        "created": "Clase creada exitosamente",
+        "updated": "Clase actualizada exitosamente"
+      },
+      "errors": {
+        "validationFailed": "Por favor corrige los errores de validación",
+        "submitFailed": "Error al enviar el formulario"
+      }
     }
   },
   "leagues": {

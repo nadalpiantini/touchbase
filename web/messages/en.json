@@ -1298,6 +1298,57 @@
         "completed": "Completed",
         "cancelled": "Cancelled"
       }
+    },
+    "form": {
+      "submitting": "Submitting...",
+      "sections": {
+        "basic": "Basic Information",
+        "schedule": "Schedule",
+        "capacityLocation": "Capacity & Location"
+      },
+      "fields": {
+        "name": "Class Name",
+        "code": "Class Code",
+        "level": "Level",
+        "description": "Description",
+        "status": "Status",
+        "startDate": "Start Date",
+        "endDate": "End Date",
+        "scheduleDescription": "Schedule Description",
+        "maxStudents": "Maximum Students",
+        "location": "Location",
+        "room": "Room"
+      },
+      "placeholders": {
+        "name": "e.g., Introduction to Baseball",
+        "code": "e.g., BB101",
+        "level": "e.g., Beginner, Intermediate, Advanced",
+        "description": "Brief description of the class...",
+        "scheduleDescription": "e.g., Mondays and Wednesdays, 3:00 PM - 4:30 PM",
+        "location": "e.g., Main Field, North Building",
+        "room": "e.g., Room 101, Field 2"
+      },
+      "hints": {
+        "maxStudents": "Maximum number of students allowed in this class (1-500)"
+      },
+      "status": {
+        "active": "Active",
+        "inactive": "Inactive",
+        "completed": "Completed",
+        "cancelled": "Cancelled"
+      },
+      "actions": {
+        "create": "Create Class",
+        "update": "Update Class"
+      },
+      "success": {
+        "created": "Class created successfully",
+        "updated": "Class updated successfully"
+      },
+      "errors": {
+        "validationFailed": "Please fix validation errors",
+        "submitFailed": "Failed to submit form"
+      }
     }
   },
   "leagues": {
