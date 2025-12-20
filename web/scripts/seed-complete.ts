@@ -2002,7 +2002,7 @@ async function seedModules(): Promise<SeedData['modules']> {
   for (const [category, modules] of allCategories) {
     console.log(`  📁 ${category}...`);
 
-    for (const module of modules) {
+    for (const mod of modules) {
       const moduleId = generateUUID();
 
       // Create module
@@ -2010,25 +2010,25 @@ async function seedModules(): Promise<SeedData['modules']> {
         .from('touchbase_modules')
         .upsert({
           id: moduleId,
-          title: module.title,
-          description: module.description,
-          difficulty: module.difficulty,
-          duration_minutes: module.duration,
-          skills: module.skills,
+          title: mod.title,
+          description: mod.description,
+          difficulty: mod.difficulty,
+          duration_minutes: mod.duration,
+          skills: mod.skills,
           is_active: true,
           created_at: new Date().toISOString()
         }, { onConflict: 'id' });
 
       if (moduleError) {
-        console.error(`Error creating module ${module.title}:`, moduleError.message);
+        console.error(`Error creating module ${mod.title}:`, moduleError.message);
         continue;
       }
 
-      createdModules.push({ id: moduleId, title: module.title, difficulty: module.difficulty, category });
+      createdModules.push({ id: moduleId, title: mod.title, difficulty: mod.difficulty, category });
 
       // Create steps for this module
-      for (let stepIndex = 0; stepIndex < module.steps.length; stepIndex++) {
-        const step = module.steps[stepIndex];
+      for (let stepIndex = 0; stepIndex < mod.steps.length; stepIndex++) {
+        const step = mod.steps[stepIndex];
         const stepId = generateUUID();
 
         let content: Record<string, unknown> = {};
@@ -2112,7 +2112,7 @@ async function seedProgressAndXP(
     const studentModules = [...modules].sort(() => Math.random() - 0.5).slice(0, numModules);
     let totalXP = 0;
 
-    for (const module of studentModules) {
+    for (const mod of studentModules) {
       const isComplete = Math.random() > 0.3;
       const progressPercent = isComplete ? 100 : randomInt(20, 80);
       const xpEarned = isComplete ? randomInt(80, 150) : randomInt(10, 50);
@@ -2123,7 +2123,7 @@ async function seedProgressAndXP(
         .upsert({
           id: generateUUID(),
           user_id: student.id,
-          module_id: module.id,
+          module_id: mod.id,
           status: isComplete ? 'completed' : 'in_progress',
           completion_percentage: progressPercent,
           step_progress: JSON.stringify([{ step: isComplete ? 3 : randomInt(1, 2), completed: isComplete }]),
@@ -2226,13 +2226,13 @@ async function seedAssignments(
     // Assign 3-6 modules to each class
     const classModules = [...modules].sort(() => Math.random() - 0.5).slice(0, randomInt(3, 6));
 
-    for (const module of classModules) {
+    for (const mod of classModules) {
       // First, assign module to class
       await supabase
         .from('touchbase_class_modules')
         .upsert({
           class_id: cls.id,
-          module_id: module.id,
+          module_id: mod.id,
           assigned_at: randomDate(new Date('2024-09-01'), now).toISOString()
         }, { onConflict: 'class_id,module_id' });
 
@@ -2245,9 +2245,9 @@ async function seedAssignments(
         .upsert({
           id: generateUUID(),
           class_id: cls.id,
-          module_id: module.id,
-          title: `Complete: ${module.title}`,
-          description: `Complete all steps of the ${module.title} module and reflect on your learning.`,
+          module_id: mod.id,
+          title: `Complete: ${mod.title}`,
+          description: `Complete all steps of the ${mod.title} module and reflect on your learning.`,
           due_date: dueDate.toISOString(),
           assigned_at: randomDate(new Date('2024-09-01'), now).toISOString(),
           teacher_id: cls.teacherId

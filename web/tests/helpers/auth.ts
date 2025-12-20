@@ -1,9 +1,11 @@
 import { Page } from '@playwright/test';
 
-// Test user credentials - make sure these exist in your Supabase test environment
+// Test user credentials from environment variables
+// Set these in your .env.local or CI environment:
+// TEST_USER_EMAIL, TEST_USER_PASSWORD
 export const TEST_USER = {
-  email: 'nadalpiantini@gmail.com',
-  password: 'Teclados#13',
+  email: process.env.TEST_USER_EMAIL || 'test@touchbase.com',
+  password: process.env.TEST_USER_PASSWORD || 'TestPassword123!',
   invalidPassword: 'WrongPassword123'
 };
 

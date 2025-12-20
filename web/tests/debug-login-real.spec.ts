@@ -1,4 +1,5 @@
 import { test, expect } from '@playwright/test';
+import { TEST_USER } from './helpers/auth';
 
 test('debug login real', async ({ page }) => {
   // This is a debug test - only enable logging in debug mode
@@ -61,9 +62,9 @@ test('debug login real', async ({ page }) => {
     console.log('[TEST] Form found, filling credentials...');
   }
   
-  // Fill with test credentials
-  await emailInput.fill('nadalpiantini@gmail.com');
-  await passwordInput.fill('Teclados#13');
+  // Fill with test credentials from environment
+  await emailInput.fill(TEST_USER.email);
+  await passwordInput.fill(TEST_USER.password);
 
   if (DEBUG) {
     console.log('[TEST] Submitting form...');

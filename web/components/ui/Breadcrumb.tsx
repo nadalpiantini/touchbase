@@ -59,7 +59,7 @@ Breadcrumb.displayName = 'Breadcrumb';
 // Breadcrumb List (for styling the ol)
 // ============================================================
 
-export interface BreadcrumbListProps extends HTMLAttributes<HTMLOListElement> {}
+export type BreadcrumbListProps = HTMLAttributes<HTMLOListElement>;
 
 const BreadcrumbList = memo(forwardRef<HTMLOListElement, BreadcrumbListProps>(
   ({ className, ...props }, ref) => {
@@ -152,7 +152,7 @@ BreadcrumbLink.displayName = 'BreadcrumbLink';
 // Breadcrumb Separator
 // ============================================================
 
-export interface BreadcrumbSeparatorProps extends HTMLAttributes<HTMLSpanElement> {}
+export type BreadcrumbSeparatorProps = HTMLAttributes<HTMLSpanElement>;
 
 const BreadcrumbSeparator = memo(forwardRef<HTMLSpanElement, BreadcrumbSeparatorProps>(
   ({ className, children, ...props }, ref) => {
@@ -192,7 +192,7 @@ BreadcrumbSeparator.displayName = 'BreadcrumbSeparator';
 // Breadcrumb Page (current page indicator)
 // ============================================================
 
-export interface BreadcrumbPageProps extends HTMLAttributes<HTMLSpanElement> {}
+export type BreadcrumbPageProps = HTMLAttributes<HTMLSpanElement>;
 
 const BreadcrumbPage = memo(forwardRef<HTMLSpanElement, BreadcrumbPageProps>(
   ({ className, ...props }, ref) => {
@@ -215,7 +215,7 @@ BreadcrumbPage.displayName = 'BreadcrumbPage';
 // Breadcrumb Ellipsis (for truncated breadcrumbs)
 // ============================================================
 
-export interface BreadcrumbEllipsisProps extends HTMLAttributes<HTMLSpanElement> {}
+export type BreadcrumbEllipsisProps = HTMLAttributes<HTMLSpanElement>;
 
 const BreadcrumbEllipsis = memo(forwardRef<HTMLSpanElement, BreadcrumbEllipsisProps>(
   ({ className, ...props }, ref) => {

@@ -1,4 +1,5 @@
 import { test, expect } from '@playwright/test';
+import { TEST_USER } from './helpers/auth';
 
 test.describe('Login Fix Testing', () => {
   test('test login with real credentials', async ({ page }) => {
@@ -49,9 +50,9 @@ test.describe('Login Fix Testing', () => {
     await expect(passwordInput).toBeVisible({ timeout: 5000 });
     await expect(submitButton).toBeVisible({ timeout: 5000 });
 
-    // Fill form with test credentials
-    await emailInput.fill('nadalpiantini@gmail.com');
-    await passwordInput.fill('Teclados#13');
+    // Fill form with test credentials from environment
+    await emailInput.fill(TEST_USER.email);
+    await passwordInput.fill(TEST_USER.password);
 
     // Click submit
     await submitButton.click();
