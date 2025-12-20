@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import Image from "next/image";
 import { useTranslations } from 'next-intl';
 import { Badge, LoadingSpinner, Alert, useToast } from "@/components/ui";
@@ -26,11 +26,7 @@ export default function TeachersTable() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  useEffect(() => {
-    loadTeachers();
-  }, []);
-
-  const loadTeachers = async () => {
+  const loadTeachers = useCallback(async () => {
     try {
       const res = await fetch("/api/teachers/list");
       const json = await res.json();
@@ -45,7 +41,11 @@ export default function TeachersTable() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [t]);
+
+  useEffect(() => {
+    loadTeachers();
+  }, [loadTeachers]);
 
   const deleteTeacher = async (id: string) => {
     if (!confirm(t('confirmDelete'))) return;

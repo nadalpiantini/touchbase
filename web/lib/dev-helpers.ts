@@ -45,8 +45,16 @@ export const DEV_TEST_USERS = {
   student: { id: DEV_STUDENT_ID, email: "student@touchbase.local", role: "student" },
 } as const;
 
+/**
+ * Check if dev mode is enabled with explicit bypass flag
+ * SECURITY: Requires both NODE_ENV=development AND NEXT_PUBLIC_ALLOW_DEV_BYPASS=true
+ * This prevents accidental production deployment with auth/security bypasses
+ */
 export function isDevMode(): boolean {
-  return process.env.NODE_ENV === "development";
+  return (
+    process.env.NODE_ENV === "development" &&
+    process.env.NEXT_PUBLIC_ALLOW_DEV_BYPASS === "true"
+  );
 }
 
 /**

@@ -14,10 +14,18 @@ export default async function ProtectedLayout({
   const { data: { user }, error: userError } = await s.auth.getUser();
   const locale = await getLocale();
   
-  // Admin bypass - allow access without auth for admin backdoor in development
-  const isAdminBypass = process.env.NODE_ENV === 'development';
+  // SECURITY: Only allow dev bypass if explicitly enabled in .env
+  // This prevents accidental production deployment with auth bypass
+  const isDevBypassAllowed = 
+    process.env.NODE_ENV === 'development' && 
+    process.env.NEXT_PUBLIC_ALLOW_DEV_BYPASS === 'true';
 
-  if ((userError || !user) && !isAdminBypass) {
+  // Log warning if dev bypass is used (should never happen in production)
+  if (isDevBypassAllowed && !user) {
+    console.warn('[SECURITY] Dev bypass active - auth disabled. This should NEVER happen in production.');
+  }
+
+  if ((userError || !user) && !isDevBypassAllowed) {
     redirect(`/${locale}/login`);
   }
 
@@ -25,8 +33,8 @@ export default async function ProtectedLayout({
   let userRole: string | undefined;
   let userEmail = "";
 
-  // DEV MODE: Mock user with full admin access
-  if (isAdminBypass && !user) {
+  // DEV MODE: Mock user with full admin access (only if explicitly allowed)
+  if (isDevBypassAllowed && !user) {
     userRole = "owner";
     userEmail = "dev@touchbase.local";
   } else if (user) {
