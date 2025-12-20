@@ -1,3 +1,64 @@
+## 📅 Sesión: 2025-12-20 (Sprint 3.4.1 - ClassesList Component)
+
+### 🎯 Objetivo
+Implementar Sprint 3.4.1 - ClassesList component con i18n completo (Task 21 - Classes UI)
+
+### ✅ Completado (Sprint 3.4.1)
+- [x] ClassesList component (~370 líneas) - Lista completa de clases con filtros
+- [x] i18n completo (EN/ES) - 47 translation keys por idioma
+- [x] Design system integration (Table, Input, Select components)
+- [x] RBAC integration con usePermissions hook
+- [x] Filtros funcionales: status (active/inactive/completed/cancelled), level, search
+- [x] Status badges con colores diferenciados
+- [x] Capacity display con indicadores de porcentaje
+- [x] Cleanup de playwright-report (46 archivos)
+- [x] Commits: 10a85d35be (ClassesList), c42b28ced9 (cleanup)
+
+### 📋 Detalles Técnicos
+
+**ClassesList Component** (web/components/classes/ClassesList.tsx - 370 líneas):
+- Table-based UI con sorting y responsive design
+- Filtros:
+  - Status dropdown (all/active/inactive/completed/cancelled)
+  - Level dropdown (all levels + dynamic from classes)
+  - Search input (name o código)
+- Actions con RBAC:
+  - View (todos)
+  - Edit (UPDATE_CONTENT permission)
+  - Delete (DELETE_CONTENT permission)
+- Status badges con estilos diferenciados
+- Capacity display: "15/20 (75%)" con colores según disponibilidad
+- API integration con getClasses() service
+- Error handling con useToast
+
+**i18n Translations** (messages/en.json, messages/es.json - +47 líneas cada uno):
+- Namespace "classes.*" completo
+- Traducciones para: title, loading, empty, error, table headers, status values, filters, actions, messages
+- Soporte EN/ES completo
+- Patrón consistente con módulo "teachers"
+
+**Pattern Following**:
+- Siguió exactamente el patrón de TeachersList.tsx
+- Mismo structure de filtros y tabla
+- Misma integración de RBAC
+- Mismo manejo de errores
+
+### 📊 Estado Task Master
+- Task 20 (Classes Backend): ✅ Completado (migration, service, API)
+- Task 21 (Classes UI): 🔄 En progreso
+  - Sprint 3.4.1: ✅ Completado (ClassesList)
+  - Sprint 3.4.2: ⏳ Pendiente (ClassDetail)
+  - Sprint 3.4.3: ⏳ Pendiente (ClassForm)
+  - Sprint 3.4.4: ⏳ Pendiente (EnrollmentManager)
+
+### 🧹 Workspace Cleanup
+- Eliminados 46 archivos de playwright-report/data/ obsoletos
+- Working directory limpio
+- Todo pusheado a origin/master
+
+**Tiempo invertido**: ~2 horas
+
+---
 
 ## 📅 Sesión: 2024-12-20 (Continuación - Task 19 Teachers Module)
 
