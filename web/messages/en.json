@@ -674,6 +674,52 @@
       "errors": {
         "notAuthenticated": "Not authenticated",
         "loadFailed": "Failed to load assignments"
+      },
+      "detail": {
+        "breadcrumb": "Assignments",
+        "notFound": "Assignment not found",
+        "goBack": "Go Back",
+        "successMessage": "Assignment submitted successfully!",
+        "instructions": "Instructions",
+        "pointsPossible": "points possible",
+        "by": "By",
+        "due": "Due",
+        "at": "at",
+        "status": {
+          "submitted": "Submitted",
+          "graded": "Graded",
+          "returned": "Returned for Revision"
+        },
+        "dueStatus": {
+          "overdue": "Overdue by {days} days",
+          "overdueOne": "Overdue by 1 day",
+          "dueToday": "Due Today",
+          "dueIn": "Due in {days} days",
+          "dueInOne": "Due in 1 day"
+        },
+        "submission": {
+          "title": "Your Submission",
+          "submittedOn": "Submitted on",
+          "viewFile": "View Attached File",
+          "feedback": "Teacher Feedback",
+          "gradedOn": "Graded on"
+        },
+        "revision": {
+          "title": "Revision Requested",
+          "action": "Revise and Resubmit"
+        },
+        "submit": {
+          "title": "Submit Your Work",
+          "responseLabel": "Your Response",
+          "placeholder": "Type your response here... You can include your budget details, calculations, and reflection.",
+          "characters": "characters",
+          "fileLabel": "Attach File (Optional)",
+          "fileDrop": "Drag and drop a file, or click to browse",
+          "fileTypes": "PDF, DOC, DOCX, XLS, XLSX up to 10MB",
+          "cancel": "Cancel",
+          "submitting": "Submitting...",
+          "submitButton": "Submit Assignment"
+        }
       }
     },
     "skills": {
@@ -859,7 +905,50 @@
       "members": "members",
       "classes": "classes",
       "created": "Created",
-      "viewDetails": "View Details"
+      "viewDetails": "View Details",
+      "detail": {
+        "breadcrumb": "Organizations",
+        "notFound": "Organization not found",
+        "confirmRemoveMember": "Are you sure you want to remove this member?",
+        "actions": {
+          "save": "Save",
+          "cancel": "Cancel"
+        },
+        "stats": {
+          "totalMembers": "Total Members",
+          "teachers": "Teachers",
+          "classes": "Classes",
+          "modules": "Modules"
+        },
+        "members": {
+          "title": "Members",
+          "addButton": "Add Member",
+          "headers": {
+            "member": "Member",
+            "role": "Role",
+            "joined": "Joined",
+            "actions": "Actions"
+          },
+          "actions": {
+            "changeRole": "Change Role",
+            "remove": "Remove"
+          }
+        },
+        "roles": {
+          "owner": "Owner",
+          "admin": "Admin",
+          "teacher": "Teacher",
+          "student": "Student"
+        },
+        "modal": {
+          "title": "Add Member",
+          "email": "Email",
+          "emailPlaceholder": "Enter email address",
+          "role": "Role",
+          "cancel": "Cancel",
+          "addButton": "Add Member"
+        }
+      }
     },
     "users": {
       "title": "User Management",

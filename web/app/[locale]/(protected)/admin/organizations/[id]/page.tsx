@@ -34,7 +34,7 @@ type OrgDetails = {
 };
 
 export default function OrganizationDetailPage() {
-  const _t = useTranslations("admin.organizations"); // TODO: Add i18n throughout page
+  const t = useTranslations("admin.organizations.detail");
   const locale = useLocale();
   const params = useParams();
   const orgId = params.id as string;
@@ -140,7 +140,7 @@ export default function OrganizationDetailPage() {
   };
 
   const handleRemoveMember = async (memberId: string) => {
-    if (!confirm("Are you sure you want to remove this member?")) return;
+    if (!confirm(t("confirmRemoveMember"))) return;
 
     try {
       const res = await fetch(
@@ -167,7 +167,7 @@ export default function OrganizationDetailPage() {
     };
     return (
       <Badge variant={variants[role] || "info"}>
-        {role.charAt(0).toUpperCase() + role.slice(1)}
+        {t(`roles.${role}` as any) || role}
       </Badge>
     );
   };
@@ -183,7 +183,7 @@ export default function OrganizationDetailPage() {
   if (!org) {
     return (
       <div className="min-h-screen bg-tb-bone flex items-center justify-center">
-        <p className="text-tb-shadow">Organization not found</p>
+        <p className="text-tb-shadow">{t("notFound")}</p>
       </div>
     );
   }
@@ -212,7 +212,7 @@ export default function OrganizationDetailPage() {
                 />
               </svg>
             </Link>
-            <span className="text-tb-shadow">Organizations</span>
+            <span className="text-tb-shadow">{t("breadcrumb")}</span>
             <span className="text-tb-shadow">/</span>
             <span className="text-tb-navy font-medium">{org.name}</span>
           </div>
@@ -241,7 +241,7 @@ export default function OrganizationDetailPage() {
                     className="text-2xl font-bold"
                   />
                   <Button variant="primary" onClick={handleSave}>
-                    Save
+                    {t("actions.save")}
                   </Button>
                   <Button
                     variant="outline"
@@ -250,7 +250,7 @@ export default function OrganizationDetailPage() {
                       setEditName(org.name);
                     }}
                   >
-                    Cancel
+                    {t("actions.cancel")}
                   </Button>
                 </div>
               ) : (
@@ -291,7 +291,7 @@ export default function OrganizationDetailPage() {
               <div className="text-3xl font-bold text-tb-navy">
                 {org.members.length}
               </div>
-              <p className="text-sm text-tb-shadow">Total Members</p>
+              <p className="text-sm text-tb-shadow">{t("stats.totalMembers")}</p>
             </CardContent>
           </Card>
           <Card>
@@ -299,7 +299,7 @@ export default function OrganizationDetailPage() {
               <div className="text-3xl font-bold text-tb-navy">
                 {org.members.filter((m) => m.role === "teacher").length}
               </div>
-              <p className="text-sm text-tb-shadow">Teachers</p>
+              <p className="text-sm text-tb-shadow">{t("stats.teachers")}</p>
             </CardContent>
           </Card>
           <Card>
@@ -307,7 +307,7 @@ export default function OrganizationDetailPage() {
               <div className="text-3xl font-bold text-tb-navy">
                 {org.classCount}
               </div>
-              <p className="text-sm text-tb-shadow">Classes</p>
+              <p className="text-sm text-tb-shadow">{t("stats.classes")}</p>
             </CardContent>
           </Card>
           <Card>
@@ -315,7 +315,7 @@ export default function OrganizationDetailPage() {
               <div className="text-3xl font-bold text-tb-navy">
                 {org.moduleCount}
               </div>
-              <p className="text-sm text-tb-shadow">Modules</p>
+              <p className="text-sm text-tb-shadow">{t("stats.modules")}</p>
             </CardContent>
           </Card>
         </div>
@@ -324,7 +324,7 @@ export default function OrganizationDetailPage() {
         <Card>
           <CardHeader>
             <div className="flex justify-between items-center">
-              <CardTitle>Members</CardTitle>
+              <CardTitle>{t("members.title")}</CardTitle>
               <Button
                 variant="primary"
                 onClick={() => setShowAddMember(true)}
@@ -342,7 +342,7 @@ export default function OrganizationDetailPage() {
                     d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"
                   />
                 </svg>
-                Add Member
+                {t("members.addButton")}
               </Button>
             </div>
           </CardHeader>
@@ -352,16 +352,16 @@ export default function OrganizationDetailPage() {
                 <thead className="bg-tb-bone/50">
                   <tr>
                     <th className="px-6 py-3 text-left text-xs font-medium text-tb-shadow uppercase tracking-wider">
-                      Member
+                      {t("members.headers.member")}
                     </th>
                     <th className="px-6 py-3 text-left text-xs font-medium text-tb-shadow uppercase tracking-wider">
-                      Role
+                      {t("members.headers.role")}
                     </th>
                     <th className="px-6 py-3 text-left text-xs font-medium text-tb-shadow uppercase tracking-wider">
-                      Joined
+                      {t("members.headers.joined")}
                     </th>
                     <th className="px-6 py-3 text-left text-xs font-medium text-tb-shadow uppercase tracking-wider">
-                      Actions
+                      {t("members.headers.actions")}
                     </th>
                   </tr>
                 </thead>
@@ -394,7 +394,7 @@ export default function OrganizationDetailPage() {
                       <td className="px-6 py-4 whitespace-nowrap text-sm">
                         <div className="flex gap-2">
                           <Button variant="ghost" size="sm">
-                            Change Role
+                            {t("members.actions.changeRole")}
                           </Button>
                           {member.role !== "owner" && (
                             <Button
@@ -403,7 +403,7 @@ export default function OrganizationDetailPage() {
                               className="text-red-600 hover:text-red-700"
                               onClick={() => handleRemoveMember(member.id)}
                             >
-                              Remove
+                              {t("members.actions.remove")}
                             </Button>
                           )}
                         </div>
@@ -421,33 +421,33 @@ export default function OrganizationDetailPage() {
           <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
             <Card className="w-full max-w-md mx-4">
               <CardHeader>
-                <CardTitle>Add Member</CardTitle>
+                <CardTitle>{t("modal.title")}</CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="space-y-4">
                   <div>
                     <label className="block text-sm font-medium text-tb-navy mb-1">
-                      Email
+                      {t("modal.email")}
                     </label>
                     <Input
                       type="email"
                       value={newMemberEmail}
                       onChange={(e) => setNewMemberEmail(e.target.value)}
-                      placeholder="Enter email address"
+                      placeholder={t("modal.emailPlaceholder")}
                     />
                   </div>
                   <div>
                     <label className="block text-sm font-medium text-tb-navy mb-1">
-                      Role
+                      {t("modal.role")}
                     </label>
                     <select
                       value={newMemberRole}
                       onChange={(e) => setNewMemberRole(e.target.value)}
                       className="w-full px-4 py-2 border border-tb-line rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-tb-rust"
                     >
-                      <option value="student">Student</option>
-                      <option value="teacher">Teacher</option>
-                      <option value="admin">Admin</option>
+                      <option value="student">{t("roles.student")}</option>
+                      <option value="teacher">{t("roles.teacher")}</option>
+                      <option value="admin">{t("roles.admin")}</option>
                     </select>
                   </div>
                   <div className="flex gap-3 justify-end pt-4">
@@ -459,14 +459,14 @@ export default function OrganizationDetailPage() {
                         setNewMemberRole("student");
                       }}
                     >
-                      Cancel
+                      {t("modal.cancel")}
                     </Button>
                     <Button
                       variant="primary"
                       onClick={handleAddMember}
                       disabled={!newMemberEmail.trim()}
                     >
-                      Add Member
+                      {t("modal.addButton")}
                     </Button>
                   </div>
                 </div>

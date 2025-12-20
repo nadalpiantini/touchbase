@@ -674,6 +674,52 @@
       "errors": {
         "notAuthenticated": "No autenticado",
         "loadFailed": "Error al cargar asignaciones"
+      },
+      "detail": {
+        "breadcrumb": "Asignaciones",
+        "notFound": "Asignación no encontrada",
+        "goBack": "Volver",
+        "successMessage": "¡Asignación enviada exitosamente!",
+        "instructions": "Instrucciones",
+        "pointsPossible": "puntos posibles",
+        "by": "Por",
+        "due": "Vence",
+        "at": "a las",
+        "status": {
+          "submitted": "Enviado",
+          "graded": "Calificado",
+          "returned": "Devuelto para Revisión"
+        },
+        "dueStatus": {
+          "overdue": "Vencido por {days} días",
+          "overdueOne": "Vencido por 1 día",
+          "dueToday": "Vence Hoy",
+          "dueIn": "Vence en {days} días",
+          "dueInOne": "Vence en 1 día"
+        },
+        "submission": {
+          "title": "Tu Envío",
+          "submittedOn": "Enviado el",
+          "viewFile": "Ver Archivo Adjunto",
+          "feedback": "Retroalimentación del Profesor",
+          "gradedOn": "Calificado el"
+        },
+        "revision": {
+          "title": "Revisión Solicitada",
+          "action": "Revisar y Reenviar"
+        },
+        "submit": {
+          "title": "Enviar tu Trabajo",
+          "responseLabel": "Tu Respuesta",
+          "placeholder": "Escribe tu respuesta aquí... Puedes incluir los detalles de tu presupuesto, cálculos y reflexión.",
+          "characters": "caracteres",
+          "fileLabel": "Adjuntar Archivo (Opcional)",
+          "fileDrop": "Arrastra y suelta un archivo, o haz clic para buscar",
+          "fileTypes": "PDF, DOC, DOCX, XLS, XLSX hasta 10MB",
+          "cancel": "Cancelar",
+          "submitting": "Enviando...",
+          "submitButton": "Enviar Asignación"
+        }
       }
     },
     "skills": {
@@ -859,7 +905,50 @@
       "members": "miembros",
       "classes": "clases",
       "created": "Creada",
-      "viewDetails": "Ver Detalles"
+      "viewDetails": "Ver Detalles",
+      "detail": {
+        "breadcrumb": "Organizaciones",
+        "notFound": "Organización no encontrada",
+        "confirmRemoveMember": "¿Estás seguro de que quieres eliminar este miembro?",
+        "actions": {
+          "save": "Guardar",
+          "cancel": "Cancelar"
+        },
+        "stats": {
+          "totalMembers": "Total de Miembros",
+          "teachers": "Profesores",
+          "classes": "Clases",
+          "modules": "Módulos"
+        },
+        "members": {
+          "title": "Miembros",
+          "addButton": "Agregar Miembro",
+          "headers": {
+            "member": "Miembro",
+            "role": "Rol",
+            "joined": "Ingreso",
+            "actions": "Acciones"
+          },
+          "actions": {
+            "changeRole": "Cambiar Rol",
+            "remove": "Eliminar"
+          }
+        },
+        "roles": {
+          "owner": "Propietario",
+          "admin": "Administrador",
+          "teacher": "Profesor",
+          "student": "Estudiante"
+        },
+        "modal": {
+          "title": "Agregar Miembro",
+          "email": "Email",
+          "emailPlaceholder": "Ingresa el email",
+          "role": "Rol",
+          "cancel": "Cancelar",
+          "addButton": "Agregar Miembro"
+        }
+      }
     },
     "users": {
       "title": "Gestión de Usuarios",

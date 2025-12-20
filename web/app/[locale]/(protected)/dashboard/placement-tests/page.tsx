@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Card, CardContent, CardHeader, CardTitle, Button, Badge, LoadingSpinner } from "@/components/ui";
+import { Card, CardContent, CardHeader, CardTitle, Button, Badge, LoadingSpinner, Input } from "@/components/ui";
 
 type PlacementTest = {
   id: string;
@@ -30,8 +30,13 @@ export default function PlacementTestsPage() {
   const [tests, setTests] = useState<PlacementTest[]>([]);
   const [results, setResults] = useState<TestResult[]>([]);
   const [loading, setLoading] = useState(true);
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [showCreateTest, setShowCreateTest] = useState(false); // TODO: Implement create test modal UI
+  const [showCreateTest, setShowCreateTest] = useState(false);
+  const [formData, setFormData] = useState({
+    name: "",
+    description: "",
+    subject: "",
+    passing_score: 70
+  });
 
   useEffect(() => {
     loadData();
@@ -41,7 +46,7 @@ export default function PlacementTestsPage() {
     try {
       const res = await fetch("/api/placement-tests?includeResults=true");
       const json = await res.json();
-      
+
       if (!res.ok) {
         throw new Error(json?.error || "Error al cargar pruebas");
       }
@@ -53,6 +58,40 @@ export default function PlacementTestsPage() {
     } finally {
       setLoading(false);
     }
+  };
+
+  const handleCreateTest = async () => {
+    if (!formData.name.trim() || !formData.subject.trim()) {
+      alert("Por favor completa los campos requeridos");
+      return;
+    }
+
+    try {
+      const res = await fetch("/api/placement-tests", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData)
+      });
+
+      if (!res.ok) {
+        const json = await res.json();
+        alert(json.error || "Error al crear prueba");
+        return;
+      }
+
+      // Refresh data and close modal
+      await loadData();
+      setShowCreateTest(false);
+      setFormData({ name: "", description: "", subject: "", passing_score: 70 });
+    } catch (error) {
+      console.error("Error creating test:", error);
+      alert("Error al crear prueba");
+    }
+  };
+
+  const handleCloseModal = () => {
+    setShowCreateTest(false);
+    setFormData({ name: "", description: "", subject: "", passing_score: 70 });
   };
 
   if (loading) {
@@ -153,6 +192,85 @@ export default function PlacementTestsPage() {
             </div>
           </CardContent>
         </Card>
+      )}
+
+      {/* Create Test Modal */}
+      {showCreateTest && (
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
+          <Card className="w-full max-w-2xl mx-4 max-h-[90vh] overflow-y-auto">
+            <CardHeader>
+              <CardTitle>Crear Nueva Prueba de Colocación</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-4">
+                <div>
+                  <label className="block text-sm font-medium text-tb-navy mb-1">
+                    Nombre de la Prueba <span className="text-red-500">*</span>
+                  </label>
+                  <Input
+                    type="text"
+                    value={formData.name}
+                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                    placeholder="Ej: Matemáticas Nivel Inicial"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-tb-navy mb-1">
+                    Descripción (Opcional)
+                  </label>
+                  <textarea
+                    value={formData.description}
+                    onChange={(e) => setFormData({ ...formData, description: e.target.value })}
+                    placeholder="Breve descripción de la prueba..."
+                    className="w-full px-4 py-2 border border-tb-line rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-tb-rust min-h-[100px]"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-tb-navy mb-1">
+                    Materia/Tema <span className="text-red-500">*</span>
+                  </label>
+                  <Input
+                    type="text"
+                    value={formData.subject}
+                    onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
+                    placeholder="Ej: Matemáticas, Inglés, Ciencias"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-tb-navy mb-1">
+                    Puntuación Mínima (%) <span className="text-red-500">*</span>
+                  </label>
+                  <Input
+                    type="number"
+                    min="0"
+                    max="100"
+                    value={formData.passing_score}
+                    onChange={(e) => setFormData({ ...formData, passing_score: parseInt(e.target.value) || 0 })}
+                  />
+                  <p className="text-xs text-tb-shadow mt-1">
+                    Porcentaje mínimo requerido para aprobar (0-100)
+                  </p>
+                </div>
+
+                <div className="flex gap-3 justify-end pt-4 border-t border-tb-line">
+                  <Button variant="outline" onClick={handleCloseModal}>
+                    Cancelar
+                  </Button>
+                  <Button
+                    variant="primary"
+                    onClick={handleCreateTest}
+                    disabled={!formData.name.trim() || !formData.subject.trim()}
+                  >
+                    Crear Prueba
+                  </Button>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
       )}
     </main>
   );

@@ -38,7 +38,7 @@ type Submission = {
 };
 
 export default function AssignmentDetailPage() {
-  const _t = useTranslations("student.assignments"); // TODO: Add i18n throughout page
+  const t = useTranslations("student.assignments.detail");
   const locale = useLocale();
   const params = useParams();
   const router = useRouter();
@@ -148,14 +148,9 @@ Submit your completed budget spreadsheet or document along with your reflection.
       graded: "success",
       returned: "warning",
     };
-    const labels: Record<string, string> = {
-      submitted: "Submitted",
-      graded: "Graded",
-      returned: "Returned for Revision",
-    };
     return (
       <Badge variant={variants[status] || "info"}>
-        {labels[status] || status}
+        {t(`status.${status}` as any) || status}
       </Badge>
     );
   };
@@ -165,15 +160,19 @@ Submit your completed budget spreadsheet or document along with your reflection.
     const dueDate = new Date(assignment.due_date);
     const now = new Date();
     const daysUntilDue = Math.ceil((dueDate.getTime() - now.getTime()) / (1000 * 60 * 60 * 24));
+    const absDays = Math.abs(daysUntilDue);
 
     if (daysUntilDue < 0) {
-      return <Badge variant="warning">Overdue by {Math.abs(daysUntilDue)} days</Badge>;
+      const key = absDays === 1 ? "dueStatus.overdueOne" : "dueStatus.overdue";
+      return <Badge variant="warning">{t(key, { days: absDays })}</Badge>;
     } else if (daysUntilDue === 0) {
-      return <Badge variant="warning">Due Today</Badge>;
+      return <Badge variant="warning">{t("dueStatus.dueToday")}</Badge>;
     } else if (daysUntilDue <= 3) {
-      return <Badge variant="info">Due in {daysUntilDue} days</Badge>;
+      const key = daysUntilDue === 1 ? "dueStatus.dueInOne" : "dueStatus.dueIn";
+      return <Badge variant="info">{t(key, { days: daysUntilDue })}</Badge>;
     }
-    return <Badge variant="status">Due in {daysUntilDue} days</Badge>;
+    const key = daysUntilDue === 1 ? "dueStatus.dueInOne" : "dueStatus.dueIn";
+    return <Badge variant="status">{t(key, { days: daysUntilDue })}</Badge>;
   };
 
   if (loading) {
@@ -188,9 +187,9 @@ Submit your completed budget spreadsheet or document along with your reflection.
     return (
       <div className="min-h-screen bg-tb-bone flex items-center justify-center">
         <div className="text-center">
-          <p className="text-tb-shadow mb-4">Assignment not found</p>
+          <p className="text-tb-shadow mb-4">{t("notFound")}</p>
           <Button variant="primary" onClick={() => router.back()}>
-            Go Back
+            {t("goBack")}
           </Button>
         </div>
       </div>
@@ -206,7 +205,7 @@ Submit your completed budget spreadsheet or document along with your reflection.
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
             </svg>
-            <span className="font-medium">Assignment submitted successfully!</span>
+            <span className="font-medium">{t("successMessage")}</span>
           </div>
         </div>
       )}
@@ -233,7 +232,7 @@ Submit your completed budget spreadsheet or document along with your reflection.
                 />
               </svg>
             </Link>
-            <span className="text-tb-shadow">Assignments</span>
+            <span className="text-tb-shadow">{t("breadcrumb")}</span>
             <span className="text-tb-shadow">/</span>
             <span className="text-tb-navy font-medium truncate">{assignment.title}</span>
           </div>
@@ -248,17 +247,17 @@ Submit your completed budget spreadsheet or document along with your reflection.
                 <span>•</span>
                 <span>{assignment.module_title}</span>
                 <span>•</span>
-                <span>By {assignment.teacher_name}</span>
+                <span>{t("by")} {assignment.teacher_name}</span>
               </div>
             </div>
             <div className="flex flex-col items-end gap-2">
               {getDueStatus()}
               <span className="text-sm text-tb-shadow">
-                Due: {new Date(assignment.due_date).toLocaleDateString()} at{" "}
+                {t("due")}: {new Date(assignment.due_date).toLocaleDateString()} {t("at")}{" "}
                 {new Date(assignment.due_date).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}
               </span>
               <span className="text-sm font-medium text-tb-navy">
-                {assignment.max_points} points possible
+                {assignment.max_points} {t("pointsPossible")}
               </span>
             </div>
           </div>
@@ -267,7 +266,7 @@ Submit your completed budget spreadsheet or document along with your reflection.
         {/* Assignment Description */}
         <Card className="mb-8">
           <CardHeader>
-            <CardTitle>Instructions</CardTitle>
+            <CardTitle>{t("instructions")}</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="prose prose-tb max-w-none">
@@ -285,7 +284,7 @@ Submit your completed budget spreadsheet or document along with your reflection.
           <Card>
             <CardHeader>
               <div className="flex justify-between items-center">
-                <CardTitle>Your Submission</CardTitle>
+                <CardTitle>{t("submission.title")}</CardTitle>
                 {getStatusBadge(submission.status)}
               </div>
             </CardHeader>
@@ -294,7 +293,7 @@ Submit your completed budget spreadsheet or document along with your reflection.
                 {/* Submission Details */}
                 <div className="bg-tb-bone/50 rounded-lg p-4">
                   <p className="text-sm text-tb-shadow mb-2">
-                    Submitted on {new Date(submission.submitted_at).toLocaleString()}
+                    {t("submission.submittedOn")} {new Date(submission.submitted_at).toLocaleString()}
                   </p>
                   <div className="prose prose-tb max-w-none">
                     <p className="text-tb-navy whitespace-pre-wrap">{submission.content}</p>
@@ -310,7 +309,7 @@ Submit your completed budget spreadsheet or document along with your reflection.
                         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13" />
                         </svg>
-                        View Attached File
+                        {t("submission.viewFile")}
                       </a>
                     </div>
                   )}
@@ -349,11 +348,11 @@ Submit your completed budget spreadsheet or document along with your reflection.
                     </div>
                     {submission.feedback && (
                       <div className="bg-green-50 border border-green-200 rounded-lg p-4">
-                        <h4 className="font-medium text-green-800 mb-2">Teacher Feedback</h4>
+                        <h4 className="font-medium text-green-800 mb-2">{t("submission.feedback")}</h4>
                         <p className="text-green-700">{submission.feedback}</p>
                         {submission.graded_at && (
                           <p className="text-sm text-green-600 mt-2">
-                            Graded on {new Date(submission.graded_at).toLocaleString()}
+                            {t("submission.gradedOn")} {new Date(submission.graded_at).toLocaleString()}
                           </p>
                         )}
                       </div>
@@ -366,7 +365,7 @@ Submit your completed budget spreadsheet or document along with your reflection.
                   <div className="border-t border-tb-line pt-4">
                     <div className="bg-amber-50 border border-amber-200 rounded-lg p-4">
                       <h4 className="font-medium text-amber-800 mb-2">
-                        Revision Requested
+                        {t("revision.title")}
                       </h4>
                       <p className="text-amber-700">{submission.feedback}</p>
                     </div>
@@ -378,7 +377,7 @@ Submit your completed budget spreadsheet or document along with your reflection.
                           setSubmission(null);
                         }}
                       >
-                        Revise and Resubmit
+                        {t("revision.action")}
                       </Button>
                     </div>
                   </div>
@@ -389,30 +388,30 @@ Submit your completed budget spreadsheet or document along with your reflection.
         ) : (
           <Card>
             <CardHeader>
-              <CardTitle>Submit Your Work</CardTitle>
+              <CardTitle>{t("submit.title")}</CardTitle>
             </CardHeader>
             <CardContent>
               <div className="space-y-4">
                 <div>
                   <label className="block text-sm font-medium text-tb-navy mb-2">
-                    Your Response
+                    {t("submit.responseLabel")}
                   </label>
                   <textarea
                     value={submissionContent}
                     onChange={(e) => setSubmissionContent(e.target.value)}
                     rows={10}
                     className="w-full px-4 py-3 border border-tb-line rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-tb-rust resize-y"
-                    placeholder="Type your response here... You can include your budget details, calculations, and reflection."
+                    placeholder={t("submit.placeholder")}
                   />
                   <p className="text-sm text-tb-shadow mt-2">
-                    {submissionContent.length} characters
+                    {submissionContent.length} {t("submit.characters")}
                   </p>
                 </div>
 
                 {/* File Upload (UI only) */}
                 <div>
                   <label className="block text-sm font-medium text-tb-navy mb-2">
-                    Attach File (Optional)
+                    {t("submit.fileLabel")}
                   </label>
                   <div className="border-2 border-dashed border-tb-line rounded-lg p-6 text-center hover:border-tb-rust transition-colors cursor-pointer">
                     <svg
@@ -429,10 +428,10 @@ Submit your completed budget spreadsheet or document along with your reflection.
                       />
                     </svg>
                     <p className="text-tb-shadow text-sm">
-                      Drag and drop a file, or click to browse
+                      {t("submit.fileDrop")}
                     </p>
                     <p className="text-tb-shadow/60 text-xs mt-1">
-                      PDF, DOC, DOCX, XLS, XLSX up to 10MB
+                      {t("submit.fileTypes")}
                     </p>
                   </div>
                 </div>
@@ -440,7 +439,7 @@ Submit your completed budget spreadsheet or document along with your reflection.
                 {/* Submit Button */}
                 <div className="flex justify-end gap-3 pt-4">
                   <Button variant="outline" onClick={() => router.back()}>
-                    Cancel
+                    {t("submit.cancel")}
                   </Button>
                   <Button
                     variant="primary"
@@ -464,7 +463,7 @@ Submit your completed budget spreadsheet or document along with your reflection.
                             d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
                           />
                         </svg>
-                        Submitting...
+                        {t("submit.submitting")}
                       </>
                     ) : (
                       <>
@@ -476,7 +475,7 @@ Submit your completed budget spreadsheet or document along with your reflection.
                             d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"
                           />
                         </svg>
-                        Submit Assignment
+                        {t("submit.submitButton")}
                       </>
                     )}
                   </Button>

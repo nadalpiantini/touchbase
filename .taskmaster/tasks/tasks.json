@@ -232,7 +232,7 @@
         "description": "Add i18n translations throughout student/assignments/[id]/page.tsx (currently has TODO comment)",
         "details": "",
         "testStrategy": "",
-        "status": "pending",
+        "status": "done",
         "dependencies": [],
         "priority": "medium",
         "subtasks": []
@@ -243,7 +243,7 @@
         "description": "Add i18n translations throughout admin/organizations/[id]/page.tsx (currently has TODO comment)",
         "details": "",
         "testStrategy": "",
-        "status": "pending",
+        "status": "done",
         "dependencies": [],
         "priority": "medium",
         "subtasks": []
@@ -254,7 +254,7 @@
         "description": "Create modal UI for placement test creation in dashboard/placement-tests/page.tsx (currently has TODO and useState)",
         "details": "",
         "testStrategy": "",
-        "status": "pending",
+        "status": "done",
         "dependencies": [],
         "priority": "medium",
         "subtasks": []
@@ -295,7 +295,7 @@
     ],
     "metadata": {
       "created": "2025-12-15T17:52:29.573Z",
-      "updated": "2025-12-20T16:31:27.100Z",
+      "updated": "2025-12-20T16:46:53.790Z",
       "description": "QA Testing sistemático de todas las secciones"
     }
   }
