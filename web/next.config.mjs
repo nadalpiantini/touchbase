@@ -7,9 +7,9 @@ const nextConfig = {
   // Enable React strict mode for better development experience
   reactStrictMode: true,
   
-  // Disable TypeScript errors during builds temporarily
+  // TypeScript strict mode - all errors must be fixed
   typescript: {
-    ignoreBuildErrors: true,
+    ignoreBuildErrors: false,
   },
 
   // Performance optimizations
