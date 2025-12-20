@@ -1,7 +1,7 @@
 import { MetadataRoute } from 'next';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.touchbase.academy';
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://touchbase.sujeto10.com';
   const locales = ['en', 'es'];
   const currentDate = new Date();
 

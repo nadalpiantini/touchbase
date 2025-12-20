@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { supabaseServer } from "@/lib/supabase/server";
+import { supabaseServer, supabaseAdmin } from "@/lib/supabase/server";
 
 export async function POST(req: Request) {
   try {
@@ -12,12 +12,23 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
-    // Validate role if provided
-    const validRoles = ['teacher', 'student', 'owner', 'admin', 'coach', 'player'];
-    const selectedRole = role && validRoles.includes(role) ? role : 'owner';
+    // Use admin client for privileged onboarding operations (bypasses RLS)
+    const admin = supabaseAdmin();
 
-    // Create organization
-    const { data: org, error: orgError } = await s
+    // Map user-facing roles to database roles
+    // DB allows: 'owner','admin','coach','player','parent','viewer'
+    const roleMapping: Record<string, string> = {
+      'teacher': 'admin',  // Teachers get admin role
+      'student': 'player', // Students get player role
+      'owner': 'owner',
+      'admin': 'admin',
+      'coach': 'coach',
+      'player': 'player',
+    };
+    const dbRole = roleMapping[role] || 'owner';
+
+    // Create organization (using admin to bypass RLS)
+    const { data: org, error: orgError } = await admin
       .from("touchbase_organizations")
       .insert({
         name: orgName || 'Mi Organización',
@@ -30,13 +41,13 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: orgError?.message || "Failed to create organization" }, { status: 400 });
     }
 
-    // Create membership with selected role
-    const { error: membershipError } = await s
+    // Create membership with mapped database role
+    const { error: membershipError } = await admin
       .from("touchbase_memberships")
       .insert({
         org_id: org.id,
         user_id: user.id,
-        role: selectedRole,
+        role: dbRole,
       });
 
     if (membershipError) {
@@ -44,7 +55,7 @@ export async function POST(req: Request) {
     }
 
     // Set as default org
-    const { error: profileError } = await s
+    const { error: profileError } = await admin
       .from("touchbase_profiles")
       .update({ default_org_id: org.id })
       .eq("id", user.id);
@@ -53,7 +64,8 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: profileError.message }, { status: 400 });
     }
 
-    return NextResponse.json({ ok: true, org_id: org.id, role: selectedRole });
+    // Return the user-facing role for redirect purposes
+    return NextResponse.json({ ok: true, org_id: org.id, role: role || 'owner' });
   } catch (e: unknown) {
     return NextResponse.json({ error: e instanceof Error ? e.message : "Unexpected error" }, { status: 500 });
   }
