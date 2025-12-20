@@ -291,11 +291,143 @@
         "dependencies": [],
         "priority": "medium",
         "subtasks": []
+      },
+      {
+        "id": 13,
+        "title": "SPRINT 2.1: BMAD STORY-01.2 - Theme Provider Component",
+        "description": "Implement Theme Provider component for whitelabel theming with CSS variables and context",
+        "details": "Create ThemeProvider component that wraps app and provides tenant-specific theme via CSS variables. Support light/dark modes and custom brand colors.",
+        "testStrategy": "Unit tests for theme context, visual tests for color switching",
+        "status": "pending",
+        "dependencies": [],
+        "priority": "high",
+        "subtasks": []
+      },
+      {
+        "id": 14,
+        "title": "SPRINT 2.2: BMAD STORY-01.3 - Tenant Themes Database Schema",
+        "description": "Create database schema for tenant_themes table with color palettes, fonts, and branding assets",
+        "details": "Migration for tenant_themes table with columns: org_id, primary_color, secondary_color, accent_color, logo_url, font_family, dark_mode_enabled",
+        "testStrategy": "Database migration tests, RLS policy tests",
+        "status": "pending",
+        "dependencies": [],
+        "priority": "high",
+        "subtasks": []
+      },
+      {
+        "id": 15,
+        "title": "SPRINT 2.3: BMAD STORY-01.4 - RBAC Middleware Implementation",
+        "description": "Implement Role-Based Access Control middleware for owner, admin, coach, viewer roles",
+        "details": "Create middleware to enforce role permissions at route level. Add roles table and user_roles junction table. Implement permission checks in API routes.",
+        "testStrategy": "E2E tests for role access control, unit tests for permission logic",
+        "status": "pending",
+        "dependencies": [],
+        "priority": "high",
+        "subtasks": []
+      },
+      {
+        "id": 16,
+        "title": "SPRINT 2.4: BMAD STORY-01.5 - Module Registry System",
+        "description": "Create module registry with enable/disable flags per tenant for feature gating",
+        "details": "Add modules table with name, description, enabled_by_default. Add tenant_modules junction for per-tenant overrides. Create ModuleGuard component.",
+        "testStrategy": "Tests for module visibility, admin UI tests",
+        "status": "pending",
+        "dependencies": [],
+        "priority": "medium",
+        "subtasks": []
+      },
+      {
+        "id": 17,
+        "title": "SPRINT 2.5: BMAD STORY-01.6 - Permission Hooks & Guards",
+        "description": "Create React hooks and guards for permission checks in components and routes",
+        "details": "Implement usePermission(), useRole(), RequirePermission component, ProtectedRoute wrapper. Integrate with existing auth system.",
+        "testStrategy": "Unit tests for hooks, E2E tests for protected routes",
+        "status": "pending",
+        "dependencies": [],
+        "priority": "medium",
+        "subtasks": []
+      },
+      {
+        "id": 18,
+        "title": "SPRINT 3.1: Teachers Module - Database Schema",
+        "description": "Create teachers/staff table mirroring players structure with certifications and specializations",
+        "details": "Migration for teachers table with fields: name, email, certifications[], specializations[], years_experience, bio, department, status. Add RLS policies.",
+        "testStrategy": "Migration tests, CRUD API tests",
+        "status": "pending",
+        "dependencies": [],
+        "priority": "high",
+        "subtasks": []
+      },
+      {
+        "id": 19,
+        "title": "SPRINT 3.2: Teachers Module - CRUD Implementation",
+        "description": "Implement teachers CRUD operations, list view, detail view, registration wizard",
+        "details": "Create API routes, service layer, components for teachers management. Use existing UI components (Table, Avatar, Form primitives).",
+        "testStrategy": "E2E tests for teacher registration and management",
+        "status": "pending",
+        "dependencies": [],
+        "priority": "high",
+        "subtasks": []
+      },
+      {
+        "id": 20,
+        "title": "SPRINT 3.3: Classes Module - Database Schema & API",
+        "description": "Create classes table with enrollment system and scheduling integration",
+        "details": "Migration for classes table (name, level, schedule, teacher_id, max_students) and enrollments junction table (class_id, student_id, enrolled_date, status). API routes for CRUD.",
+        "testStrategy": "Database tests, enrollment API tests",
+        "status": "pending",
+        "dependencies": [],
+        "priority": "high",
+        "subtasks": []
+      },
+      {
+        "id": 21,
+        "title": "SPRINT 3.4: Classes Module - UI Components",
+        "description": "Build classes list view, class detail, enrollment management UI",
+        "details": "Create ClassesList, ClassDetail, EnrollmentManager components using Table, Card, Badge primitives. Add class creation wizard.",
+        "testStrategy": "E2E tests for class creation and enrollment",
+        "status": "pending",
+        "dependencies": [],
+        "priority": "high",
+        "subtasks": []
+      },
+      {
+        "id": 22,
+        "title": "SPRINT 4.1: Attendance System - Database & API",
+        "description": "Create attendance tracking system with date-based records",
+        "details": "Migration for attendance table (class_id, student_id, date, status: present/absent/excused/late, notes). API for take attendance and reports.",
+        "testStrategy": "API tests for attendance CRUD, report generation tests",
+        "status": "pending",
+        "dependencies": [],
+        "priority": "medium",
+        "subtasks": []
+      },
+      {
+        "id": 23,
+        "title": "SPRINT 4.2: Attendance System - Take Attendance UI",
+        "description": "Build UI for teachers to take attendance with quick entry and bulk actions",
+        "details": "Create AttendanceSheet component with quick toggle for present/absent, bulk actions, date picker, class selector. Mobile-optimized.",
+        "testStrategy": "E2E tests for attendance taking workflow",
+        "status": "pending",
+        "dependencies": [],
+        "priority": "medium",
+        "subtasks": []
+      },
+      {
+        "id": 24,
+        "title": "SPRINT 4.3: Attendance Reports Dashboard",
+        "description": "Create attendance reports with visualizations and exports",
+        "details": "Build reports page with filters (date range, class, student), charts for attendance trends, CSV export. Use existing Chart components.",
+        "testStrategy": "Visual tests for charts, export functionality tests",
+        "status": "pending",
+        "dependencies": [],
+        "priority": "low",
+        "subtasks": []
       }
     ],
     "metadata": {
       "created": "2025-12-15T17:52:29.573Z",
-      "updated": "2025-12-20T17:37:55.371Z",
+      "updated": "2025-12-20T17:39:53.399Z",
       "description": "QA Testing sistemático de todas las secciones"
     }
   }
