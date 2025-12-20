@@ -1,0 +1,30 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - link "Skip to main content" [ref=e2]:
+    - /url: "#main-content"
+  - main [ref=e3]:
+    - generic [ref=e4]:
+      - img [ref=e6]
+      - paragraph [ref=e8]: Manage your sports team professionally
+    - generic [ref=e11]:
+      - img "TouchBase - Your dugout in the cloud" [ref=e13]
+      - heading "TouchBase Login" [level=2] [ref=e15]
+      - generic [ref=e16]:
+        - generic [ref=e17]:
+          - textbox "your@email.com" [ref=e19]
+          - textbox "Your password" [ref=e21]
+        - button "Sign In" [ref=e23]
+        - generic [ref=e24]:
+          - paragraph [ref=e25]:
+            - link "Forgot your password?" [ref=e26]:
+              - /url: /es/forgot-password
+          - paragraph [ref=e27]:
+            - text: First time?
+            - link "Create an account" [ref=e28]:
+              - /url: /es/signup
+  - button "Open Next.js Dev Tools" [ref=e34] [cursor=pointer]:
+    - img [ref=e35]
+  - alert [ref=e40]
+```
