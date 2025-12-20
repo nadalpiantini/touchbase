@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { Button } from '@/components/ui';
+import { Button, useToast } from '@/components/ui';
 
 interface CSVExportButtonProps {
   type: 'players' | 'teachers' | 'classes';
@@ -9,6 +9,7 @@ interface CSVExportButtonProps {
 }
 
 export function CSVExportButton({ type, label = 'Export CSV' }: CSVExportButtonProps) {
+  const { addToast } = useToast();
   const [exporting, setExporting] = useState(false);
 
   const handleExport = async () => {
@@ -38,7 +39,7 @@ export function CSVExportButton({ type, label = 'Export CSV' }: CSVExportButtonP
       window.URL.revokeObjectURL(url);
       document.body.removeChild(a);
     } catch (error) {
-      alert(error instanceof Error ? error.message : 'Failed to export CSV');
+      addToast(error instanceof Error ? error.message : 'Failed to export CSV', 'error');
     } finally {
       setExporting(false);
     }

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Oswald, Inter, Lobster_Two, Geist_Mono } from "next/font/google";
 import './globals.css';
+import { ToastProvider } from "@/components/ui";
 
 const oswald = Oswald({
   subsets: ["latin"],
@@ -106,10 +107,12 @@ export default function RootLayout({
   return (
     <html lang="es" suppressHydrationWarning>
       <body className={`${oswald.variable} ${inter.variable} ${lobsterTwo.variable} ${geistMono.variable} antialiased font-sans`}>
-        <a href="#main-content" className="skip-to-main">
-          Skip to main content
-        </a>
-        {children}
+        <ToastProvider>
+          <a href="#main-content" className="skip-to-main">
+            Skip to main content
+          </a>
+          {children}
+        </ToastProvider>
       </body>
     </html>
   );

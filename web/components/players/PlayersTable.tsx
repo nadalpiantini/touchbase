@@ -13,6 +13,7 @@ import {
   Select,
   Input,
   Button,
+  useToast,
 } from '@/components/ui';
 import { CSVExportButton } from '@/components/export/CSVExportButton';
 
@@ -21,6 +22,7 @@ type Team = { id: string; name: string };
 
 export default function PlayersTable() {
   const t = useTranslations('players');
+  const { addToast } = useToast();
   const [players, setPlayers] = useState<Player[]>([]);
   const [teams, setTeams] = useState<Team[]>([]);
   const [teamFilter, setTeamFilter] = useState<string>("");
@@ -75,7 +77,7 @@ export default function PlayersTable() {
     });
     if (!res.ok) {
       const json = await res.json();
-      alert(json.error || t('errors.saveFailed'));
+      addToast(json.error || t('errors.saveFailed'), 'error');
       return;
     }
     cancelEdit();
@@ -91,7 +93,7 @@ export default function PlayersTable() {
     });
     if (!res.ok) {
       const json = await res.json();
-      alert(json.error || t('errors.deleteFailed'));
+      addToast(json.error || t('errors.deleteFailed'), 'error');
       return;
     }
     load(teamFilter || undefined);

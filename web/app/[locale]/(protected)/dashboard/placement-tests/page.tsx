@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Card, CardContent, CardHeader, CardTitle, Button, Badge, LoadingSpinner, Input } from "@/components/ui";
+import { Card, CardContent, CardHeader, CardTitle, Button, Badge, LoadingSpinner, Input, useToast } from "@/components/ui";
 
 type PlacementTest = {
   id: string;
@@ -27,6 +27,7 @@ type TestResult = {
 };
 
 export default function PlacementTestsPage() {
+  const { addToast } = useToast();
   const [tests, setTests] = useState<PlacementTest[]>([]);
   const [results, setResults] = useState<TestResult[]>([]);
   const [loading, setLoading] = useState(true);
@@ -62,7 +63,7 @@ export default function PlacementTestsPage() {
 
   const handleCreateTest = async () => {
     if (!formData.name.trim() || !formData.subject.trim()) {
-      alert("Por favor completa los campos requeridos");
+      addToast("Por favor completa los campos requeridos", "warning");
       return;
     }
 
@@ -75,17 +76,18 @@ export default function PlacementTestsPage() {
 
       if (!res.ok) {
         const json = await res.json();
-        alert(json.error || "Error al crear prueba");
+        addToast(json.error || "Error al crear prueba", "error");
         return;
       }
 
       // Refresh data and close modal
       await loadData();
+      addToast("Prueba de colocación creada exitosamente", "success");
       setShowCreateTest(false);
       setFormData({ name: "", description: "", subject: "", passing_score: 70 });
     } catch (error) {
       console.error("Error creating test:", error);
-      alert("Error al crear prueba");
+      addToast("Error al crear prueba", "error");
     }
   };
 

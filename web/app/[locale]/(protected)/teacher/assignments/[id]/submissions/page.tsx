@@ -12,6 +12,7 @@ import {
   Button,
   Badge,
   Input,
+  useToast,
 } from "@/components/ui";
 
 type Assignment = {
@@ -41,6 +42,7 @@ type Submission = {
 export default function AssignmentSubmissionsPage() {
   const t = useTranslations("teacher.assignments");
   const locale = useLocale();
+  const { addToast } = useToast();
   const params = useParams();
   const assignmentId = params.id as string;
 
@@ -150,7 +152,7 @@ I'm saving for a car and this exercise showed me I can reach my goal in 18 month
 
     const grade = parseInt(gradeInput);
     if (isNaN(grade) || grade < 0 || grade > (assignment?.max_points || 100)) {
-      alert(`Grade must be between 0 and ${assignment?.max_points || 100}`);
+      addToast(`Grade must be between 0 and ${assignment?.max_points || 100}`, 'warning');
       return;
     }
 
@@ -212,7 +214,7 @@ I'm saving for a car and this exercise showed me I can reach my goal in 18 month
 
   const handleReturn = async () => {
     if (!selectedSubmission || !feedbackInput.trim()) {
-      alert("Please provide feedback explaining what needs to be revised.");
+      addToast("Please provide feedback explaining what needs to be revised.", 'warning');
       return;
     }
 

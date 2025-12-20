@@ -1,13 +1,14 @@
 "use client";
 import { useEffect, useState } from "react";
 import { useTranslations } from 'next-intl';
-import { LoadingSpinner, Alert } from '@/components/ui';
+import { LoadingSpinner, Alert, useToast } from '@/components/ui';
 import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from '@/components/ui/Table';
 
 type Team = { id: string; name: string; created_at: string };
 
 export default function TeamsTable() {
   const t = useTranslations('teams');
+  const { addToast } = useToast();
   const [teams, setTeams] = useState<Team[]>([]);
   const [loading, setLoading] = useState(true);
   const [err, setErr] = useState<string | null>(null);
@@ -48,7 +49,7 @@ export default function TeamsTable() {
     });
     if (!res.ok) {
       const json = await res.json();
-      alert(json.error || t('errors.saveFailed'));
+      addToast(json.error || t('errors.saveFailed'), 'error');
       return;
     }
     setEditId(null);
@@ -65,7 +66,7 @@ export default function TeamsTable() {
     });
     if (!res.ok) {
       const json = await res.json();
-      alert(json.error || t('errors.deleteFailed'));
+      addToast(json.error || t('errors.deleteFailed'), 'error');
       return;
     }
     load();

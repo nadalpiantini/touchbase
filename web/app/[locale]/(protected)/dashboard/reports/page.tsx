@@ -1,11 +1,12 @@
 "use client";
 
 import { useState } from "react";
-import { Card, CardContent, CardHeader, CardTitle, Button } from "@/components/ui";
+import { Card, CardContent, CardHeader, CardTitle, Button, useToast } from "@/components/ui";
 
 type ReportType = "attendance" | "performance" | "budget";
 
 export default function ReportsPage() {
+  const { addToast } = useToast();
   const [reportType, setReportType] = useState<ReportType>("attendance");
   const [format, setFormat] = useState<"csv" | "pdf">("csv");
   const [startDate, setStartDate] = useState("");
@@ -53,7 +54,7 @@ export default function ReportsPage() {
         setTimeout(() => window.URL.revokeObjectURL(url), 1000);
       }
     } catch (error: unknown) {
-      alert(error instanceof Error ? error.message : "Error al exportar reporte");
+      addToast(error instanceof Error ? error.message : "Error al exportar reporte", 'error');
     } finally {
       setLoading(false);
     }

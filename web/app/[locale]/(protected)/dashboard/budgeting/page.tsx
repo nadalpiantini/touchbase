@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Card, CardContent, CardHeader, CardTitle, Button, Badge, LoadingSpinner, Alert } from "@/components/ui";
+import { Card, CardContent, CardHeader, CardTitle, Button, Badge, LoadingSpinner, Alert, useToast } from "@/components/ui";
 
 type Budget = {
   id: string;
@@ -21,13 +21,14 @@ type Expense = {
 };
 
 export default function BudgetingPage() {
+  const { addToast } = useToast();
   const [budgets, setBudgets] = useState<Budget[]>([]);
   const [expenses, setExpenses] = useState<Expense[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [showAddBudget, setShowAddBudget] = useState(false);
   const [showAddExpense, setShowAddExpense] = useState(false);
-  
+
   // Form states
   const [budgetForm, setBudgetForm] = useState({ category: "", allocated_amount: "", fiscal_year: new Date().getFullYear(), notes: "" });
   const [expenseForm, setExpenseForm] = useState({ category: "", amount: "", description: "", budget_id: "" });
@@ -76,7 +77,7 @@ export default function BudgetingPage() {
       setBudgetForm({ category: "", allocated_amount: "", fiscal_year: new Date().getFullYear(), notes: "" });
       loadData();
     } catch (error) {
-      alert(error instanceof Error ? error.message : "Error al crear presupuesto");
+      addToast(error instanceof Error ? error.message : "Error al crear presupuesto", 'error');
     } finally {
       setSubmitting(false);
     }
@@ -101,7 +102,7 @@ export default function BudgetingPage() {
       setExpenseForm({ category: "", amount: "", description: "", budget_id: "" });
       loadData();
     } catch (error) {
-      alert(error instanceof Error ? error.message : "Error al crear gasto");
+      addToast(error instanceof Error ? error.message : "Error al crear gasto", 'error');
     } finally {
       setSubmitting(false);
     }

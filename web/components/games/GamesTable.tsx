@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useMemo, useState } from "react";
 import { useTranslations } from 'next-intl';
+import { useToast } from '@/components/ui';
 import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from '@/components/ui/Table';
 
 type Game = {
@@ -24,6 +25,7 @@ const STATUS_COLORS: Record<string, string> = {
 
 export default function GamesTable() {
   const t = useTranslations('games');
+  const { addToast } = useToast();
   const [games, setGames] = useState<Game[]>([]);
   const [teams, setTeams] = useState<Team[]>([]);
   const [status, setStatus] = useState("");
@@ -48,7 +50,7 @@ export default function GamesTable() {
       headers:{"Content-Type":"application/json"},
       body: JSON.stringify({ id, home_score: hs, away_score: as })
     });
-    if (!r.ok) alert((await r.json()).error||t('errors.generic'));
+    if (!r.ok) addToast((await r.json()).error||t('errors.generic'), 'error');
     else load();
   };
 
@@ -58,7 +60,7 @@ export default function GamesTable() {
       headers:{"Content-Type":"application/json"},
       body: JSON.stringify({ id, status: st })
     });
-    if (!r.ok) alert((await r.json()).error||t('errors.generic'));
+    if (!r.ok) addToast((await r.json()).error||t('errors.generic'), 'error');
     else load();
   };
 
@@ -69,7 +71,7 @@ export default function GamesTable() {
       headers: {"Content-Type":"application/json"},
       body: JSON.stringify({ id })
     });
-    if (!r.ok) alert((await r.json()).error||t('errors.generic'));
+    if (!r.ok) addToast((await r.json()).error||t('errors.generic'), 'error');
     else load();
   };
 

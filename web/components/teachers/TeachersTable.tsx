@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import { useTranslations } from 'next-intl';
-import { Badge, LoadingSpinner, Alert } from "@/components/ui";
+import { Badge, LoadingSpinner, Alert, useToast } from "@/components/ui";
 import { CSVExportButton } from '@/components/export/CSVExportButton';
 import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from '@/components/ui/Table';
 
@@ -21,6 +21,7 @@ type Teacher = {
 
 export default function TeachersTable() {
   const t = useTranslations('teachers');
+  const { addToast } = useToast();
   const [teachers, setTeachers] = useState<Teacher[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -55,7 +56,7 @@ export default function TeachersTable() {
     });
     if (!res.ok) {
       const json = await res.json();
-      alert(json.error || t('deleteFailed'));
+      addToast(json.error || t('deleteFailed'), 'error');
       return;
     }
     loadTeachers();
@@ -141,7 +142,7 @@ export default function TeachersTable() {
                 <button
                   type="button"
                   className="text-sm font-sans text-tb-navy hover:text-tb-stitch transition"
-                  onClick={() => alert(t('editNotImplemented'))}
+                  onClick={() => addToast(t('editNotImplemented'), 'info')}
                   aria-label={`Editar ${teacher.full_name}`}
                 >
                   {t('actions.edit')}
