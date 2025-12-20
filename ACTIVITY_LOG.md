@@ -419,9 +419,111 @@ if (canManage) {
 
 ---
 
+### ✅ Task 18 COMPLETADA (2024-12-20)
+
+**SPRINT 3.1**: Teachers Module - Database Schema - ✅ DONE
+
+**Archivos Creados** (1):
+- `migrations/postgres/010_teachers_module.sql` (475 líneas)
+
+**Database Migration (010_teachers_module.sql)**:
+- ✅ touchbase_teacher_status enum (active, inactive, on_leave, terminated)
+- ✅ touchbase_teachers table - Complete teacher/staff information
+- ✅ touchbase_teacher_classes table - Teacher-to-class assignments
+- ✅ touchbase_teacher_availability table - Weekly availability schedule
+- ✅ 11 RLS policies para tenant isolation y role-based access
+- ✅ 9 indexes para performance optimization
+- ✅ 3 RPC functions: get_active_teachers, get_teacher_classes, get_teacher_availability
+- ✅ Updated_at trigger para automatic timestamp management
+
+**Teacher Table Fields**:
+- Personal: first_name, last_name, email, phone, date_of_birth, profile_photo_url
+- Professional: certifications[], specializations[], years_experience, bio, department, position
+- Employment: hire_date, status, employment_type
+- Contact: address, emergency contacts
+- System: created_at, updated_at, created_by
+
+**Related Tables**:
+- touchbase_teacher_classes - Many-to-many con roles (primary, assistant, substitute)
+- touchbase_teacher_availability - Weekly schedule por day_of_week
+
+**Features Implementadas**:
+- ✅ Complete teacher profile management
+- ✅ Professional certifications tracking (array field)
+- ✅ Teaching specializations tracking (array field)
+- ✅ Employment type support (full-time, part-time, contractor)
+- ✅ Teacher status workflow (active, inactive, on_leave, terminated)
+- ✅ Emergency contact information
+- ✅ Teacher-class assignments with roles
+- ✅ Weekly availability scheduling
+- ✅ Email validation constraint
+- ✅ Years experience validation (>= 0)
+- ✅ Time range validation (end > start)
+- ✅ Unique email per organization
+- ✅ Cascading deletes on org deletion
+- ✅ Role-based access (coaches+ can manage)
+
+**RLS Policies** (11):
+1. teachers_select_own_org - Users can view teachers in their org
+2. teachers_insert_coach_plus - Coaches+ can add teachers
+3. teachers_update_coach_plus - Coaches+ can update teachers
+4. teachers_delete_admin_plus - Admins+ can delete teachers
+5. teacher_classes_select_own_org - View assignments in org
+6. teacher_classes_insert_coach_plus - Coaches+ manage assignments
+7. teacher_classes_update_coach_plus - Update assignments
+8. teacher_classes_delete_coach_plus - Delete assignments
+9. teacher_availability_select_own_org - View availability
+10. teacher_availability_insert_coach_plus - Manage availability
+11. teacher_availability_update/delete_coach_plus - Modify availability
+
+**Indexes** (9):
+- idx_teachers_org - Org lookup
+- idx_teachers_status - Active teachers filter
+- idx_teachers_email - Email lookup
+- idx_teachers_department - Department filtering
+- idx_teachers_name - Name search
+- idx_teacher_classes_teacher - Teacher's classes
+- idx_teacher_classes_class - Class's teachers
+- idx_teacher_availability_teacher - Teacher availability
+- idx_teacher_availability_day - Day-specific lookup
+
+**RPC Functions** (3):
+- touchbase_get_active_teachers(org_id) - List active teachers
+- touchbase_get_teacher_classes(teacher_id) - Teacher's class assignments
+- touchbase_get_teacher_availability(teacher_id) - Weekly schedule
+
+**Usage Examples**:
+```sql
+-- Get all active teachers
+SELECT * FROM touchbase_get_active_teachers('org-uuid');
+
+-- Get teacher's classes
+SELECT * FROM touchbase_get_teacher_classes('teacher-uuid');
+
+-- Get teacher availability
+SELECT * FROM touchbase_get_teacher_availability('teacher-uuid');
+
+-- Insert new teacher
+INSERT INTO touchbase_teachers (
+  org_id, first_name, last_name, email,
+  certifications, specializations, years_experience
+) VALUES (
+  'org-uuid', 'Jane', 'Doe', 'jane@example.com',
+  ARRAY['TEFL', 'CELTA'], ARRAY['English', 'Math'], 5
+);
+```
+
+**Commit**: [pending] - feat(teachers): implement teachers module database schema
+**Push**: [pending] - Will push after validation
+**Validaciones**: [pending] - SQL syntax validation
+
+**Progreso**: 18/24 tasks done (75%)
+
+---
+
 ### 📝 Próximo Paso
 
-**Siguiente acción**: SPRINT 3 - Task 18 - Teachers Module Database Schema
+**Siguiente acción**: Task 19 - Teachers CRUD Implementation
 
 **Comandos sugeridos**:
 ```bash
