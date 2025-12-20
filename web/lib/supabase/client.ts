@@ -1,5 +1,6 @@
 "use client";
-import { createClient, SupabaseClient } from "@supabase/supabase-js";
+import { createBrowserClient } from "@supabase/ssr";
+import { SupabaseClient } from "@supabase/supabase-js";
 
 // Singleton instance to prevent multiple GoTrueClient warnings
 // We store it on globalThis to ensure true singleton across module reloads
@@ -7,7 +8,7 @@ declare global {
   var __supabaseClient: SupabaseClient | undefined;
 }
 
-// Create the Supabase client only once
+// Create the Supabase client only once using SSR package for cookie-based sessions
 function getSupabaseClient(): SupabaseClient {
   // Return existing client if it exists
   if (globalThis.__supabaseClient) {
@@ -26,19 +27,11 @@ function getSupabaseClient(): SupabaseClient {
     throw new Error("Supabase configuration is missing. Please check your environment variables.");
   }
 
-  // Create new client and store it globally
-  const client = createClient(
+  // Create new client using @supabase/ssr for cookie-based session storage
+  // This ensures sessions sync between client and server via middleware
+  const client = createBrowserClient(
     supabaseUrl,
-    supabaseAnonKey,
-    {
-      auth: {
-        persistSession: true,
-        autoRefreshToken: true,
-        detectSessionInUrl: true,
-        storageKey: "touchbase-auth",
-        flowType: "pkce"
-      }
-    }
+    supabaseAnonKey
   );
 
   // Store globally to persist across HMR and module reloads
@@ -56,7 +49,7 @@ export const supabaseBrowser = () => getSupabaseClient();
 // This uses a getter to ensure the client is only created when accessed
 let _clientInstance: SupabaseClient | undefined;
 
-export const supabaseClient = typeof window !== "undefined" 
+export const supabaseClient = typeof window !== "undefined"
   ? (() => {
       if (!_clientInstance) {
         _clientInstance = getSupabaseClient();
